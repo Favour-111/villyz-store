@@ -1,3 +1,6 @@
+:root {
+  --color: rgb(83 109 254);
+}
 @font-face {
   font-family: poppinsBold;
   src: url(../../assets/font/Poppins-SemiBold.ttf);
@@ -6,14 +9,17 @@
   font-family: poppinsLight;
   src: url(../../assets/font/Poppins-Light.ttf);
 }
+
 @font-face {
   font-family: poppinsSemiBold;
   src: url(../../assets/font/Poppins-SemiBold.ttf);
 }
+
 @font-face {
   font-family: poppinsRegular;
   src: url(../../assets/font/Poppins-Medium.ttf);
 }
+
 .nav-sm {
   width: 100%;
   background-color: rgb(246, 243, 243);
@@ -22,9 +28,11 @@
   align-items: center;
   justify-content: space-between;
 }
+
 .icon-sm {
   position: relative;
 }
+
 .counter {
   background-color: #17181c;
   border-radius: 30px;
@@ -40,29 +48,115 @@
   top: 0;
   right: -7px;
 }
+
+.nav-sm-cont {
+  background-color: white;
+  width: 0;
+  opacity: 0;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 100;
+  transition: all 0.3s ease;
+}
+
+.nav-sm-cont.open {
+  width: 300px;
+  opacity: 1;
+}
+
+.nav-black {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 99;
+  transition: background-color 0.3s ease;
+}
+
+body.no-scroll {
+  overflow: hidden;
+}
+
+button[aria-label="Close Menu"] {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px 20px;
+  background: none;
+  border: none;
+  color: #17181c;
+  font-size: 18px;
+  font-family: poppinsSemiBold;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.menu-list {
+  list-style: none;
+  padding: 0 20px !important;
+}
+
+.menu-list li {
+  padding: 15px 20px;
+  font-family: poppinsSemiBold;
+  cursor: pointer;
+  border: 1px solid #f3f3f3;
+  color: #4b5966;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  img {
+    opacity: 0.4;
+  }
+}
+
+/* Logo Styling */
+.logo {
+  font-size: 30px;
+  font-family: poppinsBold;
+  color: #4b5966;
+}
+
+.logo span {
+  color: var(--color);
+}
+
 .nav-smContent {
   display: none;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-top: 20px;
 }
+
 .nav-sm-input {
   display: flex;
   align-items: center;
   justify-content: space-between !important;
   border: 1px solid #f3f3f3;
+  border-radius: 6px;
   width: 100%;
   padding: 10px 20px;
 }
+.Close Menu {
+  padding: 20px;
+}
+
 @media screen and (max-width: 1167px) {
   .nav-sm {
     display: flex;
   }
+
   .logo {
     font-size: 25px;
+    margin-top: 20px;
   }
+
   .nav-smContent {
     display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 }

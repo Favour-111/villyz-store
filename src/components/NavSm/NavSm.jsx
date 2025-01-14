@@ -1,11 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import "./NavSm.css";
-import { LuUserRound } from "react-icons/lu";
+
 const NavSm = () => {
+  const [navIsOpen, setNavIsOpen] = useState(false);
+
+  const handleMouseEnter = () => setNavIsOpen(true);
+  const handleMouseLeave = () => setNavIsOpen(false);
+
   return (
-    <div className="nav-container-sm">
+    <div className={`nav-container-sm ${navIsOpen ? "no-scroll" : ""}`}>
+      {/* Main Navbar */}
       <div className="nav-sm shadow-sm">
-        <div>
+        <div
+          className="menu-icon"
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+        >
           <img
             width="24"
             height="24"
@@ -40,6 +50,76 @@ const NavSm = () => {
           </div>
         </div>
       </div>
+
+      {/* Sidebar */}
+      <div
+        className={`nav-sm-cont ${navIsOpen ? "open" : ""}`}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      >
+        <button onClick={() => setNavIsOpen(false)} aria-label="Close Menu">
+          <div className="text-capitalize">my menu</div>
+          <div>
+            <img
+              width="34"
+              height="34"
+              src="https://img.icons8.com/wired/64/cancel--v3.png"
+              alt="cancel--v3"
+            />
+          </div>
+        </button>
+        <ul className="menu-list">
+          <li>
+            Home{" "}
+            <div>
+              <img
+                width="18"
+                height="18"
+                src="https://img.icons8.com/android/24/plus.png"
+                alt="plus"
+              />
+            </div>
+          </li>
+          <li>
+            Products{" "}
+            <div>
+              <img
+                width="18"
+                height="18"
+                src="https://img.icons8.com/android/24/plus.png"
+                alt="plus"
+              />
+            </div>
+          </li>
+          <li>
+            Categories{" "}
+            <div>
+              <img
+                width="18"
+                height="18"
+                src="https://img.icons8.com/android/24/plus.png"
+                alt="plus"
+              />
+            </div>
+          </li>
+          <li>
+            Contact{" "}
+            <div>
+              <img
+                width="18"
+                height="18"
+                src="https://img.icons8.com/android/24/plus.png"
+                alt="plus"
+              />
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      {/* Dimming background */}
+      {navIsOpen && <div className="nav-black"></div>}
+
+      {/* Navbar Content */}
       <div className="nav-smContent">
         <div className="logo">
           vill<span>yz</span>
