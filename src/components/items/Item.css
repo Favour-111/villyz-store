@@ -79,7 +79,7 @@
   img {
     object-fit: cover;
     margin: auto;
-    height: 128px;
+    height: 140px;
     max-width: 100%;
     transition: 350ms;
   }
@@ -146,14 +146,15 @@
     width: 200px !important;
   }
 }
-@media screen and (max-width: 450px) {
+@media screen and (max-width: 442px) {
   .product-item {
-    width: 180px !important;
+    margin-top: 20px;
+    width: 190px !important;
   }
 }
 @media screen and (max-width: 442px) {
   .product-item {
     margin-top: 20px;
-    width: 100% !important;
+    width: 190px !important;
   }
 }

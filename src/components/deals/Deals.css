@@ -161,6 +161,9 @@
   .timer {
     margin-top: 15px;
   }
+  .header {
+    font-size: 20px !important;
+  }
 }
 @media screen and (max-width: 871px) {
   .banner-container {

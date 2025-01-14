@@ -44,7 +44,7 @@ const NavSm = () => {
         <div className="logo">
           vill<span>yz</span>
         </div>
-        <div className="px-5 mt-2 w-100">
+        <div className="px-3 mt-2 w-100">
           <div className="nav-sm-input">
             <input type="text" placeholder="search product" name="" id="" />
             <div>
