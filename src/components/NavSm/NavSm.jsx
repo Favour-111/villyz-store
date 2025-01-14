@@ -13,7 +13,7 @@ const NavSm = () => {
       <div className="nav-sm shadow-sm">
         <div
           className="menu-icon"
-          onMouseEnter={handleMouseEnter}
+          onClick={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
         >
           <img
