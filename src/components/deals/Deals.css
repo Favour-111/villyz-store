@@ -1,0 +1,199 @@
+:root {
+  --color: rgb(83 109 254);
+}
+@font-face {
+  font-family: poppinsBold;
+  src: url(../../assets/font/Poppins-SemiBold.ttf);
+}
+@font-face {
+  font-family: poppinsLight;
+  src: url(../../assets/font/Poppins-Light.ttf);
+}
+@font-face {
+  font-family: poppinsSemiBold;
+  src: url(../../assets/font/Poppins-SemiBold.ttf);
+}
+@font-face {
+  font-family: poppinsRegular;
+  src: url(../../assets/font/Poppins-Medium.ttf);
+}
+.container {
+  padding: 60px 60px 20px 30px;
+  .container-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .header {
+    font-size: 25px;
+    font-family: poppinsSemiBold;
+    color: #787878;
+    span {
+      color: var(--color);
+    }
+  }
+  .content {
+    font-family: poppinsLight !important;
+    font-size: 14px;
+    text-transform: capitalize;
+  }
+  .timer {
+    display: flex;
+    gap: 10px;
+    background-color: #f3f3f3;
+    padding: 10px 40px;
+    border-radius: 10px;
+    font-family: poppinsSemiBold !important;
+    color: #787878;
+    font-size: 14px;
+  }
+}
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.itemBody {
+  padding: 50px 10px;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: auto;
+}
+
+.banner-container {
+  padding: 10px 40px;
+  .banner {
+    background: linear-gradient(45deg, #4e4e4e30, #f3f3f3);
+    border-radius: 40px;
+    display: flex;
+    overflow: hidden;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    position: relative;
+    height: 400px;
+    .blob-container svg {
+      width: 500px;
+      top: -52px;
+      position: absolute;
+      opacity: 0.2;
+    }
+
+    img {
+      width: 450px;
+      margin-bottom: 10px;
+      transform: rotate(40deg);
+    }
+    .blob {
+      width: 200px;
+      height: 200px;
+      background-color: var(--color);
+      border-radius: 100px;
+      opacity: 0.2;
+      position: absolute;
+      top: -50px;
+      right: -40px;
+    }
+    .blob2 {
+      width: 200px;
+      height: 200px;
+      background-color: tomato;
+      border-radius: 100px;
+      opacity: 0.2;
+      position: absolute;
+      bottom: -50px;
+      right: -40px;
+    }
+  }
+  .banner-text-container {
+    padding: 10px 100px;
+    .banner-head {
+      font-size: 30px;
+      font-family: poppinsSemiBold;
+      text-transform: capitalize;
+      color: #4b5966;
+    }
+    .sale {
+      font-size: 25px;
+      font-family: poppinsSemiBold;
+      color: var(--color);
+    }
+    .Button {
+      background-color: var(--color);
+      padding: 5px 10px;
+      color: white;
+      text-decoration: none;
+      text-transform: capitalize;
+      font-family: poppinsRegular;
+      border-radius: 6px;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .category-container {
+    padding: 40px;
+    gap: 30px;
+    overflow: scroll;
+    scrollbar-width: none;
+  }
+  .itemBody {
+    align-items: center;
+    justify-content: center;
+  }
+  .container {
+    margin: 0 !important;
+  }
+}
+@media screen and (max-width: 530px) {
+  .itemBody {
+    padding: 50px 0 !important;
+    align-items: center;
+    justify-content: center;
+  }
+  .container-header {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
+  }
+  .timer {
+    margin-top: 15px;
+  }
+}
+@media screen and (max-width: 871px) {
+  .banner-container {
+    padding: 10px;
+  }
+}
+@media screen and (max-width: 772px) {
+  .banner-container {
+    padding: 10px;
+    .banner {
+      .blob-container svg {
+        width: 300px !important;
+      }
+    }
+    img {
+      width: 200px !important;
+    }
+  }
+  .banner-head {
+    font-size: 20px !important;
+  }
+  .sale {
+    font-size: 20px !important;
+  }
+  .Button {
+    font-size: 14px;
+  }
+  .container-header {
+    display: flex;
+    align-items: center;
+    justify-content: center !important;
+  }
+  .banner-text-container {
+    padding: 10px 0 !important;
+  }
+}

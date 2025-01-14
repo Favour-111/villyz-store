@@ -1,0 +1,91 @@
+:root {
+  --primary-color: rgb(83, 109, 254);
+}
+
+@font-face {
+  font-family: poppinsBold;
+  src: url(../../assets/font/Poppins-SemiBold.ttf);
+}
+
+@font-face {
+  font-family: poppinsLight;
+  src: url(../../assets/font/Poppins-Light.ttf);
+}
+
+@font-face {
+  font-family: poppinsSemiBold;
+  src: url(../../assets/font/Poppins-SemiBold.ttf);
+}
+
+@font-face {
+  font-family: poppinsRegular;
+  src: url(../../assets/font/Poppins-Medium.ttf);
+}
+
+.container {
+  padding: 20px;
+}
+
+.header {
+  font-family: poppinsBold;
+  font-size: 24px;
+  color: var(--primary-color);
+}
+
+.content {
+  font-family: poppinsRegular;
+  font-size: 16px;
+  color: #4b5966;
+  margin-top: 10px;
+}
+
+.blog-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  overflow-x: scroll;
+  width: 100%;
+  gap: 15px;
+  scrollbar-width: none;
+  padding-top: 40px;
+}
+
+.blog-item {
+  width: 260px;
+  transition: 350ms;
+  flex: 0 0 auto;
+}
+
+.blog-item img {
+  max-width: 100%;
+  border-radius: 5px;
+}
+
+.date {
+  font-family: poppinsRegular;
+  font-size: 14px;
+  color: #787878;
+  margin-top: 20px;
+}
+
+.blog-content {
+  margin-top: 10px;
+  font-size: 17px;
+  font-family: poppinsSemiBold;
+  transition: 350ms;
+  color: #4b5966;
+}
+
+.read-more {
+  font-family: poppinsRegular;
+  font-size: 13px;
+  color: #787878;
+  margin-top: 10px;
+  cursor: pointer;
+  transition: 350ms;
+}
+
+.blog-item:hover .blog-content,
+.blog-item:hover .read-more {
+  color: var(--primary-color);
+}
