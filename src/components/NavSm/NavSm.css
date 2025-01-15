@@ -143,7 +143,22 @@ button[aria-label="Close Menu"] {
 .Close Menu {
   padding: 20px;
 }
+.nav-sm-subCategory {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease-in-out, padding 0.35s ease-in-out;
+  padding: 0;
+}
 
+.nav-sm-subCategory.open {
+  max-height: 300px; /* Adjust according to content height */
+  padding: 10px 0;
+}
+
+.nav-sm-subCategory li {
+  padding: 10px 20px;
+  border: none !important;
+}
 @media screen and (max-width: 1167px) {
   .nav-sm {
     display: flex;

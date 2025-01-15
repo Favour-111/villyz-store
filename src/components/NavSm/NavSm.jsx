@@ -1,11 +1,24 @@
 import React, { useState } from "react";
 import "./NavSm.css";
+import categoryType from "../../categoryType";
 
 const NavSm = () => {
   const [navIsOpen, setNavIsOpen] = useState(false);
+  const [subCategory1, setSubCategory1] = useState(false);
+  const [subCategory2, setSubCategory2] = useState(false);
 
   const handleMouseEnter = () => setNavIsOpen(true);
   const handleMouseLeave = () => setNavIsOpen(false);
+
+  const toggleSubCategory1 = () => {
+    setSubCategory1((prev) => !prev);
+    if (subCategory2) setSubCategory2(false); // Close subcategory2 when opening subcategory1
+  };
+
+  const toggleSubCategory2 = () => {
+    setSubCategory2((prev) => !prev);
+    if (subCategory1) setSubCategory1(false); // Close subcategory1 when opening subcategory2
+  };
 
   return (
     <div className={`nav-container-sm ${navIsOpen ? "no-scroll" : ""}`}>
@@ -69,8 +82,8 @@ const NavSm = () => {
           </div>
         </button>
         <ul className="menu-list">
-          <li>
-            Home{" "}
+          <li onClick={toggleSubCategory1}>
+            home{" "}
             <div>
               <img
                 width="18"
@@ -80,18 +93,7 @@ const NavSm = () => {
               />
             </div>
           </li>
-          <li>
-            Products{" "}
-            <div>
-              <img
-                width="18"
-                height="18"
-                src="https://img.icons8.com/android/24/plus.png"
-                alt="plus"
-              />
-            </div>
-          </li>
-          <li>
+          <li onClick={toggleSubCategory1}>
             Categories{" "}
             <div>
               <img
@@ -102,6 +104,29 @@ const NavSm = () => {
               />
             </div>
           </li>
+          <ul className={`nav-sm-subCategory ${subCategory1 ? "open" : ""}`}>
+            {categoryType.map((item) => (
+              <li key={item.id}>{item.name}</li>
+            ))}
+          </ul>
+          <li onClick={toggleSubCategory2}>
+            Pages{" "}
+            <div>
+              <img
+                width="18"
+                height="18"
+                src="https://img.icons8.com/android/24/plus.png"
+                alt="plus"
+              />
+            </div>
+          </li>
+          <ul className={`nav-sm-subCategory ${subCategory2 ? "open" : ""}`}>
+            <li>About Us</li>
+            <li>contact Us</li>
+            <li>cart </li>
+            <li>checkout</li>
+            <li>wishlist</li>
+          </ul>
           <li>
             Contact{" "}
             <div>
