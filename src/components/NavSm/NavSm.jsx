@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./NavSm.css";
 import categoryType from "../../categoryType";
+import { Link } from "react-router-dom";
 
 const NavSm = () => {
   const [navIsOpen, setNavIsOpen] = useState(false);
@@ -37,13 +38,16 @@ const NavSm = () => {
           />
         </div>
         <div className="d-flex gap-3 align-items-center">
-          <img
-            width="24"
-            height="24"
-            src="https://img.icons8.com/pulsar-line/48/user.png"
-            alt="user"
-          />
-          <div className="icon-sm">
+          <Link to="/login">
+            <img
+              width="24"
+              height="24"
+              src="https://img.icons8.com/pulsar-line/48/user.png"
+              alt="user"
+            />
+          </Link>
+
+          <Link to="/wishlist" className="icon-sm">
             <img
               width="24"
               height="24"
@@ -51,8 +55,8 @@ const NavSm = () => {
               alt="like--v1"
             />
             <div className="counter">2</div>
-          </div>
-          <div className="icon-sm">
+          </Link>
+          <Link to="/cart" className="icon-sm">
             <img
               width="24"
               height="24"
@@ -60,7 +64,7 @@ const NavSm = () => {
               alt="fast-cart"
             />
             <div className="counter">2</div>
-          </div>
+          </Link>
         </div>
       </div>
 
