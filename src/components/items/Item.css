@@ -177,3 +177,15 @@
     width: 100% !important;
   }
 }
+@media screen and (max-width: 390px) {
+  .product-item {
+    margin-top: 20px;
+    width: 160px !important;
+  }
+}
+@media screen and (max-width: 370px) {
+  .product-item {
+    margin-top: 20px;
+    width: 100% !important;
+  }
+}
