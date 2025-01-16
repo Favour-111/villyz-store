@@ -1,0 +1,54 @@
+:root {
+  --color: rgb(83 109 254);
+  --text: #4b5966;
+}
+@font-face {
+  font-family: poppinsBold;
+  src: url(../../assets/font/Poppins-SemiBold.ttf);
+}
+@font-face {
+  font-family: poppinsLight;
+  src: url(../../assets/font/Poppins-Light.ttf);
+}
+@font-face {
+  font-family: poppinsSemiBold;
+  src: url(../../assets/font/Poppins-SemiBold.ttf);
+}
+@font-face {
+  font-family: poppinsRegular;
+  src: url(../../assets/font/Poppins-Medium.ttf);
+}
+.bread-crumbs-container {
+  border-bottom: 1px solid #f3f3f3;
+  border-left: 1px solid #f3f3f3;
+  border-right: 1px solid #f3f3f3;
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.bread-crumbs {
+  padding: 0 60px;
+}
+.Bread-crumbs-Header {
+  color: var(--text);
+  font-size: 15px;
+  font-family: poppinsSemiBold;
+}
+.breadCrumb-content {
+  font-family: poppinsRegular;
+  font-size: 13px;
+  color: var(--text);
+  span {
+    color: var(--color);
+    text-transform: capitalize;
+  }
+}
+@media screen and (max-width: 768px) {
+  .bread-crumbs-container {
+    flex-direction: column;
+  }
+  .breadCrumb-content {
+    margin-top: 10px;
+  }
+}

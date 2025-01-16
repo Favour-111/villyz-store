@@ -8,6 +8,7 @@ import NewArrival from "./newArrival/NewArrival";
 import Blog from "./Blog/Blog";
 import Footer from "../footer/Footer";
 import NavSm from "./NavSm/NavSm";
+import BackToTop from "./BackToTop/BackToTop";
 
 const Page = () => {
   return (
@@ -20,6 +21,7 @@ const Page = () => {
       <Deals />
       <NewArrival />
       <Blog />
+      <BackToTop />
       <Footer />
     </div>
   );

@@ -64,6 +64,7 @@ input {
 .section-item {
   position: relative;
   cursor: pointer;
+  text-decoration: none;
 }
 
 .Name {
@@ -111,20 +112,27 @@ ul {
   flex-direction: column;
   gap: 10px;
 }
-
 li {
-  position: relative;
   list-style-type: none;
   font-family: poppinsRegular;
+  position: relative;
   font-size: 13px;
   color: #787878;
   text-transform: capitalize;
   margin-top: 8px;
   transition: 250ms;
 }
+li .Link {
+  text-decoration: none;
+  color: #787878;
+  transition: 250ms;
+}
 
 li:hover {
   color: var(--color);
+}
+li .Link:hover {
+  color: var(--color) !important;
 }
 .nav-container {
   padding: 6px 70px;
@@ -226,6 +234,10 @@ header {
     li {
       font-size: 15px;
       cursor: pointer;
+    }
+    .nav-link-item {
+      color: #4b5966;
+      text-decoration: none;
     }
   }
 }

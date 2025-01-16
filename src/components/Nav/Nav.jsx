@@ -5,6 +5,7 @@ import { CiHeart, CiLocationOn } from "react-icons/ci";
 import { IoBagHandleOutline } from "react-icons/io5";
 import { GrAppsRounded } from "react-icons/gr";
 import { RiArrowDropDownLine } from "react-icons/ri";
+import { Link } from "react-router-dom";
 
 const categoriesData = {
   "Kitchen Essentials": [
@@ -52,28 +53,43 @@ const Nav = () => {
                 Login
                 <div className={`dropdown ${isHovered ? "show" : ""}`}>
                   <ul>
-                    <li>Register</li>
+                    <li>
+                      <Link to="/SignUp" className="Link">
+                        Register
+                      </Link>
+                    </li>
                     <li>Checkout</li>
-                    <li>Login</li>
+                    <li>
+                      {" "}
+                      <Link to="/login" className="Link">
+                        Login
+                      </Link>
+                    </li>
                   </ul>
                 </div>
               </div>
             </div>
           </div>
-          <div className="d-flex gap-1 align-items-center section-item">
+          <Link
+            to="/wishlist"
+            className="d-flex gap-1 align-items-center section-item"
+          >
             <CiHeart size={30} color="#787878" />
             <div>
               <div className="Name">Wishlist</div>
               <div className="Section-name">3-items</div>
             </div>
-          </div>
-          <div className="d-flex gap-1 align-items-center section-item">
+          </Link>
+          <Link
+            to="/cart"
+            className="d-flex gap-1 align-items-center section-item"
+          >
             <IoBagHandleOutline size={30} color="#787878" />
             <div>
               <div className="Name">Cart</div>
               <div className="Section-name">3-items</div>
             </div>
-          </div>
+          </Link>
         </div>
       </div>
 
@@ -120,7 +136,11 @@ const Nav = () => {
         </div>
         <div className="nav-links-container">
           <ul>
-            <li>Home</li>
+            <li>
+              <Link to="/" className="nav-link-item">
+                Home
+              </Link>
+            </li>
             <li
               onMouseEnter={() => setcategory(true)}
               onMouseLeave={() => setcategory(false)}

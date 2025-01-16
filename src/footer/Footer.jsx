@@ -78,16 +78,14 @@ const Footer = () => {
                 <div>
                   <CiMail className="icon" />
                 </div>
-                <div className="address-details">
-                  omojolaobaloluwa@gmail.com
-                </div>
+                <div className="address-details">villyz0102@gmail.com</div>
               </div>
               <div className="d-flex gap-1 align mt-2">
                 <div>
                   <CiLocationOn className="icon" />
                 </div>
                 <div className="address-details mt-2">
-                  konifewo sango ota ogun state
+                  New Jersey , United State
                 </div>
               </div>
             </div>

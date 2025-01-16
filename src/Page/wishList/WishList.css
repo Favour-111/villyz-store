@@ -1,0 +1,124 @@
+:root {
+  --color: rgb(83 109 254);
+  --text: #4b5966;
+}
+@font-face {
+  font-family: poppinsBold;
+  src: url(../../assets/font/Poppins-SemiBold.ttf);
+}
+@font-face {
+  font-family: poppinsLight;
+  src: url(../../assets/font/Poppins-Light.ttf);
+}
+@font-face {
+  font-family: poppinsSemiBold;
+  src: url(../../assets/font/Poppins-SemiBold.ttf);
+}
+@font-face {
+  font-family: poppinsRegular;
+  src: url(../../assets/font/Poppins-Medium.ttf);
+}
+.wishList {
+  padding: 20px 100px;
+}
+.wishList-container {
+  width: 100%;
+  margin: auto;
+  border: 1px solid #e8e8e8;
+}
+
+.wish-list-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #e8e8e8;
+  padding: 20px;
+  div {
+    text-transform: uppercase;
+    color: var(--text);
+    font-size: 18px;
+    font-family: poppinsSemiBold;
+  }
+  button {
+    background-color: var(--color);
+    padding: 7px 14px;
+    color: white;
+    font-family: poppinsSemiBold;
+    border: none;
+    border-radius: 4px;
+    font-size: 15px;
+  }
+}
+table {
+  width: 100% !important;
+  height: 200px;
+}
+th {
+  color: #4b5966;
+  font-family: poppinsLight;
+  text-transform: capitalize;
+  font-size: 15px;
+}
+td {
+  font-family: poppinsRegular;
+  font-size: 14px;
+  color: #4b5966;
+  margin-top: 10px !important;
+}
+.table-heading {
+  border-bottom: 2px solid #e8e8e8;
+}
+.delete {
+  background-color: tomato;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  transition: 350ms;
+}
+.delete:hover {
+  transform: scale(0.9);
+}
+.cart {
+  background-color: var(--color);
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  transition: 350ms;
+}
+.delete:hover {
+  transform: scale(0.9);
+}
+@media screen and (max-width: 768px) {
+  .wishList {
+    padding: 20px 30px;
+  }
+  .table-container {
+  }
+}
+@media screen and (max-width: 638px) {
+  .wishList {
+    padding: 20px;
+  }
+  .table-container {
+    overflow: scroll;
+    width: 100%;
+  }
+}
+@media screen and (max-width: 550px) {
+  table {
+    width: 500px !important;
+  }
+  .wishList {
+    padding: 20px;
+  }
+  .table-container {
+    overflow: scroll;
+    width: 100%;
+  }
+}
