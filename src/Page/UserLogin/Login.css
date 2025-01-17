@@ -26,7 +26,6 @@
   .login-form {
     border: 1px solid #e3e3e3;
     width: 500px;
-    height: 300px;
     padding: 30px;
     border-radius: 7px;
   }
@@ -114,5 +113,8 @@
   }
   .login-form-container {
     padding: 0 10px;
+  }
+  .login-form {
+    height: 350px;
   }
 }

@@ -113,6 +113,10 @@
     width: 100% !important;
   }
   .contact-send {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
     padding: 40px 20px !important;
   }
 }

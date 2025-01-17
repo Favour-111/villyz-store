@@ -74,8 +74,12 @@ const NavSm = () => {
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
-        <button onClick={() => setNavIsOpen(false)} aria-label="Close Menu">
-          <div className="text-capitalize">my menu</div>
+        <button
+          onClick={() => setNavIsOpen(false)}
+          className="mt-4"
+          aria-label="Close Menu"
+        >
+          <div className="text-capitalize ">my menu</div>
           <div>
             <img
               width="34"
@@ -87,7 +91,7 @@ const NavSm = () => {
         </button>
         <ul className="menu-list">
           <Link className="li" to="/">
-            home{" "}
+            Home{" "}
             <div>
               <img
                 width="18"
@@ -110,9 +114,11 @@ const NavSm = () => {
           </Link>
           <ul className={`nav-sm-subCategory ${subCategory1 ? "open" : ""}`}>
             {categoryType.map((item) => (
-              <Link className="li" key={item.id}>
-                {item.name}
-              </Link>
+              <li>
+                <Link className="Link" key={item.id}>
+                  {item.name}
+                </Link>
+              </li>
             ))}
           </ul>
           <Link className="li" onClick={toggleSubCategory2}>

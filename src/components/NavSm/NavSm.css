@@ -100,6 +100,7 @@ button[aria-label="Close Menu"] {
 .menu-list {
   list-style: none;
   padding: 0 20px !important;
+  margin-top: 30px;
 }
 
 .menu-list .li {
@@ -107,6 +108,7 @@ button[aria-label="Close Menu"] {
   text-decoration: none;
   font-family: poppinsSemiBold;
   cursor: pointer;
+  font-size: 13px;
   border: 1px solid #f3f3f3;
   color: #4b5966;
   display: flex;
@@ -115,6 +117,12 @@ button[aria-label="Close Menu"] {
   img {
     opacity: 0.4;
   }
+}
+
+li .Link {
+  text-decoration: none;
+  color: #787878;
+  transition: 250ms;
 }
 
 /* Logo Styling */

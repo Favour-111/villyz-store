@@ -192,10 +192,10 @@ const Cart = ({ page }) => {
                 </td>
               </tr>
             </table>
-            <div className="buttons">
-              <Link className="continue">continue shopping</Link>
-              <button>CheckOut</button>
-            </div>
+          </div>
+          <div className="buttons">
+            <Link className="continue">continue shopping</Link>
+            <button>CheckOut</button>
           </div>
         </div>
       </div>
