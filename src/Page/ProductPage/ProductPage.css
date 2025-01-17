@@ -84,6 +84,8 @@ select {
   padding: 5px;
   border: none;
   outline: none;
+  background-color: none;
+  border: none;
   font-family: poppinsSemiBold;
   font-size: 14px;
   border-radius: 4px;
@@ -94,6 +96,25 @@ select {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.sort-by-header {
+  padding: 4px;
+  border-radius: 5px;
+  border: 1px solid #f3f3f3;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.sort-by {
+  width: 150px;
+  border-left: 1px solid #f3f3f3;
+  height: 40px;
+}
+.app-cot {
+  background-color: var(--color);
+  padding: 10px;
+  width: 45px;
+  border-radius: 5px;
 }
 @media screen and (max-width: 1190px) {
   .category-select-body {
@@ -107,5 +128,15 @@ select {
 @media screen and (max-width: 768px) {
   .category-select-body {
     margin: auto !important;
+  }
+  .app-cot {
+    width: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+  }
+  .app-cot img {
+    width: 20px;
   }
 }

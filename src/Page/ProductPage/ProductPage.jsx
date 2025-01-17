@@ -96,7 +96,7 @@ const ProductPage = ({ page }) => {
       <Category />
       <div className="cont">
         <div className="row cont-cont w-100 mt-4">
-          <div className="col-xl-3 col-md-12 mt-5">
+          <div className="col-xl-3 col-md-12 ">
             {/* Categories */}
             <div className="category-select-body shadow-sm">
               <div className="category-head">Categories</div>
@@ -180,12 +180,28 @@ const ProductPage = ({ page }) => {
 
           <div className="col-xl-9 col-md-12">
             {/* Product List */}
+            <div className="sort-by-header">
+              <div className="app-cot">
+                <img
+                  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAAA/UlEQVR4nO2UTW4CMQyFc4eCBJegrAsX4+cslDO0SxZco8MVgDUbv/mQhyyYSIOaLBACLFkaJW/87BfbIdzDgKHEWmLT4WtgUIoPfmDi1PWDXe6+S/HBxNa9q0JL7nPxb4JXkEj/a7tVKd4HZ+B9e2NwVsmgZeGfwMjdLdGAvsFS4tfdYAH0QmrZuyU0wacmjiZqE1V0/z4AkxZBbtvhmV+C/wGjq/PPSHRoVZI9B7A0IQ+YYiNJbTAvJpDrLaob+Eri53EJDBYuQ4dE4yjRrJgA6PlDeqbXJDH4zsQe+AjFuyU0wSaRJG1TD/6VllW0W5pKYO56u7ssrczvYWcABKUjsy5eXQAAAABJRU5ErkJggg=="
+                  alt="external-apps-technology-tanah-basah-basic-outline-tanah-basah"
+                />
+              </div>
+              <div className="sort-by p-2">
+                <select onChange={(e) => handleSort(e.target.value)}>
+                  <option value="">Sort By</option>
+                  <option value="name-asc">Name (A-Z)</option>
+                  <option value="name-desc">Name (Z-A)</option>
+                  <option value="price-asc">Price (Lowest to Highest)</option>
+                  <option value="price-desc">Price (Highest to Lowest)</option>
+                </select>
+              </div>
+            </div>
             <div className="itemBody">
               {paginatedProducts.map((product) => (
                 <Item key={product.id} product={product} />
               ))}
             </div>
-
             {/* Pagination */}
             <div className="text-center">
               {Array.from({ length: totalPages }, (_, i) => (
