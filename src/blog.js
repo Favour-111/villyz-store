@@ -27,6 +27,146 @@ const blog = [
     imageUrl: "https://grabit-next.tigerheck.com/assets/img/blog/5.jpg",
     date: "2017 jan 20",
   },
+  {
+    title: "The Role of Mobile Commerce in Today's Market",
+    content:
+      "Mobile commerce, or m-commerce, is booming as more consumers shop via smartphones. Optimizing your online store for mobile devices is crucial for reaching a wider audience and staying competitive in the fast-paced digital landscape.",
+    imageUrl: "https://grabit-next.tigerheck.com/assets/img/blog/5.jpg",
+    date: "2017 jan 20",
+  },
+  {
+    title: "The Role of Mobile Commerce in Today's Market",
+    content:
+      "Mobile commerce, or m-commerce, is booming as more consumers shop via smartphones. Optimizing your online store for mobile devices is crucial for reaching a wider audience and staying competitive in the fast-paced digital landscape.",
+    imageUrl: "https://grabit-next.tigerheck.com/assets/img/blog/5.jpg",
+    date: "2017 jan 20",
+  },
+  {
+    title: "The Role of Mobile Commerce in Today's Market",
+    content:
+      "Mobile commerce, or m-commerce, is booming as more consumers shop via smartphones. Optimizing your online store for mobile devices is crucial for reaching a wider audience and staying competitive in the fast-paced digital landscape.",
+    imageUrl: "https://grabit-next.tigerheck.com/assets/img/blog/5.jpg",
+    date: "2017 jan 20",
+  },
+  {
+    title: "The Role of Mobile Commerce in Today's Market",
+    content:
+      "Mobile commerce, or m-commerce, is booming as more consumers shop via smartphones. Optimizing your online store for mobile devices is crucial for reaching a wider audience and staying competitive in the fast-paced digital landscape.",
+    imageUrl: "https://grabit-next.tigerheck.com/assets/img/blog/5.jpg",
+    date: "2017 jan 20",
+  },
+  {
+    title: "The Role of Mobile Commerce in Today's Market",
+    content:
+      "Mobile commerce, or m-commerce, is booming as more consumers shop via smartphones. Optimizing your online store for mobile devices is crucial for reaching a wider audience and staying competitive in the fast-paced digital landscape.",
+    imageUrl: "https://grabit-next.tigerheck.com/assets/img/blog/5.jpg",
+    date: "2017 jan 20",
+  },
+  {
+    title: "The Role of Mobile Commerce in Today's Market",
+    content:
+      "Mobile commerce, or m-commerce, is booming as more consumers shop via smartphones. Optimizing your online store for mobile devices is crucial for reaching a wider audience and staying competitive in the fast-paced digital landscape.",
+    imageUrl: "https://grabit-next.tigerheck.com/assets/img/blog/5.jpg",
+    date: "2017 jan 20",
+  },
+  {
+    title: "The Role of Mobile Commerce in Today's Market",
+    content:
+      "Mobile commerce, or m-commerce, is booming as more consumers shop via smartphones. Optimizing your online store for mobile devices is crucial for reaching a wider audience and staying competitive in the fast-paced digital landscape.",
+    imageUrl: "https://grabit-next.tigerheck.com/assets/img/blog/5.jpg",
+    date: "2017 jan 20",
+  },
+  {
+    title: "The Role of Mobile Commerce in Today's Market",
+    content:
+      "Mobile commerce, or m-commerce, is booming as more consumers shop via smartphones. Optimizing your online store for mobile devices is crucial for reaching a wider audience and staying competitive in the fast-paced digital landscape.",
+    imageUrl: "https://grabit-next.tigerheck.com/assets/img/blog/5.jpg",
+    date: "2017 jan 20",
+  },
+  {
+    title: "The Role of Mobile Commerce in Today's Market",
+    content:
+      "Mobile commerce, or m-commerce, is booming as more consumers shop via smartphones. Optimizing your online store for mobile devices is crucial for reaching a wider audience and staying competitive in the fast-paced digital landscape.",
+    imageUrl: "https://grabit-next.tigerheck.com/assets/img/blog/5.jpg",
+    date: "2017 jan 20",
+  },
+  {
+    title: "The Role of Mobile Commerce in Today's Market",
+    content:
+      "Mobile commerce, or m-commerce, is booming as more consumers shop via smartphones. Optimizing your online store for mobile devices is crucial for reaching a wider audience and staying competitive in the fast-paced digital landscape.",
+    imageUrl: "https://grabit-next.tigerheck.com/assets/img/blog/5.jpg",
+    date: "2017 jan 20",
+  },
+  {
+    title: "The Role of Mobile Commerce in Today's Market",
+    content:
+      "Mobile commerce, or m-commerce, is booming as more consumers shop via smartphones. Optimizing your online store for mobile devices is crucial for reaching a wider audience and staying competitive in the fast-paced digital landscape.",
+    imageUrl: "https://grabit-next.tigerheck.com/assets/img/blog/5.jpg",
+    date: "2017 jan 20",
+  },
+  {
+    title: "The Role of Mobile Commerce in Today's Market",
+    content:
+      "Mobile commerce, or m-commerce, is booming as more consumers shop via smartphones. Optimizing your online store for mobile devices is crucial for reaching a wider audience and staying competitive in the fast-paced digital landscape.",
+    imageUrl: "https://grabit-next.tigerheck.com/assets/img/blog/5.jpg",
+    date: "2017 jan 20",
+  },
+  {
+    title: "The Role of Mobile Commerce in Today's Market",
+    content:
+      "Mobile commerce, or m-commerce, is booming as more consumers shop via smartphones. Optimizing your online store for mobile devices is crucial for reaching a wider audience and staying competitive in the fast-paced digital landscape.",
+    imageUrl: "https://grabit-next.tigerheck.com/assets/img/blog/5.jpg",
+    date: "2017 jan 20",
+  },
+  {
+    title: "The Role of Mobile Commerce in Today's Market",
+    content:
+      "Mobile commerce, or m-commerce, is booming as more consumers shop via smartphones. Optimizing your online store for mobile devices is crucial for reaching a wider audience and staying competitive in the fast-paced digital landscape.",
+    imageUrl: "https://grabit-next.tigerheck.com/assets/img/blog/5.jpg",
+    date: "2017 jan 20",
+  },
+  {
+    title: "The Role of Mobile Commerce in Today's Market",
+    content:
+      "Mobile commerce, or m-commerce, is booming as more consumers shop via smartphones. Optimizing your online store for mobile devices is crucial for reaching a wider audience and staying competitive in the fast-paced digital landscape.",
+    imageUrl: "https://grabit-next.tigerheck.com/assets/img/blog/5.jpg",
+    date: "2017 jan 20",
+  },
+  {
+    title: "The Role of Mobile Commerce in Today's Market",
+    content:
+      "Mobile commerce, or m-commerce, is booming as more consumers shop via smartphones. Optimizing your online store for mobile devices is crucial for reaching a wider audience and staying competitive in the fast-paced digital landscape.",
+    imageUrl: "https://grabit-next.tigerheck.com/assets/img/blog/5.jpg",
+    date: "2017 jan 20",
+  },
+  {
+    title: "The Role of Mobile Commerce in Today's Market",
+    content:
+      "Mobile commerce, or m-commerce, is booming as more consumers shop via smartphones. Optimizing your online store for mobile devices is crucial for reaching a wider audience and staying competitive in the fast-paced digital landscape.",
+    imageUrl: "https://grabit-next.tigerheck.com/assets/img/blog/5.jpg",
+    date: "2017 jan 20",
+  },
+  {
+    title: "The Role of Mobile Commerce in Today's Market",
+    content:
+      "Mobile commerce, or m-commerce, is booming as more consumers shop via smartphones. Optimizing your online store for mobile devices is crucial for reaching a wider audience and staying competitive in the fast-paced digital landscape.",
+    imageUrl: "https://grabit-next.tigerheck.com/assets/img/blog/5.jpg",
+    date: "2017 jan 20",
+  },
+  {
+    title: "The Role of Mobile Commerce in Today's Market",
+    content:
+      "Mobile commerce, or m-commerce, is booming as more consumers shop via smartphones. Optimizing your online store for mobile devices is crucial for reaching a wider audience and staying competitive in the fast-paced digital landscape.",
+    imageUrl: "https://grabit-next.tigerheck.com/assets/img/blog/5.jpg",
+    date: "2017 jan 20",
+  },
+  {
+    title: "The Role of Mobile Commerce in Today's Market",
+    content:
+      "Mobile commerce, or m-commerce, is booming as more consumers shop via smartphones. Optimizing your online store for mobile devices is crucial for reaching a wider audience and staying competitive in the fast-paced digital landscape.",
+    imageUrl: "https://grabit-next.tigerheck.com/assets/img/blog/5.jpg",
+    date: "2017 jan 20",
+  },
 ];
 
 export default blog;

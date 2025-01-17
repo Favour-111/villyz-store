@@ -141,9 +141,24 @@ const NavSm = () => {
                 contact Us
               </Link>
             </li>
-            <li>cart </li>
-            <li>checkout</li>
-            <li>wishlist</li>
+            <li>
+              <Link to="/blog" className="Link">
+                {" "}
+                Blog
+              </Link>{" "}
+            </li>
+            <li>
+              <Link className="Link" to="/cart">
+                {" "}
+                Cart
+              </Link>
+            </li>
+            <li>
+              {" "}
+              <Link to="/wishlist" className="Link">
+                wishlist
+              </Link>
+            </li>
           </ul>
           <Link className="li" to="/contact">
             Contact{" "}

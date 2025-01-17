@@ -9,6 +9,8 @@ import WishList from "./Page/wishList/WishList";
 import Contact from "./Page/Contact/Contact";
 import ProductPage from "./Page/ProductPage/ProductPage";
 import product from "./product";
+import BlogPage from "./Page/BlogPage/BlogPage";
+import SingleBlog from "./Page/SingleBlog/SingleBlog";
 function App() {
   return (
     <div className="App">
@@ -20,6 +22,11 @@ function App() {
         <Route element={<WishList page="wishlist" />} path="/wishlist" />
         <Route element={<Contact page="Contact" />} path="/contact" />
         <Route element={<ProductPage page="Product" />} path="/product" />
+        <Route element={<BlogPage page="blog page" />} path="/blog" />
+        <Route
+          element={<SingleBlog page="Single Blog Page" />}
+          path="/SingleBlog"
+        />
       </Routes>
     </div>
   );
