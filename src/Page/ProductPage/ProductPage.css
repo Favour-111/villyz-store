@@ -116,6 +116,12 @@ select {
   width: 45px;
   border-radius: 5px;
 }
+.itemBody1 {
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
 @media screen and (max-width: 1190px) {
   .category-select-body {
     margin: auto !important;

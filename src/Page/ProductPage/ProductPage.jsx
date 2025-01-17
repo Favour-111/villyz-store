@@ -99,7 +99,7 @@ const ProductPage = ({ page }) => {
           <div className="col-xl-3 col-md-12 ">
             {/* Categories */}
             <div className="category-select-body shadow-sm">
-              <div className="category-head">Categories</div>
+              <div className="category-head">Category Filter</div>
               <div className="mt-3">
                 {categories.map((category) => (
                   <div key={category} className="input-category">
@@ -180,36 +180,41 @@ const ProductPage = ({ page }) => {
 
           <div className="col-xl-9 col-md-12">
             {/* Product List */}
-            <div className="sort-by-header">
-              <div className="app-cot">
-                <img
-                  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAAA/UlEQVR4nO2UTW4CMQyFc4eCBJegrAsX4+cslDO0SxZco8MVgDUbv/mQhyyYSIOaLBACLFkaJW/87BfbIdzDgKHEWmLT4WtgUIoPfmDi1PWDXe6+S/HBxNa9q0JL7nPxb4JXkEj/a7tVKd4HZ+B9e2NwVsmgZeGfwMjdLdGAvsFS4tfdYAH0QmrZuyU0wacmjiZqE1V0/z4AkxZBbtvhmV+C/wGjq/PPSHRoVZI9B7A0IQ+YYiNJbTAvJpDrLaob+Eri53EJDBYuQ4dE4yjRrJgA6PlDeqbXJDH4zsQe+AjFuyU0wSaRJG1TD/6VllW0W5pKYO56u7ssrczvYWcABKUjsy5eXQAAAABJRU5ErkJggg=="
-                  alt="external-apps-technology-tanah-basah-basic-outline-tanah-basah"
-                />
-              </div>
-              <div className="sort-by p-2">
-                <select onChange={(e) => handleSort(e.target.value)}>
-                  <option value="">Sort By</option>
-                  <option value="name-asc">Name (A-Z)</option>
-                  <option value="name-desc">Name (Z-A)</option>
-                  <option value="price-asc">Price (Lowest to Highest)</option>
-                  <option value="price-desc">Price (Highest to Lowest)</option>
-                </select>
+            <div className="px-3">
+              <div className="sort-by-header">
+                <div className="app-cot">
+                  <img
+                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAAA/UlEQVR4nO2UTW4CMQyFc4eCBJegrAsX4+cslDO0SxZco8MVgDUbv/mQhyyYSIOaLBACLFkaJW/87BfbIdzDgKHEWmLT4WtgUIoPfmDi1PWDXe6+S/HBxNa9q0JL7nPxb4JXkEj/a7tVKd4HZ+B9e2NwVsmgZeGfwMjdLdGAvsFS4tfdYAH0QmrZuyU0wacmjiZqE1V0/z4AkxZBbtvhmV+C/wGjq/PPSHRoVZI9B7A0IQ+YYiNJbTAvJpDrLaob+Eri53EJDBYuQ4dE4yjRrJgA6PlDeqbXJDH4zsQe+AjFuyU0wSaRJG1TD/6VllW0W5pKYO56u7ssrczvYWcABKUjsy5eXQAAAABJRU5ErkJggg=="
+                    alt="external-apps-technology-tanah-basah-basic-outline-tanah-basah"
+                  />
+                </div>
+                <div className="sort-by p-2">
+                  <select onChange={(e) => handleSort(e.target.value)}>
+                    <option value="">Sort By</option>
+                    <option value="name-asc">Name (A-Z)</option>
+                    <option value="name-desc">Name (Z-A)</option>
+                    <option value="price-asc">Price (Lowest to Highest)</option>
+                    <option value="price-desc">
+                      Price (Highest to Lowest)
+                    </option>
+                  </select>
+                </div>
               </div>
             </div>
-            <div className="itemBody">
+
+            <div className="itemBody1">
               {paginatedProducts.map((product) => (
                 <Item key={product.id} product={product} />
               ))}
             </div>
             {/* Pagination */}
-            <div className="text-center">
+            <div className="text-center mb-5 mt-3">
               {Array.from({ length: totalPages }, (_, i) => (
                 <button
                   key={i}
                   onClick={() => setCurrentPage(i + 1)}
                   style={{
-                    margin: "0 5px",
+                    margin: " 5px",
                     padding: "5px 13px",
                     background:
                       currentPage === i + 1 ? " rgb(83 109 254)" : "#ddd",
