@@ -167,14 +167,25 @@ const Nav = () => {
               <div className={`dropdown-pages  ${page ? "show" : ""}`}>
                 <ul className="dropdown-content-pages">
                   <li>About Us</li>
-                  <li>contact us</li>
+                  <li>
+                    {" "}
+                    <Link className="Link" to="/contact">
+                      {" "}
+                      contact us
+                    </Link>
+                  </li>
                   <li>cart</li>
                   <li>Checkout</li>
                   <li>wishlist</li>
                 </ul>
               </div>
             </li>
-            <li>Contact</li>
+            <li>
+              <Link className="nav-link-item" to="/contact">
+                {" "}
+                Contact
+              </Link>
+            </li>
             <li>About</li>
           </ul>
         </div>

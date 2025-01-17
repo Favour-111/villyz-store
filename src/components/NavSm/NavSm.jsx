@@ -86,7 +86,7 @@ const NavSm = () => {
           </div>
         </button>
         <ul className="menu-list">
-          <li onClick={toggleSubCategory1}>
+          <Link className="li" to="/">
             home{" "}
             <div>
               <img
@@ -96,8 +96,8 @@ const NavSm = () => {
                 alt="plus"
               />
             </div>
-          </li>
-          <li onClick={toggleSubCategory1}>
+          </Link>
+          <Link className="li" onClick={toggleSubCategory1}>
             Categories{" "}
             <div>
               <img
@@ -107,13 +107,15 @@ const NavSm = () => {
                 alt="plus"
               />
             </div>
-          </li>
+          </Link>
           <ul className={`nav-sm-subCategory ${subCategory1 ? "open" : ""}`}>
             {categoryType.map((item) => (
-              <li key={item.id}>{item.name}</li>
+              <Link className="li" key={item.id}>
+                {item.name}
+              </Link>
             ))}
           </ul>
-          <li onClick={toggleSubCategory2}>
+          <Link className="li" onClick={toggleSubCategory2}>
             Pages{" "}
             <div>
               <img
@@ -123,15 +125,21 @@ const NavSm = () => {
                 alt="plus"
               />
             </div>
-          </li>
+          </Link>
           <ul className={`nav-sm-subCategory ${subCategory2 ? "open" : ""}`}>
             <li>About Us</li>
-            <li>contact Us</li>
+            <li>
+              {" "}
+              <Link to="/contact" className="Link">
+                {" "}
+                contact Us
+              </Link>
+            </li>
             <li>cart </li>
             <li>checkout</li>
             <li>wishlist</li>
           </ul>
-          <li>
+          <Link className="li" to="/contact">
             Contact{" "}
             <div>
               <img
@@ -141,7 +149,7 @@ const NavSm = () => {
                 alt="plus"
               />
             </div>
-          </li>
+          </Link>
         </ul>
       </div>
 

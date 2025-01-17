@@ -180,10 +180,11 @@
 @media screen and (max-width: 390px) {
   .product-item {
     margin-top: 20px;
-    width: 160px !important;
+    width: 165px !important;
   }
 }
-@media screen and (max-width: 370px) {
+
+@media screen and (max-width: 380px) {
   .product-item {
     margin-top: 20px;
     width: 100% !important;

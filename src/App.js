@@ -6,6 +6,7 @@ import User from "./Page/UserForm/User";
 import Login from "./Page/UserLogin/Login";
 import Cart from "./Page/cart/Cart";
 import WishList from "./Page/wishList/WishList";
+import Contact from "./Page/Contact/Contact";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route element={<Login page="Login Page" />} path="/login" />
         <Route element={<Cart page="cart" />} path="/cart" />
         <Route element={<WishList page="wishlist" />} path="/wishlist" />
+        <Route element={<Contact page="Contact" />} path="/contact" />
       </Routes>
     </div>
   );

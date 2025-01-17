@@ -112,4 +112,7 @@
   .loginFormFan-container {
     display: none;
   }
+  .login-form-container {
+    padding: 0 10px;
+  }
 }

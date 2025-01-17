@@ -102,8 +102,9 @@ button[aria-label="Close Menu"] {
   padding: 0 20px !important;
 }
 
-.menu-list li {
+.menu-list .li {
   padding: 15px 20px;
+  text-decoration: none;
   font-family: poppinsSemiBold;
   cursor: pointer;
   border: 1px solid #f3f3f3;

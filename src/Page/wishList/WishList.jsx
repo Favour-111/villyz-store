@@ -26,7 +26,7 @@ const WishList = ({ page }) => {
             <div>WishList</div>
             <button className="shadow-sm">Shop now</button>
           </div>
-          <div className="p-5 table-container">
+          <div className=" table-container">
             <table>
               <tr className="table-heading p-2">
                 <th className="text-uppercase">id</th>

@@ -147,6 +147,21 @@
     margin: 0 !important;
   }
 }
+@media screen and (max-width: 768px) {
+  .container-header {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
+  }
+  .itemBody {
+    padding: 50px 0 !important;
+    align-items: center;
+    justify-content: center;
+  }
+  .timer {
+    margin-top: 15px !important;
+  }
+}
 @media screen and (max-width: 530px) {
   .itemBody {
     padding: 50px 0 !important;
@@ -159,7 +174,7 @@
     justify-content: flex-start !important;
   }
   .timer {
-    margin-top: 15px;
+    margin-top: 15px !important;
   }
   .header {
     font-size: 20px !important;

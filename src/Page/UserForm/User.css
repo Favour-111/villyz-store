@@ -102,9 +102,7 @@
     }
   }
 }
-.input-sm {
-  margin-top: 20px;
-}
+
 @media screen and (max-width: 968px) {
   .form-container {
     width: 100%;
@@ -132,5 +130,19 @@
   }
   .input-sm {
     display: block;
+  }
+  label {
+    margin-top: 20px;
+  }
+}
+@media screen and (max-width: 469px) {
+  .register-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    button {
+      margin-top: 10px;
+    }
   }
 }

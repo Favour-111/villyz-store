@@ -51,4 +51,7 @@
   .breadCrumb-content {
     margin-top: 10px;
   }
+  .bread-crumbs {
+    padding: 0 30px;
+  }
 }
