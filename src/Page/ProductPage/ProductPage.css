@@ -1,0 +1,96 @@
+:root {
+  --color: rgb(83 109 254);
+  --colorLight: rgba(83, 109, 254, 0.381);
+  --text: #4b5966;
+}
+@font-face {
+  font-family: poppinsBold;
+  src: url(../../assets/font/Poppins-SemiBold.ttf);
+}
+@font-face {
+  font-family: poppinsLight;
+  src: url(../../assets/font/Poppins-Light.ttf);
+}
+@font-face {
+  font-family: poppinsSemiBold;
+  src: url(../../assets/font/Poppins-SemiBold.ttf);
+}
+@font-face {
+  font-family: poppinsRegular;
+  src: url(../../assets/font/Poppins-Medium.ttf);
+}
+.category-select-body {
+  width: 100%;
+  background-color: #f3f3f3;
+  height: 550px;
+  padding: 10px;
+  border-radius: 4px;
+}
+.category-head {
+  color: var(--text);
+  font-family: poppinsSemiBold;
+  border-bottom: 1px solid #e3e3e3 !important;
+  padding: 10px;
+}
+.input-category {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none; /* For Safari */
+    -moz-appearance: none; /* For Firefox */
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    background-color: white;
+    outline: none;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .checkbox-label {
+    font-family: poppinsRegular;
+    font-size: 13px;
+  }
+
+  /* Checked state */
+  input[type="checkbox"]:checked {
+    background-color: var(--color);
+  }
+
+  /* Add a checkmark */
+  input[type="checkbox"]:checked::after {
+    content: "✔";
+    color: white;
+    font-size: 10px;
+    display: block;
+    text-align: center;
+    line-height: 20px;
+  }
+}
+.label {
+  font-family: poppinsRegular;
+  padding: 10px;
+  color: #4b5966;
+  font-size: 14px;
+  input {
+    padding: 5px;
+    width: 200px !important;
+  }
+}
+select {
+  width: 100% !important;
+  padding: 5px;
+  border: none;
+  outline: none;
+  font-family: poppinsSemiBold;
+  font-size: 14px;
+  border-radius: 4px;
+  color: #4b5966 !important;
+}
+@media screen and (max-width: 1090px) {
+  .category-select-body {
+    margin: auto !important;
+  }
+}

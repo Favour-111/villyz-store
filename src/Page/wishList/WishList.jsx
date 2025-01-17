@@ -27,8 +27,8 @@ const WishList = ({ page }) => {
             <button className="shadow-sm">Shop now</button>
           </div>
           <div className=" table-container">
-            <table>
-              <tr className="table-heading p-2">
+            <table cl>
+              <tr className="table-heading ">
                 <th className="text-uppercase">id</th>
                 <th>image</th>
                 <th>name</th>

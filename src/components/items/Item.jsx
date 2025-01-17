@@ -27,8 +27,8 @@ const Item = ({ product }) => {
         </div>
 
         <div className="d-flex gap-2 align-items-center mt-2">
-          <div className="new-price">${product.oldPrice}</div>
-          <div className="old-Price">${product.newPrice}</div>
+          <div className="new-price">${product.newPrice}</div>
+          <div className="old-Price">${product.oldPrice}</div>
         </div>
         <div className={product.type === "Sales" ? "type1" : "type2"}>
           {product.type}

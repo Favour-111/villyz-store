@@ -69,6 +69,7 @@
   }
   .table-heading {
     border-bottom: 2px solid #e8e8e8;
+    padding: 10px 0 !important;
   }
   .delete {
     background-color: tomato;

@@ -149,7 +149,12 @@ const Nav = () => {
               <RiArrowDropDownLine size={30} />
               <div className={`dropdown2  ${category ? "show" : ""}`}>
                 <ul className="dropdown-content">
-                  <li>kitchen essential</li>
+                  <li>
+                    <Link className="Link" to="/product">
+                      {" "}
+                      kitchen essential
+                    </Link>
+                  </li>
                   <li>cleaning tools</li>
                   <li>DIY</li>
                   <li>storage</li>
