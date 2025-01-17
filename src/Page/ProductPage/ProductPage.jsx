@@ -94,35 +94,70 @@ const ProductPage = ({ page }) => {
       <NavSm />
       <BreadCrumb page={page} />
       <Category />
-      <div className="row w-100 mt-4">
-        <div className="col-xl-4 p-5 col-md-12 mt-5">
-          {/* Categories */}
-          <div className="category-select-body shadow-sm">
-            <div className="category-head">Categories</div>
-            <div className="mt-3">
-              {categories.map((category) => (
-                <div key={category} className="input-category">
-                  <div>
-                    <input
-                      type="checkbox"
-                      id={category}
-                      value={category}
-                      checked={selectedCategories.includes(category)}
-                      onChange={() => handleCategoryChange(category)}
+      <div className="cont">
+        <div className="row cont-cont w-100 mt-4">
+          <div className="col-xl-3 col-md-12 mt-5">
+            {/* Categories */}
+            <div className="category-select-body shadow-sm">
+              <div className="category-head">Categories</div>
+              <div className="mt-3">
+                {categories.map((category) => (
+                  <div key={category} className="input-category">
+                    <div>
+                      <input
+                        type="checkbox"
+                        id={category}
+                        value={category}
+                        checked={selectedCategories.includes(category)}
+                        onChange={() => handleCategoryChange(category)}
+                      />
+                    </div>
+                    <div className="checkbox-label" htmlFor={category}>
+                      {category}
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Price Range */}
+              <div>
+                <div className="category-head mt-2">
+                  <div className="d-flex align-items-center justify-content-between">
+                    <div> Price Range</div>
+                    <img
+                      width="15"
+                      height="15"
+                      src="https://img.icons8.com/material-outlined/50/expand-arrow.png"
+                      alt="expand-arrow"
                     />
                   </div>
-                  <div className="checkbox-label" htmlFor={category}>
-                    {category}
-                  </div>
                 </div>
-              ))}
-            </div>
 
-            {/* Price Range */}
-            <div>
+                <label className="label mt-3">
+                  Min:
+                  <input
+                    type="number"
+                    name="min"
+                    value={priceRange.min}
+                    onChange={handlePriceChange}
+                  />
+                </label>
+                <br />
+                <label className="label">
+                  Max:
+                  <input
+                    type="number"
+                    name="max"
+                    value={priceRange.max}
+                    onChange={handlePriceChange}
+                  />
+                </label>
+              </div>
+
+              {/* Sort Options */}
               <div className="category-head mt-2">
                 <div className="d-flex align-items-center justify-content-between">
-                  <div> Price Range</div>
+                  <div>sort by</div>
                   <img
                     width="15"
                     height="15"
@@ -131,83 +166,48 @@ const ProductPage = ({ page }) => {
                   />
                 </div>
               </div>
-
-              <label className="label mt-3">
-                Min:
-                <input
-                  type="number"
-                  name="min"
-                  value={priceRange.min}
-                  onChange={handlePriceChange}
-                  style={{ marginLeft: "5px", width: "80px" }}
-                />
-              </label>
-              <br />
-              <label className="label">
-                Max:
-                <input
-                  type="number"
-                  name="max"
-                  value={priceRange.max}
-                  onChange={handlePriceChange}
-                  style={{ marginLeft: "5px", width: "80px" }}
-                />
-              </label>
-            </div>
-
-            {/* Sort Options */}
-            <div className="category-head mt-2">
-              <div className="d-flex align-items-center justify-content-between">
-                <div>sort by</div>
-                <img
-                  width="15"
-                  height="15"
-                  src="https://img.icons8.com/material-outlined/50/expand-arrow.png"
-                  alt="expand-arrow"
-                />
+              <div className="pt-4 px-3">
+                <select onChange={(e) => handleSort(e.target.value)}>
+                  <option value="">--Select--</option>
+                  <option value="name-asc">Name (A-Z)</option>
+                  <option value="name-desc">Name (Z-A)</option>
+                  <option value="price-asc">Price (Lowest to Highest)</option>
+                  <option value="price-desc">Price (Highest to Lowest)</option>
+                </select>
               </div>
             </div>
-            <div className="pt-4 px-3">
-              <select onChange={(e) => handleSort(e.target.value)}>
-                <option value="">--Select--</option>
-                <option value="name-asc">Name (A-Z)</option>
-                <option value="name-desc">Name (Z-A)</option>
-                <option value="price-asc">Price (Lowest to Highest)</option>
-                <option value="price-desc">Price (Highest to Lowest)</option>
-              </select>
+          </div>
+
+          <div className="col-xl-9 col-md-12">
+            {/* Product List */}
+            <div className="itemBody">
+              {paginatedProducts.map((product) => (
+                <Item key={product.id} product={product} />
+              ))}
             </div>
-          </div>
-        </div>
 
-        <div className="col-xl-8 col-md-12">
-          {/* Product List */}
-          <div className="itemBody">
-            {paginatedProducts.map((product) => (
-              <Item key={product.id} product={product} />
-            ))}
-          </div>
-
-          {/* Pagination */}
-          <div className="text-center">
-            {Array.from({ length: totalPages }, (_, i) => (
-              <button
-                key={i}
-                onClick={() => setCurrentPage(i + 1)}
-                style={{
-                  margin: "0 5px",
-                  padding: "5px 13px",
-                  background:
-                    currentPage === i + 1 ? " rgb(83 109 254)" : "#ddd",
-                  color: currentPage === i + 1 ? "#fff" : "#000",
-                  border: "none",
-                  borderRadius: "5px",
-                  fontFamily: "poppinsSemiBold",
-                  cursor: "pointer",
-                }}
-              >
-                {i + 1}
-              </button>
-            ))}
+            {/* Pagination */}
+            <div className="text-center">
+              {Array.from({ length: totalPages }, (_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setCurrentPage(i + 1)}
+                  style={{
+                    margin: "0 5px",
+                    padding: "5px 13px",
+                    background:
+                      currentPage === i + 1 ? " rgb(83 109 254)" : "#ddd",
+                    color: currentPage === i + 1 ? "#fff" : "#000",
+                    border: "none",
+                    borderRadius: "5px",
+                    fontFamily: "poppinsSemiBold",
+                    cursor: "pointer",
+                  }}
+                >
+                  {i + 1}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
       </div>

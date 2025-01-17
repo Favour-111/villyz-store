@@ -89,7 +89,22 @@ select {
   border-radius: 4px;
   color: #4b5966 !important;
 }
-@media screen and (max-width: 1090px) {
+.cont {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@media screen and (max-width: 1190px) {
+  .category-select-body {
+    margin: auto !important;
+  }
+  .cont-cont {
+    display: flex !important;
+    flex-direction: column-reverse;
+  }
+}
+@media screen and (max-width: 768px) {
   .category-select-body {
     margin: auto !important;
   }
