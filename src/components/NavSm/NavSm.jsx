@@ -115,7 +115,7 @@ const NavSm = () => {
           <ul className={`nav-sm-subCategory ${subCategory1 ? "open" : ""}`}>
             {categoryType.map((item) => (
               <li>
-                <Link className="Link" key={item.id}>
+                <Link className="Link" to="/product" key={item.id}>
                   {item.name}
                 </Link>
               </li>

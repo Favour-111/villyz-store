@@ -95,7 +95,7 @@ const ProductPage = ({ page }) => {
       <BreadCrumb page={page} />
       <Category />
       <div className="row w-100 mt-4">
-        <div className="col-xl-3 col-md-12 mt-5">
+        <div className="col-xl-4 p-5 col-md-12 mt-5">
           {/* Categories */}
           <div className="category-select-body shadow-sm">
             <div className="category-head">Categories</div>
@@ -179,7 +179,7 @@ const ProductPage = ({ page }) => {
           </div>
         </div>
 
-        <div className="col-xl-9 col-md-12">
+        <div className="col-xl-8 col-md-12">
           {/* Product List */}
           <div className="itemBody">
             {paginatedProducts.map((product) => (
