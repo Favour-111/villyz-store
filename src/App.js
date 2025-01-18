@@ -11,6 +11,7 @@ import ProductPage from "./Page/ProductPage/ProductPage";
 import product from "./product";
 import BlogPage from "./Page/BlogPage/BlogPage";
 import SingleBlog from "./Page/SingleBlog/SingleBlog";
+import SingleProduct from "./Page/SingleProduct/SingleProduct";
 function App() {
   return (
     <div className="App">
@@ -26,6 +27,10 @@ function App() {
         <Route
           element={<SingleBlog page="Single Blog Page" />}
           path="/SingleBlog"
+        />
+        <Route
+          element={<SingleProduct page="Single product Page" />}
+          path="/SingleProduct"
         />
       </Routes>
     </div>

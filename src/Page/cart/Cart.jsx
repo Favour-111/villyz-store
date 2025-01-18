@@ -36,6 +36,12 @@ const Cart = ({ page }) => {
                   </label>
                   <input type="Country" placeholder="State/Province" />
                 </div>
+                <div className="input-container mt-4">
+                  <label htmlFor="" className="mb-1">
+                    Home Address*
+                  </label>
+                  <input type="text" placeholder="Home address" />
+                </div>
               </div>
 
               <div className="sum mt-2">

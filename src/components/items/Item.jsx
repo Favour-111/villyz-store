@@ -1,6 +1,8 @@
 import React from "react";
 import "./Item.css";
+import { useNavigate } from "react-router-dom";
 const Item = ({ product }) => {
+  const router = useNavigate();
   const totalStars = 5;
   return (
     <div className="product-item">
@@ -51,7 +53,10 @@ const Item = ({ product }) => {
             alt="like--v1"
           />
         </button>
-        <button className="wishlist-btn shadow-sm">
+        <button
+          onClick={() => router("/SingleProduct")}
+          className="wishlist-btn shadow-sm"
+        >
           <img
             width="14"
             height="14"

@@ -22,6 +22,17 @@ const product = [
     type: "Sales",
   },
   {
+    id: 2,
+    name: "portable Fruit blender",
+    image:
+      "https://static.vecteezy.com/system/resources/previews/047/826/370/non_2x/portable-blender-against-transparent-background-free-png.png",
+    category: "Organization & storage",
+    start: 5,
+    newPrice: 40,
+    oldPrice: 45,
+    type: "Sales",
+  },
+  {
     id: 3,
     name: "Cleaning machine for homes",
     image:

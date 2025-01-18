@@ -155,10 +155,30 @@ const Nav = () => {
                       kitchen essential
                     </Link>
                   </li>
-                  <li>cleaning tools</li>
-                  <li>DIY</li>
-                  <li>storage</li>
-                  <li>Home comfort</li>
+                  <li>
+                    <Link className="Link" to="/product">
+                      {" "}
+                      cleaning tool
+                    </Link>
+                  </li>
+                  <li>
+                    <Link className="Link" to="/product">
+                      {" "}
+                      DIY
+                    </Link>
+                  </li>
+                  <li>
+                    <Link className="Link" to="/product">
+                      {" "}
+                      storage
+                    </Link>
+                  </li>
+                  <li>
+                    <Link className="Link" to="/product">
+                      {" "}
+                      Home Comfort
+                    </Link>
+                  </li>
                 </ul>
               </div>
             </li>
@@ -184,9 +204,21 @@ const Nav = () => {
                       contact us
                     </Link>
                   </li>
-                  <li>cart</li>
+                  <li>
+                    {" "}
+                    <Link className="Link" to="/cart">
+                      {" "}
+                      cart
+                    </Link>
+                  </li>
+                  <li>
+                    {" "}
+                    <Link className="Link" to="/wishlist">
+                      {" "}
+                      wishlist
+                    </Link>
+                  </li>
                   <li>Checkout</li>
-                  <li>wishlist</li>
                 </ul>
               </div>
             </li>
