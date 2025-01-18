@@ -90,7 +90,7 @@ const NavSm = () => {
           </div>
         </button>
         <ul className="menu-list">
-          <Link className="li" to="/">
+          <Link className="li" to="/home">
             Home{" "}
             <div>
               <img

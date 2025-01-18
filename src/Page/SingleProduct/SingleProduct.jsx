@@ -17,7 +17,7 @@ const SingleProduct = ({ page }) => {
       <NavSm />
       <BreadCrumb page={page} />
       <div className="single-product-cont">
-        <div className="row">
+        <div className="row w-100">
           <div className="col-md-6 col-sm-12">
             <div className="singleProduct-img">
               <img

@@ -16,7 +16,7 @@ const NewArrival = () => {
         </div>
         <div>
           <div className="itemBody">
-            {product.map((item) => {
+            {product.slice(0, 10).map((item) => {
               return <Item product={item} />;
             })}
           </div>

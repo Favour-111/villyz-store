@@ -38,7 +38,7 @@ const Deals = () => {
 
         <div className="item">
           <div data-aos="fade-up" className="itemBody">
-            {product.map((item) => {
+            {product.slice(0, 10).map((item) => {
               return <Item product={item} />;
             })}
           </div>

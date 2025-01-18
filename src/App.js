@@ -12,11 +12,13 @@ import product from "./product";
 import BlogPage from "./Page/BlogPage/BlogPage";
 import SingleBlog from "./Page/SingleBlog/SingleBlog";
 import SingleProduct from "./Page/SingleProduct/SingleProduct";
+import Landing from "./Page/Landing/Landing";
 function App() {
   return (
     <div className="App">
       <Routes>
-        <Route element={<Page />} path="/" />
+        <Route element={<Landing />} path="/" />
+        <Route element={<Page />} path="/home" />
         <Route element={<User page="Register Page" />} path="/SignUp" />
         <Route element={<Login page="Login Page" />} path="/login" />
         <Route element={<Cart page="cart" />} path="/cart" />

@@ -137,7 +137,7 @@ const Nav = () => {
         <div className="nav-links-container">
           <ul>
             <li>
-              <Link to="/" className="nav-link-item">
+              <Link to="/home" className="nav-link-item">
                 Home
               </Link>
             </li>
