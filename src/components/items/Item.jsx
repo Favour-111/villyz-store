@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./Item.css";
 import { useNavigate } from "react-router-dom";
+import { ShopContext } from "../context/ShopContext";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const Item = ({ product }) => {
   const router = useNavigate();
+  const { addToCart, cartItem, Remove } = useContext(ShopContext);
   const totalStars = 5;
   return (
     <div className="product-item">
@@ -37,7 +41,13 @@ const Item = ({ product }) => {
         </div>
       </div>
       <div className="hover-buttons">
-        <button className="buy-btn shadow-sm">
+        <button
+          className="buy-btn shadow-sm"
+          onClick={() => {
+            addToCart(product.id);
+            toast.success("Product added successfully!");
+          }}
+        >
           <img
             width="15"
             height="15"
@@ -54,7 +64,19 @@ const Item = ({ product }) => {
           />
         </button>
         <button
-          onClick={() => router("/SingleProduct")}
+          onClick={() =>
+            router("/SingleProduct", {
+              state: {
+                image: product?.image,
+                name: product.name,
+                category: product.category,
+                newPrice: product.newPrice,
+                oldPrice: product.oldPrice,
+                id: product.id,
+                start: product.start,
+              },
+            })
+          }
           className="wishlist-btn shadow-sm"
         >
           <img
@@ -65,6 +87,7 @@ const Item = ({ product }) => {
           />
         </button>
       </div>
+      <ToastContainer />
     </div>
   );
 };

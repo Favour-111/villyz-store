@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./NavSm.css";
 import categoryType from "../../categoryType";
 import { Link } from "react-router-dom";
+import { ShopContext } from "../context/ShopContext";
 
 const NavSm = () => {
+  const { totalCartItems } = useContext(ShopContext);
   const [navIsOpen, setNavIsOpen] = useState(false);
   const [subCategory1, setSubCategory1] = useState(false);
   const [subCategory2, setSubCategory2] = useState(false);
@@ -63,7 +65,7 @@ const NavSm = () => {
               src="https://img.icons8.com/pulsar-line/48/fast-cart.png"
               alt="fast-cart"
             />
-            <div className="counter">2</div>
+            <div className="counter">{totalCartItems()}</div>
           </Link>
         </div>
       </div>

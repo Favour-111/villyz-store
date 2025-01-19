@@ -22,7 +22,7 @@ const product = [
     type: "Sales",
   },
   {
-    id: 2,
+    id: 3,
     name: "portable Fruit blender",
     image:
       "https://static.vecteezy.com/system/resources/previews/047/826/370/non_2x/portable-blender-against-transparent-background-free-png.png",
@@ -33,24 +33,13 @@ const product = [
     type: "Sales",
   },
   {
-    id: 3,
+    id: 4,
     name: "Cleaning machine for homes",
     image:
       "https://i02.appmifile.com/552_operatorx_operatorx_opx/19/10/2023/09218c6cba39756bf7a86f9f70e240da.png",
     category: "cleaning tools",
     start: 4,
     newPrice: 70,
-    oldPrice: 66,
-    type: "Sales",
-  },
-  {
-    id: 4,
-    name: "hangers for cloths and utensils",
-    image:
-      "https://static.vecteezy.com/system/resources/previews/049/678/807/non_2x/wooden-wall-rack-with-five-hooks-for-organizing-items-at-home-cut-out-transparent-png.png",
-    category: "Organization & storage",
-    start: 4,
-    newPrice: 30,
     oldPrice: 66,
     type: "Sales",
   },
@@ -74,10 +63,10 @@ const product = [
     start: 4,
     newPrice: 30,
     oldPrice: 66,
-    type: "Out of stock",
+    type: "Sales",
   },
   {
-    id: 6,
+    id: 7,
     name: "hangers for cloths and utensils",
     image:
       "https://static.vecteezy.com/system/resources/previews/049/678/807/non_2x/wooden-wall-rack-with-five-hooks-for-organizing-items-at-home-cut-out-transparent-png.png",
@@ -88,7 +77,7 @@ const product = [
     type: "Out of stock",
   },
   {
-    id: 6,
+    id: 8,
     name: "hangers for cloths and utensils",
     image:
       "https://static.vecteezy.com/system/resources/previews/049/678/807/non_2x/wooden-wall-rack-with-five-hooks-for-organizing-items-at-home-cut-out-transparent-png.png",
@@ -99,7 +88,7 @@ const product = [
     type: "Out of stock",
   },
   {
-    id: 6,
+    id: 9,
     name: "hangers for cloths and utensils",
     image:
       "https://static.vecteezy.com/system/resources/previews/049/678/807/non_2x/wooden-wall-rack-with-five-hooks-for-organizing-items-at-home-cut-out-transparent-png.png",
@@ -110,7 +99,7 @@ const product = [
     type: "Out of stock",
   },
   {
-    id: 6,
+    id: 10,
     name: "hangers for cloths and utensils",
     image:
       "https://static.vecteezy.com/system/resources/previews/049/678/807/non_2x/wooden-wall-rack-with-five-hooks-for-organizing-items-at-home-cut-out-transparent-png.png",
@@ -121,7 +110,7 @@ const product = [
     type: "Out of stock",
   },
   {
-    id: 6,
+    id: 11,
     name: "hangers for cloths and utensils",
     image:
       "https://static.vecteezy.com/system/resources/previews/049/678/807/non_2x/wooden-wall-rack-with-five-hooks-for-organizing-items-at-home-cut-out-transparent-png.png",
@@ -132,7 +121,18 @@ const product = [
     type: "Out of stock",
   },
   {
-    id: 6,
+    id: 12,
+    name: "hangers for cloths and utensils",
+    image:
+      "https://static.vecteezy.com/system/resources/previews/049/678/807/non_2x/wooden-wall-rack-with-five-hooks-for-organizing-items-at-home-cut-out-transparent-png.png",
+    category: "Organization & storage",
+    start: 4,
+    newPrice: 30,
+    oldPrice: 66,
+    type: "Out of stock",
+  },
+  {
+    id: 13,
     name: "hangers for cloths and utensils",
     image:
       "https://static.vecteezy.com/system/resources/previews/049/678/807/non_2x/wooden-wall-rack-with-five-hooks-for-organizing-items-at-home-cut-out-transparent-png.png",

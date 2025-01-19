@@ -80,6 +80,18 @@
   align-items: center;
   gap: 10px;
 }
+.counter-container1 {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  border: 1px solid #eee3e3;
+  width: 100px;
+  height: 30px;
+  justify-content: center;
+  button {
+    border: none;
+  }
+}
 .prod-btn {
   background-color: #4b5966;
   color: white;

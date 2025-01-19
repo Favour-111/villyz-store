@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./Nav.css";
 import { LuUserRound } from "react-icons/lu";
 import { CiHeart, CiLocationOn } from "react-icons/ci";
@@ -6,6 +6,7 @@ import { IoBagHandleOutline } from "react-icons/io5";
 import { GrAppsRounded } from "react-icons/gr";
 import { RiArrowDropDownLine } from "react-icons/ri";
 import { Link } from "react-router-dom";
+import { ShopContext } from "../context/ShopContext";
 
 const categoriesData = {
   "Kitchen Essentials": [
@@ -20,6 +21,7 @@ const categoriesData = {
 };
 
 const Nav = () => {
+  const { totalCartItems } = useContext(ShopContext);
   const [isHovered, setIsHovered] = useState(false);
   const [category, setcategory] = useState(false);
   const [page, setPage] = useState(false);
@@ -87,7 +89,7 @@ const Nav = () => {
             <IoBagHandleOutline size={30} color="#787878" />
             <div>
               <div className="Name">Cart</div>
-              <div className="Section-name">3-items</div>
+              <div className="Section-name">{totalCartItems()}-items</div>
             </div>
           </Link>
         </div>
