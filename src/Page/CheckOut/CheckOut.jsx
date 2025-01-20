@@ -145,7 +145,7 @@ const CheckOut = ({ page }) => {
                 <div className="d-flex align-items-center gap-2">
                   <div>
                     <input
-                      type="radio"
+                      type="checkBox"
                       value="cashOnDelivery"
                       checked={paymentMethod === "cashOnDelivery"}
                       onChange={handlePaymentMethodChange}
@@ -158,7 +158,7 @@ const CheckOut = ({ page }) => {
                 <div className="d-flex align-items-center mt-2 gap-2">
                   <div>
                     <input
-                      type="radio"
+                      type="checkBox"
                       value="onlinePayment"
                       checked={paymentMethod === "onlinePayment"}
                       onChange={handlePaymentMethodChange}
@@ -175,7 +175,7 @@ const CheckOut = ({ page }) => {
               </div>
             </div>
           </div>
-          <div className="col-xl-8 col-md-12">
+          <div className="col-xl-8 col-md-12 ">
             <div className="billing-container">
               <div className="billing-head">Billing Address</div>
               <div className="checkout-type">Checkout option</div>
@@ -185,7 +185,7 @@ const CheckOut = ({ page }) => {
                 <div className="checkout-item">
                   <div>
                     <input
-                      type="radio"
+                      type="checkBox"
                       name="addressOption"
                       disabled={addresses.length === 0} // Disable if no addresses exist
                       checked={!useNewAddress}
@@ -198,7 +198,7 @@ const CheckOut = ({ page }) => {
                 <div className="checkout-item">
                   <div>
                     <input
-                      type="radio"
+                      type="checkBox"
                       name="addressOption"
                       checked={useNewAddress}
                       onChange={() => setUseNewAddress(true)}
@@ -275,66 +275,68 @@ const CheckOut = ({ page }) => {
               {useNewAddress && (
                 <div>
                   <div className="billing-head">Add New Address</div>
-                  <div className="row w-100">
-                    <div className="col-lg-6 col-md-12">
-                      <input
-                        type="text"
-                        name="name"
-                        placeholder="Name"
-                        value={newAddress.name}
-                        onChange={handleInputChange}
-                        className="address-input"
-                      />
-                    </div>
-                    <div className="col-lg-6 col-md-12">
-                      <input
-                        type="text"
-                        name="country"
-                        placeholder="Country"
-                        value={newAddress.country}
-                        onChange={handleInputChange}
-                        className="address-input"
-                      />
-                    </div>
-                    <div className="col-lg-6 col-md-12">
-                      <input
-                        type="text"
-                        name="address"
-                        placeholder="Address"
-                        value={newAddress.address}
-                        onChange={handleInputChange}
-                        className="address-input"
-                      />
-                    </div>
-                    <div className="col-lg-6 col-md-12">
-                      <input
-                        type="text"
-                        name="state"
-                        placeholder="State"
-                        value={newAddress.state}
-                        onChange={handleInputChange}
-                        className="address-input"
-                      />
-                    </div>
-                    <div className="col-lg-6 col-md-12">
-                      <input
-                        type="text"
-                        name="postalCode"
-                        placeholder="Postal Code"
-                        value={newAddress.postalCode}
-                        onChange={handleInputChange}
-                        className="address-input"
-                      />
-                    </div>
-                    <div className="col-lg-6 col-md-12">
-                      <input
-                        type="text"
-                        name="city"
-                        placeholder="City"
-                        value={newAddress.city}
-                        onChange={handleInputChange}
-                        className="address-input"
-                      />
+                  <div className="billing">
+                    <div className="row w-100 ">
+                      <div className="col-lg-6 col-md-12 w-100">
+                        <input
+                          type="text"
+                          name="name"
+                          placeholder="Name"
+                          value={newAddress.name}
+                          onChange={handleInputChange}
+                          className="address-input"
+                        />
+                      </div>
+                      <div className="col-lg-6 col-md-12">
+                        <input
+                          type="text"
+                          name="country"
+                          placeholder="Country"
+                          value={newAddress.country}
+                          onChange={handleInputChange}
+                          className="address-input"
+                        />
+                      </div>
+                      <div className="col-lg-6 col-md-12">
+                        <input
+                          type="text"
+                          name="address"
+                          placeholder="Address"
+                          value={newAddress.address}
+                          onChange={handleInputChange}
+                          className="address-input"
+                        />
+                      </div>
+                      <div className="col-lg-6 col-md-12">
+                        <input
+                          type="text"
+                          name="state"
+                          placeholder="State"
+                          value={newAddress.state}
+                          onChange={handleInputChange}
+                          className="address-input"
+                        />
+                      </div>
+                      <div className="col-lg-6 col-md-12">
+                        <input
+                          type="text"
+                          name="postalCode"
+                          placeholder="Postal Code"
+                          value={newAddress.postalCode}
+                          onChange={handleInputChange}
+                          className="address-input"
+                        />
+                      </div>
+                      <div className="col-lg-6 col-md-12">
+                        <input
+                          type="text"
+                          name="city"
+                          placeholder="City"
+                          value={newAddress.city}
+                          onChange={handleInputChange}
+                          className="address-input"
+                        />
+                      </div>
                     </div>
                   </div>
                   <button onClick={handleAddAddress} className="Address-btn">

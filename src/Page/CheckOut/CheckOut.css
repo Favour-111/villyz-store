@@ -212,11 +212,51 @@
     text-transform: capitalize;
   }
 }
+.billing {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none; /* For Safari */
+  -moz-appearance: none; /* For Firefox */
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  background-color: white;
+  border: 1px solid #e3e3e3;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.checkbox-label {
+  font-family: poppinsRegular;
+  font-size: 13px;
+}
+
+/* Checked state */
+input[type="checkbox"]:checked {
+  background-color: var(--color);
+}
+
+/* Add a checkmark */
+input[type="checkbox"]:checked::after {
+  content: "✔";
+  color: white;
+  font-size: 10px;
+  display: block;
+  text-align: center;
+  line-height: 20px;
+}
 @media screen and (max-width: 768px) {
   .billing-container {
-    padding: 30px 20px;
+    padding: 10px 20px 30px 20px;
     margin-top: 30px;
     margin-bottom: 30px;
+  }
+  .billing-head {
+    margin-top: 20px;
   }
   .address-text {
     margin-top: 10px;
