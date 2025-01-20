@@ -21,7 +21,7 @@ const categoriesData = {
 };
 
 const Nav = () => {
-  const { totalCartItems } = useContext(ShopContext);
+  const { totalCartItems, totalWishList } = useContext(ShopContext);
   const [isHovered, setIsHovered] = useState(false);
   const [category, setcategory] = useState(false);
   const [page, setPage] = useState(false);
@@ -79,7 +79,7 @@ const Nav = () => {
             <CiHeart size={30} color="#787878" />
             <div>
               <div className="Name">Wishlist</div>
-              <div className="Section-name">3-items</div>
+              <div className="Section-name">{totalWishList()}-items</div>
             </div>
           </Link>
           <Link
@@ -198,7 +198,6 @@ const Nav = () => {
               <RiArrowDropDownLine size={30} />
               <div className={`dropdown-pages  ${page ? "show" : ""}`}>
                 <ul className="dropdown-content-pages">
-                  <li>About Us</li>
                   <li>
                     {" "}
                     <Link className="Link" to="/contact">
@@ -220,7 +219,13 @@ const Nav = () => {
                       wishlist
                     </Link>
                   </li>
-                  <li>Checkout</li>
+                  <li>
+                    {" "}
+                    <Link className="Link" to="/checkout">
+                      {" "}
+                      checkout
+                    </Link>
+                  </li>
                 </ul>
               </div>
             </li>
@@ -230,7 +235,6 @@ const Nav = () => {
                 Contact
               </Link>
             </li>
-            <li>About</li>
           </ul>
         </div>
         <button className="category-btn">

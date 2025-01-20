@@ -138,8 +138,8 @@
   transform: scale(0.9);
 }
 @media screen and (max-width: 768px) {
-  .product-item {
-    /* width: 230px; */
+  .hover-buttons {
+    opacity: 1;
   }
 }
 @media screen and (max-width: 530px) {

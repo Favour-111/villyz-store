@@ -1,0 +1,245 @@
+:root {
+  --color: rgb(83 109 254);
+  --text: #4b5966;
+}
+@font-face {
+  font-family: poppinsBold;
+  src: url(../../assets/font/Poppins-SemiBold.ttf);
+}
+@font-face {
+  font-family: poppinsLight;
+  src: url(../../assets/font/Poppins-Light.ttf);
+}
+@font-face {
+  font-family: poppinsSemiBold;
+  src: url(../../assets/font/Poppins-SemiBold.ttf);
+}
+@font-face {
+  font-family: poppinsRegular;
+  src: url(../../assets/font/Poppins-Medium.ttf);
+}
+.summary {
+  background-color: #f3f3f365;
+  width: 100%;
+  padding: 20px;
+  border-radius: 3px;
+  .summary-head {
+    color: #4b5966;
+    font-family: poppinsSemiBold;
+    font-size: 20px;
+  }
+  .price-list {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: poppinsSemiBold;
+    font-size: 14px;
+    text-transform: capitalize;
+    color: #4b5966;
+    margin-top: 10px;
+  }
+  .price-list1 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: poppinsLight;
+    font-size: 14px;
+    text-transform: capitalize;
+    color: #4b5966;
+    margin-top: 10px;
+  }
+  .price-list-total {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: poppinsBold;
+    font-size: 16px;
+    text-transform: capitalize;
+    color: #4b5966;
+    margin: 30px 0;
+  }
+}
+.summary-container {
+  .summary-items {
+    border: 1px solid #e3e3e3;
+    display: flex;
+    border-radius: 3px;
+    gap: 10px;
+    margin-top: 10px;
+    .img {
+      background-color: white;
+      border-radius: 3px;
+      width: 110px;
+      height: 110px;
+      border-radius: 3px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      img {
+        width: 70px;
+        height: 70px;
+      }
+    }
+    .summary-product-name {
+      margin-top: 10px;
+      font-size: 14px;
+      font-family: poppinsRegular;
+      text-transform: capitalize;
+      color: #4b5966;
+    }
+    .oldPrice {
+      color: #4b5966;
+      font-family: poppinsSemiBold;
+      text-decoration: line-through;
+    }
+    .newPrice {
+      color: #4b5966;
+      font-family: poppinsSemiBold;
+    }
+  }
+}
+.delivery-system {
+  font-family: poppinsLight;
+  color: #4b5966;
+  margin-top: 20px;
+  font-size: 14px;
+  textarea {
+    padding: 10px;
+    width: 100%;
+    height: 140px;
+    border: 1px solid #e3e3e3;
+    resize: none;
+    outline: none;
+  }
+}
+.billing-head {
+  font-family: poppinsBold;
+  font-size: 20px;
+  color: #4b5966;
+}
+.billing-container {
+  width: 100%;
+  border: 1px solid #e3e3e3;
+  padding: 40px;
+  border-radius: 10px;
+}
+.checkout-type {
+  font-family: poppinsSemiBold;
+  color: #4b5966;
+  font-size: 15px;
+  margin-top: 20px;
+}
+.checkBox-contain {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 20px;
+  margin-top: 20px !important;
+}
+.checkout-item {
+  display: flex;
+  gap: 5px;
+  font-family: poppinsLight;
+  color: #4b5966;
+  align-items: center;
+  font-size: 14px;
+}
+.address-itm {
+  border: 1px solid #e3e3e3;
+  padding: 20px;
+  border-radius: 10px;
+  position: relative;
+}
+.address-cont {
+  width: 100%;
+  position: relative;
+}
+.input-cont {
+  top: 0;
+  left: 0;
+  position: absolute;
+}
+
+.address-text {
+  font-family: poppinsLight;
+  color: #4b5966;
+  font-size: 14px;
+  margin-top: 20px;
+  span {
+    font-family: poppinsSemiBold;
+  }
+}
+.remove-address {
+  background-color: transparent;
+  border: none;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+.container-address {
+  padding: 30px;
+}
+.address-input {
+  width: 100% !important;
+  border: 1px solid #e3e3e3 !important;
+  padding: 15px 10px;
+  margin-top: 20px;
+  border-radius: 2px;
+}
+.Address-btn {
+  padding: 10px 20px;
+  background-color: var(--color);
+  border-radius: 5px;
+  color: white;
+  font-family: poppinsRegular;
+  border: none;
+  margin-top: 40px;
+}
+.proceed-cont {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-top: 20px;
+  button {
+    padding: 10px 20px;
+    background-color: var(--color);
+    border-radius: 5px;
+    color: white;
+    font-family: poppinsRegular;
+    border: none;
+    font-size: 13px;
+    text-transform: capitalize;
+  }
+}
+@media screen and (max-width: 768px) {
+  .billing-container {
+    padding: 30px 20px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+  .address-text {
+    margin-top: 10px;
+  }
+  .address-itm {
+    padding: 20px 15px 30px 15px;
+  }
+  .checkBox-contain {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: flex-start;
+  }
+  label {
+    margin: 0;
+  }
+  .container-address {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .container-address {
+    padding: 5px;
+  }
+}

@@ -6,8 +6,16 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 const Item = ({ product }) => {
   const router = useNavigate();
-  const { addToCart, cartItem, Remove } = useContext(ShopContext);
+  const { addToCart, WishList, RemoveList, addtowishList } =
+    useContext(ShopContext);
   const totalStars = 5;
+  const toggleWhishList = (id) => {
+    if (WishList[id] > 0) {
+      RemoveList(id);
+    } else {
+      addtowishList(id);
+    }
+  };
   return (
     <div className="product-item">
       <div className="product-image">
@@ -55,14 +63,27 @@ const Item = ({ product }) => {
             alt="shopping-bag"
           />
         </button>
-        <button className="cart-btn shadow-sm">
-          <img
-            width="15"
-            height="15"
-            src="https://img.icons8.com/ios/50/like--v1.png"
-            alt="like--v1"
-          />
+        <button
+          className="cart-btn shadow-sm"
+          onClick={() => toggleWhishList(product.id)} // Pass a function reference
+        >
+          {WishList[product.id] > 0 ? (
+            <img
+              width="15"
+              height="15"
+              src="https://img.icons8.com/fluency/48/filled-like--v1.png"
+              alt="filled-like--v1"
+            />
+          ) : (
+            <img
+              width="15"
+              height="15"
+              src="https://img.icons8.com/ios/50/like--v1.png"
+              alt="like--v1"
+            />
+          )}
         </button>
+
         <button
           onClick={() =>
             router("/SingleProduct", {

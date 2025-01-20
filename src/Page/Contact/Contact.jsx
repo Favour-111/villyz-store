@@ -23,7 +23,7 @@ const Contact = ({ page }) => {
           </div>
         </div>
         <div className="contact-info">
-          <div className="contact-info-itm">
+          <div className="contact-info-itm shadow-sm">
             <img
               width="48"
               height="48"
@@ -54,7 +54,7 @@ const Contact = ({ page }) => {
               <div>www.villyz.com</div>
             </div>
           </div>
-          <div className="contact-info-itm">
+          <div className="contact-info-itm shadow-sm">
             <img
               width="48"
               height="48"
@@ -75,7 +75,7 @@ const Contact = ({ page }) => {
               <div>+55139977862</div>
             </div>
           </div>
-          <div className="contact-info-itm">
+          <div className="contact-info-itm shadow-sm">
             <img
               width="48"
               height="48"

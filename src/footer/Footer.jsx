@@ -37,9 +37,7 @@ const Footer = () => {
               <li>
                 <Link className="category">Terms & condition</Link>
               </li>
-              <li>
-                <Link className="category">About us</Link>
-              </li>
+
               <li>
                 <Link className="category">checkout</Link>
               </li>

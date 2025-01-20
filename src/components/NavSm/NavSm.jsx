@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { ShopContext } from "../context/ShopContext";
 
 const NavSm = () => {
-  const { totalCartItems } = useContext(ShopContext);
+  const { totalCartItems, totalWishList } = useContext(ShopContext);
   const [navIsOpen, setNavIsOpen] = useState(false);
   const [subCategory1, setSubCategory1] = useState(false);
   const [subCategory2, setSubCategory2] = useState(false);
@@ -56,7 +56,7 @@ const NavSm = () => {
               src="https://img.icons8.com/wired/64/like--v1.png"
               alt="like--v1"
             />
-            <div className="counter">2</div>
+            <div className="counter">{totalWishList()}</div>
           </Link>
           <Link to="/cart" className="icon-sm">
             <img
@@ -135,7 +135,6 @@ const NavSm = () => {
             </div>
           </Link>
           <ul className={`nav-sm-subCategory ${subCategory2 ? "open" : ""}`}>
-            <li>About Us</li>
             <li>
               {" "}
               <Link to="/contact" className="Link">
@@ -164,6 +163,17 @@ const NavSm = () => {
           </ul>
           <Link className="li" to="/contact">
             Contact{" "}
+            <div>
+              <img
+                width="18"
+                height="18"
+                src="https://img.icons8.com/android/24/plus.png"
+                alt="plus"
+              />
+            </div>
+          </Link>
+          <Link className="li" to="/checkout">
+            checkout{" "}
             <div>
               <img
                 width="18"

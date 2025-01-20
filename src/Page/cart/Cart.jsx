@@ -9,8 +9,9 @@ import { Link } from "react-router-dom";
 import { ShopContext } from "../../components/context/ShopContext";
 import product from "../../product";
 import Item from "../../components/items/Item";
-
+import { useNavigate } from "react-router-dom";
 const Cart = ({ page }) => {
+  const navigate = useNavigate();
   const {
     cartItem,
     addToCart,
@@ -22,7 +23,6 @@ const Cart = ({ page }) => {
   const [coupon, setcoupon] = useState(false);
 
   const cartProducts = product.filter((itm) => cartItem[itm.id] > 0);
-  console.log(cartProducts.length);
 
   return (
     <div>
@@ -133,8 +133,10 @@ const Cart = ({ page }) => {
               </table>
             </div>
             <div className="buttons">
-              <Link className="continue">continue shopping</Link>
-              <button>CheckOut</button>
+              <Link className="continue" to={"/product"}>
+                continue shopping
+              </Link>
+              <button onClick={() => navigate("/checkout")}>CheckOut</button>
             </div>
           </div>
         </div>

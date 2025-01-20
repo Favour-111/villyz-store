@@ -14,6 +14,7 @@ import SingleBlog from "./Page/SingleBlog/SingleBlog";
 import SingleProduct from "./Page/SingleProduct/SingleProduct";
 import Landing from "./Page/Landing/Landing";
 import ShopContext from "./components/context/ShopContext";
+import CheckOut from "./Page/CheckOut/CheckOut";
 function App() {
   return (
     <div className="App">
@@ -28,6 +29,7 @@ function App() {
           <Route element={<Contact page="Contact" />} path="/contact" />
           <Route element={<ProductPage page="Product" />} path="/product" />
           <Route element={<BlogPage page="blog page" />} path="/blog" />
+          <Route element={<CheckOut page="checkout page" />} path="/checkout" />
           <Route
             element={<SingleBlog page="Single Blog Page" />}
             path="/SingleBlog"
