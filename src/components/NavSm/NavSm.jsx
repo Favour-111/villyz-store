@@ -93,15 +93,7 @@ const NavSm = () => {
         </button>
         <ul className="menu-list">
           <Link className="li" to="/home">
-            Home{" "}
-            <div>
-              <img
-                width="18"
-                height="18"
-                src="https://img.icons8.com/android/24/plus.png"
-                alt="plus"
-              />
-            </div>
+            Home <div></div>
           </Link>
           <Link className="li" onClick={toggleSubCategory1}>
             Categories{" "}
@@ -162,15 +154,7 @@ const NavSm = () => {
             </li>
           </ul>
           <Link className="li" to="/contact">
-            Contact{" "}
-            <div>
-              <img
-                width="18"
-                height="18"
-                src="https://img.icons8.com/android/24/plus.png"
-                alt="plus"
-              />
-            </div>
+            Contact <div></div>
           </Link>
         </ul>
       </div>

@@ -1,6 +1,7 @@
 :root {
   --primary-color: rgb(83, 109, 254);
 }
+
 .backtoTop-container {
   position: fixed;
   z-index: 1000000;
@@ -16,5 +17,21 @@
   background-color: var(--primary-color);
   img {
     width: 20px;
+  }
+
+  /* Bounce Animation */
+  animation: bounce 1s infinite alternate;
+}
+
+/* Keyframes for Bounce Effect */
+@keyframes bounce {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+  100% {
+    transform: translateY(0);
   }
 }
