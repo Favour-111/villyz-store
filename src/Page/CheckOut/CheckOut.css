@@ -249,6 +249,12 @@ input[type="checkbox"]:checked::after {
   text-align: center;
   line-height: 20px;
 }
+input,
+textarea,
+select,
+button {
+  font-size: 14px !important;
+}
 @media screen and (max-width: 768px) {
   .billing-container {
     padding: 10px 20px 30px 20px;
