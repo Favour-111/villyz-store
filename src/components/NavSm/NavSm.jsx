@@ -172,17 +172,6 @@ const NavSm = () => {
               />
             </div>
           </Link>
-          <Link className="li" to="/checkout">
-            checkout{" "}
-            <div>
-              <img
-                width="18"
-                height="18"
-                src="https://img.icons8.com/android/24/plus.png"
-                alt="plus"
-              />
-            </div>
-          </Link>
         </ul>
       </div>
 

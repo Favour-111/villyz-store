@@ -1,6 +1,7 @@
 import React from "react";
 import "./Blog.css";
 import blog from "../../blog";
+import { Link } from "react-router-dom";
 const Blog = () => {
   const date = 2023;
   return (
@@ -20,7 +21,9 @@ const Blog = () => {
               </div>
               <div className="date">{item.date}</div>
               <div className="blog-content">{item.title}</div>
-              <div className="read-more">read more</div>
+              <Link to="/SingleBlog" className="read-more">
+                read more
+              </Link>
             </div>
           );
         })}

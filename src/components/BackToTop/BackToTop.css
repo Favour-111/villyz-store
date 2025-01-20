@@ -4,14 +4,15 @@
 .backtoTop-container {
   position: fixed;
   z-index: 1000000;
+  cursor: pointer;
   right: 20px;
   bottom: 20px;
-  height: 60px;
-  width: 60px;
+  height: 50px;
+  width: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 100px;
+  border-radius: 10px;
   background-color: var(--primary-color);
   img {
     width: 20px;

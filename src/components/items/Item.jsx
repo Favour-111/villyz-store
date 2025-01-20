@@ -4,9 +4,11 @@ import { useNavigate } from "react-router-dom";
 import { ShopContext } from "../context/ShopContext";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Swal from "sweetalert2/dist/sweetalert2.js";
+import "sweetalert2/src/sweetalert2.scss";
 const Item = ({ product }) => {
   const router = useNavigate();
-  const { addToCart, WishList, RemoveList, addtowishList } =
+  const { cartItem, addToCart, WishList, RemoveList, addtowishList } =
     useContext(ShopContext);
   const totalStars = 5;
   const toggleWhishList = (id) => {
@@ -53,19 +55,59 @@ const Item = ({ product }) => {
           className="buy-btn shadow-sm"
           onClick={() => {
             addToCart(product.id);
-            toast.success("Product added successfully!");
+            const Toast = Swal.mixin({
+              toast: true,
+              position: "top-end",
+              showConfirmButton: false,
+              timer: 3000,
+              timerProgressBar: true,
+              didOpen: (toast) => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
+              },
+            });
+            Toast.fire({
+              icon: "success",
+              title: "product added successfully",
+            });
           }}
         >
-          <img
-            width="15"
-            height="15"
-            src="https://img.icons8.com/fluency-systems-regular/50/shopping-bag.png"
-            alt="shopping-bag"
-          />
+          {cartItem[product.id] > 0 ? (
+            <img
+              width="15"
+              height="15"
+              src="https://img.icons8.com/emoji/50/check-mark-emoji.png"
+              alt="check-mark-emoji"
+            />
+          ) : (
+            <img
+              width="15"
+              height="15"
+              src="https://img.icons8.com/fluency-systems-regular/50/shopping-bag.png"
+              alt="shopping-bag"
+            />
+          )}
         </button>
         <button
           className="cart-btn shadow-sm"
-          onClick={() => toggleWhishList(product.id)} // Pass a function reference
+          onClick={() => {
+            toggleWhishList(product.id);
+            const Toast = Swal.mixin({
+              toast: true,
+              position: "top-end",
+              showConfirmButton: false,
+              timer: 3000,
+              timerProgressBar: true,
+              didOpen: (toast) => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
+              },
+            });
+            Toast.fire({
+              icon: "success",
+              title: "product added wishList",
+            });
+          }} // Pass a function reference
         >
           {WishList[product.id] > 0 ? (
             <img
@@ -85,7 +127,8 @@ const Item = ({ product }) => {
         </button>
 
         <button
-          onClick={() =>
+          onClick={() => {
+            window.scrollTo(0, 0);
             router("/SingleProduct", {
               state: {
                 image: product?.image,
@@ -96,8 +139,8 @@ const Item = ({ product }) => {
                 id: product.id,
                 start: product.start,
               },
-            })
-          }
+            });
+          }}
           className="wishlist-btn shadow-sm"
         >
           <img
@@ -108,7 +151,6 @@ const Item = ({ product }) => {
           />
         </button>
       </div>
-      <ToastContainer />
     </div>
   );
 };

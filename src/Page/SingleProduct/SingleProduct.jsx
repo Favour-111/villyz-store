@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./SingleProduct.css";
 import Info from "../../components/info/Info";
 import Nav from "../../components/Nav/Nav";
@@ -8,13 +8,23 @@ import Footer from "../../footer/Footer";
 import Item from "../../components/items/Item";
 import { useLocation } from "react-router-dom";
 import product from "../../product";
+import { ShopContext } from "../../components/context/ShopContext";
+import Swal from "sweetalert2/dist/sweetalert2.js";
+import "sweetalert2/src/sweetalert2.scss";
 const SingleProduct = ({ page }) => {
   const location = useLocation();
   const products = location.state || {}; // Fallback to an empty object
   const { image, name, category, newPrice, oldPrice, id, start = 0 } = products;
-
+  const { addToCart, cartItem, WishList, addtowishList, RemoveList } =
+    useContext(ShopContext);
   const totalStars = 5;
-
+  const toggleWhishList = (id) => {
+    if (WishList[id] > 0) {
+      RemoveList(id);
+    } else {
+      addtowishList(id);
+    }
+  };
   return (
     <div>
       <Info />
@@ -71,19 +81,75 @@ const SingleProduct = ({ page }) => {
               voluptates fuga.
             </div>
             <div className="prod-footer">
-              <div className="counter-container1">
-                <div>+</div>
-                <div>1</div>
-                <div>-</div>
-              </div>
-              <button className="prod-btn">Add to Cart</button>
-              <button className="heart-btn">
-                <img
-                  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAADTElEQVR4nO2ZS2xNURSGv2olaCkDIU0x8ChC0DLwSIzExCNCg4kYCErFSBkQBEmnpJ5BVJuYeM2olmEjRBAJYuCtiXhTVaKtrOQ/yU573J57e3q7m9wvOcm9Z+299lpnr73P2utAhgwZMmTwnCJgJ9AAPAGagVagCagHdgOTk9A3Bdijvk3S1Szddq8CmBSnA7OBm0BHhKsduA7MTKBvltq0R9TZAJT0xIGBQJUz4CfgNLBMs5MLDALGAEuB48Bntf0L7AeyHX32+6Bkgb5jwBLpMF250r0cOKM2wQM6AuQk68QI4JaU/AQOAMMi9BsK7FOYWN/zcsCuWt0z2V617Y5hcr7FmZ3hycxE4MRrhUKyWGi9ko5ax4mXwIwU9JUAbxxnIs1MleNEAakzTjqCWDfHxvZAX4HjzOEoC7td4ZTKTIQ9yVZdxTHoK1aYtXWnL9idbE3ERYWuuDgkG22LDqXI2U2iLOyoBIs9LvKd3XFiWINdEtoW6ztnZeuOMGG9hLaH+84K2XojTPhMwgn4T5FsfRom/CFhHv6TJ1vN5i4Eb09LFXxniJN1dOGdhD15CaaLQtlqL8guPJSwR5lmmpgjWx+ECWsk3Iz/bJWt58KE5RJW4z81snXL/05sJvzi+YIfDHyTrbYNh3JPDUrxlzWy8U6iRtvUyBzKwj+ygPuysay7aWtSw5X4xyrZ9jZK+Jc7e7Rlmr6QLwf+u8g7Y8fIu+pgWaYvVMum28kcC6Y7BYRN9D1lsuUXMDXZzhvU+TewiL5jsWwwW9anqiQoRFgFcB7pZ4ESw0gFh0RYLF5wnEnnzCwEvmvsi3Ecl63OddWJ0bX0Pms1lo15STbEQrZKmEGN6mQq5cuI41Q6Zdqa3hgnS+XQNg1yTaXVuDBdddLdprJqr2YXVrD+qgGfA3Nj0DkfeOEkrVbYTgtWoHjkVN4rU4zjHH1z+SNdT5SFp70AcMpZN43A+CQfRqPz2eCEPiv06QsrOO+36AkPSNDe4n6jU7V5r28uXjASuOzMTp0KBJ0pVFGtw9lara93lAIfZKRtCKsdmVUwPzoL2mbFa0YDV5ynbmnOUee/zdwo+hHrlNYEDtibejv9lGnAY132u1+T79lJMwPp4B+umggDgRN8wAAAAABJRU5ErkJggg=="
-                  alt="like"
-                  width={20}
-                  height={20}
-                />
+              <button
+                className="prod-btn"
+                onClick={() => {
+                  addToCart(id);
+                  const Toast = Swal.mixin({
+                    toast: true,
+                    position: "top-end",
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                      toast.onmouseenter = Swal.stopTimer;
+                      toast.onmouseleave = Swal.resumeTimer;
+                    },
+                  });
+                  Toast.fire({
+                    icon: "success",
+                    title: "product added carts",
+                  });
+                }}
+              >
+                {cartItem[id] > 0 ? (
+                  <img
+                    width="20"
+                    height="20"
+                    src="https://img.icons8.com/emoji/50/check-mark-emoji.png"
+                    alt="check-mark-emoji"
+                  />
+                ) : (
+                  "Add to Cart"
+                )}
+              </button>
+              <button
+                className="heart-btn"
+                onClick={() => {
+                  toggleWhishList(id);
+
+                  const Toast = Swal.mixin({
+                    toast: true,
+                    position: "top-end",
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                      toast.onmouseenter = Swal.stopTimer;
+                      toast.onmouseleave = Swal.resumeTimer;
+                    },
+                  });
+                  Toast.fire({
+                    icon: "success",
+                    title: "product added wishList",
+                  });
+                }}
+              >
+                {WishList[id] > 0 ? (
+                  <img
+                    width="15"
+                    height="15"
+                    src="https://img.icons8.com/fluency/48/filled-like--v1.png"
+                    alt="filled-like--v1"
+                  />
+                ) : (
+                  <img
+                    width="15"
+                    height="15"
+                    src="https://img.icons8.com/ios/50/like--v1.png"
+                    alt="like--v1"
+                  />
+                )}
               </button>
             </div>
           </div>

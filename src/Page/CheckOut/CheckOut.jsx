@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./CheckOut.css";
 import Info from "../../components/info/Info";
 import Nav from "../../components/Nav/Nav";
@@ -7,8 +7,19 @@ import BreadCrumb from "../../components/BreadCrumbs/BreadCrumb";
 import Footer from "../../footer/Footer";
 import product from "../../product";
 import Item from "../../components/items/Item";
+import { ShopContext } from "../../components/context/ShopContext";
+import Swal from "sweetalert2/dist/sweetalert2.js";
+import "sweetalert2/src/sweetalert2.scss";
 
 const CheckOut = ({ page }) => {
+  const {
+    cartItem,
+    addToCart,
+    Remove,
+    deleteCart,
+    getTotalValue,
+    totalCartItems,
+  } = useContext(ShopContext);
   const name =
     "  Lorem ipsum dolor sit amet consectetur adipisicing elit.Nam, magni";
   const totalStars = 5;
@@ -48,7 +59,21 @@ const CheckOut = ({ page }) => {
       !newAddress.postalCode ||
       !newAddress.city
     ) {
-      alert("Please fill in all fields.");
+      const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.onmouseenter = Swal.stopTimer;
+          toast.onmouseleave = Swal.resumeTimer;
+        },
+      });
+      Toast.fire({
+        icon: "error",
+        title: "inputs are required",
+      });
       return;
     }
 
@@ -72,6 +97,27 @@ const CheckOut = ({ page }) => {
       setSelectedAddress(null);
     }
   };
+  const handleProceedToPayment = () => {
+    if (!selectedAddress) {
+      Swal.fire({
+        icon: "error",
+        title: "No address selected",
+        text: "Please select an address before proceeding.",
+      });
+      return;
+    }
+
+    if (!paymentMethod) {
+      Swal.fire({
+        icon: "error",
+        title: "No payment method selected",
+        text: "Please select a payment method before proceeding.",
+      });
+      return;
+    }
+
+    // Navigate to payment page or trigger payment process
+  };
 
   return (
     <div>
@@ -86,7 +132,7 @@ const CheckOut = ({ page }) => {
               <div className="summary-head">Summary</div>
               <div className="price-list mt-3">
                 <div>sub-total</div>
-                <div>$200</div>
+                <div>${getTotalValue()}</div>
               </div>
               <div className="price-list">
                 <div>Delivery charge</div>
@@ -94,41 +140,44 @@ const CheckOut = ({ page }) => {
               </div>
               <div className="price-list-total">
                 <div>total</div>
-                <div>$240</div>
+                <div>${getTotalValue() + 40}</div>
               </div>
               <div className="summary-container">
-                <div className="summary-items">
-                  <div className="img">
-                    <img
-                      src="https://cdn-img.oraimo.com/fit-in/600x600/KE/product/2024/10/16/OHF-201A.png"
-                      alt=""
-                    />
-                  </div>
-                  <div>
-                    <div className="summary-product-name">
-                      {name.slice(0, 20)}..
-                    </div>
-                    <div className="my-1">
-                      {Array.from({ length: totalStars }, (_, index) => (
-                        <svg
-                          key={index}
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 24 24"
-                          fill={index < 4 ? "orange" : "gray"} // Conditionally set color
-                          width="14px"
-                          height="14px"
-                          style={{ margin: "0 2px" }}
-                        >
-                          <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
-                        </svg>
-                      ))}
-                    </div>
-                    <div className="d-flex mt-2 gap-2">
-                      <div className="oldPrice">$40</div>
-                      <div className="newPrice">$50</div>
-                    </div>
-                  </div>
-                </div>
+                {product.map((e) => {
+                  if (cartItem[e.id] > 0) {
+                    return (
+                      <div className="summary-items">
+                        <div className="img">
+                          <img src={e.image} alt="" />
+                        </div>
+                        <div>
+                          <div className="summary-product-name">
+                            {e.name.slice(0, 20)}..
+                          </div>
+                          <div className="my-1">
+                            {Array.from({ length: totalStars }, (_, index) => (
+                              <svg
+                                key={index}
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 24 24"
+                                fill={index < e.start ? "orange" : "gray"} // Conditionally set color
+                                width="14px"
+                                height="14px"
+                                style={{ margin: "0 2px" }}
+                              >
+                                <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                              </svg>
+                            ))}
+                          </div>
+                          <div className="d-flex mt-2 gap-2">
+                            <div className="oldPrice">${e.oldPrice}</div>
+                            <div className="newPrice">${e.newPrice}</div>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  }
+                })}
               </div>
             </div>
             <div className="summary  mt-5">
@@ -346,7 +395,9 @@ const CheckOut = ({ page }) => {
               )}
             </div>
             <div className="proceed-cont">
-              <button>proceed to payment</button>
+              <button onClick={handleProceedToPayment}>
+                Proceed to payment
+              </button>
             </div>
           </div>
         </div>

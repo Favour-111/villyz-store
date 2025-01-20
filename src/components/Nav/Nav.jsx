@@ -60,7 +60,6 @@ const Nav = () => {
                         Register
                       </Link>
                     </li>
-                    <li>Checkout</li>
                     <li>
                       {" "}
                       <Link to="/login" className="Link">
@@ -217,13 +216,6 @@ const Nav = () => {
                     <Link className="Link" to="/wishlist">
                       {" "}
                       wishlist
-                    </Link>
-                  </li>
-                  <li>
-                    {" "}
-                    <Link className="Link" to="/checkout">
-                      {" "}
-                      checkout
                     </Link>
                   </li>
                 </ul>
