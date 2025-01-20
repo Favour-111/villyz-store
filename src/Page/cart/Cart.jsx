@@ -12,6 +12,7 @@ import Item from "../../components/items/Item";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/src/sweetalert2.scss";
+import BackToTop from "../../components/BackToTop/BackToTop";
 const Cart = ({ page }) => {
   const navigate = useNavigate();
   const {
@@ -164,7 +165,11 @@ const Cart = ({ page }) => {
               </table>
             </div>
             <div className="buttons">
-              <Link className="continue" to={"/product"}>
+              <Link
+                onClick={window.scrollTo(0, 0)}
+                className="continue"
+                to={"/product"}
+              >
                 continue shopping
               </Link>
               <button
@@ -209,6 +214,7 @@ const Cart = ({ page }) => {
         </div>
       </div>
       <Footer />
+      <BackToTop />
     </div>
   );
 };

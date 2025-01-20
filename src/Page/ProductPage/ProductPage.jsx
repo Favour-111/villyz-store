@@ -8,8 +8,10 @@ import BreadCrumb from "../../components/BreadCrumbs/BreadCrumb";
 import Footer from "../../footer/Footer";
 import Category from "../../components/category/Category";
 import "./ProductPage.css";
+import BackToTop from "../../components/BackToTop/BackToTop";
 
 const ProductPage = ({ page }) => {
+  const [filterCont, setFilterCont] = useState(false);
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -204,7 +206,9 @@ const ProductPage = ({ page }) => {
 
             <div className="itemBody1">
               {paginatedProducts.map((product) => (
-                <Item key={product.id} product={product} />
+                <div data-aos="fade-right">
+                  <Item key={product.id} product={product} />
+                </div>
               ))}
             </div>
             {/* Pagination */}
@@ -230,9 +234,139 @@ const ProductPage = ({ page }) => {
               ))}
             </div>
           </div>
+          <div className="filter-btn-cont ">
+            <div className="filter-btn" onClick={() => setFilterCont(true)}>
+              <div>filter </div>
+              <div>|</div>
+              <img
+                width={20}
+                height={20}
+                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAAA+ElEQVR4nO2XTQ6CMBBGuYF/1zGReGHPoTF6BlzjpuqKGZ/BsEBDieC0XegkhEBK3wttvrZZZlTASpSivlv1+XEBS1EuegdRbhWssxRwba5oEnTAo0nQAw8uwQfwYBIMgJtLMAJuKiFKMQbekigswub61uneA3t5X39XQf6VQEfoHIB5lwAwEWUbaiKuVNkAs/q5S6BpN2vahY1n9QiYlijntzEtowpoD+QvoD8/BKKUvgkaZRIGKQaGjUnMeuL2CCw8cTsVZWcatxXkSRcc+X7JPVn8fpds0zFWItTezyWBD5GItf93SeB9EqnOgC4JvCXxPIJbxu4DoRJAvncNQSgAAAAASUVORK5CYII="
+                alt="external-up-and-down-arrow-kmg-design-flat-kmg-design"
+              />
+            </div>
+          </div>
+          {filterCont && (
+            <div className="filter-container">
+              <div
+                className="d-flex gap-3 align-items-center"
+                style={{
+                  borderBottom: "1px solid #e3e3e3",
+                  padding: "10px ",
+                }}
+              >
+                <button
+                  onClick={() => setFilterCont(false)}
+                  style={{
+                    backgroundColor: "transparent",
+                    border: "none",
+                  }}
+                >
+                  <img
+                    width="30"
+                    height="30"
+                    src="https://img.icons8.com/ios/50/left.png"
+                    alt="left"
+                  />
+                </button>
+                <div className="filter">Filter</div>
+              </div>
+
+              <div className="filter mt-3 text-capitalize">category filter</div>
+              <div className="mt-2">
+                {categories.map((category) => (
+                  <div key={category} className="input-category">
+                    <div>
+                      <input
+                        type="checkbox"
+                        id={category}
+                        value={category}
+                        checked={selectedCategories.includes(category)}
+                        onChange={() => handleCategoryChange(category)}
+                      />
+                    </div>
+                    <div className="checkbox-label" htmlFor={category}>
+                      {category}
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <div>
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    padding: "10px",
+                    marginTop: "20px",
+                    borderBottom: "1px solid #e3e3e3",
+                  }}
+                >
+                  <div className="filter">Price Range</div>
+                  <div>
+                    <img
+                      width="30"
+                      height="30"
+                      src="https://img.icons8.com/material-outlined/50/expand-arrow.png"
+                      alt="expand-arrow"
+                    />
+                  </div>
+                </div>
+
+                <label className="label mt-3">
+                  Min:
+                  <input
+                    type="number"
+                    name="min"
+                    value={priceRange.min}
+                    onChange={handlePriceChange}
+                  />
+                </label>
+                <br />
+                <label className="label">
+                  Max:
+                  <input
+                    type="number"
+                    name="max"
+                    value={priceRange.max}
+                    onChange={handlePriceChange}
+                  />
+                </label>
+              </div>
+              <div className="category-head mt-4">
+                <div className="d-flex align-items-center justify-content-between">
+                  <div>sort by</div>
+                  <img
+                    width="15"
+                    height="15"
+                    src="https://img.icons8.com/material-outlined/50/expand-arrow.png"
+                    alt="expand-arrow"
+                  />
+                </div>
+              </div>
+              <div className="pt-4 px-3">
+                <select onChange={(e) => handleSort(e.target.value)}>
+                  <option value="">--Select--</option>
+                  <option value="name-asc">Name (A-Z)</option>
+                  <option value="name-desc">Name (Z-A)</option>
+                  <option value="price-asc">Price (Lowest to Highest)</option>
+                  <option value="price-desc">Price (Highest to Lowest)</option>
+                </select>
+              </div>
+              <div>
+                <button
+                  onClick={() => setFilterCont(false)}
+                  className="show-filter shadow-sm"
+                >
+                  Show
+                </button>
+              </div>
+            </div>
+          )}
         </div>
       </div>
       <Footer />
+      <BackToTop />
     </div>
   );
 };

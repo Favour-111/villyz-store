@@ -122,6 +122,51 @@ select {
   flex-wrap: wrap;
   gap: 10px;
 }
+.filter-btn-cont {
+  position: relative;
+  .filter-btn {
+    position: fixed;
+    bottom: 20px;
+    background-color: #4b5966;
+    padding: 7px 20px;
+    border-radius: 20px;
+    color: white;
+    font-family: poppinsRegular;
+    text-transform: capitalize;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+  }
+}
+.filter-btn-cont {
+  display: none;
+}
+.filter-container {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: white;
+  z-index: 100000000;
+  padding: 20px 15px;
+}
+.filter {
+  font-family: poppinsSemiBold;
+  color: #4b5966;
+}
+.show-filter {
+  background-color: var(--color);
+  border: none;
+  color: white;
+  font-family: poppinsRegular;
+  padding: 5px 20px;
+  margin: 40px 20px;
+  border-radius: 5px;
+}
 @media screen and (max-width: 1190px) {
   .category-select-body {
     margin: auto !important;
@@ -129,6 +174,12 @@ select {
   .cont-cont {
     display: flex !important;
     flex-direction: column-reverse;
+  }
+  .category-select-body {
+    display: none;
+  }
+  .filter-btn-cont {
+    display: block;
   }
 }
 @media screen and (max-width: 768px) {

@@ -6,6 +6,7 @@ import NavSm from "../../components/NavSm/NavSm";
 import BreadCrumb from "../../components/BreadCrumbs/BreadCrumb";
 import Footer from "../../footer/Footer";
 import { Link } from "react-router-dom";
+import BackToTop from "../../components/BackToTop/BackToTop";
 const Login = ({ page }) => {
   return (
     <div>
@@ -58,6 +59,7 @@ const Login = ({ page }) => {
         </div>
       </div>
       <Footer />
+      <BackToTop />
     </div>
   );
 };

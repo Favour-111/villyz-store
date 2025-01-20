@@ -6,6 +6,7 @@ import BreadCrumb from "../../components/BreadCrumbs/BreadCrumb";
 import Footer from "../../footer/Footer";
 import NavSm from "../../components/NavSm/NavSm";
 import { Link } from "react-router-dom";
+import BackToTop from "../../components/BackToTop/BackToTop";
 const User = ({ page }) => {
   return (
     <div>
@@ -91,6 +92,7 @@ const User = ({ page }) => {
         </div>
       </div>
       <Footer />
+      <BackToTop />
     </div>
   );
 };

@@ -37,10 +37,12 @@ const Deals = () => {
         </div>
 
         <div className="item">
-          <div data-aos="fade-up" className="itemBody">
-            {product.slice(0, 10).map((item) => {
-              return <Item product={item} />;
-            })}
+          <div className="itemBody">
+            {product.slice(0, 10).map((item) => (
+              <div key={product.id} data-aos="fade-up">
+                <Item product={item} />
+              </div>
+            ))}
           </div>
         </div>
       </div>

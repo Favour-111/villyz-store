@@ -10,6 +10,7 @@ import Item from "../../components/items/Item";
 import { ShopContext } from "../../components/context/ShopContext";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/src/sweetalert2.scss";
+import BackToTop from "../../components/BackToTop/BackToTop";
 
 const CheckOut = ({ page }) => {
   const {
@@ -420,6 +421,7 @@ const CheckOut = ({ page }) => {
         </div>
       </div>
       <Footer />
+      <BackToTop />
     </div>
   );
 };

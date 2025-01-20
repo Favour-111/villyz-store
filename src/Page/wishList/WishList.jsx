@@ -10,6 +10,7 @@ import product from "../../product";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/src/sweetalert2.scss";
 import { useNavigate } from "react-router-dom";
+import BackToTop from "../../components/BackToTop/BackToTop";
 const WishList = ({ page }) => {
   const navigate = useNavigate();
   const { WishList, RemoveList, addToCart } = useContext(ShopContext);
@@ -140,6 +141,7 @@ const WishList = ({ page }) => {
         </div>
       </div>
       <Footer />
+      <BackToTop />
     </div>
   );
 };

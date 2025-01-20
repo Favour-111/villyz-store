@@ -16,9 +16,11 @@ const NewArrival = () => {
         </div>
         <div>
           <div className="itemBody">
-            {product.slice(0, 10).map((item) => {
-              return <Item product={item} />;
-            })}
+            {product.slice(0, 10).map((item) => (
+              <div key={product.id} data-aos="fade-up">
+                <Item product={item} />
+              </div>
+            ))}
           </div>
         </div>
         <div className="information-center">

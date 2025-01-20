@@ -5,6 +5,7 @@ import Nav from "../../components/Nav/Nav";
 import NavSm from "../../components/NavSm/NavSm";
 import BreadCrumb from "../../components/BreadCrumbs/BreadCrumb";
 import Footer from "../../footer/Footer";
+import BackToTop from "../../components/BackToTop/BackToTop";
 const Contact = ({ page }) => {
   return (
     <div>
@@ -121,6 +122,7 @@ const Contact = ({ page }) => {
         </div>
       </div>
       <Footer />
+      <BackToTop />
     </div>
   );
 };

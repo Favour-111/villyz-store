@@ -11,6 +11,7 @@ import product from "../../product";
 import { ShopContext } from "../../components/context/ShopContext";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/src/sweetalert2.scss";
+import BackToTop from "../../components/BackToTop/BackToTop";
 const SingleProduct = ({ page }) => {
   const location = useLocation();
   const products = location.state || {}; // Fallback to an empty object
@@ -171,6 +172,7 @@ const SingleProduct = ({ page }) => {
           </div>
         </div>
       </div>
+      <BackToTop />
       <Footer />
     </div>
   );
