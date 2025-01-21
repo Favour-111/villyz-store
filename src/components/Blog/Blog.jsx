@@ -12,7 +12,7 @@ const Blog = () => {
       <div className="content mt-1">
         we tackle intresting topics every day in {date}
       </div>
-      <div className="blog-container">
+      <div className="blog-container" data-aos="fade-up">
         {blog.map((item) => {
           return (
             <div className="blog-item">

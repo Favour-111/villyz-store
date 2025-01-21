@@ -49,6 +49,11 @@
   align-items: center;
   justify-content: space-between;
   padding: 30px 10px;
+  [data-aos] {
+    overflow: hidden; /* Prevent overflow during animation */
+    width: 100%; /* Ensure elements stay within the container */
+  }
+
   .information-center-items {
     border: 1px solid #f3f3f3;
     width: 250px;
