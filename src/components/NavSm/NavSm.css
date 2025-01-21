@@ -171,6 +171,11 @@ li .Link {
 @media screen and (max-width: 1167px) {
   .nav-sm {
     display: flex;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: 1000000000000000000000;
   }
 
   .logo {
