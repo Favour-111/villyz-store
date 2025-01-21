@@ -25,7 +25,13 @@ const Footer = () => {
               {categoryType.map((item) => {
                 return (
                   <li>
-                    <Link className="category">{item.name}</Link>
+                    <Link
+                      className="category"
+                      to="/product"
+                      onClick={() => window.scrollTo(0, 0)}
+                    >
+                      {item.name}
+                    </Link>
                   </li>
                 );
               })}
@@ -35,14 +41,30 @@ const Footer = () => {
             <div className="footer-header">Company</div>
             <ul>
               <li>
-                <Link className="category">Terms & condition</Link>
+                <Link
+                  className="category"
+                  onClick={() => window.scrollTo(0, 0)}
+                >
+                  Terms & condition
+                </Link>
               </li>
 
               <li>
-                <Link className="category">checkout</Link>
+                <Link
+                  className="category"
+                  onClick={() => window.scrollTo(0, 0)}
+                >
+                  checkout
+                </Link>
               </li>
               <li>
-                <Link className="category">contact us</Link>
+                <Link
+                  className="category"
+                  to="/contact"
+                  onClick={() => window.scrollTo(0, 0)}
+                >
+                  contact us
+                </Link>
               </li>
             </ul>
           </div>
@@ -50,13 +72,31 @@ const Footer = () => {
             <div className="footer-header">Account</div>
             <ul>
               <li>
-                <Link className="category">Sign in</Link>
+                <Link
+                  className="category"
+                  to="/login"
+                  onClick={() => window.scrollTo(0, 0)}
+                >
+                  Sign in
+                </Link>
               </li>
               <li>
-                <Link className="category">sign up</Link>
+                <Link
+                  className="category"
+                  to="/SignUp"
+                  onClick={() => window.scrollTo(0, 0)}
+                >
+                  sign up
+                </Link>
               </li>
               <li>
-                <Link className="category">view cart</Link>
+                <Link
+                  className="category"
+                  to="/cart"
+                  onClick={() => window.scrollTo(0, 0)}
+                >
+                  view cart
+                </Link>
               </li>
               <li>
                 <Link className="category">payment</Link>

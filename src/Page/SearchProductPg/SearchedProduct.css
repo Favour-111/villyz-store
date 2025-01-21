@@ -1,0 +1,39 @@
+:root {
+  --color: rgb(83 109 254);
+  --colorLight: rgba(83, 109, 254, 0.381);
+  --text: #4b5966;
+}
+@font-face {
+  font-family: poppinsBold;
+  src: url(../../assets/font/Poppins-SemiBold.ttf);
+}
+@font-face {
+  font-family: poppinsLight;
+  src: url(../../assets/font/Poppins-Light.ttf);
+}
+@font-face {
+  font-family: poppinsSemiBold;
+  src: url(../../assets/font/Poppins-SemiBold.ttf);
+}
+@font-face {
+  font-family: poppinsRegular;
+  src: url(../../assets/font/Poppins-Medium.ttf);
+}
+.product-search-container {
+  padding: 60px 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.result {
+  margin: 20px 0;
+  font-family: poppinsRegular;
+  text-transform: capitalize;
+  color: #4b5966;
+}
+@media screen and (max-width: 768px) {
+  .product-search-container {
+    padding: 10px;
+  }
+}

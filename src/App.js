@@ -18,6 +18,7 @@ import Landing from "./Page/Landing/Landing";
 import ShopContext from "./components/context/ShopContext";
 import CheckOut from "./Page/CheckOut/CheckOut";
 import { useEffect } from "react";
+import SearchedProduct from "./Page/SearchProductPg/SearchedProduct";
 function App() {
   useEffect(() => {
     AOS.init({
@@ -46,6 +47,10 @@ function App() {
           <Route
             element={<SingleProduct page="Single product Page" />}
             path="/SingleProduct"
+          />
+          <Route
+            element={<SearchedProduct page="product search" />}
+            path="/searchProduct"
           />
         </Routes>
       </ShopContext>

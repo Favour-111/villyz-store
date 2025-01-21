@@ -204,13 +204,28 @@ const ProductPage = ({ page }) => {
               </div>
             </div>
 
-            <div className="itemBody1">
-              {paginatedProducts.map((product) => (
-                <div data-aos="fade-right">
-                  <Item key={product.id} product={product} />
+            {paginatedProducts.length > 1 ? (
+              <div className="itemBody1">
+                {paginatedProducts.map((product) => (
+                  <div data-aos="fade-right">
+                    <Item key={product.id} product={product} />
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className="empty-cart">
+                <div>
+                  <img
+                    width="74"
+                    height="74"
+                    src="https://img.icons8.com/cute-clipart/64/nothing-found.png"
+                    alt="nothing-found"
+                  />
                 </div>
-              ))}
-            </div>
+                <div className="mt-3">No Product...</div>
+              </div>
+            )}
+
             {/* Pagination */}
             <div className="text-center mb-5 mt-3">
               {Array.from({ length: totalPages }, (_, i) => (
@@ -256,7 +271,10 @@ const ProductPage = ({ page }) => {
                 }}
               >
                 <button
-                  onClick={() => setFilterCont(false)}
+                  onClick={() => {
+                    window.scrollTo(0, 0);
+                    setFilterCont(false);
+                  }}
                   style={{
                     backgroundColor: "transparent",
                     border: "none",
@@ -355,7 +373,10 @@ const ProductPage = ({ page }) => {
               </div>
               <div>
                 <button
-                  onClick={() => setFilterCont(false)}
+                  onClick={() => {
+                    window.scrollTo(0, 0);
+                    setFilterCont(false);
+                  }}
                   className="show-filter shadow-sm"
                 >
                   Show

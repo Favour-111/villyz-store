@@ -7,7 +7,7 @@ import { GrAppsRounded } from "react-icons/gr";
 import { RiArrowDropDownLine } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import { ShopContext } from "../context/ShopContext";
-
+import { useNavigate } from "react-router-dom";
 const categoriesData = {
   "Kitchen Essentials": [
     "Meal Preparation Gadget",
@@ -21,6 +21,7 @@ const categoriesData = {
 };
 
 const Nav = () => {
+  const navigate = useNavigate();
   const { totalCartItems, totalWishList } = useContext(ShopContext);
   const [isHovered, setIsHovered] = useState(false);
   const [category, setcategory] = useState(false);
@@ -28,6 +29,18 @@ const Nav = () => {
   const [isHoveredCategory, setIsHoveredCategory] = useState(false);
   const [selectedCategory, setSelectedCategory] =
     useState("Kitchen Essentials");
+  const [query, setQuery] = useState("");
+
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter" && query.trim()) {
+      window.scrollTo(0, 0); // Scroll to the top of the page
+      navigate("/searchProduct", {
+        state: {
+          query: query,
+        },
+      });
+    }
+  };
 
   return (
     <div>
@@ -37,7 +50,12 @@ const Nav = () => {
           <span className="logoSecond">yz</span>
         </div>
         <div className="inputForm">
-          <input placeholder="Search Products.." />
+          <input
+            placeholder="Search Products.."
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            onKeyPress={handleKeyPress}
+          />
           <div>
             <i className="fa-solid fa-magnifying-glass"></i>
           </div>

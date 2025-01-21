@@ -1,10 +1,11 @@
 import React, { useContext, useState } from "react";
 import "./NavSm.css";
 import categoryType from "../../categoryType";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ShopContext } from "../context/ShopContext";
 
 const NavSm = () => {
+  const navigate = useNavigate();
   const { totalCartItems, totalWishList } = useContext(ShopContext);
   const [navIsOpen, setNavIsOpen] = useState(false);
   const [subCategory1, setSubCategory1] = useState(false);
@@ -22,7 +23,17 @@ const NavSm = () => {
     setSubCategory2((prev) => !prev);
     if (subCategory1) setSubCategory1(false); // Close subcategory1 when opening subcategory2
   };
-
+  const [query, setQuery] = useState("");
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter" && query.trim()) {
+      window.scrollTo(0, 0); // Scroll to the top of the page
+      navigate("/searchProduct", {
+        state: {
+          query: query,
+        },
+      });
+    }
+  };
   return (
     <div className={`nav-container-sm ${navIsOpen ? "no-scroll" : ""}`}>
       {/* Main Navbar */}
@@ -169,7 +180,15 @@ const NavSm = () => {
         </div>
         <div className="px-3 mt-2 w-100">
           <div className="nav-sm-input">
-            <input type="text" placeholder="search product" name="" id="" />
+            <input
+              type="text"
+              placeholder="search product"
+              name=""
+              id=""
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              onKeyPress={handleKeyPress}
+            />
             <div>
               <img
                 width="15"
