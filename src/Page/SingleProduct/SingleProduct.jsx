@@ -167,7 +167,11 @@ const SingleProduct = ({ page }) => {
                 }
               })
               .map((item) => {
-                return <Item product={item} />;
+                return (
+                  <div data-aos="fade-up">
+                    <Item product={item} />
+                  </div>
+                );
               })}
           </div>
         </div>

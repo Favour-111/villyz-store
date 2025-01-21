@@ -127,6 +127,7 @@ select {
   .filter-btn {
     position: fixed;
     bottom: 20px;
+    z-index: 10000000000;
     background-color: #4b5966;
     padding: 7px 20px;
     border-radius: 20px;

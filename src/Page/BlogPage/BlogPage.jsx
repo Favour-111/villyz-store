@@ -36,7 +36,7 @@ const BlogPage = ({ page }) => {
       <div className="blog-page">
         <div className="blogs-container mt-5">
           {paginatedBlogs.map((item) => (
-            <div className="blog-item1">
+            <div className="blog-item1" data-aos="fade-up">
               <div className="blog-image">
                 <img src={item.imageUrl} alt="" />
               </div>

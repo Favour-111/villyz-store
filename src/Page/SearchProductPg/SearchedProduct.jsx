@@ -91,7 +91,7 @@ const SearchedProduct = ({ page }) => {
         {paginatedProducts.length > 0 ? (
           <div className="itemBody1">
             {paginatedProducts.map((product) => (
-              <div data-aos="fade-right" key={product.id}>
+              <div data-aos="fade-up" key={product.id}>
                 <Item product={product} />
               </div>
             ))}
