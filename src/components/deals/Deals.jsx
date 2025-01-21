@@ -67,12 +67,14 @@ const Deals = () => {
                 />
               </svg>
             </div>
-            <img
-              src="https://i02.appmifile.com/552_operatorx_operatorx_opx/19/10/2023/09218c6cba39756bf7a86f9f70e240da.png"
-              alt=""
-            />
+            <div className="img-blob" data-aos="fade-right">
+              <img
+                src="https://i02.appmifile.com/552_operatorx_operatorx_opx/19/10/2023/09218c6cba39756bf7a86f9f70e240da.png"
+                alt=""
+              />
+            </div>
           </div>
-          <div className="banner-text-container">
+          <div className="banner-text-container" data-aos="fade-left">
             <div className="banner-head">Cleaning machine</div>
             <div className="banner-head">for homes</div>
             <div className="sale mb-2">5% off sale </div>

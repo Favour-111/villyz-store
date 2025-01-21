@@ -1,6 +1,7 @@
 import React from "react";
 import categoryType from "../../categoryType";
 import "./Category.css";
+import { Link } from "react-router-dom";
 
 const Category = () => {
   return (
@@ -8,7 +9,7 @@ const Category = () => {
       {categoryType.map((item, index) => {
         // Added key for list rendering
         return (
-          <div className="category-item" key={index}>
+          <Link to="/product" className="category-item" key={index}>
             {" "}
             {/* Using 'key' for list rendering */}
             <div className="category-image shadow-sm">
@@ -18,7 +19,7 @@ const Category = () => {
             <div className="categoryName">{item.name}</div>
             <div className="categoryTotal">{item.amount} products</div>{" "}
             {/* Fixed pluralization */}
-          </div>
+          </Link>
         );
       })}
     </div>
