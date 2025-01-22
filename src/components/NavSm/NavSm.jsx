@@ -72,8 +72,8 @@ const NavSm = () => {
           </Link>
           <Link to="/cart" className="icon-sm">
             <img
-              width="24"
-              height="24"
+              width="30"
+              height="30"
               src="https://img.icons8.com/nolan/50/shopping-cart.png"
               alt="fast-cart"
             />
