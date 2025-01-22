@@ -55,8 +55,9 @@ const NavSm = () => {
             <img
               width="24"
               height="24"
-              src="https://img.icons8.com/pulsar-line/48/user.png"
+              src="https://nextjs.spruko.com/ynex-ts/preview/assets/images/faces/10.jpg"
               alt="user"
+              style={{ borderRadius: "100%" }}
             />
           </Link>
 
@@ -64,7 +65,7 @@ const NavSm = () => {
             <img
               width="24"
               height="24"
-              src="https://img.icons8.com/wired/64/like--v1.png"
+              src="https://img.icons8.com/fluency/48/like.png"
               alt="like--v1"
             />
             <div className="counter">{totalWishList()}</div>
@@ -73,7 +74,7 @@ const NavSm = () => {
             <img
               width="24"
               height="24"
-              src="https://img.icons8.com/pulsar-line/48/fast-cart.png"
+              src="https://img.icons8.com/fluency/48/shopping-basket-2.png"
               alt="fast-cart"
             />
             <div className="counter">{totalCartItems()}</div>

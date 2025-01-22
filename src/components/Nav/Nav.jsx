@@ -62,7 +62,15 @@ const Nav = () => {
         </div>
         <div className="section-container">
           <div className="d-flex gap-1 align-items-center section-item position-relative">
-            <LuUserRound size={28} color="#787878" />
+            <img
+              src="https://nextjs.spruko.com/ynex-ts/preview/assets/images/faces/10.jpg"
+              alt=""
+              width={30}
+              className="mx-1"
+              style={{
+                borderRadius: "100px",
+              }}
+            />
             <div>
               <div className="Name">Account</div>
               <div
@@ -93,7 +101,12 @@ const Nav = () => {
             to="/wishlist"
             className="d-flex gap-1 align-items-center section-item"
           >
-            <CiHeart size={30} color="#787878" />
+            <img
+              width="35"
+              height="35"
+              src="https://img.icons8.com/fluency/48/like.png"
+              alt="like"
+            />
             <div>
               <div className="Name">Wishlist</div>
               <div className="Section-name">{totalWishList()}-items</div>
@@ -103,7 +116,12 @@ const Nav = () => {
             to="/cart"
             className="d-flex gap-1 align-items-center section-item"
           >
-            <IoBagHandleOutline size={30} color="#787878" />
+            <img
+              width="40"
+              height="40"
+              src="https://img.icons8.com/fluency/48/shopping-basket-2.png"
+              alt="shopping-basket-2"
+            />
             <div>
               <div className="Name">Cart</div>
               <div className="Section-name">{totalCartItems()}-items</div>
