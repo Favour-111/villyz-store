@@ -74,7 +74,7 @@ const NavSm = () => {
             <img
               width="24"
               height="24"
-              src="https://img.icons8.com/fluency/48/shopping-basket-2.png"
+              src="https://img.icons8.com/nolan/50/shopping-cart.png"
               alt="fast-cart"
             />
             <div className="counter">{totalCartItems()}</div>
