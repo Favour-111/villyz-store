@@ -53,8 +53,8 @@ const NavSm = () => {
         <div className="d-flex gap-3 align-items-center">
           <Link to="/login">
             <img
-              width="24"
-              height="24"
+              width="30"
+              height="30"
               src="https://nextjs.spruko.com/ynex-ts/preview/assets/images/faces/10.jpg"
               alt="user"
               style={{ borderRadius: "100%" }}
