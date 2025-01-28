@@ -137,7 +137,7 @@ const Nav = () => {
           onMouseLeave={() => setIsHoveredCategory(false)}
         >
           <button className="category-btn">
-            <div className="d-flex align-items-center gap-2">
+            <div className="d-flex align-items-center gap-2 actionIcons">
               <GrAppsRounded />
               <div>All Categories</div>
             </div>
@@ -148,7 +148,7 @@ const Nav = () => {
               isHoveredCategory ? "show" : ""
             }`}
           >
-            <div className="col-6 category-item-container shadow-sm">
+            <div className="col-12 category-item-container shadow-sm">
               {Object.keys(categoriesData).map((category) => (
                 <div
                   key={category}
@@ -158,14 +158,6 @@ const Nav = () => {
                   onClick={() => setSelectedCategory(category)}
                 >
                   {category}
-                </div>
-              ))}
-            </div>
-            <div className="col-6 subcategory-container ps-3">
-              <header>{selectedCategory}</header>
-              {categoriesData[selectedCategory].map((subcategory) => (
-                <div key={subcategory} className="subcategory-item">
-                  <div className="subcategoryItems"> {subcategory}</div>
                 </div>
               ))}
             </div>
@@ -254,6 +246,13 @@ const Nav = () => {
                       wishlist
                     </Link>
                   </li>
+                  <li>
+                    {" "}
+                    <Link className="Link" to="/orderpg">
+                      {" "}
+                      Order
+                    </Link>
+                  </li>
                 </ul>
               </div>
             </li>
@@ -266,7 +265,7 @@ const Nav = () => {
           </ul>
         </div>
         <button className="category-btn">
-          <div className="d-flex align-items-center gap-2">
+          <div className="d-flex align-items-center gap-2 actionIcons">
             <CiLocationOn size={20} />
             <div>New jersey</div>
           </div>

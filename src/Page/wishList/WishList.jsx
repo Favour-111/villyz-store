@@ -39,7 +39,7 @@ const WishList = ({ page }) => {
           </div>
           {wishListProduct.length > 0 ? (
             <div className=" table-container">
-              <table>
+              <table className="table2">
                 <tr className="table-heading ">
                   <th className="text-uppercase">id</th>
                   <th>image</th>

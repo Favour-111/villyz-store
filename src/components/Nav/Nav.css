@@ -147,11 +147,11 @@ li .Link:hover {
 .categories {
   position: absolute;
   top: 50px;
-  right: -290px;
+  right: -85px;
   background: white;
   border-radius: 5px;
   padding: 15px;
-  width: 500px;
+  width: 300px;
   opacity: 0;
   visibility: hidden;
   transform: translateY(-10px);

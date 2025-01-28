@@ -2,7 +2,9 @@ import React from "react";
 import "./Blog.css";
 import blog from "../../blog";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 const Blog = () => {
+  const navigate = useNavigate();
   const date = 2023;
   return (
     <div className="container">
@@ -21,9 +23,15 @@ const Blog = () => {
               </div>
               <div className="date">{item.date}</div>
               <div className="blog-content">{item.title}</div>
-              <Link to="/SingleBlog" className="read-more">
-                read more
-              </Link>
+              <button
+                onClick={() => {
+                  window.scrollTo(0, 0);
+                  navigate("/SingleBlog");
+                }}
+                className="btn p-0 read-more"
+              >
+                Read more
+              </button>
             </div>
           );
         })}

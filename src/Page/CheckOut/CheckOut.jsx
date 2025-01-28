@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./CheckOut.css";
 import Info from "../../components/info/Info";
 import Nav from "../../components/Nav/Nav";
@@ -50,6 +50,61 @@ const CheckOut = ({ page }) => {
     setNewAddress((prev) => ({ ...prev, [name]: value }));
   };
 
+  const locations = {
+    USA: {
+      price: 100,
+      states: {
+        California: 50,
+        Texas: 40,
+        Florida: 30,
+      },
+    },
+    Canada: {
+      price: 80,
+      states: {
+        Ontario: 60,
+        Quebec: 50,
+        Alberta: 40,
+      },
+    },
+    Nigeria: {
+      price: 70,
+      states: {
+        Lagos: 35,
+        Abuja: 25,
+        Kano: 20,
+      },
+    },
+  };
+
+  // State variables
+  const [selectedLocation, setSelectedLocation] = useState("");
+  const [selectedState, setSelectedState] = useState("");
+  const [totalPrice, setTotalPrice] = useState(0);
+
+  // Handle location change
+  const handleLocationChange = (e) => {
+    const location = e.target.value;
+    setSelectedLocation(location);
+    setSelectedState(""); // Reset state selection
+    if (location) {
+      const locationPrice = locations[location].price;
+      setTotalPrice(locationPrice); // Set price based on location
+    } else {
+      setTotalPrice(0); // Reset price if no location selected
+    }
+  };
+
+  // Handle state change
+  const handleStateChange = (e) => {
+    const state = e.target.value;
+    setSelectedState(state);
+    if (state) {
+      const statePrice = locations[selectedLocation].states[state];
+      const locationPrice = locations[selectedLocation].price;
+      setTotalPrice(locationPrice + statePrice); // Update total price
+    }
+  };
   // Add new address to the list
   const handleAddAddress = () => {
     if (
@@ -119,6 +174,7 @@ const CheckOut = ({ page }) => {
 
     // Navigate to payment page or trigger payment process
   };
+  console.log(totalPrice);
 
   return (
     <div>
@@ -137,11 +193,11 @@ const CheckOut = ({ page }) => {
               </div>
               <div className="price-list">
                 <div>Delivery charge</div>
-                <div>$40</div>
+                <div>{totalPrice}</div>
               </div>
               <div className="price-list-total">
                 <div>total</div>
-                <div>${getTotalValue() + 40}</div>
+                <div>${getTotalValue() + totalPrice}</div>
               </div>
               <div className="summary-container">
                 {product.map((e) => {
@@ -192,7 +248,7 @@ const CheckOut = ({ page }) => {
 
               <div className="delivery-system">
                 {/* Cash On Delivery Radio Button */}
-                <div className="d-flex align-items-center gap-2">
+                <div className="d-flex align-items-center gap-2 actionIcons">
                   <div>
                     <input
                       type="checkBox"
@@ -338,14 +394,18 @@ const CheckOut = ({ page }) => {
                         />
                       </div>
                       <div className="col-lg-6 col-md-12">
-                        <input
-                          type="text"
-                          name="country"
-                          placeholder="Country"
-                          value={newAddress.country}
-                          onChange={handleInputChange}
-                          className="address-input"
-                        />
+                        <select
+                          id="location"
+                          value={selectedLocation}
+                          onChange={handleLocationChange}
+                        >
+                          <option value="">-- Select Location --</option>
+                          {Object.keys(locations).map((location) => (
+                            <option key={location} value={location}>
+                              {location}
+                            </option>
+                          ))}
+                        </select>
                       </div>
                       <div className="col-lg-6 col-md-12">
                         <input
@@ -358,14 +418,22 @@ const CheckOut = ({ page }) => {
                         />
                       </div>
                       <div className="col-lg-6 col-md-12">
-                        <input
-                          type="text"
-                          name="state"
-                          placeholder="State"
-                          value={newAddress.state}
-                          onChange={handleInputChange}
-                          className="address-input"
-                        />
+                        <select
+                          id="state"
+                          value={selectedState}
+                          onChange={handleStateChange}
+                          disabled={!selectedLocation} // Disable the dropdown if no location is selected
+                        >
+                          <option value="">-- Select State --</option>
+                          {selectedLocation &&
+                            Object.keys(locations[selectedLocation].states).map(
+                              (state) => (
+                                <option key={state} value={state}>
+                                  {state}
+                                </option>
+                              )
+                            )}
+                        </select>
                       </div>
                       <div className="col-lg-6 col-md-12">
                         <input
@@ -373,16 +441,6 @@ const CheckOut = ({ page }) => {
                           name="postalCode"
                           placeholder="Postal Code"
                           value={newAddress.postalCode}
-                          onChange={handleInputChange}
-                          className="address-input"
-                        />
-                      </div>
-                      <div className="col-lg-6 col-md-12">
-                        <input
-                          type="text"
-                          name="city"
-                          placeholder="City"
-                          value={newAddress.city}
                           onChange={handleInputChange}
                           className="address-input"
                         />

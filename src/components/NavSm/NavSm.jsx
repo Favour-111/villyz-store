@@ -164,6 +164,12 @@ const NavSm = () => {
                 wishlist
               </Link>
             </li>
+            <li>
+              {" "}
+              <Link to="/orderpg" className="Link">
+                Order
+              </Link>
+            </li>
           </ul>
           <Link className="li" to="/contact">
             Contact <div></div>

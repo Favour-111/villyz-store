@@ -83,6 +83,7 @@
   color: #787878;
   margin-top: 10px;
   cursor: pointer;
+  outline: none;
   transition: 350ms;
 }
 

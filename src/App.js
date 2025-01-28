@@ -19,6 +19,8 @@ import ShopContext from "./components/context/ShopContext";
 import CheckOut from "./Page/CheckOut/CheckOut";
 import { useEffect } from "react";
 import SearchedProduct from "./Page/SearchProductPg/SearchedProduct";
+import OrderPage from "./Page/OrderPage/OrderPage";
+import SingleOrder from "./Page/SingleOrder/SingleOrder";
 function App() {
   useEffect(() => {
     AOS.init({
@@ -39,6 +41,11 @@ function App() {
           <Route element={<ProductPage page="Product" />} path="/product" />
           <Route element={<BlogPage page="blog page" />} path="/blog" />
           <Route element={<CheckOut page="checkout page" />} path="/checkout" />
+          <Route element={<OrderPage page="Order page" />} path="/orderpg" />
+          <Route
+            element={<SingleOrder page="single order" />}
+            path="/singleOrder"
+          />
           <Route
             element={<SingleBlog page="Single Blog Page" />}
             path="/SingleBlog"
