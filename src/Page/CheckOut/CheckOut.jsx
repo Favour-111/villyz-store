@@ -41,7 +41,6 @@ const CheckOut = ({ page }) => {
     address: "",
     state: "",
     postalCode: "",
-    city: "",
   }); // Tracks new address form inputs
 
   // Handle input changes in the form
@@ -49,6 +48,8 @@ const CheckOut = ({ page }) => {
     const { name, value } = e.target;
     setNewAddress((prev) => ({ ...prev, [name]: value }));
   };
+
+  console.log(newAddress);
 
   const locations = {
     USA: {
@@ -87,24 +88,37 @@ const CheckOut = ({ page }) => {
     const location = e.target.value;
     setSelectedLocation(location);
     setSelectedState(""); // Reset state selection
+
+    setNewAddress((prev) => ({
+      ...prev,
+      country: location, // Store country in newAddress
+      state: "", // Reset state when country changes
+    }));
+
     if (location) {
       const locationPrice = locations[location].price;
-      setTotalPrice(locationPrice); // Set price based on location
+      setTotalPrice(locationPrice);
     } else {
-      setTotalPrice(0); // Reset price if no location selected
+      setTotalPrice(0);
     }
   };
 
-  // Handle state change
   const handleStateChange = (e) => {
     const state = e.target.value;
     setSelectedState(state);
+
+    setNewAddress((prev) => ({
+      ...prev,
+      state: state, // Store state in newAddress
+    }));
+
     if (state) {
       const statePrice = locations[selectedLocation].states[state];
       const locationPrice = locations[selectedLocation].price;
-      setTotalPrice(locationPrice + statePrice); // Update total price
+      setTotalPrice(locationPrice + statePrice);
     }
   };
+
   // Add new address to the list
   const handleAddAddress = () => {
     if (
@@ -112,8 +126,7 @@ const CheckOut = ({ page }) => {
       !newAddress.country ||
       !newAddress.address ||
       !newAddress.state ||
-      !newAddress.postalCode ||
-      !newAddress.city
+      !newAddress.postalCode
     ) {
       const Toast = Swal.mixin({
         toast: true,
@@ -140,7 +153,6 @@ const CheckOut = ({ page }) => {
       address: "",
       state: "",
       postalCode: "",
-      city: "",
     });
     setUseNewAddress(false); // Switch to existing address mode after adding
   };
@@ -354,9 +366,6 @@ const CheckOut = ({ page }) => {
                               <div className="col-md-7 col-sm-12 address-text">
                                 <span>State</span> : {address.state}
                               </div>
-                              <div className="col-md-5 col-sm-12 address-text">
-                                <span>city</span> : {address.city}
-                              </div>
                             </div>
                           </div>
                         </div>
@@ -395,14 +404,13 @@ const CheckOut = ({ page }) => {
                       </div>
                       <div className="col-lg-6 col-md-12">
                         <select
-                          id="location"
-                          value={selectedLocation}
                           onChange={handleLocationChange}
+                          value={selectedLocation}
                         >
-                          <option value="">-- Select Location --</option>
-                          {Object.keys(locations).map((location) => (
-                            <option key={location} value={location}>
-                              {location}
+                          <option value="">Select Country</option>
+                          {Object.keys(locations).map((country) => (
+                            <option key={country} value={country}>
+                              {country}
                             </option>
                           ))}
                         </select>
@@ -419,12 +427,11 @@ const CheckOut = ({ page }) => {
                       </div>
                       <div className="col-lg-6 col-md-12">
                         <select
-                          id="state"
-                          value={selectedState}
                           onChange={handleStateChange}
-                          disabled={!selectedLocation} // Disable the dropdown if no location is selected
+                          value={selectedState}
+                          disabled={!selectedLocation}
                         >
-                          <option value="">-- Select State --</option>
+                          <option value="">Select State</option>
                           {selectedLocation &&
                             Object.keys(locations[selectedLocation].states).map(
                               (state) => (
