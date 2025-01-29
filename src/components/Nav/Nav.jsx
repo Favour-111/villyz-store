@@ -45,7 +45,7 @@ const Nav = () => {
   return (
     <div>
       <div className="Nav-body">
-        <div className="logo">
+        <div className="logo" onClick={() => navigate("/home")}>
           <span>Vill</span>
           <span className="logoSecond">yz</span>
         </div>

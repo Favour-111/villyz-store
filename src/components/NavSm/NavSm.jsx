@@ -189,7 +189,7 @@ const NavSm = () => {
 
       {/* Navbar Content */}
       <div className="nav-smContent">
-        <div className="logo">
+        <div className="logo" onClick={() => navigate("/home")}>
           vill<span>yz</span>
         </div>
         <div className="px-3 mt-2 w-100">
