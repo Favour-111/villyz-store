@@ -21,6 +21,7 @@ import { useEffect } from "react";
 import SearchedProduct from "./Page/SearchProductPg/SearchedProduct";
 import OrderPage from "./Page/OrderPage/OrderPage";
 import SingleOrder from "./Page/SingleOrder/SingleOrder";
+import ScrollUp from "./components/ScrollUp";
 function App() {
   useEffect(() => {
     AOS.init({
@@ -30,6 +31,7 @@ function App() {
   return (
     <div className="App">
       <ShopContext>
+        <ScrollUp />
         <Routes>
           <Route element={<Landing />} path="/" />
           <Route element={<Page />} path="/home" />
