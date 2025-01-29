@@ -60,4 +60,11 @@
   .order-container {
     padding: 10px;
   }
+  .cart-cont {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  .order-type {
+    margin: 0;
+  }
 }

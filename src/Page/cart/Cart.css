@@ -236,6 +236,7 @@ table {
   .cart-cont {
     overflow: scroll;
     scrollbar-width: none;
+    padding: 0 !important;
     table {
       width: 800px;
     }
