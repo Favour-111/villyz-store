@@ -20,7 +20,26 @@ const Item = ({ product }) => {
   };
   return (
     <div className="product-item">
-      <div className="product-image">
+      <div
+        className="product-image"
+        onClick={() => {
+          window.scroll(0, 0);
+          navigate("/SingleProduct", {
+            state: {
+              image: product?.image,
+              name: product.name,
+              category: product.category,
+              newPrice: product.newPrice,
+              oldPrice: product.oldPrice,
+              id: product.id,
+              start: product.start,
+            },
+          });
+        }}
+        style={{
+          cursor: "pointer",
+        }}
+      >
         <img src={product.image} alt={product.name} />
       </div>
       <div className="product-info">
@@ -128,6 +147,7 @@ const Item = ({ product }) => {
 
         <button
           onClick={() => {
+            window.scroll(0, 0);
             navigate("/SingleProduct", {
               state: {
                 image: product?.image,
