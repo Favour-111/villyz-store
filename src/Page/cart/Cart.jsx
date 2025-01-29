@@ -16,6 +16,15 @@ import BackToTop from "../../components/BackToTop/BackToTop";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { useEffect } from "react";
 const Cart = ({ page }) => {
+  function usePreserveScrollPosition() {
+    useEffect(() => {
+      const { scrollX, scrollY } = window;
+
+      return () => {
+        window.scrollTo(scrollX, scrollY); // Preserve scroll position
+      };
+    }, []);
+  }
   const navigate = useNavigate();
   const {
     cartItem,
@@ -38,7 +47,6 @@ const Cart = ({ page }) => {
       Swal.fire("Error!", "Invalid coupon code", "error");
     }
   };
-
   return (
     <div>
       <Info />
@@ -54,6 +62,26 @@ const Cart = ({ page }) => {
                 <div className="cart-summary-header2">Estimated shipping</div>
                 <div className="cart-summary-content">
                   Enter your destination to get a shipping estimate
+                </div>
+                <div className="address">
+                  <div className="input-container">
+                    <label htmlFor="" className="mb-1">
+                      Country*
+                    </label>
+                    <input type="Country" placeholder="Country" />
+                  </div>
+                  <div className="input-container mt-4">
+                    <label htmlFor="" className="mb-1">
+                      State/Province*
+                    </label>
+                    <input type="Country" placeholder="State/Province" />
+                  </div>
+                  <div className="input-container mt-4">
+                    <label htmlFor="" className="mb-1">
+                      Home Address*
+                    </label>
+                    <input type="text" placeholder="Home address" />
+                  </div>
                 </div>
 
                 <div className="sum mt-2">
@@ -73,12 +101,8 @@ const Cart = ({ page }) => {
                   </div>
                   {coupon ? (
                     <div className="coupon-container">
-                      <input
-                        onChange={(e) => setDiscount(e.target.value)}
-                        type="text"
-                        placeholder="input coupon"
-                      />
-                      <button onClick={applyCoupon}>Apply</button>
+                      <input type="text" placeholder="input coupon" />
+                      <button>Apply</button>
                     </div>
                   ) : null}
 
@@ -183,7 +207,10 @@ const Cart = ({ page }) => {
                             <div>
                               <td>
                                 <div className="counter-container">
-                                  <button onClick={() => addToCart(e.id)}>
+                                  <button
+                                    type="button"
+                                    onClick={() => addToCart(e.id)}
+                                  >
                                     +
                                   </button>
                                   <div>{cartItem[e.id]}</div>
@@ -206,24 +233,7 @@ const Cart = ({ page }) => {
                                 src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAACXBIWXMAAAsTAAALEwEAmpwYAAAEP0lEQVR4nO2dP4+UVRTGfxUR+AgsriFqpAQLxVbdGDtJSHQ/A1BCCTQutkK0kgIT+RckxsVC+AAmRreAEgtZ1kqjiK6R5jE3czBvNsPsfYedmXPPnl9yi52cmZznPe/cP8/c+y4kSZIkSZIkSZIkSZIkSZJER7BD8JHgF4E2aWuCpfKeWecdFsHZikJsbB/OOu+waHDXl4t8qCL2jSfflOlktw2R3fWTik+yID4Q7Bd8Xjk4a8qt5HSx5Mh2QPCu4G8HF16btJLjO0RGsFfwuwn+TLAPZwj2CS5YjiXXvURFcNWE3sA5gi8t16tERPBmpyuYxzmCOcEjy7ndrsuEXBP8+ZS++SSNIDjxFA1F23XBSzRQjN8cDMjapN3t5Hy3+1rn75pWtO7BK/bNKIl+7TrRZ6RoEyyb1it4pdNNhS3Ghhlj0foHXhE8tCTnCI4aKch1S3I5clE0GCtvmtZreEXwsuBXB4O2ptTKoP4iDQx4VzrdV8T20CYwvosxDMF9E/E8jSKYNw0/0zqCFRNzgEYRHDQNP9I6glsm5m0aRbBgGr6ldQSXTMwHNIpg0TR8QesIzpuYoz13lazZpoYds4rvvO+oaThP6whOm5jTFbFnbQ2zpzPXX5pV/Dga3CM4Vnt3aXDXzm1YDa/NKr4Td840HKN1ythhYi5VxKrmtWnFd2Ium4b3aZ0yuzIxtxwU5E6f+EgzxbHm8JrSHd83PsJa6n/KCt3E3G+4IKumof0ND4JdJmbdQZd1r098J2bdNOwiArWC5HBQF+yuvaHCGYxyOKj36XKboTMoHmxtDFEkY7HvtFE+CxLHWOxrMMpnl1W9sG2GWutBPgf145b7x0Sh1pyTz4KcsdxPEYVag1E+C1L980Ez1PbD8lmQOMZiX4NRPgty23J/iyh05vIrDRZkJYyx2He1K58FiWMsDjEY/2mwIOuW+04i0RG2u5WCKKKx2MdglL+CxNmxOI7BKH8FiWcsDjEYFxoqyEI4Y3GIwbjYUEEWw+xYHMdglL+CxDMW+xiM8leQeMZiH4NRW3OB72zh58fZsTjCYLw8yYKMYozPj2cs9jEY5a8g8YzFPgaj/BUknrE4xGBcbaggq+GMxT4Go/wVJKaxWGswytEsq88W2AgG47z3dYgiG4tPKCbdKINRvgryquX6A1HZzGCUr4LENRZrDUYNPwP4YMTnTSw+5I7FEXuchloRGjw8/6adkC0X65tRz26fZHyoo9AVBuOZEefIl+xOflAuVsW584nEhzoKvRVHpGdNyB2LGxEcMZHLOEeD50aWXI8QFcErnedNPYdTBDs7z4/0/SjYZ0XwvQn9BKcIPrUcvyM69o9WHpvgrwSvezjdqoFVcshyKrn9K3iN7YDgsOAvE+6xPRK8x3ZC8ILNZH7qfGM0w/bYcjnX8uMIkyRJkiRJkiRJkiRJkiRJkiRJkoQ+/AfNOoXNz7JA8QAAAABJRU5ErkJggg=="
                                 alt="filled-trash"
                                 width={25}
-                                onClick={() => {
-                                  deleteCart(e.id);
-                                  const Toast = Swal.mixin({
-                                    toast: true,
-                                    position: "top-end",
-                                    showConfirmButton: false,
-                                    timer: 3000,
-                                    timerProgressBar: true,
-                                    didOpen: (toast) => {
-                                      toast.onmouseenter = Swal.stopTimer;
-                                      toast.onmouseleave = Swal.resumeTimer;
-                                    },
-                                  });
-                                  Toast.fire({
-                                    icon: "info",
-                                    title: "product deleted from cart",
-                                  });
-                                }}
+                                onClick={() => deleteCart(e.id)}
                                 className="delete-icn"
                                 height={25}
                               />
