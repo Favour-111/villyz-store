@@ -183,12 +183,7 @@ const Cart = ({ page }) => {
                             <div>
                               <td>
                                 <div className="counter-container">
-                                  <button
-                                    onClick={(e) => {
-                                      e.preventDefault();
-                                      addToCart(e.id);
-                                    }}
-                                  >
+                                  <button onClick={() => addToCart(e.id)}>
                                     +
                                   </button>
                                   <div>{cartItem[e.id]}</div>
