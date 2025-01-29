@@ -55,7 +55,7 @@ const OrderPage = ({ page }) => {
           <div className="order-container">
             <div className="cart-cont p-3">
               <table className="table2">
-                <div className="order-type mb-3">Pending Order</div>
+                <div className="order-type mb-4">Pending Order</div>
                 <tr className="table-header">
                   <td>Order ID</td>
                   <td>Shipping</td>
@@ -102,7 +102,7 @@ const OrderPage = ({ page }) => {
           <div className="order-container">
             <div className="cart-cont">
               <table className="table2">
-                <div className="order-type mb-3">Approved Order</div>
+                <div className="order-type mb-4">Approved Order</div>
                 <tr className="table-header">
                   <td>Order ID</td>
                   <td>Shipping</td>
