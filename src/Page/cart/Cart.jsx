@@ -63,26 +63,6 @@ const Cart = ({ page }) => {
                 <div className="cart-summary-content">
                   Enter your destination to get a shipping estimate
                 </div>
-                <div className="address">
-                  <div className="input-container">
-                    <label htmlFor="" className="mb-1">
-                      Country*
-                    </label>
-                    <input type="Country" placeholder="Country" />
-                  </div>
-                  <div className="input-container mt-4">
-                    <label htmlFor="" className="mb-1">
-                      State/Province*
-                    </label>
-                    <input type="Country" placeholder="State/Province" />
-                  </div>
-                  <div className="input-container mt-4">
-                    <label htmlFor="" className="mb-1">
-                      Home Address*
-                    </label>
-                    <input type="text" placeholder="Home address" />
-                  </div>
-                </div>
 
                 <div className="sum mt-2">
                   <div>

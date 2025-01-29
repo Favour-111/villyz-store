@@ -404,6 +404,7 @@ const CheckOut = ({ page }) => {
                       </div>
                       <div className="col-lg-6 col-md-12">
                         <select
+                          className="select"
                           onChange={handleLocationChange}
                           value={selectedLocation}
                         >
@@ -427,6 +428,7 @@ const CheckOut = ({ page }) => {
                       </div>
                       <div className="col-lg-6 col-md-12">
                         <select
+                          className="select"
                           onChange={handleStateChange}
                           value={selectedState}
                           disabled={!selectedLocation}
