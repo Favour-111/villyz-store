@@ -99,7 +99,9 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link className="category">payment</Link>
+                <Link to="/orderpg" className="category">
+                  orders
+                </Link>
               </li>
             </ul>
           </div>

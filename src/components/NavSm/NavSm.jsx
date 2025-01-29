@@ -174,7 +174,7 @@ const NavSm = () => {
             <li>
               {" "}
               <Link to="/orderpg" className="Link">
-                Order
+                Orders
               </Link>
             </li>
           </ul>

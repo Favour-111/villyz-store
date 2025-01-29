@@ -80,7 +80,7 @@ const OrderPage = ({ page }) => {
                         <div>{e.date}</div>
                       </td>
                       <td>
-                        <div className="counter-container">{e.status}</div>
+                        <div className="success">delivered</div>
                       </td>
                       <td>
                         <button
@@ -127,7 +127,7 @@ const OrderPage = ({ page }) => {
                         <div>{e.date}</div>
                       </td>
                       <td>
-                        <div className="counter-container">{e.status}</div>
+                        <div className="pending">pending</div>
                       </td>
                       <td>
                         <button

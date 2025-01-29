@@ -250,7 +250,7 @@ const Nav = () => {
                     {" "}
                     <Link className="Link" to="/orderpg">
                       {" "}
-                      Order
+                      Orders
                     </Link>
                   </li>
                 </ul>
