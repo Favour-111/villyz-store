@@ -7,7 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/src/sweetalert2.scss";
 const Item = ({ product }) => {
-  const router = useNavigate();
+  const navigate = useNavigate();
   const { cartItem, addToCart, WishList, RemoveList, addtowishList } =
     useContext(ShopContext);
   const totalStars = 5;
@@ -128,8 +128,7 @@ const Item = ({ product }) => {
 
         <button
           onClick={() => {
-            window.scrollTo(0, 0);
-            router("/SingleProduct", {
+            navigate("/SingleProduct", {
               state: {
                 image: product?.image,
                 name: product.name,
