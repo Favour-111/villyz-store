@@ -41,6 +41,8 @@ const CheckOut = ({ page }) => {
     address: "",
     state: "",
     postalCode: "",
+    city: "",
+    PhoneNumber: "",
   }); // Tracks new address form inputs
 
   // Handle input changes in the form
@@ -126,7 +128,9 @@ const CheckOut = ({ page }) => {
       !newAddress.country ||
       !newAddress.address ||
       !newAddress.state ||
-      !newAddress.postalCode
+      !newAddress.postalCode ||
+      !newAddress.city ||
+      !newAddress.PhoneNumber
     ) {
       const Toast = Swal.mixin({
         toast: true,
@@ -153,6 +157,8 @@ const CheckOut = ({ page }) => {
       address: "",
       state: "",
       postalCode: "",
+      city: "",
+      PhoneNumber: "",
     });
     setUseNewAddress(false); // Switch to existing address mode after adding
   };
@@ -288,41 +294,47 @@ const CheckOut = ({ page }) => {
                 {/* Add Comment Section */}
                 <div>
                   <div className="label mt-3">Add comment about your order</div>
-                  <textarea name="" placeholder="comment" id=""></textarea>
+                  <textarea
+                    name=""
+                    placeholder="comment(Optional)"
+                    id=""
+                  ></textarea>
                 </div>
               </div>
             </div>
           </div>
           <div className="col-xl-8 col-md-12 ">
             <div className="billing-container">
-              <div className="billing-head">Billing Address</div>
-              <div className="checkout-type">Checkout option</div>
+              <div className="p-3">
+                <div className="billing-head">Billing Address</div>
+                <div className="checkout-type">Checkout option</div>
 
-              {/* Radio Buttons */}
-              <div className="checkBox-contain">
-                <div className="checkout-item">
-                  <div>
-                    <input
-                      type="checkBox"
-                      name="addressOption"
-                      disabled={addresses.length === 0} // Disable if no addresses exist
-                      checked={!useNewAddress}
-                      onChange={() => setUseNewAddress(false)}
-                    />
-                  </div>
+                {/* Radio Buttons */}
+                <div className="checkBox-contain">
+                  <div className="checkout-item">
+                    <div>
+                      <input
+                        type="checkBox"
+                        name="addressOption"
+                        disabled={addresses.length === 0} // Disable if no addresses exist
+                        checked={!useNewAddress}
+                        onChange={() => setUseNewAddress(false)}
+                      />
+                    </div>
 
-                  <label>Use Existing Address</label>
-                </div>
-                <div className="checkout-item">
-                  <div>
-                    <input
-                      type="checkBox"
-                      name="addressOption"
-                      checked={useNewAddress}
-                      onChange={() => setUseNewAddress(true)}
-                    />
+                    <label>Use Existing Address</label>
                   </div>
-                  <label>Use New Address</label>
+                  <div className="checkout-item">
+                    <div>
+                      <input
+                        type="checkBox"
+                        name="addressOption"
+                        checked={useNewAddress}
+                        onChange={() => setUseNewAddress(true)}
+                      />
+                    </div>
+                    <label>Use New Address</label>
+                  </div>
                 </div>
               </div>
 
@@ -350,6 +362,10 @@ const CheckOut = ({ page }) => {
                               <div className="col-md-7 col-sm-12 address-text">
                                 <span>Name</span> : {address.name}
                               </div>
+                              <div className="col-md-7 col-sm-12 address-text">
+                                <span>Phone number</span> :{" "}
+                                {address.PhoneNumber}
+                              </div>
                               <div className="col-md-5 col-sm-12 address-text">
                                 <span>Country</span> : {address.country}
                               </div>
@@ -360,6 +376,9 @@ const CheckOut = ({ page }) => {
                               </div>
                               <div className="col-md-5 col-sm-12 address-text">
                                 <span>Postal Code</span> : {address.postalCode}
+                              </div>
+                              <div className="col-md-5 col-sm-12 address-text">
+                                <span>City</span> : {address.city}
                               </div>
                             </div>
                             <div className="row">
@@ -389,7 +408,7 @@ const CheckOut = ({ page }) => {
               {/* New Address Form */}
               {useNewAddress && (
                 <div>
-                  <div className="billing-head">Add New Address</div>
+                  <div className="billing-head ms-2">Add New Address</div>
                   <div className="billing">
                     <div className="row w-100 ">
                       <div className="col-lg-6 col-md-12 w-100">
@@ -416,6 +435,7 @@ const CheckOut = ({ page }) => {
                           ))}
                         </select>
                       </div>
+
                       <div className="col-lg-6 col-md-12">
                         <input
                           type="text"
@@ -444,6 +464,27 @@ const CheckOut = ({ page }) => {
                             )}
                         </select>
                       </div>
+                      <div className="col-lg-6 col-md-12">
+                        <input
+                          type="text"
+                          name="PhoneNumber"
+                          placeholder="Phone Number"
+                          value={newAddress.PhoneNumber}
+                          onChange={handleInputChange}
+                          className="address-input"
+                        />
+                      </div>
+                      <div className="col-lg-6 col-md-12">
+                        <input
+                          type="text"
+                          name="city"
+                          placeholder="City"
+                          value={newAddress.City}
+                          onChange={handleInputChange}
+                          className="address-input"
+                        />
+                      </div>
+
                       <div className="col-lg-6 col-md-12">
                         <input
                           type="text"

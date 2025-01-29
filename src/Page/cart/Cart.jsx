@@ -70,8 +70,8 @@ const Cart = ({ page }) => {
                     <div>${getTotalValue()}</div>
                   </div>
                   <div>
-                    <div>delivery-charges</div>
-                    <div>$40</div>
+                    <div>coupon</div>
+                    <div>$0</div>
                   </div>
                   <div>
                     <div>coupon-discount</div>

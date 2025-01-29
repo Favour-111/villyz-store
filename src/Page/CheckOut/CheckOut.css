@@ -182,16 +182,17 @@
 .address-input {
   width: 100% !important;
   border: 1px solid #e3e3e3 !important;
-  padding: 15px 10px;
+  padding: 10px !important;
   margin-top: 20px;
-  border-radius: 2px;
+  border-radius: 6px;
 }
 .select {
   width: 100% !important;
   border: 1px solid #e3e3e3 !important;
-  padding: 15px 10px;
+  padding: 10px !important;
+  background-color: transparent;
   margin-top: 20px;
-  border-radius: 2px;
+  border-radius: 6px;
 }
 .Address-btn {
   padding: 10px 20px;
@@ -268,7 +269,7 @@ textarea {
 
 @media screen and (max-width: 768px) {
   .billing-container {
-    padding: 10px 20px 30px 20px;
+    padding: 10px 10px 30px 10px;
     margin-top: 30px;
     margin-bottom: 30px;
   }
