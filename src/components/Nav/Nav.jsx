@@ -8,17 +8,9 @@ import { RiArrowDropDownLine } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import { ShopContext } from "../context/ShopContext";
 import { useNavigate } from "react-router-dom";
-const categoriesData = {
-  "Kitchen Essentials": [
-    "Meal Preparation Gadget",
-    "food storage solution",
-    "Portable",
-  ],
-  "Cleaning Tools": ["Mops", "Brushes", "Cleaning Agents"],
-  Storage: ["Boxes", "Containers", "Racks"],
-  "Home Comfort": ["Bedding", "Furniture", "Decor"],
-  "DIY & Repairs": ["Tools", "Adhesives", "Paint"],
-};
+import categoryType from "../../categoryType";
+import product from "../../product";
+const categoriesData = categoryType;
 
 const Nav = () => {
   const navigate = useNavigate();
@@ -149,15 +141,33 @@ const Nav = () => {
             }`}
           >
             <div className="col-12 category-item-container shadow-sm">
-              {Object.keys(categoriesData).map((category) => (
+              <Link
+                style={{
+                  textDecoration: "none",
+                }}
+                to="/product"
+                className={`category-items ${
+                  selectedCategory === "All" ? "active" : ""
+                }`}
+                onClick={() => setSelectedCategory("All")}
+              >
+                All Product
+              </Link>
+              {categoryType.map((category) => (
                 <div
+                  style={{
+                    textDecoration: "none",
+                  }}
                   key={category}
                   className={`category-items ${
-                    selectedCategory === category ? "active" : ""
+                    selectedCategory === category.name ? "active" : ""
                   }`}
-                  onClick={() => setSelectedCategory(category)}
+                  onClick={() => {
+                    setSelectedCategory(category.name);
+                    navigate(`/${category.name}`);
+                  }}
                 >
-                  {category}
+                  {category.name}
                 </div>
               ))}
             </div>
@@ -178,36 +188,14 @@ const Nav = () => {
               <RiArrowDropDownLine size={30} />
               <div className={`dropdown2  ${category ? "show" : ""}`}>
                 <ul className="dropdown-content">
-                  <li>
-                    <Link className="Link" to="/product">
-                      {" "}
-                      kitchen essential
-                    </Link>
-                  </li>
-                  <li>
-                    <Link className="Link" to="/product">
-                      {" "}
-                      cleaning tool
-                    </Link>
-                  </li>
-                  <li>
-                    <Link className="Link" to="/product">
-                      {" "}
-                      DIY
-                    </Link>
-                  </li>
-                  <li>
-                    <Link className="Link" to="/product">
-                      {" "}
-                      storage
-                    </Link>
-                  </li>
-                  <li>
-                    <Link className="Link" to="/product">
-                      {" "}
-                      Home Comfort
-                    </Link>
-                  </li>
+                  {categoryType.map((category) => (
+                    <li>
+                      <Link className="Link" to={`/${category.name}`}>
+                        {" "}
+                        {category.name}
+                      </Link>
+                    </li>
+                  ))}
                 </ul>
               </div>
             </li>

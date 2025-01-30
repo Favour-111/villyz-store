@@ -119,13 +119,25 @@ const NavSm = () => {
             </div>
           </Link>
           <ul className={`nav-sm-subCategory ${subCategory1 ? "open" : ""}`}>
+            <li>
+              <button
+                className="Link"
+                onClick={() => {
+                  navigate("/product");
+                  window.scrollTo(0, 0);
+                }}
+              >
+                All Product
+              </button>
+            </li>
             {categoryType.map((item) => (
               <li>
                 <button
                   className="Link"
                   onClick={() => {
-                    navigate("/product");
+                    navigate(`/${item.name}`);
                     window.scrollTo(0, 0);
+                    setNavIsOpen(false);
                   }}
                   key={item.id}
                 >

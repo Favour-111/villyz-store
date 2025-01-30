@@ -66,7 +66,6 @@ const SearchedProduct = ({ page }) => {
       <Nav />
       <NavSm />
       <BreadCrumb page={page} />
-      <Category />
       <div className="product-search-container">
         <div className="result">Search Results for "{query}"</div>
         <div className="px-3 w-100">
