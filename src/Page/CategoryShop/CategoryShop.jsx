@@ -18,6 +18,11 @@ const CategoryShop = ({ page }) => {
   const [priceRange, setPriceRange] = useState({ min: 0, max: 1000 });
   const [sortOption, setSortOption] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
+  const [stockFilter, setStockFilter] = useState({
+    inStock: false,
+    outOfStock: false,
+  });
+
   const itemsPerPage = 8;
 
   // Sample product data
@@ -63,6 +68,13 @@ const CategoryShop = ({ page }) => {
         product.newPrice >= priceRange.min && product.newPrice <= priceRange.max
     );
 
+    // Filter by stock availability
+    if (stockFilter.inStock && !stockFilter.outOfStock) {
+      tempProducts = tempProducts.filter((product) => product.inStock);
+    } else if (!stockFilter.inStock && stockFilter.outOfStock) {
+      tempProducts = tempProducts.filter((product) => !product.inStock);
+    }
+
     // Sort products
     if (sortOption === "name-asc") {
       tempProducts.sort((a, b) => a.name.localeCompare(b.name));
@@ -75,10 +87,8 @@ const CategoryShop = ({ page }) => {
     }
 
     setFilteredProducts(tempProducts);
-
-    // Reset pagination to the first page
     setCurrentPage(1);
-  }, [products, selectedCategories, priceRange, sortOption]);
+  }, [products, selectedCategories, priceRange, sortOption, stockFilter]);
 
   // Get paginated products
   const Productcategory = selectedCategories.length
@@ -93,6 +103,14 @@ const CategoryShop = ({ page }) => {
 
   const totalPages = Math.ceil(Productcategory.length / itemsPerPage);
 
+  const handleStockChange = (e) => {
+    const { name, checked } = e.target;
+    setStockFilter((prev) => ({
+      ...prev,
+      [name]: checked,
+    }));
+  };
+
   return (
     <div>
       <Info />
@@ -106,22 +124,24 @@ const CategoryShop = ({ page }) => {
             <div className="category-select-body shadow-sm">
               <div className="category-head"> Filter</div>
               <div className="mt-3">
-                {categories.map((category) => (
-                  <div key={category} className="input-category">
-                    <div>
-                      <input
-                        type="checkbox"
-                        id={category}
-                        value={category}
-                        checked={selectedCategories.includes(category)}
-                        onChange={() => handleCategoryChange(category)}
-                      />
-                    </div>
-                    <div className="checkbox-label" htmlFor={category}>
-                      {category}
-                    </div>
-                  </div>
-                ))}
+                <div className="input-category">
+                  <input
+                    type="checkbox"
+                    name="inStock"
+                    checked={stockFilter.inStock}
+                    onChange={handleStockChange}
+                  />
+                  <div className="checkbox-label">In Stock</div>
+                </div>
+                <div className="input-category">
+                  <input
+                    type="checkbox"
+                    name="outOfStock"
+                    checked={stockFilter.outOfStock}
+                    onChange={handleStockChange}
+                  />
+                  <div className="checkbox-label">Out of Stock</div>
+                </div>
               </div>
 
               {/* Price Range */}
@@ -186,6 +206,9 @@ const CategoryShop = ({ page }) => {
           <div className="col-xl-9 col-md-12">
             {/* Product List */}
             <div className="px-3">
+              <div className="page-head mb-3">
+                {page}({Productcategory.length})
+              </div>
               <div className="sort-by-header">
                 <div className="app-cot">
                   <img
@@ -193,9 +216,7 @@ const CategoryShop = ({ page }) => {
                     alt="external-apps-technology-tanah-basah-basic-outline-tanah-basah"
                   />
                 </div>
-                <div className="page-head">
-                  {page}({Productcategory.length})
-                </div>
+
                 <div className="sort-by p-2">
                   <select onChange={(e) => handleSort(e.target.value)}>
                     <option value="">Sort By</option>
@@ -298,22 +319,24 @@ const CategoryShop = ({ page }) => {
 
               <div className="filter mt-3 text-capitalize">category filter</div>
               <div className="mt-2">
-                {categories.map((category) => (
-                  <div key={category} className="input-category">
-                    <div>
-                      <input
-                        type="checkbox"
-                        id={category}
-                        value={category}
-                        checked={selectedCategories.includes(category)}
-                        onChange={() => handleCategoryChange(category)}
-                      />
-                    </div>
-                    <div className="checkbox-label" htmlFor={category}>
-                      {category}
-                    </div>
-                  </div>
-                ))}
+                <div className="input-category">
+                  <input
+                    type="checkbox"
+                    name="inStock"
+                    checked={stockFilter.inStock}
+                    onChange={handleStockChange}
+                  />
+                  <div className="checkbox-label">In Stock</div>
+                </div>
+                <div className="input-category">
+                  <input
+                    type="checkbox"
+                    name="outOfStock"
+                    checked={stockFilter.outOfStock}
+                    onChange={handleStockChange}
+                  />
+                  <div className="checkbox-label">Out of Stock</div>
+                </div>
               </div>
               <div>
                 <div

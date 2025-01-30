@@ -8,7 +8,7 @@ const product = [
     start: 4,
     newPrice: 50,
     oldPrice: 60,
-    type: "out of stock",
+    inStock: true,
   },
   {
     id: 2,
@@ -19,7 +19,7 @@ const product = [
     start: 5,
     newPrice: 40,
     oldPrice: 45,
-    type: "Sales",
+    inStock: true,
   },
   {
     id: 3,
@@ -30,7 +30,29 @@ const product = [
     start: 5,
     newPrice: 40,
     oldPrice: 45,
-    type: "Sales",
+    inStock: true,
+  },
+  {
+    id: 3,
+    name: "portable Fruit blender",
+    image:
+      "https://static.vecteezy.com/system/resources/previews/047/826/370/non_2x/portable-blender-against-transparent-background-free-png.png",
+    category: "kitchen Essentials",
+    start: 5,
+    newPrice: 40,
+    oldPrice: 45,
+    outOfStock: true,
+  },
+  {
+    id: 3,
+    name: "portable Fruit blender",
+    image:
+      "https://static.vecteezy.com/system/resources/previews/047/826/370/non_2x/portable-blender-against-transparent-background-free-png.png",
+    category: "kitchen Essentials",
+    start: 5,
+    newPrice: 40,
+    oldPrice: 45,
+    inStock: true,
   },
   {
     id: 4,
@@ -41,7 +63,40 @@ const product = [
     start: 4,
     newPrice: 70,
     oldPrice: 66,
-    type: "Sales",
+    outOfStock: true,
+  },
+  {
+    id: 4,
+    name: "Cleaning machine for homes",
+    image:
+      "https://i02.appmifile.com/552_operatorx_operatorx_opx/19/10/2023/09218c6cba39756bf7a86f9f70e240da.png",
+    category: "Cleaning tool",
+    start: 4,
+    newPrice: 70,
+    oldPrice: 66,
+    inStock: true,
+  },
+  {
+    id: 4,
+    name: "Cleaning machine for homes",
+    image:
+      "https://i02.appmifile.com/552_operatorx_operatorx_opx/19/10/2023/09218c6cba39756bf7a86f9f70e240da.png",
+    category: "Cleaning tool",
+    start: 4,
+    newPrice: 70,
+    oldPrice: 66,
+    inStock: true,
+  },
+  {
+    id: 4,
+    name: "Cleaning machine for homes",
+    image:
+      "https://i02.appmifile.com/552_operatorx_operatorx_opx/19/10/2023/09218c6cba39756bf7a86f9f70e240da.png",
+    category: "Cleaning tool",
+    start: 4,
+    newPrice: 70,
+    oldPrice: 66,
+    outOfStock: true,
   },
   {
     id: 5,
@@ -52,7 +107,7 @@ const product = [
     start: 4,
     newPrice: 30,
     oldPrice: 66,
-    type: "Sales",
+    inStock: true,
   },
   {
     id: 6,
@@ -63,7 +118,7 @@ const product = [
     start: 4,
     newPrice: 30,
     oldPrice: 66,
-    type: "Sales",
+    inStock: true,
   },
   {
     id: 7,
@@ -74,7 +129,7 @@ const product = [
     start: 4,
     newPrice: 30,
     oldPrice: 66,
-    type: "Out of stock",
+    outOfStock: true,
   },
   {
     id: 8,
@@ -85,7 +140,7 @@ const product = [
     start: 4,
     newPrice: 30,
     oldPrice: 66,
-    type: "Out of stock",
+    inStock: true,
   },
   {
     id: 9,
@@ -96,7 +151,7 @@ const product = [
     start: 4,
     newPrice: 30,
     oldPrice: 66,
-    type: "Out of stock",
+    outOfStock: true,
   },
   {
     id: 10,
@@ -107,7 +162,7 @@ const product = [
     start: 4,
     newPrice: 30,
     oldPrice: 66,
-    type: "Out of stock",
+    inStock: true,
   },
   {
     id: 11,
@@ -118,7 +173,7 @@ const product = [
     start: 4,
     newPrice: 30,
     oldPrice: 66,
-    type: "Out of stock",
+    outOfStock: true,
   },
   {
     id: 12,
@@ -129,7 +184,7 @@ const product = [
     start: 4,
     newPrice: 30,
     oldPrice: 66,
-    type: "Out of stock",
+    inStock: true,
   },
   {
     id: 13,
@@ -140,7 +195,7 @@ const product = [
     start: 4,
     newPrice: 30,
     oldPrice: 66,
-    type: "Out of stock",
+    inStock: true,
   },
   {
     id: 14,
@@ -151,7 +206,7 @@ const product = [
     start: 4,
     newPrice: 30,
     oldPrice: 66,
-    type: "Out of stock",
+    outOfStock: true,
   },
 ];
 

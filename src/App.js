@@ -30,6 +30,7 @@ function App() {
       duration: 1000, // Animation duration (in milliseconds)
     });
   }, []);
+
   return (
     <div className="App">
       <ShopContext>

@@ -19,6 +19,7 @@ const ProductPage = ({ page }) => {
   const [priceRange, setPriceRange] = useState({ min: 0, max: 1000 });
   const [sortOption, setSortOption] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
+
   const itemsPerPage = 8;
 
   // Sample product data
@@ -64,7 +65,7 @@ const ProductPage = ({ page }) => {
         product.newPrice >= priceRange.min && product.newPrice <= priceRange.max
     );
 
-    // Sort products
+    // Sorting logic
     if (sortOption === "name-asc") {
       tempProducts.sort((a, b) => a.name.localeCompare(b.name));
     } else if (sortOption === "name-desc") {
@@ -76,8 +77,6 @@ const ProductPage = ({ page }) => {
     }
 
     setFilteredProducts(tempProducts);
-
-    // Reset pagination to the first page
     setCurrentPage(1);
   }, [products, selectedCategories, priceRange, sortOption]);
 
@@ -101,7 +100,8 @@ const ProductPage = ({ page }) => {
           <div className="col-xl-3 col-md-12 ">
             {/* Categories */}
             <div className="category-select-body shadow-sm">
-              <div className="category-head">Category Filter</div>
+              <div className="category-head"> Filter</div>
+
               <div className="mt-3">
                 {categories.map((category) => (
                   <div key={category} className="input-category">
@@ -206,9 +206,12 @@ const ProductPage = ({ page }) => {
 
             {paginatedProducts.length > 1 ? (
               <div className="itemBody1">
-                {paginatedProducts.map((product) => (
-                  <div data-aos="fade-up">
-                    <Item key={product.id} product={product} />
+                {paginatedProducts.map((product, index) => (
+                  <div
+                    key={product.id}
+                    data-aos={paginatedProducts.length > 2 ? "fade-up" : ""}
+                  >
+                    <Item product={product} />
                   </div>
                 ))}
               </div>
@@ -290,7 +293,6 @@ const ProductPage = ({ page }) => {
                 <div className="filter">Filter</div>
               </div>
 
-              <div className="filter mt-3 text-capitalize">category filter</div>
               <div className="mt-2">
                 {categories.map((category) => (
                   <div key={category} className="input-category">

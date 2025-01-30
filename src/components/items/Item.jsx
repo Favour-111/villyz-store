@@ -65,8 +65,8 @@ const Item = ({ product }) => {
           <div className="new-price">${product.newPrice}</div>
           <div className="old-Price">${product.oldPrice}</div>
         </div>
-        <div className={product.type === "Sales" ? "type1" : "type2"}>
-          {product.type}
+        <div className={product.inStock === true ? "type1" : "type2"}>
+          {product.inStock ? "SALES" : "OUT OF STOCK"}
         </div>
       </div>
       <div className="hover-buttons">
