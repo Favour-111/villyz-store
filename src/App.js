@@ -25,6 +25,7 @@ import ScrollUp from "./components/ScrollUp";
 import CategoryShop from "./Page/CategoryShop/CategoryShop";
 import categoryType from "./categoryType";
 import ProductSearch from "./Page/ProductSearch/ProductSearch";
+import Collection from "./Page/Collection/Collection";
 function App() {
   useEffect(() => {
     AOS.init({
@@ -70,10 +71,10 @@ function App() {
             element={<SingleProduct page="Single product Page" />}
             path="/SingleProduct"
           />
-          {/* <Route
-            element={<SearchedProduct page="product search" />}
-            path="/searchProduct"
-          /> */}
+          <Route
+            element={<Collection page="Collections page" />}
+            path="/collection"
+          />
           <Route
             element={<ProductSearch page="product search" />}
             path="/searchProduct"

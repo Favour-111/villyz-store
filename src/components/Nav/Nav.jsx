@@ -205,6 +205,12 @@ const Nav = () => {
                 Blog
               </Link>
             </li>
+            <li>
+              <Link to="/collection" className="Link">
+                {" "}
+                collection
+              </Link>
+            </li>
             <li
               onMouseEnter={() => setPage(true)}
               onMouseLeave={() => setPage(false)}

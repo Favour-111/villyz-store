@@ -193,6 +193,9 @@ const NavSm = () => {
           <Link className="li" to="/contact">
             Contact <div></div>
           </Link>
+          <Link className="li" to="/collection">
+            Collections <div></div>
+          </Link>
         </ul>
       </div>
 

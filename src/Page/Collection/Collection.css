@@ -1,0 +1,76 @@
+.collection-cont {
+  border: 1px solid #f3f3f3;
+  width: 100%;
+}
+
+.collection {
+  padding: 50px 70px;
+}
+
+.collection-sub-cont {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 columns by default */
+  gap: 20px;
+  width: 100%;
+}
+
+.category-items {
+  background: #f4f4f4;
+  padding: 20px;
+  text-align: center;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.category-total {
+  font-family: poppinsLight;
+  font-size: 12x;
+  text-transform: capitalize;
+}
+/* Ensures images scale down properly */
+.category-items img {
+  width: 100px; /* Default size */
+  max-width: 100%; /* Prevents oversizing */
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+/* On 768px screens, switch to 3 columns */
+@media screen and (max-width: 768px) {
+  .collection-sub-cont {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .collection {
+    padding: 30px;
+  }
+}
+
+/* On 578px screens, keep 3 columns but allow shrinking */
+@media (max-width: 578px) {
+  .collection-sub-cont {
+    grid-template-columns: repeat(3, minmax(80px, 1fr));
+  }
+  .category-items {
+    padding: 15px;
+  }
+  .category-items img {
+    width: 80px; /* Reduce image size */
+  }
+}
+
+/* At 473px, switch to 2 columns and allow shrinking */
+@media (max-width: 473px) {
+  .collection-sub-cont {
+    grid-template-columns: repeat(2, minmax(100px, 1fr)); /* 2 columns */
+  }
+  .category-items {
+    padding: 10px;
+  }
+  .category-items img {
+    width: 70px; /* Further reduce image size */
+  }
+}

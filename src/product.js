@@ -22,6 +22,28 @@ const product = [
     inStock: true,
   },
   {
+    id: 2,
+    name: "portable Fruit blender",
+    image:
+      "https://static.vecteezy.com/system/resources/previews/047/826/370/non_2x/portable-blender-against-transparent-background-free-png.png",
+    category: "Home comfort & energy",
+    start: 5,
+    newPrice: 40,
+    oldPrice: 45,
+    inStock: true,
+  },
+  {
+    id: 2,
+    name: "portable Fruit blender",
+    image:
+      "https://static.vecteezy.com/system/resources/previews/047/826/370/non_2x/portable-blender-against-transparent-background-free-png.png",
+    category: "Home comfort & energy",
+    start: 5,
+    newPrice: 40,
+    oldPrice: 45,
+    inStock: true,
+  },
+  {
     id: 3,
     name: "portable Fruit blender",
     image:
@@ -196,6 +218,17 @@ const product = [
     newPrice: 30,
     oldPrice: 66,
     inStock: true,
+  },
+  {
+    id: 14,
+    name: "hangers for cloths and utensils",
+    image:
+      "https://static.vecteezy.com/system/resources/previews/049/678/807/non_2x/wooden-wall-rack-with-five-hooks-for-organizing-items-at-home-cut-out-transparent-png.png",
+    category: "DIY & Repairs",
+    start: 4,
+    newPrice: 30,
+    oldPrice: 66,
+    outOfStock: true,
   },
   {
     id: 14,
