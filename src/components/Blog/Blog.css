@@ -43,7 +43,7 @@
   display: flex;
   justify-content: space-between;
   flex-wrap: nowrap;
-  overflow-x: scroll;
+  overflow-x: scroll !important;
   width: 100%;
   gap: 15px;
   scrollbar-width: none;

@@ -3,6 +3,8 @@
   align-items: center;
   justify-content: space-between;
   padding: 40px 150px;
+  overflow: scroll !important;
+  scrollbar-width: none;
 
   .category-item {
     text-align: center;
