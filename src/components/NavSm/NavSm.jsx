@@ -7,7 +7,7 @@ import { ShopContext } from "../context/ShopContext";
 const NavSm = () => {
   const navigate = useNavigate();
   const { totalCartItems, totalWishList } = useContext(ShopContext);
-  const [navIsOpen, setNavIsOpen] = useState(true);
+  const [navIsOpen, setNavIsOpen] = useState(false);
   const [subCategory1, setSubCategory1] = useState(false);
   const [subCategory2, setSubCategory2] = useState(false);
 
