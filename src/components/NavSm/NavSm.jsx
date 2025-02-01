@@ -7,7 +7,7 @@ import { ShopContext } from "../context/ShopContext";
 const NavSm = () => {
   const navigate = useNavigate();
   const { totalCartItems, totalWishList } = useContext(ShopContext);
-  const [navIsOpen, setNavIsOpen] = useState(false);
+  const [navIsOpen, setNavIsOpen] = useState(true);
   const [subCategory1, setSubCategory1] = useState(false);
   const [subCategory2, setSubCategory2] = useState(false);
 
@@ -88,21 +88,25 @@ const NavSm = () => {
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
-        <button
-          onClick={() => setNavIsOpen(false)}
-          className="mt-4"
-          aria-label="Close Menu"
-        >
-          <div className="text-capitalize ">my menu</div>
+        <div className="menu-top">
+          <div>my menu</div>
           <div>
-            <img
-              width="34"
-              height="34"
-              src="https://img.icons8.com/wired/64/cancel--v3.png"
-              alt="cancel--v3"
-            />
+            {" "}
+            <button
+              onClick={() => setNavIsOpen(false)}
+              className="mt-4"
+              aria-label="Close Menu"
+            >
+              <img
+                width="34"
+                height="34"
+                src="https://img.icons8.com/wired/64/cancel--v3.png"
+                alt="cancel--v3"
+              />
+            </button>
           </div>
-        </button>
+        </div>
+
         <ul className="menu-list">
           <Link className="li" to="/home">
             Home <div></div>

@@ -52,19 +52,17 @@
 .nav-sm-cont {
   background-color: white;
   width: 0;
-  opacity: 0;
   overflow: hidden;
   position: fixed;
   top: 0;
   left: 0;
   bottom: 0;
   z-index: 100;
-  transition: all 0.3s ease;
+  transition: all 10s ease;
 }
 
 .nav-sm-cont.open {
   width: 300px;
-  opacity: 1;
 }
 
 .nav-black {
@@ -100,14 +98,16 @@ button[aria-label="Close Menu"] {
 .menu-list {
   list-style: none;
   padding: 0 20px !important;
-  margin-top: 30px;
+  margin-top: 10px;
 }
 
 .menu-list .li {
-  padding: 15px 20px;
+  height: 50px;
+  width: 250px;
   text-decoration: none;
   font-family: poppinsSemiBold;
   cursor: pointer;
+  padding: 10px;
   font-size: 13px;
   border: 1px solid #f3f3f3;
   color: #4b5966;
@@ -118,7 +118,18 @@ button[aria-label="Close Menu"] {
     opacity: 0.4;
   }
 }
-
+.menu-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 20px 0 20px;
+  width: 300px !important;
+  div {
+    font-family: poppinsSemiBold;
+    text-transform: capitalize;
+    font-size: 20px;
+  }
+}
 li .Link {
   text-decoration: none;
   color: #787878;
