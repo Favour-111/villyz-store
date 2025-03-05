@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import "./Nav.css";
 import { LuUserRound } from "react-icons/lu";
-import { CiHeart, CiLocationOn } from "react-icons/ci";
+import { CiHeart, CiLocationOn, CiLogout } from "react-icons/ci";
 import { IoBagHandleOutline } from "react-icons/io5";
 import { GrAppsRounded } from "react-icons/gr";
 import { RiArrowDropDownLine } from "react-icons/ri";
@@ -18,6 +18,7 @@ const Nav = () => {
   const [isHovered, setIsHovered] = useState(false);
   const [category, setcategory] = useState(false);
   const [page, setPage] = useState(false);
+  const [account, setAccount] = useState(false);
   const [isHoveredCategory, setIsHoveredCategory] = useState(false);
   const [selectedCategory, setSelectedCategory] =
     useState("Kitchen Essentials");
@@ -70,21 +71,8 @@ const Nav = () => {
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
               >
-                Login
-                <div className={`dropdown ${isHovered ? "show" : ""}`}>
-                  <ul>
-                    <li>
-                      <Link to="/SignUp" className="Link">
-                        Register
-                      </Link>
-                    </li>
-                    <li>
-                      {" "}
-                      <Link to="/login" className="Link">
-                        Login
-                      </Link>
-                    </li>
-                  </ul>
+                <div>
+                  {localStorage.getItem("auth-token") ? "OBA" : "Guest"}
                 </div>
               </div>
             </div>
@@ -141,18 +129,6 @@ const Nav = () => {
             }`}
           >
             <div className="col-12 category-item-container shadow-sm">
-              <Link
-                style={{
-                  textDecoration: "none",
-                }}
-                to="/product"
-                className={`category-items ${
-                  selectedCategory === "All" ? "active" : ""
-                }`}
-                onClick={() => setSelectedCategory("All")}
-              >
-                All Product
-              </Link>
               {categoryType.map((category) => (
                 <div
                   style={{
@@ -250,11 +226,56 @@ const Nav = () => {
                 </ul>
               </div>
             </li>
-            <li>
-              <Link className="nav-link-item" to="/contact">
-                {" "}
-                Contact
-              </Link>
+            <li
+              onMouseEnter={() => setAccount(true)}
+              onMouseLeave={() => setAccount(false)}
+            >
+              Account
+              <RiArrowDropDownLine size={30} />
+              <div className={`dropdown-pages  ${account ? "show" : ""}`}>
+                {localStorage.getItem("auth-token") ? (
+                  <ul className="dropdown-content-pages">
+                    <li>
+                      {" "}
+                      <Link className="Link" to="/orderpg">
+                        {" "}
+                        Orders
+                      </Link>
+                    </li>
+                    <li>
+                      {" "}
+                      <Link className="Link" to="/cart">
+                        {" "}
+                        Settings
+                      </Link>
+                    </li>
+                    <li>
+                      {" "}
+                      <Link className="Link" to="/wishlist">
+                        {" "}
+                        Address
+                      </Link>
+                    </li>
+                  </ul>
+                ) : (
+                  <ul className="dropdown-content-pages">
+                    <li>
+                      {" "}
+                      <Link className="Link" to="/SignUp">
+                        {" "}
+                        Sign In
+                      </Link>
+                    </li>
+                    <li>
+                      {" "}
+                      <Link className="Link" to="/login">
+                        {" "}
+                        Log In
+                      </Link>
+                    </li>
+                  </ul>
+                )}
+              </div>
             </li>
           </ul>
         </div>

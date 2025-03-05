@@ -1,4 +1,4 @@
-import React, { use, useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import Nav from "../../components/Nav/Nav";
 import NavSm from "../../components/NavSm/NavSm";
 import Info from "../../components/info/Info";
@@ -14,7 +14,7 @@ import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/src/sweetalert2.scss";
 import BackToTop from "../../components/BackToTop/BackToTop";
 import { RiDeleteBin6Line } from "react-icons/ri";
-import { useEffect } from "react";
+
 const Cart = ({ page }) => {
   function usePreserveScrollPosition() {
     useEffect(() => {
@@ -25,6 +25,7 @@ const Cart = ({ page }) => {
       };
     }, []);
   }
+
   const navigate = useNavigate();
   const {
     cartItem,
@@ -36,7 +37,10 @@ const Cart = ({ page }) => {
   } = useContext(ShopContext);
   const [coupon, setcoupon] = useState(false);
 
-  const cartProducts = product.filter((itm) => cartItem[itm.id] > 0);
+  const cartProducts = product.filter(
+    (itm) => cartItem && cartItem[itm.id] && cartItem[itm.id] > 0
+  );
+
   const [discount, setDiscount] = useState(0);
 
   const applyCoupon = (code) => {
@@ -236,8 +240,16 @@ const Cart = ({ page }) => {
               </Link>
               <button
                 onClick={() => {
-                  window.scrollTo(0, 0);
-                  navigate("/checkout");
+                  if (localStorage.getItem("auth-token")) {
+                    window.scrollTo(0, 0);
+                    navigate("/checkout");
+                  } else {
+                    Swal.fire({
+                      icon: "error",
+                      title: "error",
+                      text: "Please log in or create an account to proceed with checkout.",
+                    });
+                  }
                 }}
               >
                 CheckOut

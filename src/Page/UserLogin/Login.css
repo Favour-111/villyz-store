@@ -76,7 +76,7 @@
     color: var(--text);
   }
   input {
-    border: 1px solid #e8e8e8 !important;
+    border: 1px solid #e8e8e8;
     width: 100%;
     padding: 15px;
     border-radius: 4px;
@@ -106,7 +106,12 @@
   border-radius: 5px;
   color: white;
   font-family: poppinsRegular;
+  transition: 350ms;
 }
+.login-bnt:hover {
+  transform: scale(0.9);
+}
+
 @media screen and (max-width: 828px) {
   .loginFormFan-container {
     display: none;

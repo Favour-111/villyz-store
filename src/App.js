@@ -26,6 +26,10 @@ import CategoryShop from "./Page/CategoryShop/CategoryShop";
 import categoryType from "./categoryType";
 import ProductSearch from "./Page/ProductSearch/ProductSearch";
 import Collection from "./Page/Collection/Collection";
+import EmailVerify from "./Page/EmailVerify/EmailVerify";
+import ForgotPassword from "./Page/ForgotPassword/ForgotPassword";
+import Reset from "./Page/Reset/Reset";
+import Profile from "./Page/Profile/Profile";
 function App() {
   useEffect(() => {
     AOS.init({
@@ -49,6 +53,10 @@ function App() {
           <Route element={<BlogPage page="blog page" />} path="/blog" />
           <Route element={<CheckOut page="checkout page" />} path="/checkout" />
           <Route element={<OrderPage page="Order page" />} path="/orderpg" />
+          <Route element={<ForgotPassword />} path="/forgot_password" />
+          <Route element={<EmailVerify />} path="/users/:id/verify/:token" />
+          <Route element={<Profile />} path="/profile" />
+          <Route element={<Reset />} path="/reset-password/:id/:token" />
           {categoryType.map((item) => {
             return (
               <Route

@@ -95,10 +95,14 @@ input {
   padding: 10px 20px 20px 20px;
   opacity: 0;
   visibility: hidden;
+  z-index: 100000000;
   transform: translateY(-10px);
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
-
+.LogOut {
+  color: red;
+  text-decoration: none;
+}
 .dropdown.show {
   opacity: 1;
   visibility: visible;
@@ -148,9 +152,10 @@ li .Link:hover {
   position: absolute;
   top: 50px;
   right: -85px;
-  background: white;
+  background-color: white;
+  z-index: 10000;
   border-radius: 5px;
-  padding: 15px;
+  padding: 0;
   width: 300px;
   opacity: 0;
   visibility: hidden;
@@ -167,19 +172,18 @@ li .Link:hover {
 .category-item-container {
   display: flex;
   flex-direction: column;
-  background-color: #f3f3f3;
+  background-color: white !important;
   padding: 10px;
-  gap: 17px;
   transition: 250ms;
   border-radius: 5px;
 }
 .category-items {
   background-color: white;
   border-radius: 5px;
+  margin-top: 10px;
   color: #4b5966;
   font-family: poppinsSemibold;
   font-size: 13.5px;
-  padding: 8px 20px;
   transition: 250ms;
   cursor: pointer;
 }

@@ -1,0 +1,76 @@
+:root {
+  --color: rgb(83 109 254);
+  --text: #4b5966;
+}
+@font-face {
+  font-family: poppinsBold;
+  src: url(../../assets/font/Poppins-SemiBold.ttf);
+}
+@font-face {
+  font-family: poppinsLight;
+  src: url(../../assets/font/Poppins-Light.ttf);
+}
+@font-face {
+  font-family: poppinsSemiBold;
+  src: url(../../assets/font/Poppins-SemiBold.ttf);
+}
+@font-face {
+  font-family: poppinsRegular;
+  src: url(../../assets/font/Poppins-Medium.ttf);
+}
+.reset-head {
+  font-family: poppinsBold;
+  font-size: 25px;
+  color: #4b5966;
+}
+.reset-content {
+  font-family: poppinsLight;
+  font-size: 13px;
+  color: #4b5966;
+}
+.reset-body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100vh;
+}
+.password-bdy {
+  padding: 20px 30px;
+  border-radius: 4px;
+  label {
+    font-family: poppinsRegular;
+    font-size: 13px;
+  }
+  input {
+    width: 300px;
+    padding: 10px;
+    font-family: poppinsRegular;
+    border-radius: 4px;
+    border: 1px solid #efefef !important;
+  }
+  ::placeholder {
+    font-family: poppinsLight !important;
+  }
+  button {
+    background-color: var(--color);
+    font-family: poppinsMedium;
+    width: 100% !important;
+    padding: 10px 0;
+    color: white;
+    text-transform: capitalize;
+    border: none;
+    border-radius: 4px;
+    transition: 350ms;
+    margin-top: 10px;
+  }
+  button:hover {
+    transform: scale(0.95);
+  }
+}
+.back-login {
+  font-family: poppinsRegular;
+  font-size: 12px;
+  margin-top: 20px;
+  text-decoration: none;
+}
