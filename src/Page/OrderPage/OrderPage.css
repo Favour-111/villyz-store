@@ -42,7 +42,9 @@
 }
 .order-container {
   padding: 30px;
+  width: 100% !important;
 }
+
 .View {
   background-color: var(--color);
   border: none;
@@ -65,6 +67,12 @@
   border-radius: 5px;
   font-size: 12px;
 }
+.account-pg {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  width: 100% !important;
+}
 .success {
   background-color: rgba(0, 255, 47, 0.13);
   color: rgb(0, 122, 22);
@@ -77,6 +85,7 @@
 @media screen and (max-width: 768px) {
   .order-container {
     padding: 20px;
+    width: 100% !important;
   }
   .cart-cont {
     margin: 0 !important;
@@ -84,5 +93,10 @@
   }
   .order-type {
     margin: 0;
+  }
+}
+@media screen and (max-width: 940px) {
+  .account-pg {
+    justify-content: center;
   }
 }

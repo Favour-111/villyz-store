@@ -4,10 +4,11 @@ import categoryType from "../../categoryType";
 import { Link, useNavigate } from "react-router-dom";
 import { ShopContext } from "../context/ShopContext";
 import { CiLogout } from "react-icons/ci";
-import { IoIosArrowDown } from "react-icons/io";
+import { IoIosArrowDown, IoMdHeartEmpty } from "react-icons/io";
 import { RiArrowDropDownLine, RiCloseLargeFill } from "react-icons/ri";
 import { GrAppsRounded } from "react-icons/gr";
-
+import { FiShoppingBag, FiUser } from "react-icons/fi";
+import { RxHamburgerMenu } from "react-icons/rx";
 const NavSm = () => {
   const navigate = useNavigate();
   const { totalCartItems, totalWishList } = useContext(ShopContext);
@@ -67,33 +68,16 @@ const NavSm = () => {
         <div className="logo" onClick={() => navigate("/home")}>
           vill<span>yz</span>
         </div>
-        <div className="d-flex gap-3 align-items-center">
-          <Link to="/login">
-            <img
-              width="30"
-              height="30"
-              src="https://nextjs.spruko.com/ynex-ts/preview/assets/images/faces/10.jpg"
-              alt="user"
-              style={{ borderRadius: "100%" }}
-            />
-          </Link>
-
+        <div className="d-flex gap-4 align-items-center">
           <Link to="/wishlist" className="icon-sm">
-            <img
-              width="24"
-              height="24"
-              src="https://img.icons8.com/fluency/48/like.png"
-              alt="like--v1"
-            />
+            <IoMdHeartEmpty size={23} />
             <div className="counter">{totalWishList()}</div>
           </Link>
+          <Link to="/login" className="icon-sm">
+            <FiUser size={25} />
+          </Link>
           <Link to="/cart" className="icon-sm">
-            <img
-              width="30"
-              height="30"
-              src="https://img.icons8.com/nolan/50/shopping-cart.png"
-              alt="fast-cart"
-            />
+            <FiShoppingBag size={18} />
             <div className="counter">{totalCartItems()}</div>
           </Link>
           <div
@@ -101,12 +85,7 @@ const NavSm = () => {
             onClick={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
           >
-            <img
-              width="24"
-              height="24"
-              src="https://img.icons8.com/ios/50/menu--v1.png"
-              alt="menu--v1"
-            />
+            <RxHamburgerMenu size={20} />
           </div>
         </div>
       </div>
@@ -240,12 +219,6 @@ const NavSm = () => {
               {" "}
               <Link to="/wishlist" className="Link">
                 wishlist
-              </Link>
-            </li>
-            <li>
-              {" "}
-              <Link to="/orderpg" className="Link">
-                Orders
               </Link>
             </li>
           </ul>

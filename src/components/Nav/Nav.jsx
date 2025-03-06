@@ -237,14 +237,7 @@ const Nav = () => {
                   <ul className="dropdown-content-pages">
                     <li>
                       {" "}
-                      <Link className="Link" to="/orderpg">
-                        {" "}
-                        Orders
-                      </Link>
-                    </li>
-                    <li>
-                      {" "}
-                      <Link className="Link" to="/cart">
+                      <Link className="Link" to="/profile">
                         {" "}
                         Settings
                       </Link>

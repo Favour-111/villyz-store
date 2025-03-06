@@ -23,18 +23,19 @@
 .nav-sm {
   width: 100%;
   /* background-color: rgb(246, 243, 243); */
-  padding: 15px 10px;
+  padding: 15px 30px;
   display: none;
   align-items: center;
   justify-content: space-between;
 }
 
 .icon-sm {
+  color: #4b5966;
   position: relative;
 }
 
 .counter {
-  background-color: red;
+  background-color: var(--color);
   border-radius: 30px;
   width: 16px;
   height: 16px;
@@ -52,7 +53,8 @@
 .nav-sm-cont {
   background-color: white;
   width: 0;
-  overflow: hidden;
+  overflow: scroll;
+  scrollbar-width: 0 !important;
   position: fixed;
   top: 0;
   left: 0;
@@ -218,7 +220,7 @@ li .Link {
   }
 
   .logo {
-    font-size: 25px;
+    font-size: 26px;
   }
 
   .nav-smContent {
