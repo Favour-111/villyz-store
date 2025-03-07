@@ -30,7 +30,7 @@ import EmailVerify from "./Page/EmailVerify/EmailVerify";
 import ForgotPassword from "./Page/ForgotPassword/ForgotPassword";
 import Reset from "./Page/Reset/Reset";
 import Profile from "./Page/Profile/Profile";
-import Settings from "./Page/Settings/Settings";
+import Address from "./Page/Address/Address";
 function App() {
   useEffect(() => {
     AOS.init({
@@ -58,7 +58,7 @@ function App() {
           <Route element={<EmailVerify />} path="/users/:id/verify/:token" />
           <Route element={<Profile page="profile page" />} path="/profile" />
           <Route element={<Reset />} path="/reset-password/:id/:token" />
-          <Route element={<Settings />} path="/settings" />
+          <Route element={<Address page="Address" />} path="/addresses" />
           {categoryType.map((item) => {
             return (
               <Route

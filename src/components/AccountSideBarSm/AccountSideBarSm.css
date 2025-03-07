@@ -1,0 +1,96 @@
+:root {
+  --color: rgb(83 109 254);
+}
+@font-face {
+  font-family: poppinsBold;
+  src: url(../../assets/font/Poppins-SemiBold.ttf);
+}
+@font-face {
+  font-family: poppinsLight;
+  src: url(../../assets/font/Poppins-Light.ttf);
+}
+
+@font-face {
+  font-family: poppinsSemiBold;
+  src: url(../../assets/font/Poppins-SemiBold.ttf);
+}
+
+@font-face {
+  font-family: poppinsRegular;
+  src: url(../../assets/font/Poppins-Medium.ttf);
+}
+.acc-sm {
+  display: none;
+}
+.account-sm-bread-crumb {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 30px;
+  div {
+    font-family: poppinsSemiBold;
+    color: #4b5966;
+  }
+  button {
+    padding: 3px 10px;
+    background-color: transparent;
+    border: 1px solid #e3e3e3;
+    border-radius: 5px;
+  }
+}
+.account-sm {
+  width: 100%;
+  padding: 30px 20px;
+  ul {
+    li {
+      .side-list {
+        display: flex;
+        align-items: center;
+        font-family: poppinsRegular;
+        gap: 10px;
+        color: #4b5966b5;
+        text-decoration: none;
+        cursor: pointer;
+      }
+    }
+  }
+}
+.side-list.active2 {
+  background: #222;
+  padding: 10px 5px !important;
+  color: #fff !important;
+  border-radius: 5px;
+}
+
+@media screen and (max-width: 940px) {
+  .side-account-cont-sm {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 0;
+    background-color: white;
+    overflow: hidden;
+    transition: 350ms;
+  }
+  .side-account-cont-sm.open {
+    width: 400px;
+  }
+  .acc-sm {
+    display: block;
+  }
+}
+@media screen and (max-width: 600px) {
+  .side-account-cont-sm {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 0;
+    transition: 350ms;
+    background-color: white;
+  }
+  .side-account-cont-sm.open {
+    width: 100%;
+  }
+}

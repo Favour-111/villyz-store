@@ -124,7 +124,7 @@ const Nav = () => {
             <RiArrowDropDownLine size={26} />
           </button>
           <div
-            className={`row categories shadow-sm ${
+            className={`row categories shadow-sm  ${
               isHoveredCategory ? "show" : ""
             }`}
           >

@@ -158,14 +158,15 @@ li .Link:hover {
   padding: 0;
   width: 300px;
   opacity: 0;
-  visibility: hidden;
+  height: 0 !important;
+  overflow: hidden;
   transform: translateY(-10px);
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
 .categories.show {
   opacity: 1;
+  height: auto !important;
   z-index: 10000;
-  visibility: visible;
   transform: translateY(0);
 }
 

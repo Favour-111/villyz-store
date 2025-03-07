@@ -68,7 +68,7 @@ const NavSm = () => {
         <div className="logo" onClick={() => navigate("/home")}>
           vill<span>yz</span>
         </div>
-        <div className="d-flex gap-4 align-items-center">
+        <div className="d-flex gap-3 align-items-center">
           <Link to="/wishlist" className="icon-sm">
             <IoMdHeartEmpty size={23} />
             <div className="counter">{totalWishList()}</div>
