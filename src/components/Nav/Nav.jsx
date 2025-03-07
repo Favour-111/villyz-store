@@ -216,13 +216,6 @@ const Nav = () => {
                       wishlist
                     </Link>
                   </li>
-                  <li>
-                    {" "}
-                    <Link className="Link" to="/orderpg">
-                      {" "}
-                      Orders
-                    </Link>
-                  </li>
                 </ul>
               </div>
             </li>

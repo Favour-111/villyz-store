@@ -9,6 +9,7 @@ import Footer from "../../footer/Footer";
 import Category from "../../components/category/Category";
 import "./ProductPage.css";
 import BackToTop from "../../components/BackToTop/BackToTop";
+import { IoArrowBackOutline } from "react-icons/io5";
 
 const ProductPage = ({ page }) => {
   const [filterCont, setFilterCont] = useState(false);
@@ -283,12 +284,7 @@ const ProductPage = ({ page }) => {
                     border: "none",
                   }}
                 >
-                  <img
-                    width="30"
-                    height="30"
-                    src="https://img.icons8.com/ios/50/left.png"
-                    alt="left"
-                  />
+                  <IoArrowBackOutline size={23} />
                 </button>
                 <div className="filter">Filter</div>
               </div>

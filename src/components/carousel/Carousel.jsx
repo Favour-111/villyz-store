@@ -1,100 +1,60 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import "./Carousel.css";
-
-const slides = [
-  {
-    image:
-      "https://png.pngtree.com/png-clipart/20220125/original/pngtree-handheld-mini-fan-png-image_7209848.png",
-    description: "starting at $10.00",
-    title: "Compact home electronics",
-  },
-  {
-    image:
-      "https://static.vecteezy.com/system/resources/previews/047/826/367/non_2x/portable-blender-against-transparent-background-free-png.png",
-    description: "starting at $30.00",
-    title: "Browse & discover millions of products",
-  },
-];
-
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
+import { GoArrowRight } from "react-icons/go";
 const Carousel = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isTransitioning, setIsTransitioning] = useState(false);
-
-  // Auto-play functionality
-  useEffect(() => {
-    const interval = setInterval(() => {
-      handleNext();
-    }, 6000); // Slow down carousel slide interval to 6 seconds
-    return () => clearInterval(interval);
-  }, [currentIndex]);
-
-  const handleNext = () => {
-    if (!isTransitioning) {
-      setIsTransitioning(true);
-      setTimeout(() => {
-        setCurrentIndex((prevIndex) => (prevIndex + 1) % slides.length);
-        setIsTransitioning(false);
-      }, 500); // Matches the CSS transition duration
-    }
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true, // ✅ Enable auto-scrolling
+    autoplaySpeed: 4000, // ✅ Time between transitions (3 seconds)
+    pauseOnHover: false, // ❌ Try disabling hover pause to check if it works
+    pauseOnFocus: false, // ❌ Disable pause on focus as well
   };
 
-  const handlePrev = () => {
-    if (!isTransitioning) {
-      setIsTransitioning(true);
-      setTimeout(() => {
-        setCurrentIndex((prevIndex) =>
-          prevIndex === 0 ? slides.length - 1 : prevIndex - 1
-        );
-        setIsTransitioning(false);
-      }, 500); // Matches the CSS transition duration
-    }
-  };
+  const slides = [
+    {
+      text: "opening sales 30% off",
+      image:
+        "https://png.pngtree.com/png-clipart/20220125/original/pngtree-handheld-mini-fan-png-image_7209848.png",
+      description: "starting at $10.00",
+      title: "Compact home electronics",
+    },
+    {
+      text: "opening sales 30% off",
+      image:
+        "https://static.vecteezy.com/system/resources/previews/047/826/722/non_2x/vacuum-cleaner-against-transparent-background-free-png.png",
+      description: "starting at $30.00",
+      title: "Browse & discover millions of products",
+    },
+  ];
 
   return (
     <div className="carousel-cont">
       <div className="carousel">
-        <div
-          className="carousel-track"
-          style={{
-            transform: `translateX(-${currentIndex * 100}%)`,
-          }}
-        >
+        <Slider {...settings}>
           {slides.map((slide, index) => (
-            <div
-              className={`carousel-slide ${
-                index === currentIndex ? "active" : ""
-              }`}
-              key={index}
-            >
-              <img src={slide.image} alt={`Slide ${index + 1}`} />
+            <div className="carousel-slide" key={index}>
               <div className="carousel-text">
-                {index === currentIndex && (
-                  <>
-                    <motion.p
-                      className="text-description"
-                      initial={{ opacity: 0, y: 50 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -50 }}
-                      transition={{ duration: 1.2, delay: 0.3 }} // Slightly delayed and slower
-                    >
-                      {slide.description}
-                    </motion.p>
-                    <motion.h2
-                      className="text-title"
-                      initial={{ opacity: 0, y: 50 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -50 }}
-                      transition={{ duration: 1.2 }} // Slower text animation duration
-                    >
-                      {slide.title}
-                    </motion.h2>
-                  </>
-                )}
+                <p className="carouseltxt">{slide.text}</p>
+                <p className="text-description">{slide.description}</p>
+                <h2 className="text-title">{slide.title}</h2>
+                <button className="shop-now">
+                  Shop Now <GoArrowRight />
+                </button>
+              </div>
+              <div>
+                <img src={slide.image} alt={`Slide ${index + 1}`} />
               </div>
             </div>
           ))}
-        </div>
+        </Slider>
       </div>
     </div>
   );
