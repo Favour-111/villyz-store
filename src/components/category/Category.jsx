@@ -9,7 +9,7 @@ const Category = () => {
       {categoryType.map((item, index) => {
         // Added key for list rendering
         return (
-          <Link to="/product" className="category-item" key={index}>
+          <Link to={`/${item.name}`} className="category-item" key={index}>
             {" "}
             {/* Using 'key' for list rendering */}
             <div className="category-image shadow-sm">
