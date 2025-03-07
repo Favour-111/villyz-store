@@ -55,6 +55,9 @@
   }
 }
 @media screen and (max-width: 560px) {
+  .category-container {
+    padding: 10px 30px !important;
+  }
   .category-image {
     width: 100px !important;
     height: 100px !important;
