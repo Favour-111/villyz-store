@@ -56,7 +56,10 @@ function App() {
           <Route element={<OrderPage page="Order page" />} path="/orderpg" />
           <Route element={<ForgotPassword />} path="/forgot_password" />
           <Route element={<EmailVerify />} path="/users/:id/verify/:token" />
-          <Route element={<Profile page="profile page" />} path="/profile" />
+          <Route
+            element={<Profile page="profile page" />}
+            path="/profile/:id"
+          />
           <Route element={<Reset />} path="/reset-password/:id/:token" />
           <Route element={<Address page="Address" />} path="/addresses" />
           {categoryType.map((item) => {

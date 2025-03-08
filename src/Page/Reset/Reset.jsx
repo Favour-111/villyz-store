@@ -65,7 +65,7 @@ const Reset = () => {
 
       try {
         const response = await axios.post(
-          `http://localhost:5000/reset-password/${id}/${token}`,
+          `https://villyzstore.onrender.com/reset-password/${id}/${token}`,
           { password: input.password }
         );
 

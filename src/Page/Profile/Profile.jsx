@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Profile.css";
 import AccountSideBar from "../../components/AccountSideBar/AccountSideBar";
 import Info from "../../components/info/Info";
@@ -8,24 +8,90 @@ import BreadCrumb from "../../components/BreadCrumbs/BreadCrumb";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/src/sweetalert2.scss";
 import AccountSideBarSm from "../../components/AccountSideBarSm/AccountSideBarSm";
+import axios from "axios";
+import { useParams } from "react-router-dom";
 const Profile = ({ page }) => {
+  const [loading, setLoading] = useState(false);
+  const [deleteLoading, setDeleteLoading] = useState(false);
+  const [user, setUser] = useState(null);
+  const { id } = useParams();
+
+  const getSingleUser = async () => {
+    setLoading(true);
+    try {
+      const response = await axios.get(
+        `https://villyzstore.onrender.com/user/${id}`
+      );
+      console.log(response.data.user);
+      setUser(response.data.user);
+    } catch (error) {
+      console.log(error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+  useEffect(() => {
+    getSingleUser();
+  }, [id]);
+
   const [password, setPassword] = useState("");
-  const handleSubmit = (e) => {
+  const handleDeleteAccount = async (e) => {
     e.preventDefault();
-    if (password === "123") {
-      Swal.fire({
-        title: "Account Deleted successfully",
-        icon: "warning",
-      });
-    } else {
-      Swal.fire({
-        title: "Account deletion failed ",
-        text: "input correct password",
+    if (!password) {
+      return Swal.fire({
+        title: "Error",
+        text: "Please enter your password",
         icon: "error",
         confirmButtonText: "OK",
       });
     }
+
+    try {
+      setDeleteLoading(true);
+
+      // ✅ Step 1: Verify Password First
+      const verifyResponse = await axios.post(
+        `https://villyzstore.onrender.com/verify-password`,
+        { id, password }
+      );
+
+      if (!verifyResponse.data.success) {
+        return Swal.fire({
+          title: "Error",
+          text: "Incorrect password. Please try again.",
+          icon: "error",
+          confirmButtonText: "OK",
+        });
+      }
+
+      // ✅ Step 2: Delete Account if Password is Verified
+      await axios.delete(`https://villyzstore.onrender.com/deleteuser/${id}`, {
+        data: { password },
+      });
+
+      Swal.fire({
+        title: "Account Deleted Successfully",
+        icon: "success",
+      });
+      localStorage.removeItem("auth-token");
+      localStorage.removeItem("userId");
+
+      // Redirect to login page after deletion
+      setTimeout(() => {
+        window.location.href = "/login";
+      }, 2000);
+    } catch (error) {
+      Swal.fire({
+        title: "Error",
+        text: error.response?.data?.msg || "Failed to delete user. Try again.",
+        icon: "error",
+        confirmButtonText: "OK",
+      });
+    } finally {
+      setDeleteLoading(false);
+    }
   };
+
   return (
     <div>
       <Info />
@@ -43,7 +109,11 @@ const Profile = ({ page }) => {
               <div className="profile-input-items">
                 <label htmlFor="name">Name</label>
                 <br />
-                <input type="text" id="name" defaultValue="omojolaobaloluwa" />
+                <input
+                  type="text"
+                  id="name"
+                  value={loading ? "loading.." : user?.FirstName || "none"}
+                />
               </div>
               <div className="profile-input-items">
                 <label htmlFor="email">Email</label>
@@ -51,13 +121,23 @@ const Profile = ({ page }) => {
                 <input
                   type="email"
                   id="email"
-                  defaultValue="omojolaobaloluwa@gmail.com"
+                  value={loading ? "loading.." : user?.email}
                 />
               </div>
               <div className="profile-input-items">
                 <label htmlFor="phone">Phone Number</label>
                 <br />
-                <input type="text" id="phone" defaultValue="080******123" />
+                <input
+                  type="text"
+                  id="phone"
+                  value={
+                    loading
+                      ? "loading..."
+                      : user?.phoneNumber && user.phoneNumber.length >= 4
+                      ? `******${user.phoneNumber.slice(-4)}`
+                      : ""
+                  }
+                />
               </div>
             </div>
             <div className="line"></div>
@@ -121,9 +201,9 @@ const Profile = ({ page }) => {
                       <button
                         type="button"
                         className="btn btn-danger"
-                        onClick={handleSubmit}
+                        onClick={handleDeleteAccount}
                       >
-                        Delete Account
+                        {deleteLoading ? "please wait..." : "Delete Account"}
                       </button>
                     </div>
                   </div>

@@ -30,9 +30,9 @@ const AccountSideBar = () => {
               </li>
               <li>
                 <Link
-                  to="/profile"
+                  to={`/profile/${localStorage.getItem("userId")}`}
                   className={`side-list ${
-                    location.pathname === "/profile" ? "active" : ""
+                    location.pathname.startsWith("/profile/") ? "active" : ""
                   }`}
                 >
                   <div>
@@ -60,6 +60,7 @@ const AccountSideBar = () => {
                   to="/logout"
                   onClick={() => {
                     localStorage.removeItem("auth-token");
+                    localStorage.removeItem("userId");
                     window.location.replace("/login");
                   }}
                   className="side-list"

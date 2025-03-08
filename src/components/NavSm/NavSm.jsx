@@ -73,7 +73,14 @@ const NavSm = () => {
             <IoMdHeartEmpty size={23} />
             <div className="counter">{totalWishList()}</div>
           </Link>
-          <Link to="/login" className="icon-sm">
+          <Link
+            to={`${
+              localStorage.getItem("auth-token")
+                ? `/profile/${localStorage.getItem("userId")}`
+                : "/login"
+            }`}
+            className="icon-sm"
+          >
             <FiUser size={25} />
           </Link>
           <Link to="/cart" className="icon-sm">
@@ -236,19 +243,19 @@ const NavSm = () => {
             <ul className={`nav-sm-subCategory ${subCategory3 ? "open" : ""}`}>
               <li>
                 {" "}
-                <Link to="/contact" className="Link">
+                <Link to="/orderpg" className="Link">
                   {" "}
                   Orders
                 </Link>
               </li>
               <li>
-                <Link to="/blog" className="Link">
+                <Link to="/profile/:id" className="Link">
                   {" "}
                   Settings
                 </Link>{" "}
               </li>
               <li>
-                <Link className="Link" to="/cart">
+                <Link className="Link" to="/addresses">
                   {" "}
                   Address
                 </Link>

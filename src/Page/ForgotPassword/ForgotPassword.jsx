@@ -40,7 +40,7 @@ const ForgotPassword = () => {
     try {
       setLoader(true);
       const response = await axios.post(
-        "http://localhost:5000/forgot_password",
+        "https://villyzstore.onrender.com/forgot_password",
         { email }
       );
 

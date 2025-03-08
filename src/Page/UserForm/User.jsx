@@ -92,7 +92,7 @@ const User = ({ page }) => {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/users",
+        "https://villyzstore.onrender.com/users",
         formData
       );
 

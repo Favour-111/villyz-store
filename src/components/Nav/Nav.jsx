@@ -1,15 +1,16 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./Nav.css";
 import { LuUserRound } from "react-icons/lu";
 import { CiHeart, CiLocationOn, CiLogout } from "react-icons/ci";
 import { IoBagHandleOutline } from "react-icons/io5";
 import { GrAppsRounded } from "react-icons/gr";
 import { RiArrowDropDownLine } from "react-icons/ri";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { ShopContext } from "../context/ShopContext";
 import { useNavigate } from "react-router-dom";
 import categoryType from "../../categoryType";
 import product from "../../product";
+import axios from "axios";
 const categoriesData = categoryType;
 
 const Nav = () => {
@@ -34,6 +35,27 @@ const Nav = () => {
       });
     }
   };
+  const [loading, setLoading] = useState(false);
+  const [user, setUser] = useState(null);
+
+  const id = localStorage.getItem("userId");
+  const getSingleUser = async () => {
+    setLoading(true);
+    try {
+      const response = await axios.get(
+        `https://villyzstore.onrender.com/user/${id}`
+      );
+      console.log(response.data.user);
+      setUser(response.data.user);
+    } catch (error) {
+      console.log(error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+  useEffect(() => {
+    getSingleUser();
+  }, [id]);
 
   return (
     <div>
@@ -72,7 +94,9 @@ const Nav = () => {
                 onMouseLeave={() => setIsHovered(false)}
               >
                 <div>
-                  {localStorage.getItem("auth-token") ? "OBA" : "Guest"}
+                  {localStorage.getItem("auth-token")
+                    ? user?.FirstName
+                    : "Guest"}
                 </div>
               </div>
             </div>
@@ -230,16 +254,26 @@ const Nav = () => {
                   <ul className="dropdown-content-pages">
                     <li>
                       {" "}
-                      <Link className="Link" to="/profile">
+                      <Link
+                        className="Link"
+                        to={`/profile/${localStorage.getItem("userId")}`}
+                      >
                         {" "}
                         Settings
                       </Link>
                     </li>
                     <li>
                       {" "}
-                      <Link className="Link" to="/wishlist">
+                      <Link className="Link" to="/addresses">
                         {" "}
                         Address
+                      </Link>
+                    </li>
+                    <li>
+                      {" "}
+                      <Link className="Link" to="/orderpg">
+                        {" "}
+                        Orders
                       </Link>
                     </li>
                   </ul>
@@ -249,7 +283,7 @@ const Nav = () => {
                       {" "}
                       <Link className="Link" to="/SignUp">
                         {" "}
-                        Sign In
+                        Sign Up
                       </Link>
                     </li>
                     <li>

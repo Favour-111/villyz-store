@@ -24,7 +24,7 @@ const ShopContextProvider = (props) => {
 
   useEffect(() => {
     if (localStorage.getItem("auth-token")) {
-      fetch("http://localhost:5000/getCart", {
+      fetch("https://villyzstore.onrender.com/getCart", {
         method: "POST",
         headers: {
           Accept: "application/json", // Fixed content-type
@@ -39,7 +39,7 @@ const ShopContextProvider = (props) => {
         .catch((error) => console.error("Error fetching cart data:", error));
     }
     if (localStorage.getItem("auth-token")) {
-      fetch("http://localhost:5000/getList", {
+      fetch("https://villyzstore.onrender.com/getList", {
         method: "POST",
         headers: {
           Accept: "application/json", // Fixed content-type
@@ -60,7 +60,7 @@ const ShopContextProvider = (props) => {
   const addToCart = (itemId) => {
     setCartItem((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
     if (localStorage.getItem("auth-token")) {
-      fetch("http://localhost:5000/addtocart", {
+      fetch("https://villyzstore.onrender.com/addtocart", {
         method: "POST",
         headers: {
           Accept: "application/form-data",
@@ -81,7 +81,7 @@ const ShopContextProvider = (props) => {
     }));
 
     if (localStorage.getItem("auth-token")) {
-      fetch("http://localhost:5000/removeFromCart", {
+      fetch("https://villyzstore.onrender.com/removeFromCart", {
         method: "POST",
         headers: {
           Accept: "application/json", // Fix incorrect content-type
@@ -108,7 +108,7 @@ const ShopContextProvider = (props) => {
   const deleteCart = (itemId) => {
     setCartItem((prev) => ({ ...prev, [itemId]: 0 }));
     if (localStorage.getItem("auth-token")) {
-      fetch("http://localhost:5000/removeFromCart", {
+      fetch("https://villyzstore.onrender.com/removeFromCart", {
         method: "POST",
         headers: {
           Accept: "application/json", // Fix incorrect content-type
@@ -136,7 +136,7 @@ const ShopContextProvider = (props) => {
     setWishList((prev) => ({ ...prev, [itemId]: (prev[itemId] || 0) + 1 }));
 
     if (localStorage.getItem("auth-token")) {
-      fetch("http://localhost:5000/addtowishlist", {
+      fetch("https://villyzstore.onrender.com/addtowishlist", {
         method: "POST",
         headers: {
           Accept: "application/json", // ✅ Fix incorrect header
@@ -157,7 +157,7 @@ const ShopContextProvider = (props) => {
       [itemId]: 0,
     }));
     if (localStorage.getItem("auth-token")) {
-      fetch("http://localhost:5000/removeFromList", {
+      fetch("https://villyzstore.onrender.com/removeFromList", {
         method: "POST",
         headers: {
           Accept: "application/json", // Fix incorrect content-type

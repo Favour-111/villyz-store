@@ -54,17 +54,17 @@ const Login = ({ page }) => {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/login",
+        "https://villyzstore.onrender.com/login",
         formData
       );
 
       if (response.data.success) {
         localStorage.setItem("auth-token", response.data.token);
+        localStorage.setItem("userId", response.data.id);
 
         setFormData({ email: "", password: "" });
-        setTimeout(() => {
-          window.location.replace("/home");
-        }, 2000);
+
+        window.location.replace(`/home`);
       } else {
         Swal.fire({
           icon: "error",

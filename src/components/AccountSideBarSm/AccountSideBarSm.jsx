@@ -46,9 +46,9 @@ const AccountSideBarSm = () => {
             </li>
             <li>
               <Link
-                to="/profile"
+                to={`/profile/${localStorage.getItem("userId")}`}
                 className={`side-list ${
-                  location.pathname === "/profile" ? "active2" : ""
+                  location.pathname.startsWith("/profile/") ? "active2" : ""
                 }`}
               >
                 <CiSettings size={18} />
@@ -71,6 +71,7 @@ const AccountSideBarSm = () => {
               <div
                 onClick={() => {
                   localStorage.removeItem("auth-token");
+                  localStorage.removeItem("userId");
                   window.location.replace("/login");
                 }}
                 className="side-list"

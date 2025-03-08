@@ -12,7 +12,7 @@ const EmailVerify = () => {
   useEffect(() => {
     const verifyEmail = async () => {
       try {
-        const url = `http://localhost:5000/users/${param.id}/verify/${param.token}`;
+        const url = `https://villyzstore.onrender.com/users/${param.id}/verify/${param.token}`;
         const { data } = await axios.get(url);
         console.log(data);
         setValidUrl(true);
