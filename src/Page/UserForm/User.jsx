@@ -99,7 +99,6 @@ const User = ({ page }) => {
       if (response.data.success === true) {
         setPasswordStrength("weak");
 
-        localStorage.setItem("auth-token", response.data.token);
         Swal.fire({
           icon: "success",
           title: "Success",
