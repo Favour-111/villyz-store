@@ -14,13 +14,11 @@ const Address = ({ page }) => {
   const [selectedAddress, setSelectedAddress] = useState(null); // Tracks selected address
   const [useNewAddress, setUseNewAddress] = useState(true); // Tracks which radio is selected
   const [newAddress, setNewAddress] = useState({
-    name: "",
     country: "",
     address: "",
     state: "",
     postalCode: "",
     city: "",
-    PhoneNumber: "",
   }); // Tracks new address form inputs
 
   // Handle input changes in the form
@@ -102,13 +100,11 @@ const Address = ({ page }) => {
   // Add new address to the list
   const handleAddAddress = () => {
     if (
-      !newAddress.name ||
       !newAddress.country ||
       !newAddress.address ||
       !newAddress.state ||
       !newAddress.postalCode ||
-      !newAddress.city ||
-      !newAddress.PhoneNumber
+      !newAddress.city
     ) {
       const Toast = Swal.mixin({
         toast: true,
@@ -228,13 +224,6 @@ const Address = ({ page }) => {
                           </div>
                           <div className="pt-4">
                             <div className="row">
-                              <div className="col-md-7 col-sm-12 address-text">
-                                <span>Name</span> : {address.name}
-                              </div>
-                              <div className="col-md-7 col-sm-12 address-text">
-                                <span>Phone number</span> :{" "}
-                                {address.PhoneNumber}
-                              </div>
                               <div className="col-md-5 col-sm-12 address-text">
                                 <span>Country</span> : {address.country}
                               </div>
@@ -280,16 +269,6 @@ const Address = ({ page }) => {
                   <div className="billing-head ms-2">Add New Address</div>
                   <div className="billing">
                     <div className="row w-100 ">
-                      <div className="col-lg-6 col-md-12 w-100">
-                        <input
-                          type="text"
-                          name="name"
-                          placeholder="Name"
-                          value={newAddress.name}
-                          onChange={handleInputChange}
-                          className="address-input"
-                        />
-                      </div>
                       <div className="col-lg-6 col-md-12">
                         <select
                           className="select"
@@ -333,16 +312,7 @@ const Address = ({ page }) => {
                             )}
                         </select>
                       </div>
-                      <div className="col-lg-6 col-md-12">
-                        <input
-                          type="text"
-                          name="PhoneNumber"
-                          placeholder="Phone Number"
-                          value={newAddress.PhoneNumber}
-                          onChange={handleInputChange}
-                          className="address-input"
-                        />
-                      </div>
+
                       <div className="col-lg-6 col-md-12">
                         <input
                           type="text"
@@ -354,7 +324,7 @@ const Address = ({ page }) => {
                         />
                       </div>
 
-                      <div className="col-lg-6 col-md-12">
+                      <div className="col-lg-6 col-md-12 w-100">
                         <input
                           type="text"
                           name="postalCode"
@@ -366,7 +336,10 @@ const Address = ({ page }) => {
                       </div>
                     </div>
                   </div>
-                  <button onClick={handleAddAddress} className="Address-btn">
+                  <button
+                    onClick={handleAddAddress}
+                    className="Address-btn ms-3"
+                  >
                     Add
                   </button>
                 </div>
