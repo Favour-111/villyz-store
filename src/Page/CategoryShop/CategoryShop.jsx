@@ -82,9 +82,9 @@ const CategoryShop = ({ page }) => {
 
     // Sort products
     if (sortOption === "name-asc") {
-      tempProducts.sort((a, b) => a.name.localeCompare(b.name));
+      tempProducts.sort((a, b) => a.productName.localeCompare(b.productName));
     } else if (sortOption === "name-desc") {
-      tempProducts.sort((a, b) => b.name.localeCompare(a.name));
+      tempProducts.sort((a, b) => b.productName.localeCompare(a.productName));
     } else if (sortOption === "price-asc") {
       tempProducts.sort((a, b) => a.newPrice - b.newPrice);
     } else if (sortOption === "price-desc") {
