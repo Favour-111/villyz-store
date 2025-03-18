@@ -24,6 +24,7 @@
       color: #787878;
       font-size: 25px;
       font-family: poppinsSemiBold;
+      margin-top: 50px;
       span {
         color: var(--color);
       }

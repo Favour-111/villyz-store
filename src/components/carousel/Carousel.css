@@ -104,6 +104,14 @@
   text-transform: capitalize;
   font-family: poppinsBold;
 }
+@media screen and (max-width: 1010px) {
+  .carousel {
+    height: 450px !important; /* Increase height */
+  }
+  .carousel-slide {
+    height: 450px !important;
+  }
+}
 @media screen and (max-width: 768px) {
   .carousel-cont {
     padding: 30px 10px;

@@ -157,7 +157,7 @@ table {
   text-align: center;
   margin-top: 30px;
   .new-arrival-header {
-    font-family: poppinsBold;
+    font-family: poppinsSemiBold;
     color: #4b5966;
     font-size: 30px;
     span {
@@ -188,6 +188,12 @@ table {
 @media screen and (max-width: 579px) {
   .cart-container {
     padding: 20px;
+  }
+  .new-arrival-header {
+    font-size: 20px !important;
+  }
+  .new-arrival-content {
+    font-size: 13px !important;
   }
 }
 @media screen and (max-width: 768px) {

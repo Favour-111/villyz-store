@@ -84,7 +84,8 @@
 
     img {
       width: 450px;
-      margin-bottom: 10px;
+      position: absolute;
+      bottom: -200px;
       transform: rotate(40deg);
     }
     .blob {
@@ -188,6 +189,18 @@
 }
 @media screen and (max-width: 772px) {
   .banner-container {
+    .banner {
+      .blob-container svg {
+        width: 300px !important;
+      }
+    }
+    img {
+      width: 320px !important;
+    }
+  }
+}
+@media screen and (max-width: 772px) {
+  .banner-container {
     padding: 10px;
     .banner {
       .blob-container svg {
@@ -195,7 +208,7 @@
       }
     }
     img {
-      width: 200px !important;
+      /* width: 220px !important; */
     }
   }
   .banner-head {
@@ -214,5 +227,16 @@
   }
   .banner-text-container {
     padding: 10px 0 !important;
+  }
+}
+@media screen and (max-width: 505px) {
+  .banner-container {
+    .banner {
+      .blob-container svg {
+      }
+    }
+    img {
+      width: 230px !important;
+    }
   }
 }

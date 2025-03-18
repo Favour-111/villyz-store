@@ -111,11 +111,14 @@
 }
 .header-related {
   margin-top: 80px;
-  font-family: poppinsBold;
+  font-family: poppinsRegular;
   font-size: 25px;
   color: #4b5966;
   border-bottom: 1px solid #e3e3e3;
   padding: 10px;
+  span {
+    color: var(--color);
+  }
 }
 .itemBody2 {
   padding: 10px;
@@ -142,5 +145,10 @@
     padding: 0 !important;
     align-items: center !important;
     justify-content: center !important;
+  }
+}
+@media screen and (max-width: 568px) {
+  .header-related {
+    font-size: 20px;
   }
 }

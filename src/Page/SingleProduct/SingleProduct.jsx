@@ -159,24 +159,28 @@ const SingleProduct = ({ page }) => {
             </div>
           </div>
 
-          <h4 className="header-related">Related product</h4>
-          <div className="itemBody2">
-            {product
-              .slice(0, 13)
-              .filter((item) => {
-                if (item.categories === category) {
-                  return item;
-                } else {
-                  return null;
-                }
-              })
-              .map((item) => {
-                return (
-                  <div data-aos="fade-up">
-                    <Item product={item} />
-                  </div>
-                );
-              })}
+          <h4 className="header-related">
+            <span>Related</span> product
+          </h4>
+          <div className="item">
+            <div className="itemBody">
+              {product
+                .slice(0, 13)
+                .filter((item) => {
+                  if (item.categories === category) {
+                    return item;
+                  } else {
+                    return null;
+                  }
+                })
+                .map((item) => {
+                  return (
+                    <div data-aos="fade-up">
+                      <Item product={item} />
+                    </div>
+                  );
+                })}
+            </div>
           </div>
         </div>
       </div>
