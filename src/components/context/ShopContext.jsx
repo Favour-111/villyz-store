@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { createContext } from "react";
 import product from "../../product";
+import axios from "axios";
 export const ShopContext = createContext(null);
 
 const getDefaultCart = () => {
@@ -21,42 +22,61 @@ const getWishList = () => {
 const ShopContextProvider = (props) => {
   const [cartItem, setCartItem] = useState(getDefaultCart());
   const [WishList, setWishList] = useState(getWishList());
+  const [product, setProduct] = useState([]);
+  const [loader, setLoader] = useState(false);
 
   useEffect(() => {
-    if (localStorage.getItem("auth-token")) {
-      fetch("https://villyzstore.onrender.com/getCart", {
-        method: "POST",
-        headers: {
-          Accept: "application/json", // Fixed content-type
-          "auth-token": `${localStorage.getItem("auth-token")}`,
-          "Content-Type": "application/json",
-        },
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          setCartItem(data);
-        })
-        .catch((error) => console.error("Error fetching cart data:", error));
-    }
-    if (localStorage.getItem("auth-token")) {
-      fetch("https://villyzstore.onrender.com/getList", {
-        method: "POST",
-        headers: {
-          Accept: "application/json", // Fixed content-type
-          "auth-token": `${localStorage.getItem("auth-token")}`,
-          "Content-Type": "application/json",
-        },
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          setWishList(data);
-        })
-        .catch((error) => console.error("Error fetching cart data:", error));
-    }
-  }, []); // Added empty dependency array to run effect only once
+    const token = localStorage.getItem("auth-token");
+    if (!token) return;
 
-  console.log(WishList);
+    const fetchData = async () => {
+      try {
+        const [cartRes, wishlistRes] = await Promise.all([
+          fetch("https://villyzstore.onrender.com/getCart", {
+            method: "POST",
+            headers: {
+              "auth-token": token,
+              "Content-Type": "application/json",
+            },
+          }),
+          fetch("https://villyzstore.onrender.com/getList", {
+            method: "POST",
+            headers: {
+              "auth-token": token,
+              "Content-Type": "application/json",
+            },
+          }),
+        ]);
+        const cartData = await cartRes.json();
+        const wishlistData = await wishlistRes.json();
+        setCartItem(cartData);
+        setWishList(wishlistData);
+      } catch (error) {
+        console.error("Error fetching cart or wishlist:", error);
+      }
+    };
 
+    fetchData();
+  }, []);
+  const getallProduct = async () => {
+    try {
+      setLoader(true);
+      const response = await axios.get(
+        "https://villyzstore.onrender.com/getallProducts"
+      );
+
+      if (response) {
+        setProduct(response.data.response);
+      }
+    } catch (error) {
+      console.log(error.message);
+    } finally {
+      setLoader(false);
+    }
+  };
+  useEffect(() => {
+    getallProduct();
+  }, []);
   const addToCart = (itemId) => {
     setCartItem((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
     if (localStorage.getItem("auth-token")) {
@@ -127,11 +147,13 @@ const ShopContextProvider = (props) => {
     for (const item in cartItem) {
       if (cartItem[item] > 0) {
         let totalValue = product.find((product) => product.id === Number(item));
-        totalAmount += totalValue.newPrice * cartItem[item];
+        totalAmount += totalValue?.newPrice * cartItem[item];
       }
     }
     return totalAmount;
   };
+  console.log(product);
+
   const addtowishList = (itemId) => {
     setWishList((prev) => ({ ...prev, [itemId]: (prev[itemId] || 0) + 1 }));
 

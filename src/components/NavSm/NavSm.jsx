@@ -1,6 +1,5 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import "./NavSm.css";
-import categoryType from "../../categoryType";
 import { Link, useNavigate } from "react-router-dom";
 import { ShopContext } from "../context/ShopContext";
 import { CiLogout } from "react-icons/ci";
@@ -9,6 +8,10 @@ import { RiArrowDropDownLine, RiCloseLargeFill } from "react-icons/ri";
 import { GrAppsRounded } from "react-icons/gr";
 import { FiShoppingBag, FiUser } from "react-icons/fi";
 import { RxHamburgerMenu } from "react-icons/rx";
+import axios from "axios";
+import Swal from "sweetalert2/dist/sweetalert2.js";
+import "sweetalert2/src/sweetalert2.scss";
+import InfoSm from "../InfoSm/InfoSm";
 const NavSm = () => {
   const navigate = useNavigate();
   const { totalCartItems, totalWishList } = useContext(ShopContext);
@@ -61,9 +64,47 @@ const NavSm = () => {
       });
     }
   };
+  const [categoryType, setcategoryType] = useState([]);
+  const [loader, setLoader] = useState(false);
+  const getallCategory = async () => {
+    try {
+      setLoader(true);
+      const response = await axios.get(
+        "https://villyzstore.onrender.com/getallCategory"
+      );
+      if (response) {
+        setcategoryType(response.data.response);
+      } else {
+        const Toast = Swal.mixin({
+          toast: true,
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.onmouseenter = Swal.stopTimer;
+            toast.onmouseleave = Swal.resumeTimer;
+          },
+        });
+        Toast.fire({
+          icon: "error",
+          title: "Network error",
+        });
+      }
+    } catch (error) {
+      console.log(error.message);
+    } finally {
+      setLoader(false);
+    }
+  };
+
+  useEffect(() => {
+    getallCategory();
+  }, []);
   return (
     <div className={`nav-container-sm ${navIsOpen ? "no-scroll" : ""}`}>
       {/* Main Navbar */}
+      <InfoSm />
       <div className="nav-sm shadow-sm">
         <div className="logo" onClick={() => navigate("/home")}>
           vill<span>yz</span>
@@ -151,21 +192,25 @@ const NavSm = () => {
             <RiArrowDropDownLine size={26} />
           </button>
           <ul className={`nav-sm-subCategory ${subCategory4 ? "open" : ""}`}>
-            {categoryType.map((item) => (
-              <li>
-                <button
-                  className="Link"
-                  onClick={() => {
-                    navigate(`/${item.name}`);
-                    window.scrollTo(0, 0);
-                    setNavIsOpen(false);
-                  }}
-                  key={item.id}
-                >
-                  {item.name}
-                </button>
-              </li>
-            ))}
+            {loader ? (
+              <div className="loading">loading..</div>
+            ) : (
+              categoryType.map((item) => (
+                <li>
+                  <button
+                    className="Link"
+                    onClick={() => {
+                      navigate(`/${item.name}`);
+                      window.scrollTo(0, 0);
+                      setNavIsOpen(false);
+                    }}
+                    key={item.id}
+                  >
+                    {item.name}
+                  </button>
+                </li>
+              ))
+            )}
           </ul>
         </div>
 
@@ -180,21 +225,25 @@ const NavSm = () => {
             </div>
           </Link>
           <ul className={`nav-sm-subCategory ${subCategory1 ? "open" : ""}`}>
-            {categoryType.map((item) => (
-              <li>
-                <button
-                  className="Link"
-                  onClick={() => {
-                    navigate(`/${item.name}`);
-                    window.scrollTo(0, 0);
-                    setNavIsOpen(false);
-                  }}
-                  key={item.id}
-                >
-                  {item.name}
-                </button>
-              </li>
-            ))}
+            {loader ? (
+              <div className="loading">loading..</div>
+            ) : (
+              categoryType.map((item) => (
+                <li>
+                  <button
+                    className="Link"
+                    onClick={() => {
+                      navigate(`/${item.name}`);
+                      window.scrollTo(0, 0);
+                      setNavIsOpen(false);
+                    }}
+                    key={item.id}
+                  >
+                    {item.name}
+                  </button>
+                </li>
+              ))
+            )}
           </ul>
           <Link className="li" onClick={toggleSubCategory2}>
             Pages{" "}

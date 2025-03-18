@@ -7,16 +7,25 @@
   src: url(../../assets/font/Poppins-Medium.ttf);
 }
 .info-container2 {
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: space-between;
   padding: 10px 40px;
   background-color: rgb(248, 248, 251);
-  height: 50px;
+  height: 30px;
   font-family: poppinsMedium;
   font-size: 13px;
   text-transform: capitalize;
   color: #787878;
+  .info-container-text {
+    font-size: 12px;
+    text-align: center;
+    width: 100%;
+  }
 }
-@media screen and (max-width: 990px) {
+
+@media screen and (max-width: 1167px) {
+  .info-container2 {
+    display: flex;
+  }
 }

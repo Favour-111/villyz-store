@@ -23,14 +23,16 @@ const Carousel = () => {
       text: "opening sales 30% off",
       image:
         "https://png.pngtree.com/png-clipart/20220125/original/pngtree-handheld-mini-fan-png-image_7209848.png",
-      description: "starting at $10.00",
-      title: "Compact home electronics",
+      description:
+        "Start your dropshipping business today with trending products and fast shipping",
+      title: "Hot-Selling Products, Zero Inventory",
     },
     {
       text: "opening sales 30% off",
       image:
-        "https://static.vecteezy.com/system/resources/previews/047/826/722/non_2x/vacuum-cleaner-against-transparent-background-free-png.png",
-      description: "starting at $30.00",
+        "https://images.philips.com/is/image/philipsconsumer/vrs_c0e165a227c882ffbe90f0d5336da2ba7861141c?wid=700&hei=700&$pnglarge$",
+      description:
+        "Discover top-selling items and scale your store with ease—no stock, no hassle",
       title: "Browse & discover millions of products",
     },
   ];
@@ -43,14 +45,14 @@ const Carousel = () => {
             <div className="carousel-slide" key={index}>
               <div className="carousel-text">
                 <p className="carouseltxt">{slide.text}</p>
+                <h1 className="text-title">{slide.title}</h1>
                 <p className="text-description">{slide.description}</p>
-                <h2 className="text-title">{slide.title}</h2>
                 <button className="shop-now">
                   Shop Now <GoArrowRight />
                 </button>
               </div>
               <div>
-                <img src={slide.image} alt={`Slide ${index + 1}`} />
+                <img src={slide.image} alt="carousel" />
               </div>
             </div>
           ))}

@@ -1,14 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Info from "../../components/info/Info";
 import Nav from "../../components/Nav/Nav";
 import NavSm from "../../components/NavSm/NavSm";
 import BreadCrumb from "../../components/BreadCrumbs/BreadCrumb";
 import Footer from "../../footer/Footer";
-import product from "../../product";
 import { useLocation } from "react-router-dom";
 import Item from "../../components/items/Item";
+import { ShopContext } from "../../components/context/ShopContext";
 
 const ProductSearch = ({ page }) => {
+  const { product } = useContext(ShopContext);
   const [sortOption, setSortOption] = useState("");
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -28,15 +29,15 @@ const ProductSearch = ({ page }) => {
     // Ensure query is valid before filtering
     if (query && query.trim() !== "") {
       tempProducts = tempProducts.filter((p) =>
-        p.name.toLowerCase().includes(query.toLowerCase())
+        p.productName.toLowerCase().includes(query.toLowerCase())
       );
     }
 
     // Apply sorting
     if (sortOption === "name-asc") {
-      tempProducts.sort((a, b) => a.name.localeCompare(b.name));
+      tempProducts.sort((a, b) => a.productName.localeCompare(b.productName));
     } else if (sortOption === "name-desc") {
-      tempProducts.sort((a, b) => b.name.localeCompare(a.name));
+      tempProducts.sort((a, b) => b.productName.localeCompare(a.productName));
     } else if (sortOption === "price-asc") {
       tempProducts.sort((a, b) => a.newPrice - b.newPrice);
     } else if (sortOption === "price-desc") {

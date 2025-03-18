@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import product from "../../product";
+import React, { useState, useEffect, useContext } from "react";
 import Item from "../../components/items/Item";
 import Info from "../../components/info/Info";
 import Nav from "../../components/Nav/Nav";
@@ -9,7 +8,9 @@ import Footer from "../../footer/Footer";
 import Category from "../../components/category/Category";
 import BackToTop from "../../components/BackToTop/BackToTop";
 import "./CategoryShop.css";
+import { ShopContext } from "../../components/context/ShopContext";
 const CategoryShop = ({ page }) => {
+  const { product } = useContext(ShopContext);
   const [filterCont, setFilterCont] = useState(false);
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
@@ -29,7 +30,7 @@ const CategoryShop = ({ page }) => {
   useEffect(() => {
     setProducts(product);
     setFilteredProducts(product);
-    setCategories([...new Set(product.map((p) => p.category))]);
+    setCategories([...new Set(product.map((p) => p.categories))]);
   }, []);
 
   // Handle category selection
@@ -70,9 +71,13 @@ const CategoryShop = ({ page }) => {
 
     // Filter by stock availability
     if (stockFilter.inStock && !stockFilter.outOfStock) {
-      tempProducts = tempProducts.filter((product) => product.inStock);
+      tempProducts = tempProducts.filter(
+        (product) => product.availability === "in Stock"
+      );
     } else if (!stockFilter.inStock && stockFilter.outOfStock) {
-      tempProducts = tempProducts.filter((product) => !product.inStock);
+      tempProducts = tempProducts.filter(
+        (product) => !product.availability === "out Of Stock"
+      );
     }
 
     // Sort products
@@ -93,7 +98,7 @@ const CategoryShop = ({ page }) => {
   // Get paginated products
   const Productcategory = selectedCategories.length
     ? filteredProducts
-    : filteredProducts.filter((prod) => prod.category === page);
+    : filteredProducts.filter((prod) => prod.categories === page);
 
   // Apply pagination after filtering by category
   const paginatedProducts = Productcategory.slice(
@@ -234,7 +239,7 @@ const CategoryShop = ({ page }) => {
             {paginatedProducts.length > 1 ? (
               <div className="itemBody1">
                 {paginatedProducts.map((product) => (
-                  <div data-aos="fade-up">
+                  <div>
                     <Item key={product.id} product={product} />
                   </div>
                 ))}

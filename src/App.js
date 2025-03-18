@@ -17,13 +17,12 @@ import SingleProduct from "./Page/SingleProduct/SingleProduct";
 import Landing from "./Page/Landing/Landing";
 import ShopContext from "./components/context/ShopContext";
 import CheckOut from "./Page/CheckOut/CheckOut";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import SearchedProduct from "./Page/SearchProductPg/SearchedProduct";
 import OrderPage from "./Page/OrderPage/OrderPage";
 import SingleOrder from "./Page/SingleOrder/SingleOrder";
 import ScrollUp from "./components/ScrollUp";
 import CategoryShop from "./Page/CategoryShop/CategoryShop";
-import categoryType from "./categoryType";
 import ProductSearch from "./Page/ProductSearch/ProductSearch";
 import Collection from "./Page/Collection/Collection";
 import EmailVerify from "./Page/EmailVerify/EmailVerify";
@@ -31,13 +30,32 @@ import ForgotPassword from "./Page/ForgotPassword/ForgotPassword";
 import Reset from "./Page/Reset/Reset";
 import Profile from "./Page/Profile/Profile";
 import Address from "./Page/Address/Address";
+import axios from "axios";
 function App() {
   useEffect(() => {
     AOS.init({
       duration: 1000, // Animation duration (in milliseconds)
     });
   }, []);
+  const [categoryType, setcategoryType] = useState([]);
+  const getallCategory = async () => {
+    try {
+      const response = await axios.get(
+        "https://villyzstore.onrender.com/getallCategory"
+      );
+      if (response) {
+        setcategoryType(response.data.response);
+      } else {
+        console.log("netwoek error");
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
 
+  useEffect(() => {
+    getallCategory();
+  }, []);
   return (
     <div className="App">
       <ShopContext>

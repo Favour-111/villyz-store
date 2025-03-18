@@ -7,7 +7,6 @@ import BreadCrumb from "../../components/BreadCrumbs/BreadCrumb";
 import Footer from "../../footer/Footer";
 import Item from "../../components/items/Item";
 import { useLocation } from "react-router-dom";
-import product from "../../product";
 import { ShopContext } from "../../components/context/ShopContext";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/src/sweetalert2.scss";
@@ -15,7 +14,17 @@ import BackToTop from "../../components/BackToTop/BackToTop";
 const SingleProduct = ({ page }) => {
   const location = useLocation();
   const products = location.state || {}; // Fallback to an empty object
-  const { image, name, category, newPrice, oldPrice, id, start = 0 } = products;
+  const { product } = useContext(ShopContext);
+  const {
+    image,
+    name,
+    description,
+    category,
+    newPrice,
+    oldPrice,
+    id,
+    start = 0,
+  } = products;
   const { addToCart, cartItem, WishList, addtowishList, RemoveList } =
     useContext(ShopContext);
   const totalStars = 5;
@@ -75,12 +84,7 @@ const SingleProduct = ({ page }) => {
                 )}%`}</span>
               ) : null}
             </div>
-            <div className="singleProduct-content">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis
-              ea ipsam quos mollitia voluptas, nisi aliquid molestias neque illo
-              dolore maiores culpa veniam. Provident ratione at neque laudantium
-              voluptates fuga.
-            </div>
+            <div className="singleProduct-content">{description}</div>
             <div className="prod-footer">
               <button
                 className="prod-btn"
@@ -160,7 +164,7 @@ const SingleProduct = ({ page }) => {
             {product
               .slice(0, 13)
               .filter((item) => {
-                if (item.category === category) {
+                if (item.categories === category) {
                   return item;
                 } else {
                   return null;

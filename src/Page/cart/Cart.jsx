@@ -7,7 +7,6 @@ import BreadCrumb from "../../components/BreadCrumbs/BreadCrumb";
 import "./Cart.css";
 import { Link } from "react-router-dom";
 import { ShopContext } from "../../components/context/ShopContext";
-import product from "../../product";
 import Item from "../../components/items/Item";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2/dist/sweetalert2.js";
@@ -33,6 +32,7 @@ const Cart = ({ page }) => {
     Remove,
     deleteCart,
     getTotalValue,
+    product,
     totalCartItems,
   } = useContext(ShopContext);
   const [coupon, setcoupon] = useState(false);

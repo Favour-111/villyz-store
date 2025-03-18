@@ -17,6 +17,11 @@
   font-family: poppinsRegular;
   src: url(../../assets/font/Poppins-Medium.ttf);
 }
+.loading {
+  font-family: poppinsRegular;
+  font-size: 12px;
+  color: #4b5966;
+}
 .Nav-body {
   padding: 30px 40px;
   border-bottom: 1px solid #78787827;

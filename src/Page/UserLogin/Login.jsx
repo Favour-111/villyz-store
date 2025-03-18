@@ -63,9 +63,7 @@ const Login = ({ page }) => {
         localStorage.setItem("userId", response.data.id);
 
         setFormData({ email: "", password: "" });
-        setTimeout(() => {
-          navigate(`/home`);
-        }, 2000);
+        window.location.replace(`/home`);
       } else {
         Swal.fire({
           icon: "error",

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./SingleBlog.css";
 import Info from "../../components/info/Info";
 import Nav from "../../components/Nav/Nav";
@@ -6,8 +6,35 @@ import NavSm from "../../components/NavSm/NavSm";
 import BreadCrumb from "../../components/BreadCrumbs/BreadCrumb";
 import Footer from "../../footer/Footer";
 import BackToTop from "../../components/BackToTop/BackToTop";
+import axios from "axios";
+import { useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 const SingleBlog = ({ page }) => {
-  const text = "5 Tips for Launching Your Online Store";
+  const location = useLocation();
+  const navigate = useNavigate();
+  const blogs = location.state || {};
+  const [blog, setBlog] = useState([]);
+  const [loader, setLoader] = useState(false);
+  const { Title, BlogDate, BlogContent, image } = blogs;
+  const gettallBlog = async () => {
+    try {
+      setLoader(true);
+      const response = await axios.get(
+        "https://villyzstore.onrender.com/getallBlog"
+      );
+      if (response) {
+        setBlog(response.data.response);
+      }
+    } catch (error) {
+      console.log(error.message);
+    } finally {
+      setLoader(false);
+    }
+  };
+
+  useEffect(() => {
+    gettallBlog();
+  }, []);
   return (
     <div>
       <Info />
@@ -20,81 +47,55 @@ const SingleBlog = ({ page }) => {
             <div className="recent-article px-4 pt-3">
               <div className="recent-article-header">Recent Blog</div>
               <div className="recent-article-container">
-                <div className="recent-article-item ">
-                  <div>
-                    <img
-                      src="https://grabit-next.tigerheck.com/assets/img/blog/1.jpg"
-                      alt=""
-                    />
-                  </div>
-                  <div>
-                    <div className="recent-article-content">
-                      {text.slice(0, 26)}.
-                    </div>
-                    <div className="recent-article-date">2017 jan 20</div>
-                  </div>
-                </div>
-                <div className="recent-article-item ">
-                  <div>
-                    <img
-                      src="https://grabit-next.tigerheck.com/assets/img/blog/1.jpg"
-                      alt=""
-                    />
-                  </div>
-                  <div>
-                    <div className="recent-article-content">
-                      {text.slice(0, 26)}.
-                    </div>
-                    <div className="recent-article-date">2017 jan 20</div>
-                  </div>
-                </div>
-                <div className="recent-article-item ">
-                  <div>
-                    <img
-                      src="https://grabit-next.tigerheck.com/assets/img/blog/1.jpg"
-                      alt=""
-                    />
-                  </div>
-                  <div>
-                    <div className="recent-article-content">
-                      {text.slice(0, 26)}.
-                    </div>
-                    <div className="recent-article-date">2017 jan 20</div>
-                  </div>
-                </div>
-                <div className="recent-article-item ">
-                  <div>
-                    <img
-                      src="https://grabit-next.tigerheck.com/assets/img/blog/1.jpg"
-                      alt=""
-                    />
-                  </div>
-                  <div>
-                    <div className="recent-article-content">
-                      {text.slice(0, 26)}.
-                    </div>
-                    <div className="recent-article-date">2017 jan 20</div>
-                  </div>
-                </div>
+                {blog
+                  .slice(0.4)
+                  .reverse()
+                  .map((item) => {
+                    return (
+                      <div
+                        onClick={() => {
+                          window.scrollTo(0, 0);
+                          navigate("/SingleBlog", {
+                            state: {
+                              image: item?.image,
+                              Title: item.BlogTitle,
+                              BlogDate: item.BlogDate,
+                              BlogContent: item.BlogDescription,
+                            },
+                          });
+                        }}
+                        className="recent-article-item "
+                      >
+                        <div>
+                          <img src={item.image} alt="" />
+                        </div>
+                        <div>
+                          <div className="recent-article-content">
+                            {item.BlogTitle.slice(0, 26)}.
+                          </div>
+                          <div className="recent-article-date">
+                            {item.BlogDate}
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
               </div>
             </div>
           </div>
           <div className="col-xl-8 col-md-12">
             <div className="single-blog-cont">
               <div className="single-blog-img">
-                <img
-                  src="https://grabit-next.tigerheck.com/assets/img/blog/1.jpg"
-                  alt=""
-                />
+                <img src={image} alt="" />
               </div>
-              <div className="recent-article-date mt-2">2017 jan 20</div>
-              <div className="single-article-date mt-2">{text}</div>
-              <div className="single-article-content mt-3">
-                Starting an online store? Focus on building a user-friendly
-                website, offering competitive pricing, optimizing for SEO, and
-                providing excellent customer service. These steps will set your
-                business on the path to success in the e-commerce world.
-              </div>
+              <div className="recent-article-date mt-2">{BlogDate}</div>
+              <div className="single-article-date mt-2">{Title}</div>
+              <div
+                className="single-article-content mt-3"
+                dangerouslySetInnerHTML={{
+                  __html: BlogContent,
+                }}
+              ></div>
             </div>
           </div>
         </div>

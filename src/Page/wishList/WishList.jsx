@@ -6,14 +6,13 @@ import NavSm from "../../components/NavSm/NavSm";
 import BreadCrumb from "../../components/BreadCrumbs/BreadCrumb";
 import Footer from "../../footer/Footer";
 import { ShopContext } from "../../components/context/ShopContext";
-import product from "../../product";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/src/sweetalert2.scss";
 import { useNavigate } from "react-router-dom";
 import BackToTop from "../../components/BackToTop/BackToTop";
 const WishList = ({ page }) => {
   const navigate = useNavigate();
-  const { WishList, RemoveList, addToCart } = useContext(ShopContext);
+  const { WishList, RemoveList, addToCart, product } = useContext(ShopContext);
   const wishListProduct = product.filter((itm) => WishList[itm.id]);
   return (
     <div>
@@ -33,7 +32,10 @@ const WishList = ({ page }) => {
         <div className="wishList-container">
           <div className="wish-list-header">
             <div>WishList</div>
-            <button className="shadow-sm" onClick={() => navigate("/product")}>
+            <button
+              className="shadow-sm"
+              onClick={() => navigate("/collection")}
+            >
               Shop now
             </button>
           </div>
@@ -55,9 +57,9 @@ const WishList = ({ page }) => {
                       <td>
                         <img src={itm.image} alt="" width={50} height={50} />
                       </td>
-                      <td>{itm.name}</td>
+                      <td>{itm.productName}</td>
                       <td>${itm.newPrice}</td>
-                      <td>{itm.type}</td>
+                      <td>{itm.availability}</td>
                       <td>
                         <div className="d-flex gap-2 ">
                           <div

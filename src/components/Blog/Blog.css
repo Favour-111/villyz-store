@@ -57,7 +57,9 @@
 }
 
 .blog-item img {
-  max-width: 100%;
+  width: 250px;
+  object-fit: cover; /* or contain */
+  height: 170px;
   border-radius: 5px;
 }
 

@@ -93,9 +93,11 @@
       background-color: var(--color);
       color: white;
       font-family: poppinsRegular;
-      padding: 5px 20px;
-      border-radius: 4px;
+      height: 40px;
+      width: 100px;
       border: none;
+      background-color: var(--color);
+      border-radius: 4px;
       transition: 350ms;
     }
     .register:hover {

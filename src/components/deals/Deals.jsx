@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./Deals.css";
 import Item from "../items/Item";
-import product from "../../product";
+import axios from "axios";
+import { ShopContext } from "../context/ShopContext";
 const Deals = () => {
   const [currentTime, setCurrentTime] = useState(new Date());
+  const { product } = useContext(ShopContext);
 
   useEffect(() => {
     // Update the time every second
@@ -38,11 +40,13 @@ const Deals = () => {
 
         <div className="item">
           <div className="itemBody">
-            {product.slice(0, 10).map((item) => (
-              <div key={product.id} data-aos="fade-up">
-                <Item product={item} />
-              </div>
-            ))}
+            {product
+              .filter((item) => item.deals === "Deal")
+              .map((item) => (
+                <div key={product.id} data-aos="fade-up">
+                  <Item product={item} />
+                </div>
+              ))}
           </div>
         </div>
       </div>

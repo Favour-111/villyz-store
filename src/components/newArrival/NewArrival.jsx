@@ -1,16 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./NewArrival.css";
 import Item from "../items/Item";
 import product from "../../product";
+import { ShopContext } from "../context/ShopContext";
 const NewArrival = () => {
-  function shuffleArray(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1)); // Random index from 0 to i
-      [array[i], array[j]] = [array[j], array[i]]; // Swap elements
-    }
-    return array;
-  }
-  const shuffled = shuffleArray([...product]);
+  const { product } = useContext(ShopContext);
   return (
     <div>
       <div className="container">
@@ -25,7 +19,7 @@ const NewArrival = () => {
         <div>
           <div className="item">
             <div className="itemBody">
-              {shuffled.slice(0, 10).map((item) => (
+              {product.slice(0, 10).map((item) => (
                 <div key={item.id} data-aos="fade-up">
                   <Item product={item} />
                 </div>

@@ -8,11 +8,10 @@ import { RiArrowDropDownLine } from "react-icons/ri";
 import { Link, useParams } from "react-router-dom";
 import { ShopContext } from "../context/ShopContext";
 import { useNavigate } from "react-router-dom";
-import categoryType from "../../categoryType";
 import product from "../../product";
 import axios from "axios";
-const categoriesData = categoryType;
-
+import Swal from "sweetalert2/dist/sweetalert2.js";
+import "sweetalert2/src/sweetalert2.scss";
 const Nav = () => {
   const navigate = useNavigate();
   const { totalCartItems, totalWishList } = useContext(ShopContext);
@@ -21,10 +20,46 @@ const Nav = () => {
   const [page, setPage] = useState(false);
   const [account, setAccount] = useState(false);
   const [isHoveredCategory, setIsHoveredCategory] = useState(false);
-  const [selectedCategory, setSelectedCategory] =
-    useState("Kitchen Essentials");
+  const [selectedCategory, setSelectedCategory] = useState();
   const [query, setQuery] = useState("");
 
+  const [categoryType, setcategoryType] = useState([]);
+  const [loader, setLoader] = useState(false);
+  const getallCategory = async () => {
+    try {
+      setLoader(true);
+      const response = await axios.get(
+        "https://villyzstore.onrender.com/getallCategory"
+      );
+      if (response) {
+        setcategoryType(response.data.response);
+      } else {
+        const Toast = Swal.mixin({
+          toast: true,
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.onmouseenter = Swal.stopTimer;
+            toast.onmouseleave = Swal.resumeTimer;
+          },
+        });
+        Toast.fire({
+          icon: "error",
+          title: "Network error",
+        });
+      }
+    } catch (error) {
+      console.log(error.message);
+    } finally {
+      setLoader(false);
+    }
+  };
+
+  useEffect(() => {
+    getallCategory();
+  }, []);
   const handleKeyPress = (e) => {
     if (e.key === "Enter" && query.trim()) {
       window.scrollTo(0, 0); // Scroll to the top of the page
@@ -86,7 +121,7 @@ const Nav = () => {
                 borderRadius: "100px",
               }}
             />
-            <div>
+            <div onClick={() => navigate(`/profile/${id}`)}>
               <div className="Name">Account</div>
               <div
                 className="Section-name"
@@ -153,23 +188,27 @@ const Nav = () => {
             }`}
           >
             <div className="col-12 category-item-container shadow-sm">
-              {categoryType.map((category) => (
-                <div
-                  style={{
-                    textDecoration: "none",
-                  }}
-                  key={category}
-                  className={`category-items ${
-                    selectedCategory === category.name ? "active" : ""
-                  }`}
-                  onClick={() => {
-                    setSelectedCategory(category.name);
-                    navigate(`/${category.name}`);
-                  }}
-                >
-                  {category.name}
-                </div>
-              ))}
+              {loader ? (
+                <div className="loading">loading..</div>
+              ) : (
+                categoryType.map((category) => (
+                  <div
+                    style={{
+                      textDecoration: "none",
+                    }}
+                    key={category}
+                    className={`category-items ${
+                      selectedCategory === category.name ? "active" : ""
+                    }`}
+                    onClick={() => {
+                      setSelectedCategory(category.name);
+                      navigate(`/${category.name}`);
+                    }}
+                  >
+                    {category.name}
+                  </div>
+                ))
+              )}
             </div>
           </div>
         </div>
@@ -188,14 +227,18 @@ const Nav = () => {
               <RiArrowDropDownLine size={30} />
               <div className={`dropdown2  ${category ? "show" : ""}`}>
                 <ul className="dropdown-content">
-                  {categoryType.map((category) => (
-                    <li>
-                      <Link className="Link" to={`/${category.name}`}>
-                        {" "}
-                        {category.name}
-                      </Link>
-                    </li>
-                  ))}
+                  {loader ? (
+                    <div className="loading">loading..</div>
+                  ) : (
+                    categoryType.map((category) => (
+                      <li>
+                        <Link className="Link" to={`/${category.name}`}>
+                          {" "}
+                          {category.name}
+                        </Link>
+                      </li>
+                    ))
+                  )}
                 </ul>
               </div>
             </li>

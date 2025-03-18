@@ -1,11 +1,32 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Footer.css";
-import categoryType from "../categoryType";
 import { Link } from "react-router-dom";
 import { FaWhatsapp } from "react-icons/fa";
 import { CiMail } from "react-icons/ci";
 import { CiLocationOn } from "react-icons/ci";
+import axios from "axios";
 const Footer = () => {
+  const [categoryType, setcategoryType] = useState([]);
+  const [loader, setLoader] = useState(false);
+  const getallCategory = async () => {
+    try {
+      setLoader(true);
+      const response = await axios.get(
+        "https://villyzstore.onrender.com/getallCategory"
+      );
+      if (response) {
+        setcategoryType(response.data.response);
+      }
+    } catch (error) {
+      console.log(error.message);
+    } finally {
+      setLoader(false);
+    }
+  };
+
+  useEffect(() => {
+    getallCategory();
+  }, []);
   return (
     <div>
       <div className="footer">
@@ -22,19 +43,23 @@ const Footer = () => {
           <div className="col-md-2 col-sm-12">
             <div className="footer-header">Category</div>
             <ul>
-              {categoryType.map((item) => {
-                return (
-                  <li>
-                    <Link
-                      className="category"
-                      to="/product"
-                      onClick={() => window.scrollTo(0, 0)}
-                    >
-                      {item.name}
-                    </Link>
-                  </li>
-                );
-              })}
+              {loader ? (
+                <div className="loading">loading..</div>
+              ) : (
+                categoryType.slice(0, 6).map((item) => {
+                  return (
+                    <li>
+                      <Link
+                        className="category"
+                        to={`/${item.name}`}
+                        onClick={() => window.scrollTo(0, 0)}
+                      >
+                        {item.name}
+                      </Link>
+                    </li>
+                  );
+                })
+              )}
             </ul>
           </div>
           <div className="col-md-2 col-sm-12">

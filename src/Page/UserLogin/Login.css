@@ -100,7 +100,8 @@
   text-decoration: none;
 }
 .login-bnt {
-  padding: 5px 15px;
+  height: 40px;
+  width: 100px;
   border: none;
   background-color: var(--color);
   border-radius: 5px;

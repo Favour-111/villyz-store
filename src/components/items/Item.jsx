@@ -27,12 +27,13 @@ const Item = ({ product }) => {
           navigate("/SingleProduct", {
             state: {
               image: product?.image,
-              name: product.name,
-              category: product.category,
+              name: product.productName,
+              category: product.categories,
               newPrice: product.newPrice,
               oldPrice: product.oldPrice,
               id: product.id,
-              start: product.start,
+              start: product.Rating,
+              description: product.productDescription,
             },
           });
         }}
@@ -40,18 +41,24 @@ const Item = ({ product }) => {
           cursor: "pointer",
         }}
       >
-        <img src={product.image} alt={product.name} />
+        <img src={product.image} alt={product.productName} />
       </div>
       <div className="product-info">
-        <div className="category">{product.category}</div>
-        <div className="name">{product.name.slice(0, 26)}...</div>
+        <div className="category">{product.categories}</div>
+        <div className="name">
+          {product?.productName
+            ? product.productName.length < 26
+              ? product.productName
+              : product.productName.slice(0, 26) + "..."
+            : "No Name Available"}
+        </div>
         <div style={{ display: "flex", marginTop: 10 }}>
           {Array.from({ length: totalStars }, (_, index) => (
             <svg
               key={index}
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
-              fill={index < product.start ? "orange" : "gray"} // Conditionally set color
+              fill={index < product.Rating ? "orange" : "gray"} // Conditionally set color
               width="14px"
               height="14px"
               style={{ margin: "0 2px" }}
@@ -65,8 +72,10 @@ const Item = ({ product }) => {
           <div className="new-price">${product.newPrice}</div>
           <div className="old-Price">${product.oldPrice}</div>
         </div>
-        <div className={product.inStock === true ? "type1" : "type2"}>
-          {product.inStock ? "SALES" : "OUT OF STOCK"}
+        <div
+          className={product.availability === "in Stock" ? "type1" : "type2"}
+        >
+          {product.availability === "in Stock" ? "SALES" : "OUT OF STOCK"}
         </div>
       </div>
       <div className="hover-buttons">
@@ -151,12 +160,13 @@ const Item = ({ product }) => {
             navigate("/SingleProduct", {
               state: {
                 image: product?.image,
-                name: product.name,
-                category: product.category,
+                name: product.productName,
+                category: product.categories,
                 newPrice: product.newPrice,
                 oldPrice: product.oldPrice,
                 id: product.id,
-                start: product.start,
+                start: product.Rating,
+                description: product.productDescription,
               },
             });
           }}
