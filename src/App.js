@@ -31,6 +31,7 @@ import Reset from "./Page/Reset/Reset";
 import Profile from "./Page/Profile/Profile";
 import Address from "./Page/Address/Address";
 import axios from "axios";
+import NotFound from "./Page/NotFound/NotFound";
 function App() {
   useEffect(() => {
     AOS.init({
@@ -73,6 +74,7 @@ function App() {
           <Route element={<CheckOut page="checkout page" />} path="/checkout" />
           <Route element={<OrderPage page="Order page" />} path="/orderpg" />
           <Route element={<ForgotPassword />} path="/forgot_password" />
+          <Route path="*" element={<NotFound />} />
           <Route element={<EmailVerify />} path="/users/:id/verify/:token" />
           <Route
             element={<Profile page="profile page" />}

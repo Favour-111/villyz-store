@@ -1,0 +1,44 @@
+:root {
+  --text: rgb(75 89 102);
+  --color2: rgb(83 109 254);
+}
+@font-face {
+  font-family: poppinsBold;
+  src: url(../../assets/font/Poppins-Bold.ttf);
+}
+@font-face {
+  font-family: poppinsLight;
+  src: url(../../assets/font/Poppins-Light.ttf);
+}
+@font-face {
+  font-family: poppinsSemiBold;
+  src: url(../../assets/font/Poppins-SemiBold.ttf);
+}
+@font-face {
+  font-family: poppinsRegular;
+  src: url(../../assets/font/Poppins-Medium.ttf);
+}
+@font-face {
+  font-family: poppinsExtraBold;
+  src: url(../../assets/font/Poppins-ExtraBold.ttf);
+}
+@font-face {
+  font-family: poppinsBlack;
+  src: url(../../assets/font/Poppins-Black.ttf);
+}
+.not-found-cont {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  .not-found-head {
+    font-family: poppinsExtraBold;
+    font-size: 70px;
+  }
+  .not-found-title {
+    font-family: poppinsRegular;
+    font-size: 15px;
+    color: var(--text);
+  }
+}
