@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./SingleBlog.css";
 import Info from "../../components/info/Info";
 import Nav from "../../components/Nav/Nav";
@@ -9,32 +9,13 @@ import BackToTop from "../../components/BackToTop/BackToTop";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { ShopContext } from "../../components/context/ShopContext";
 const SingleBlog = ({ page }) => {
   const location = useLocation();
   const navigate = useNavigate();
   const blogs = location.state || {};
-  const [blog, setBlog] = useState([]);
-  const [loader, setLoader] = useState(false);
   const { Title, BlogDate, BlogContent, image } = blogs;
-  const gettallBlog = async () => {
-    try {
-      setLoader(true);
-      const response = await axios.get(
-        "https://villyzstore.onrender.com/getallBlog"
-      );
-      if (response) {
-        setBlog(response.data.response);
-      }
-    } catch (error) {
-      console.log(error.message);
-    } finally {
-      setLoader(false);
-    }
-  };
-
-  useEffect(() => {
-    gettallBlog();
-  }, []);
+  const { blog } = useContext(ShopContext);
   return (
     <div>
       <Info />

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./Profile.css";
 import AccountSideBar from "../../components/AccountSideBar/AccountSideBar";
 import Info from "../../components/info/Info";
@@ -10,30 +10,13 @@ import "sweetalert2/src/sweetalert2.scss";
 import AccountSideBarSm from "../../components/AccountSideBarSm/AccountSideBarSm";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import { ShopContext } from "../../components/context/ShopContext";
 const Profile = ({ page }) => {
   const [loading, setLoading] = useState(false);
   const [deleteLoading, setDeleteLoading] = useState(false);
-  const [user, setUser] = useState(null);
   const { id } = useParams();
 
-  const getSingleUser = async () => {
-    setLoading(true);
-    try {
-      const response = await axios.get(
-        `https://villyzstore.onrender.com/user/${id}`
-      );
-      console.log(response.data.user);
-      setUser(response.data.user);
-    } catch (error) {
-      console.log(error.message);
-    } finally {
-      setLoading(false);
-    }
-  };
-  useEffect(() => {
-    getSingleUser();
-  }, [id]);
-
+  const { user } = useContext(ShopContext);
   const [password, setPassword] = useState("");
   const handleDeleteAccount = async (e) => {
     e.preventDefault();

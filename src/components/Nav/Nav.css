@@ -317,4 +317,7 @@ header {
   .nav-container {
     display: none !important;
   }
+  .categories {
+    height: auto !important;
+  }
 }

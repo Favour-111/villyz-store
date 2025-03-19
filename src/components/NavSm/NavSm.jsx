@@ -14,7 +14,8 @@ import "sweetalert2/src/sweetalert2.scss";
 import InfoSm from "../InfoSm/InfoSm";
 const NavSm = () => {
   const navigate = useNavigate();
-  const { totalCartItems, totalWishList } = useContext(ShopContext);
+  const { totalCartItems, totalWishList, categoryType } =
+    useContext(ShopContext);
   const [navIsOpen, setNavIsOpen] = useState(false);
   const [subCategory1, setSubCategory1] = useState(false);
   const [subCategory2, setSubCategory2] = useState(false);
@@ -64,43 +65,7 @@ const NavSm = () => {
       });
     }
   };
-  const [categoryType, setcategoryType] = useState([]);
-  const [loader, setLoader] = useState(false);
-  const getallCategory = async () => {
-    try {
-      setLoader(true);
-      const response = await axios.get(
-        "https://villyzstore.onrender.com/getallCategory"
-      );
-      if (response) {
-        setcategoryType(response.data.response);
-      } else {
-        const Toast = Swal.mixin({
-          toast: true,
-          position: "top-end",
-          showConfirmButton: false,
-          timer: 3000,
-          timerProgressBar: true,
-          didOpen: (toast) => {
-            toast.onmouseenter = Swal.stopTimer;
-            toast.onmouseleave = Swal.resumeTimer;
-          },
-        });
-        Toast.fire({
-          icon: "error",
-          title: "Network error",
-        });
-      }
-    } catch (error) {
-      console.log(error.message);
-    } finally {
-      setLoader(false);
-    }
-  };
 
-  useEffect(() => {
-    getallCategory();
-  }, []);
   return (
     <div className={`nav-container-sm ${navIsOpen ? "no-scroll" : ""}`}>
       {/* Main Navbar */}
@@ -192,27 +157,26 @@ const NavSm = () => {
             <RiArrowDropDownLine size={26} />
           </button>
           <ul className={`nav-sm-subCategory ${subCategory4 ? "open" : ""}`}>
-            {loader ? (
-              <div className="loading">loading..</div>
-            ) : (
-              categoryType
-                .filter((item) => item.visibility == "published")
-                .map((item, index) => (
-                  <li>
-                    <button
-                      className="Link"
-                      onClick={() => {
-                        navigate(`/${item.name}`);
-                        window.scrollTo(0, 0);
-                        setNavIsOpen(false);
-                      }}
-                      key={item.id}
-                    >
-                      {item.name}
-                    </button>
-                  </li>
-                ))
-            )}
+            {categoryType
+              .filter((item) => item.visibility == "published")
+              .map((item, index) => (
+                <li>
+                  <button
+                    className="Link"
+                    onClick={() => {
+                      navigate(`/${item.name}`);
+                      window.scrollTo(0, 0);
+                      setNavIsOpen(false);
+                    }}
+                    key={item.id}
+                  >
+                    <div>
+                      <img src={item.image} alt="" />
+                    </div>
+                    {item.name}
+                  </button>
+                </li>
+              ))}
           </ul>
         </div>
 
@@ -227,27 +191,23 @@ const NavSm = () => {
             </div>
           </Link>
           <ul className={`nav-sm-subCategory ${subCategory1 ? "open" : ""}`}>
-            {loader ? (
-              <div className="loading">loading..</div>
-            ) : (
-              categoryType
-                .filter((item) => item.visibility == "published")
-                .map((item, index) => (
-                  <li>
-                    <button
-                      className="Link"
-                      onClick={() => {
-                        navigate(`/${item.name}`);
-                        window.scrollTo(0, 0);
-                        setNavIsOpen(false);
-                      }}
-                      key={item.id}
-                    >
-                      {item.name}
-                    </button>
-                  </li>
-                ))
-            )}
+            {categoryType
+              .filter((item) => item.visibility == "published")
+              .map((item, index) => (
+                <li>
+                  <button
+                    className="Link"
+                    onClick={() => {
+                      navigate(`/${item.name}`);
+                      window.scrollTo(0, 0);
+                      setNavIsOpen(false);
+                    }}
+                    key={item.id}
+                  >
+                    {item.name}
+                  </button>
+                </li>
+              ))}
           </ul>
           <Link className="li" onClick={toggleSubCategory2}>
             Pages{" "}

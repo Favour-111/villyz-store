@@ -144,6 +144,12 @@ li .Link {
   background-color: transparent;
   border: none;
   transition: 250ms;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  img {
+    width: 20px;
+  }
 }
 
 /* Logo Styling */
@@ -206,12 +212,14 @@ li .Link {
 }
 
 .nav-sm-subCategory.open {
-  max-height: 300px; /* Adjust according to content height */
+  max-height: 500px; /* Adjust according to content height */
   padding: 10px 0;
+  overflow: scroll;
+  scrollbar-width: none;
 }
 
 .nav-sm-subCategory li {
-  padding: 10px 20px;
+  padding: 3px 20px;
   border: none !important;
 }
 @media screen and (max-width: 1167px) {

@@ -14,7 +14,9 @@ import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/src/sweetalert2.scss";
 const Nav = () => {
   const navigate = useNavigate();
-  const { totalCartItems, totalWishList } = useContext(ShopContext);
+
+  const { totalCartItems, totalWishList, categoryType, user } =
+    useContext(ShopContext);
   const [isHovered, setIsHovered] = useState(false);
   const [category, setcategory] = useState(false);
   const [page, setPage] = useState(false);
@@ -23,43 +25,6 @@ const Nav = () => {
   const [selectedCategory, setSelectedCategory] = useState();
   const [query, setQuery] = useState("");
 
-  const [categoryType, setcategoryType] = useState([]);
-  const [loader, setLoader] = useState(false);
-  const getallCategory = async () => {
-    try {
-      setLoader(true);
-      const response = await axios.get(
-        "https://villyzstore.onrender.com/getallCategory"
-      );
-      if (response) {
-        setcategoryType(response.data.response);
-      } else {
-        const Toast = Swal.mixin({
-          toast: true,
-          position: "top-end",
-          showConfirmButton: false,
-          timer: 3000,
-          timerProgressBar: true,
-          didOpen: (toast) => {
-            toast.onmouseenter = Swal.stopTimer;
-            toast.onmouseleave = Swal.resumeTimer;
-          },
-        });
-        Toast.fire({
-          icon: "error",
-          title: "Network error",
-        });
-      }
-    } catch (error) {
-      console.log(error.message);
-    } finally {
-      setLoader(false);
-    }
-  };
-
-  useEffect(() => {
-    getallCategory();
-  }, []);
   const handleKeyPress = (e) => {
     if (e.key === "Enter" && query.trim()) {
       window.scrollTo(0, 0); // Scroll to the top of the page
@@ -70,28 +35,7 @@ const Nav = () => {
       });
     }
   };
-  const [loading, setLoading] = useState(false);
-  const [user, setUser] = useState(null);
-
   const id = localStorage.getItem("userId");
-  const getSingleUser = async () => {
-    setLoading(true);
-    try {
-      const response = await axios.get(
-        `https://villyzstore.onrender.com/user/${id}`
-      );
-      console.log(response.data.user);
-      setUser(response.data.user);
-    } catch (error) {
-      console.log(error.message);
-    } finally {
-      setLoading(false);
-    }
-  };
-  useEffect(() => {
-    getSingleUser();
-  }, [id]);
-
   return (
     <div>
       <div className="Nav-body">
@@ -188,29 +132,25 @@ const Nav = () => {
             }`}
           >
             <div className="col-12 category-item-container shadow-sm">
-              {loader ? (
-                <div className="loading">loading..</div>
-              ) : (
-                categoryType
-                  .filter((item) => item.visibility == "published")
-                  .map((category, index) => (
-                    <div
-                      style={{
-                        textDecoration: "none",
-                      }}
-                      key={category}
-                      className={`category-items ${
-                        selectedCategory === category.name ? "active" : ""
-                      }`}
-                      onClick={() => {
-                        setSelectedCategory(category.name);
-                        navigate(`/${category.name}`);
-                      }}
-                    >
-                      {category.name}
-                    </div>
-                  ))
-              )}
+              {categoryType
+                .filter((item) => item.visibility == "published")
+                .map((category, index) => (
+                  <div
+                    style={{
+                      textDecoration: "none",
+                    }}
+                    key={category}
+                    className={`category-items ${
+                      selectedCategory === category.name ? "active" : ""
+                    }`}
+                    onClick={() => {
+                      setSelectedCategory(category.name);
+                      navigate(`/${category.name}`);
+                    }}
+                  >
+                    {category.name}
+                  </div>
+                ))}
             </div>
           </div>
         </div>
@@ -229,20 +169,16 @@ const Nav = () => {
               <RiArrowDropDownLine size={30} />
               <div className={`dropdown2  ${category ? "show" : ""}`}>
                 <ul className="dropdown-content">
-                  {loader ? (
-                    <div className="loading">loading..</div>
-                  ) : (
-                    categoryType
-                      .filter((item) => item.visibility == "published")
-                      .map((category) => (
-                        <li>
-                          <Link className="Link" to={`/${category.name}`}>
-                            {" "}
-                            {category.name}
-                          </Link>
-                        </li>
-                      ))
-                  )}
+                  {categoryType
+                    .filter((item) => item.visibility == "published")
+                    .map((category) => (
+                      <li>
+                        <Link className="Link" to={`/${category.name}`}>
+                          {" "}
+                          {category.name}
+                        </Link>
+                      </li>
+                    ))}
                 </ul>
               </div>
             </li>
