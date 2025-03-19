@@ -48,7 +48,7 @@ const SingleBlog = ({ page }) => {
               <div className="recent-article-header">Recent Blog</div>
               <div className="recent-article-container">
                 {blog
-                  .slice(0.4)
+                  .slice(0, 4)
                   .reverse()
                   .map((item) => {
                     return (
