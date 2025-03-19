@@ -117,7 +117,7 @@
     padding: 30px 10px;
   }
   .carousel {
-    height: 400px; /* Increase height */
+    height: 400px !important; /* Increase height */
   }
   .carousel-slide {
     height: 400px !important;
@@ -156,7 +156,7 @@
     border-radius: 10px;
   }
   .carousel {
-    height: 350px; /* Even larger height */
+    height: 350px !important; /* Even larger height */
   }
   .carousel-slide {
     height: 350px !important;
