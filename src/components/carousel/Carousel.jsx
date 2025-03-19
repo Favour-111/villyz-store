@@ -30,7 +30,7 @@ const Carousel = () => {
     {
       text: "opening sales 30% off",
       image:
-        "https://images.philips.com/is/image/philipsconsumer/vrs_c0e165a227c882ffbe90f0d5336da2ba7861141c?wid=700&hei=700&$pnglarge$",
+        "https://res.cloudinary.com/drn3lmktm/image/upload/v1742369658/categories/pq473yebjh1neuwhpyc1.png",
       description:
         "Discover top-selling items and scale your store with ease—no stock, no hassle",
       title: "Browse & discover millions of products",

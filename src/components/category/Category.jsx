@@ -102,25 +102,20 @@ const Category = () => {
       ) : (
         <div className="category-container">
           <Slider {...settings}>
-            {categoryType.map((item, index) => {
-              // Added key for list rendering
-              return (
+            {categoryType
+              .filter((item) => item.visibility == "published")
+              .map((item, index) => (
                 <Link
                   to={`/${item.name}`}
                   className="category-item"
                   key={index}
                 >
-                  {" "}
-                  {/* Using 'key' for list rendering */}
                   <div className="category-image shadow-sm">
-                    <img src={item.image} alt={`${item.name} category`} />{" "}
-                    {/* Improved alt text */}
+                    <img src={item.image} alt={`${item.name} category`} />
                   </div>
                   <div className="categoryName">{item.name}</div>
-                  {/* Fixed pluralization */}
                 </Link>
-              );
-            })}
+              ))}
           </Slider>
         </div>
       )}

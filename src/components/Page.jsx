@@ -9,6 +9,8 @@ import Blog from "./Blog/Blog";
 import Footer from "../footer/Footer";
 import NavSm from "./NavSm/NavSm";
 import BackToTop from "./BackToTop/BackToTop";
+import BestSellers from "./BestSellers/BestSellers";
+import Information from "./Information/Information";
 
 const Page = () => {
   return (
@@ -20,6 +22,8 @@ const Page = () => {
       <Category />
       <Deals />
       <NewArrival />
+      <BestSellers />
+      <Information />
       <Blog />
       <BackToTop />
       <Footer />

@@ -45,3 +45,43 @@
   justify-content: center;
   gap: 10px;
 }
+.information-center {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 30px 10px;
+  [data-aos] {
+    overflow: hidden; /* Prevent overflow during animation */
+    width: 100%; /* Ensure elements stay within the container */
+  }
+
+  .information-center-items {
+    border: 1px solid #f3f3f3;
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+  }
+  .information-Header {
+    font-family: poppinsRegular;
+    color: #787878;
+    margin-top: 10px;
+  }
+  .information-content {
+    font-family: poppinsLight;
+    width: 150px;
+    text-align: center;
+    font-size: 14px;
+    margin-top: 10px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .information-center {
+    flex-wrap: wrap;
+  }
+  .information-center-items {
+    width: 100% !important;
+  }
+}

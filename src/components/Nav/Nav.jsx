@@ -101,7 +101,7 @@ const Nav = () => {
         </div>
         <div className="inputForm">
           <input
-            placeholder="Search Products.."
+            placeholder="Find the Product you are looking for.."
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             onKeyPress={handleKeyPress}
@@ -191,23 +191,25 @@ const Nav = () => {
               {loader ? (
                 <div className="loading">loading..</div>
               ) : (
-                categoryType.map((category) => (
-                  <div
-                    style={{
-                      textDecoration: "none",
-                    }}
-                    key={category}
-                    className={`category-items ${
-                      selectedCategory === category.name ? "active" : ""
-                    }`}
-                    onClick={() => {
-                      setSelectedCategory(category.name);
-                      navigate(`/${category.name}`);
-                    }}
-                  >
-                    {category.name}
-                  </div>
-                ))
+                categoryType
+                  .filter((item) => item.visibility == "published")
+                  .map((category, index) => (
+                    <div
+                      style={{
+                        textDecoration: "none",
+                      }}
+                      key={category}
+                      className={`category-items ${
+                        selectedCategory === category.name ? "active" : ""
+                      }`}
+                      onClick={() => {
+                        setSelectedCategory(category.name);
+                        navigate(`/${category.name}`);
+                      }}
+                    >
+                      {category.name}
+                    </div>
+                  ))
               )}
             </div>
           </div>
@@ -230,14 +232,16 @@ const Nav = () => {
                   {loader ? (
                     <div className="loading">loading..</div>
                   ) : (
-                    categoryType.map((category) => (
-                      <li>
-                        <Link className="Link" to={`/${category.name}`}>
-                          {" "}
-                          {category.name}
-                        </Link>
-                      </li>
-                    ))
+                    categoryType
+                      .filter((item) => item.visibility == "published")
+                      .map((category) => (
+                        <li>
+                          <Link className="Link" to={`/${category.name}`}>
+                            {" "}
+                            {category.name}
+                          </Link>
+                        </li>
+                      ))
                   )}
                 </ul>
               </div>

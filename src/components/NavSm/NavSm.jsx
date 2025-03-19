@@ -166,7 +166,7 @@ const NavSm = () => {
               <div className="nav-sm-input">
                 <input
                   type="text"
-                  placeholder="search product"
+                  placeholder="Find the Product you are looking for.."
                   name=""
                   id=""
                   value={query}
@@ -195,21 +195,23 @@ const NavSm = () => {
             {loader ? (
               <div className="loading">loading..</div>
             ) : (
-              categoryType.map((item) => (
-                <li>
-                  <button
-                    className="Link"
-                    onClick={() => {
-                      navigate(`/${item.name}`);
-                      window.scrollTo(0, 0);
-                      setNavIsOpen(false);
-                    }}
-                    key={item.id}
-                  >
-                    {item.name}
-                  </button>
-                </li>
-              ))
+              categoryType
+                .filter((item) => item.visibility == "published")
+                .map((item, index) => (
+                  <li>
+                    <button
+                      className="Link"
+                      onClick={() => {
+                        navigate(`/${item.name}`);
+                        window.scrollTo(0, 0);
+                        setNavIsOpen(false);
+                      }}
+                      key={item.id}
+                    >
+                      {item.name}
+                    </button>
+                  </li>
+                ))
             )}
           </ul>
         </div>
@@ -228,21 +230,23 @@ const NavSm = () => {
             {loader ? (
               <div className="loading">loading..</div>
             ) : (
-              categoryType.map((item) => (
-                <li>
-                  <button
-                    className="Link"
-                    onClick={() => {
-                      navigate(`/${item.name}`);
-                      window.scrollTo(0, 0);
-                      setNavIsOpen(false);
-                    }}
-                    key={item.id}
-                  >
-                    {item.name}
-                  </button>
-                </li>
-              ))
+              categoryType
+                .filter((item) => item.visibility == "published")
+                .map((item, index) => (
+                  <li>
+                    <button
+                      className="Link"
+                      onClick={() => {
+                        navigate(`/${item.name}`);
+                        window.scrollTo(0, 0);
+                        setNavIsOpen(false);
+                      }}
+                      key={item.id}
+                    >
+                      {item.name}
+                    </button>
+                  </li>
+                ))
             )}
           </ul>
           <Link className="li" onClick={toggleSubCategory2}>
