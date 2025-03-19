@@ -5,6 +5,7 @@ import "sweetalert2/src/sweetalert2.scss";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { IoIosArrowRoundBack } from "react-icons/io";
 import axios from "axios";
+import Loading from "../../components/Loading/Loading";
 
 const Reset = () => {
   const { id, token } = useParams();
@@ -142,6 +143,7 @@ const Reset = () => {
           <button type="submit">
             {loading ? "Please wait..." : "Reset password"}
           </button>
+          {loading ? <Loading /> : null}
           <Link to="/login" className="back-login">
             <IoIosArrowRoundBack /> Back to Login
           </Link>

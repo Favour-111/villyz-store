@@ -65,7 +65,13 @@ const Nav = () => {
                 borderRadius: "100px",
               }}
             />
-            <div onClick={() => navigate(`/profile/${id}`)}>
+            <div
+              onClick={
+                localStorage.getItem("auth-token")
+                  ? () => navigate(`/profile/${id}`)
+                  : null
+              }
+            >
               <div className="Name">Account</div>
               <div
                 className="Section-name"

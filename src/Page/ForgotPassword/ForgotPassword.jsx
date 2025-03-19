@@ -3,6 +3,7 @@ import "./ForgotPassword.css";
 import axios from "axios";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/src/sweetalert2.scss";
+import Loading from "../../components/Loading/Loading";
 const ForgotPassword = () => {
   const [loading, setLoader] = useState(false);
   const [errors, setErrors] = useState({});
@@ -93,6 +94,7 @@ const ForgotPassword = () => {
             <button disabled={loading}>
               {loading ? "Sending..." : "Send Mail"}
             </button>
+            {loading ? <Loading /> : null}
           </div>
         </form>
       </div>

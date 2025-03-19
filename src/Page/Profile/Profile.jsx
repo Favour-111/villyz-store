@@ -11,6 +11,7 @@ import AccountSideBarSm from "../../components/AccountSideBarSm/AccountSideBarSm
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { ShopContext } from "../../components/context/ShopContext";
+import Loading from "../../components/Loading/Loading";
 const Profile = ({ page }) => {
   const [loading, setLoading] = useState(false);
   const [deleteLoading, setDeleteLoading] = useState(false);
@@ -189,6 +190,7 @@ const Profile = ({ page }) => {
                         {deleteLoading ? "please wait..." : "Delete Account"}
                       </button>
                     </div>
+                    {deleteLoading ? <Loading /> : null}
                   </div>
                 </div>
               </div>

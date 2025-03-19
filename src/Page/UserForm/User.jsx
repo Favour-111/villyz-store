@@ -11,6 +11,7 @@ import axios from "axios";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/src/sweetalert2.scss";
 import { useNavigate } from "react-router-dom";
+import Loading from "../../components/Loading/Loading";
 const User = ({ page }) => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -92,7 +93,7 @@ const User = ({ page }) => {
 
     try {
       const response = await axios.post(
-        "https://villyzstore.onrender.com/users",
+        "http://localhost:5000/users",
         formData
       );
 
@@ -256,14 +257,9 @@ const User = ({ page }) => {
             </div>
             <div className={loader ? "spinning" : ""}></div>
             <button type="submit" className="register shadow-sm">
-              {loader ? (
-                <div class="spinner-border text-light fs-6" role="status">
-                  <span class="visually-hidden">Loading...</span>
-                </div>
-              ) : (
-                "Register"
-              )}
+              {loader ? "Hold.." : "Register"}
             </button>
+            {loader ? <Loading /> : null}
           </div>
         </form>
       </div>

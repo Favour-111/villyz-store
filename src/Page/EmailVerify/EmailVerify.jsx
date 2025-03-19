@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./EmailVerify.css";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
-
+import Loading from "../../components/Loading/Loading";
 const EmailVerify = () => {
   const [validUrl, setValidUrl] = useState(false);
   const [loading, setLoading] = useState(true); // New state for loading
@@ -33,6 +33,7 @@ const EmailVerify = () => {
         <div class="spinner-border" role="status">
           <span class="visually-hidden">Loading...</span>
         </div>
+        <Loading />
       </div>
     );
   }

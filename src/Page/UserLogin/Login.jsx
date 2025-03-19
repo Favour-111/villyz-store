@@ -11,6 +11,7 @@ import axios from "axios";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/src/sweetalert2.scss";
 import { useNavigate } from "react-router-dom";
+import Loading from "../../components/Loading/Loading";
 
 const Login = ({ page }) => {
   const navigate = useNavigate();
@@ -146,14 +147,9 @@ const Login = ({ page }) => {
                 Create Account?
               </Link>
               <button type="submit" className="login-bnt" disabled={loader}>
-                {loader ? (
-                  <div className="spinner-border text-light fs-6" role="status">
-                    <span className="visually-hidden">Loading...</span>
-                  </div>
-                ) : (
-                  "Login"
-                )}
+                {loader ? "Hold.." : "Login"}
               </button>
+              {loader ? <Loading /> : null}
             </div>
           </div>
           <div className="loginFormFan-container">
