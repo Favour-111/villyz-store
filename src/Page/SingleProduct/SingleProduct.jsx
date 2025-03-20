@@ -52,7 +52,7 @@ const SingleProduct = ({ page }) => {
               )}
             </div>
           </div>
-          <div className="col-md-6 col-sm-12">
+          <div className="col-md-6 col-sm-12 prod-abt">
             <div className="product-single-title">
               {name || "Product Name Unavailable"}
             </div>

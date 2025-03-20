@@ -129,6 +129,11 @@
   gap: 10px;
   margin-top: 20px;
 }
+.prod-abt {
+  height: 500px !important;
+  overflow: scroll;
+  scrollbar-width: none !important;
+}
 @media screen and (max-width: 768px) {
   .single-product-cont {
     padding: 10px;
@@ -136,6 +141,10 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
+  }
+  .prod-abt {
+    height: 100% !important;
+    overflow: hidden !important;
   }
 
   .product-single-title {
@@ -154,5 +163,9 @@
   .product-single-title {
     width: 100%;
     font-size: 15px;
+  }
+  .prod-abt {
+    width: 100% !important;
+    overflow: hidden;
   }
 }
