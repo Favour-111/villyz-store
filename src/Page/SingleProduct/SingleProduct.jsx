@@ -84,7 +84,12 @@ const SingleProduct = ({ page }) => {
                 )}%`}</span>
               ) : null}
             </div>
-            <div className="singleProduct-content">{description}</div>
+            <div
+              className="singleProduct-content"
+              dangerouslySetInnerHTML={{
+                __html: description,
+              }}
+            ></div>
             <div className="prod-footer">
               <button
                 className="prod-btn"
