@@ -252,3 +252,14 @@
     }
   }
 }
+@media screen and (max-width: 528px) {
+  .form-container {
+    border: none;
+    padding: 10px;
+    .input-small-container {
+      input {
+        margin-top: 10px;
+      }
+    }
+  }
+}

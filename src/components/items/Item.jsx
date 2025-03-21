@@ -30,7 +30,7 @@ const Item = ({ product }) => {
               name: product.productName,
               category: product.categories,
               newPrice: product.newPrice,
-              oldPrice: product.oldPrice,
+              oldPrice: product.oldPrice ? product.oldPrice : null, // Fixed oldPrice logic
               id: product.id,
               start: product.Rating,
               description: product.productDescription,
@@ -70,7 +70,10 @@ const Item = ({ product }) => {
 
         <div className="d-flex gap-2 align-items-center mt-2">
           <div className="new-price">${product.newPrice}</div>
-          <div className="old-Price">${product.oldPrice}</div>
+
+          {product.oldPrice ? (
+            <div className="old-Price">${product.oldPrice}</div>
+          ) : null}
         </div>
         <div
           className={product.availability === "in Stock" ? "type1" : "type2"}
@@ -163,7 +166,7 @@ const Item = ({ product }) => {
                 name: product.productName,
                 category: product.categories,
                 newPrice: product.newPrice,
-                oldPrice: product.oldPrice,
+                oldPrice: product.oldPrice ? product.oldPrice : null, // Fixed oldPrice logic
                 id: product.id,
                 start: product.Rating,
                 description: product.productDescription,

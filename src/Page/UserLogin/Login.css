@@ -124,3 +124,24 @@
     height: 350px;
   }
 }
+@media screen and (max-width: 628px) {
+  .login-form {
+    border: none !important;
+    padding: 10px !important;
+  }
+  .login-form-item {
+    margin-top: 10px;
+    input {
+      padding: 14px 15px;
+    }
+  }
+  .loginFormFan-container {
+    display: none;
+  }
+  .login-form-container {
+    padding: 0 10px;
+  }
+  .login-form {
+    height: 350px;
+  }
+}

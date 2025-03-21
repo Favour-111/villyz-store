@@ -27,6 +27,7 @@
       margin-top: 50px;
       span {
         color: var(--color);
+        text-transform: capitalize;
       }
     }
     .Header-content {
@@ -37,13 +38,9 @@
     }
   }
 }
-
-.itemBody {
-  padding: 50px 10px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
+.sliderProduct {
+  width: 100%;
+  overflow: hidden;
 }
 .information-center {
   display: flex;
@@ -77,11 +74,24 @@
     margin-top: 10px;
   }
 }
+.no-item {
+  margin-top: 20px;
+  font-family: poppinsRegular;
+  color: #787878;
+  font-size: 14px;
+}
 @media screen and (max-width: 768px) {
   .information-center {
     flex-wrap: wrap;
   }
   .information-center-items {
     width: 100% !important;
+  }
+  .container {
+    .Header-cont {
+      .Header-head {
+        font-size: 20px;
+      }
+    }
   }
 }
