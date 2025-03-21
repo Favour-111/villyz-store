@@ -6,11 +6,14 @@ import NavSm from "../../components/NavSm/NavSm";
 import BreadCrumb from "../../components/BreadCrumbs/BreadCrumb";
 import Footer from "../../footer/Footer";
 import Item from "../../components/items/Item";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { ShopContext } from "../../components/context/ShopContext";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/src/sweetalert2.scss";
 import BackToTop from "../../components/BackToTop/BackToTop";
+import { LuShoppingCart } from "react-icons/lu";
+import { MdAddShoppingCart } from "react-icons/md";
+import { GoHeart, GoHeartFill } from "react-icons/go";
 const SingleProduct = ({ page }) => {
   const location = useLocation();
   const products = location.state || {}; // Fallback to an empty object
@@ -31,8 +34,38 @@ const SingleProduct = ({ page }) => {
   const toggleWhishList = (id) => {
     if (WishList[id] > 0) {
       RemoveList(id);
+      const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.onmouseenter = Swal.stopTimer;
+          toast.onmouseleave = Swal.resumeTimer;
+        },
+      });
+      Toast.fire({
+        icon: "success",
+        title: "product Removed from wishList",
+      });
     } else {
       addtowishList(id);
+      const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.onmouseenter = Swal.stopTimer;
+          toast.onmouseleave = Swal.resumeTimer;
+        },
+      });
+      Toast.fire({
+        icon: "success",
+        title: "product added wishList",
+      });
     }
   };
   return (
@@ -90,75 +123,71 @@ const SingleProduct = ({ page }) => {
                 __html: description,
               }}
             ></div>
+          </div>
+          <div className="d-flex align-items-center justify-content-between">
+            <div></div>
+
             <div className="prod-footer">
-              <button
-                className="prod-btn"
-                onClick={() => {
-                  addToCart(id);
-                  const Toast = Swal.mixin({
-                    toast: true,
-                    position: "top-end",
-                    showConfirmButton: false,
-                    timer: 3000,
-                    timerProgressBar: true,
-                    didOpen: (toast) => {
-                      toast.onmouseenter = Swal.stopTimer;
-                      toast.onmouseleave = Swal.resumeTimer;
-                    },
-                  });
-                  Toast.fire({
-                    icon: "success",
-                    title: "product added carts",
-                  });
-                }}
-              >
-                {cartItem[id] > 0 ? (
-                  <img
-                    width="20"
-                    height="20"
-                    src="https://img.icons8.com/emoji/50/check-mark-emoji.png"
-                    alt="check-mark-emoji"
-                  />
-                ) : (
-                  "Add to Cart"
-                )}
-              </button>
+              {cartItem[id] > 0 ? (
+                <button
+                  className="prod-btn"
+                  onClick={() => {
+                    addToCart(id);
+                    const Toast = Swal.mixin({
+                      toast: true,
+                      position: "top-end",
+                      showConfirmButton: false,
+                      timer: 3000,
+                      timerProgressBar: true,
+                      didOpen: (toast) => {
+                        toast.onmouseenter = Swal.stopTimer;
+                        toast.onmouseleave = Swal.resumeTimer;
+                      },
+                    });
+                    Toast.fire({
+                      icon: "success",
+                      title: "product added carts",
+                    });
+                  }}
+                >
+                  <MdAddShoppingCart className="mb-1" /> Item in Cart
+                </button>
+              ) : (
+                <button
+                  className="prod-btn"
+                  onClick={() => {
+                    addToCart(id);
+                    const Toast = Swal.mixin({
+                      toast: true,
+                      position: "top-end",
+                      showConfirmButton: false,
+                      timer: 3000,
+                      timerProgressBar: true,
+                      didOpen: (toast) => {
+                        toast.onmouseenter = Swal.stopTimer;
+                        toast.onmouseleave = Swal.resumeTimer;
+                      },
+                    });
+                    Toast.fire({
+                      icon: "success",
+                      title: "product added carts",
+                    });
+                  }}
+                >
+                  <LuShoppingCart className="mb-1" /> Add to Cart
+                </button>
+              )}
+
               <button
                 className="heart-btn"
                 onClick={() => {
                   toggleWhishList(id);
-
-                  const Toast = Swal.mixin({
-                    toast: true,
-                    position: "top-end",
-                    showConfirmButton: false,
-                    timer: 3000,
-                    timerProgressBar: true,
-                    didOpen: (toast) => {
-                      toast.onmouseenter = Swal.stopTimer;
-                      toast.onmouseleave = Swal.resumeTimer;
-                    },
-                  });
-                  Toast.fire({
-                    icon: "success",
-                    title: "product added wishList",
-                  });
                 }}
               >
                 {WishList[id] > 0 ? (
-                  <img
-                    width="15"
-                    height="15"
-                    src="https://img.icons8.com/fluency/48/filled-like--v1.png"
-                    alt="filled-like--v1"
-                  />
+                  <GoHeartFill className="wishlist-open" />
                 ) : (
-                  <img
-                    width="15"
-                    height="15"
-                    src="https://img.icons8.com/ios/50/like--v1.png"
-                    alt="like--v1"
-                  />
+                  <GoHeart />
                 )}
               </button>
             </div>
@@ -170,7 +199,7 @@ const SingleProduct = ({ page }) => {
           <div className="item">
             <div className="itemBody">
               {product
-                .slice(0, 13)
+                .slice(0, 10)
                 .filter((item) => {
                   if (item.categories === category) {
                     return item;
@@ -187,6 +216,39 @@ const SingleProduct = ({ page }) => {
                 })}
             </div>
           </div>
+          <Link className="item-Link" to={`/${category}`}>
+            View More
+          </Link>
+
+          <h4 className="header-related">
+            <span>4 star</span> above
+          </h4>
+          <div className="item">
+            <div className="itemBody">
+              {product
+                .slice(0, 10)
+                .filter((item) => {
+                  if (item.categories === category) {
+                    if (item.Rating >= 4) {
+                    }
+                    return item;
+                  } else {
+                    return null;
+                  }
+                })
+                .reverse()
+                .map((item) => {
+                  return (
+                    <div data-aos="fade-up">
+                      <Item product={item} />
+                    </div>
+                  );
+                })}
+            </div>
+          </div>
+          <Link className="item-Link" to={`/${category}`}>
+            View More
+          </Link>
         </div>
       </div>
       <BackToTop />

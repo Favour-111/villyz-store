@@ -75,6 +75,9 @@
   text-transform: uppercase;
   font-size: 15px;
 }
+.wishlist-open {
+  color: var(--color);
+}
 .prod-footer {
   padding: 40px 0;
   display: flex;
@@ -94,20 +97,22 @@
   }
 }
 .prod-btn {
-  background-color: #4b5966;
+  background-color: var(--color);
   color: white;
   border: none;
-  padding: 7px 40px;
   font-family: poppinsSemiBold;
+  width: 160px;
+  height: 45px;
   border-radius: 5px;
   font-size: 15px;
 }
 .heart-btn {
-  padding: 7px;
+  height: 45px;
+  width: 50px;
   border: none;
   border-radius: 5px;
   background-color: transparent;
-  border: 1px solid #e3e3e3;
+  background-color: #f0f3f2;
 }
 .header-related {
   margin-top: 80px;
@@ -119,6 +124,10 @@
   span {
     color: var(--color);
   }
+}
+.item-Link {
+  font-family: poppinsRegular;
+  font-size: 14px;
 }
 .itemBody2 {
   padding: 10px;
