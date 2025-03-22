@@ -7,7 +7,7 @@ const NewArrival = () => {
   const { product } = useContext(ShopContext);
   return (
     <div>
-      <div className="container">
+      <div className="Arrival-container">
         <div className="Header-cont">
           <div className="Header-head">
             New <span>Arrival</span>

@@ -199,21 +199,13 @@ const SingleProduct = ({ page }) => {
           <div className="item">
             <div className="itemBody">
               {product
-                .slice(0, 10)
-                .filter((item) => {
-                  if (item.categories === category) {
-                    return item;
-                  } else {
-                    return null;
-                  }
-                })
-                .map((item) => {
-                  return (
-                    <div data-aos="fade-up">
-                      <Item product={item} />
-                    </div>
-                  );
-                })}
+                .filter((item) => item.categories === category) // Filter first
+                .slice(0, product.length >= 10 ? 10 : product.length) // Slice only if 10 or more exist
+                .map((item) => (
+                  <div data-aos="fade-up" key={item.id}>
+                    <Item product={item} />
+                  </div>
+                ))}
             </div>
           </div>
           <Link className="item-Link" to={`/${category}`}>
@@ -226,24 +218,16 @@ const SingleProduct = ({ page }) => {
           <div className="item">
             <div className="itemBody">
               {product
-                .slice(0, 10)
-                .filter((item) => {
-                  if (item.categories === category) {
-                    if (item.Rating >= 4) {
-                    }
-                    return item;
-                  } else {
-                    return null;
-                  }
-                })
+                .filter(
+                  (item) => item.categories === category && item.Rating >= 4
+                ) // Ensure category matches & rating is 4+
+                .slice(0, product.length >= 10 ? 10 : product.length) // Slice only if 10 or more exist
                 .reverse()
-                .map((item) => {
-                  return (
-                    <div data-aos="fade-up">
-                      <Item product={item} />
-                    </div>
-                  );
-                })}
+                .map((item) => (
+                  <div data-aos="fade-up" key={item.id}>
+                    <Item product={item} />
+                  </div>
+                ))}
             </div>
           </div>
           <Link className="item-Link" to={`/${category}`}>

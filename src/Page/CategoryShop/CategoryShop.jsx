@@ -14,11 +14,14 @@ const CategoryShop = ({ page }) => {
   const [filterCont, setFilterCont] = useState(false);
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
+  const [isRatingActive, setIsRatingActive] = useState(false);
   const [categories, setCategories] = useState([]);
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [priceRange, setPriceRange] = useState({ min: 0, max: 1000 });
   const [sortOption, setSortOption] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
+  const [selectedRatings, setSelectedRatings] = useState([]);
+
   const [stockFilter, setStockFilter] = useState({
     inStock: false,
     outOfStock: false,
@@ -52,35 +55,36 @@ const CategoryShop = ({ page }) => {
     setSortOption(option);
   };
 
-  // Apply filters, sorting, and reset pagination
   useEffect(() => {
     let tempProducts = [...products];
 
-    // Filter by category
     if (selectedCategories.length > 0) {
       tempProducts = tempProducts.filter((product) =>
         selectedCategories.includes(product.category)
       );
     }
 
-    // Filter by price range
     tempProducts = tempProducts.filter(
       (product) =>
         product.newPrice >= priceRange.min && product.newPrice <= priceRange.max
     );
 
-    // Filter by stock availability
     if (stockFilter.inStock && !stockFilter.outOfStock) {
       tempProducts = tempProducts.filter(
         (product) => product.availability === "in Stock"
       );
     } else if (!stockFilter.inStock && stockFilter.outOfStock) {
       tempProducts = tempProducts.filter(
-        (product) => !product.availability === "out Of Stock"
+        (product) => product.availability === "out Of Stock"
       );
     }
 
-    // Sort products
+    if (isRatingActive && selectedRatings.length > 0) {
+      tempProducts = tempProducts.filter((product) =>
+        selectedRatings.includes(Math.floor(product.Rating))
+      );
+    }
+
     if (sortOption === "name-asc") {
       tempProducts.sort((a, b) => a.productName.localeCompare(b.productName));
     } else if (sortOption === "name-desc") {
@@ -93,7 +97,23 @@ const CategoryShop = ({ page }) => {
 
     setFilteredProducts(tempProducts);
     setCurrentPage(1);
-  }, [products, selectedCategories, priceRange, sortOption, stockFilter]);
+  }, [
+    products,
+    selectedCategories,
+    priceRange,
+    sortOption,
+    stockFilter,
+    isRatingActive,
+    selectedRatings,
+  ]);
+
+  const handleRatingSelect = (star) => {
+    setSelectedRatings((prevRatings) =>
+      prevRatings.includes(star)
+        ? prevRatings.filter((r) => r !== star)
+        : [...prevRatings, star]
+    );
+  };
 
   // Get paginated products
   const Productcategory = selectedCategories.length
@@ -114,6 +134,9 @@ const CategoryShop = ({ page }) => {
       ...prev,
       [name]: checked,
     }));
+  };
+  const handleCheckboxChange = () => {
+    setIsRatingActive((prev) => !prev);
   };
 
   return (
@@ -204,6 +227,51 @@ const CategoryShop = ({ page }) => {
                   <option value="price-asc">Price (Lowest to Highest)</option>
                   <option value="price-desc">Price (Highest to Lowest)</option>
                 </select>
+              </div>
+              <div className="p-3">
+                {/* Rating options */}
+                <label className="d-flex align-items-center gap-2 mt-3">
+                  <input
+                    type="checkbox"
+                    checked={isRatingActive}
+                    onChange={() => setIsRatingActive(!isRatingActive)}
+                  />
+                  <div className="enable"> Enable Rating Filter</div>
+                </label>
+
+                {[1, 2, 3, 4, 5].map((rating) => (
+                  <label
+                    key={rating}
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      cursor: "pointer",
+                    }}
+                  >
+                    <input
+                      type="checkbox"
+                      value={rating}
+                      disabled={!isRatingActive}
+                      checked={selectedRatings.includes(rating)}
+                      onChange={() => handleRatingSelect(rating)}
+                    />
+                    <div style={{ display: "flex", marginTop: 10 }}>
+                      {Array.from({ length: rating }, (_, index) => (
+                        <svg
+                          key={index}
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 24 24"
+                          fill={index < rating ? "orange" : "gray"} // Conditionally set color
+                          width="14px"
+                          height="14px"
+                          style={{ margin: "0 2px" }}
+                        >
+                          <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                        </svg>
+                      ))}
+                    </div>
+                  </label>
+                ))}
               </div>
             </div>
           </div>
@@ -404,6 +472,51 @@ const CategoryShop = ({ page }) => {
                   <option value="price-asc">Price (Lowest to Highest)</option>
                   <option value="price-desc">Price (Highest to Lowest)</option>
                 </select>
+              </div>
+              <div className="p-3">
+                {/* Rating options */}
+                <label className="d-flex align-items-center gap-2 mt-3">
+                  <input
+                    type="checkbox"
+                    checked={isRatingActive}
+                    onChange={() => setIsRatingActive(!isRatingActive)}
+                  />
+                  <div className="enable"> Enable Rating Filter</div>
+                </label>
+
+                {[1, 2, 3, 4, 5].map((rating) => (
+                  <label
+                    key={rating}
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      cursor: "pointer",
+                    }}
+                  >
+                    <input
+                      type="checkbox"
+                      value={rating}
+                      disabled={!isRatingActive}
+                      checked={selectedRatings.includes(rating)}
+                      onChange={() => handleRatingSelect(rating)}
+                    />
+                    <div style={{ display: "flex", marginTop: 10 }}>
+                      {Array.from({ length: rating }, (_, index) => (
+                        <svg
+                          key={index}
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 24 24"
+                          fill={index < rating ? "orange" : "gray"} // Conditionally set color
+                          width="14px"
+                          height="14px"
+                          style={{ margin: "0 2px" }}
+                        >
+                          <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                        </svg>
+                      ))}
+                    </div>
+                  </label>
+                ))}
               </div>
               <div>
                 <button

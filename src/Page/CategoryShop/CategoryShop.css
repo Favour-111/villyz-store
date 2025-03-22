@@ -26,3 +26,7 @@
   font-family: poppinsSemiBold;
   text-transform: capitalize;
 }
+.enable {
+  font-family: poppinsRegular;
+  font-size: 14px;
+}

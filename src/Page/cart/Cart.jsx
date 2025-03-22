@@ -13,6 +13,7 @@ import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/src/sweetalert2.scss";
 import BackToTop from "../../components/BackToTop/BackToTop";
 import { RiDeleteBin6Line } from "react-icons/ri";
+import { IoTrashOutline } from "react-icons/io5";
 
 const Cart = ({ page }) => {
   function usePreserveScrollPosition() {
@@ -98,75 +99,90 @@ const Cart = ({ page }) => {
               </div>
             </div>
             <div className="col-md-8 col-sm-12 cart-cont">
-              <table className="table4">
-                <tr className="table-header">
-                  <td>Product</td>
-                  <td>Price</td>
-                  <td>quantity</td>
-                  <td>Action</td>
-                </tr>
-                {product.map((e) => {
-                  if (cartItem[e.id] > 0) {
+              <div class="table-responsive">
+                <table class="table text-nowrap table-with-checkbox">
+                  <thead class="table-light">
+                    <tr>
+                      <td></td>
+                      <td>Product</td>
+                      <td>Price</td>
+                      <td>quantity</td>
+                      <td>Action</td>
+                    </tr>
+                  </thead>
+                  {cartProducts.map((item) => {
                     return (
-                      <tr>
-                        <td>
-                          <div className="d-flex gap-2 align-items-center">
-                            <img src={e.image} alt="" width={50} height={50} />
-                            <div>{e.name}</div>
-                          </div>
-                        </td>
-                        <td>${e.newPrice}</td>
-                        <td>
-                          <div className="counter-container">
-                            <button onClick={() => addToCart(e.id)}>+</button>
-                            <div>{cartItem[e.id]}</div>
-                            <button
+                      <tbody>
+                        <tr>
+                          <td class="align-middle">
+                            <a href="#">
+                              <img
+                                src={item.image}
+                                class="icon-shape icon-xxl"
+                                alt=""
+                              />
+                            </a>
+                          </td>
+                          <td class="align-middle">
+                            <div>
+                              <h5 class="fs-6 mb-0">
+                                <div class="text-inherit">
+                                  {item.productName.slice(0, 20)}..
+                                </div>
+                              </h5>
+                              <small>{item.categories}</small>
+                            </div>
+                          </td>
+                          <td class="align-middle">${item.newPrice}</td>
+                          <td>
+                            <div>
+                              <div className="counter-container">
+                                <button
+                                  type="button"
+                                  onClick={() => addToCart(item.id)}
+                                >
+                                  +
+                                </button>
+                                <div>{cartItem[item.id]}</div>
+                                <button
+                                  type="button"
+                                  onClick={() => Remove(item.id)}
+                                >
+                                  -
+                                </button>
+                              </div>
+                            </div>
+                          </td>
+
+                          <td class="align-middle">
+                            <a
+                              href="#"
+                              class="text-muted"
                               onClick={() => {
-                                Remove(e.id);
+                                Remove(item.id);
+                                Swal.fire({
+                                  icon: "info",
+                                  title: "Removed from Wishlist",
+                                  toast: true,
+                                  position: "top-end",
+                                  showConfirmButton: false,
+                                  timer: 2000,
+                                });
                               }}
+                              data-bs-toggle="tooltip"
+                              data-bs-placement="top"
+                              aria-label="Delete"
+                              data-bs-original-title="Delete"
                             >
-                              -
-                            </button>
-                          </div>
-                        </td>
-                        <td>
-                          <div
-                            style={{
-                              cursor: "pointer",
-                            }}
-                            onClick={() => {
-                              const Toast = Swal.mixin({
-                                toast: true,
-                                position: "top-end",
-                                showConfirmButton: false,
-                                timer: 3000,
-                                timerProgressBar: true,
-                                didOpen: (toast) => {
-                                  toast.onmouseenter = Swal.stopTimer;
-                                  toast.onmouseleave = Swal.resumeTimer;
-                                },
-                              });
-                              Toast.fire({
-                                icon: "info",
-                                title: "product removed from cart",
-                              });
-                            }}
-                          >
-                            <img
-                              src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAACXBIWXMAAAsTAAALEwEAmpwYAAAEP0lEQVR4nO2dP4+UVRTGfxUR+AgsriFqpAQLxVbdGDtJSHQ/A1BCCTQutkK0kgIT+RckxsVC+AAmRreAEgtZ1kqjiK6R5jE3czBvNsPsfYedmXPPnl9yi52cmZznPe/cP8/c+y4kSZIkSZIkSZIkSZIkSZJER7BD8JHgF4E2aWuCpfKeWecdFsHZikJsbB/OOu+waHDXl4t8qCL2jSfflOlktw2R3fWTik+yID4Q7Bd8Xjk4a8qt5HSx5Mh2QPCu4G8HF16btJLjO0RGsFfwuwn+TLAPZwj2CS5YjiXXvURFcNWE3sA5gi8t16tERPBmpyuYxzmCOcEjy7ndrsuEXBP8+ZS++SSNIDjxFA1F23XBSzRQjN8cDMjapN3t5Hy3+1rn75pWtO7BK/bNKIl+7TrRZ6RoEyyb1it4pdNNhS3Ghhlj0foHXhE8tCTnCI4aKch1S3I5clE0GCtvmtZreEXwsuBXB4O2ptTKoP4iDQx4VzrdV8T20CYwvosxDMF9E/E8jSKYNw0/0zqCFRNzgEYRHDQNP9I6glsm5m0aRbBgGr6ldQSXTMwHNIpg0TR8QesIzpuYoz13lazZpoYds4rvvO+oaThP6whOm5jTFbFnbQ2zpzPXX5pV/Dga3CM4Vnt3aXDXzm1YDa/NKr4Td840HKN1ythhYi5VxKrmtWnFd2Ium4b3aZ0yuzIxtxwU5E6f+EgzxbHm8JrSHd83PsJa6n/KCt3E3G+4IKumof0ND4JdJmbdQZd1r098J2bdNOwiArWC5HBQF+yuvaHCGYxyOKj36XKboTMoHmxtDFEkY7HvtFE+CxLHWOxrMMpnl1W9sG2GWutBPgf145b7x0Sh1pyTz4KcsdxPEYVag1E+C1L980Ez1PbD8lmQOMZiX4NRPgty23J/iyh05vIrDRZkJYyx2He1K58FiWMsDjEY/2mwIOuW+04i0RG2u5WCKKKx2MdglL+CxNmxOI7BKH8FiWcsDjEYFxoqyEI4Y3GIwbjYUEEWw+xYHMdglL+CxDMW+xiM8leQeMZiH4NRW3OB72zh58fZsTjCYLw8yYKMYozPj2cs9jEY5a8g8YzFPgaj/BUknrE4xGBcbaggq+GMxT4Go/wVJKaxWGswytEsq88W2AgG47z3dYgiG4tPKCbdKINRvgryquX6A1HZzGCUr4LENRZrDUYNPwP4YMTnTSw+5I7FEXuchloRGjw8/6adkC0X65tRz26fZHyoo9AVBuOZEefIl+xOflAuVsW584nEhzoKvRVHpGdNyB2LGxEcMZHLOEeD50aWXI8QFcErnedNPYdTBDs7z4/0/SjYZ0XwvQn9BKcIPrUcvyM69o9WHpvgrwSvezjdqoFVcshyKrn9K3iN7YDgsOAvE+6xPRK8x3ZC8ILNZH7qfGM0w/bYcjnX8uMIkyRJkiRJkiRJkiRJkiRJkiRJkoQ+/AfNOoXNz7JA8QAAAABJRU5ErkJggg=="
-                              alt="filled-trash"
-                              width={30}
-                              onClick={() => deleteCart(e.id)}
-                              className="delete-icn"
-                              height={30}
-                            />
-                          </div>
-                        </td>
-                      </tr>
+                              <IoTrashOutline />
+                            </a>
+                          </td>
+                        </tr>
+                      </tbody>
                     );
-                  }
-                })}
-              </table>
+                  })}
+                </table>
+              </div>
               <div className="table-sm">
                 {product.map((e) => {
                   if (cartItem[e.id] > 0) {
@@ -234,7 +250,7 @@ const Cart = ({ page }) => {
               <Link
                 onClick={window.scrollTo(0, 0)}
                 className="continue"
-                to={"/product"}
+                to={"/collection"}
               >
                 continue shopping
               </Link>
@@ -280,7 +296,7 @@ const Cart = ({ page }) => {
         </div>
 
         <div className="item">
-          <div data-aos="fade-up" className="itemBody">
+          <div className="itemBody">
             {product.slice(0, 6).map((item) => {
               return <Item product={item} />;
             })}

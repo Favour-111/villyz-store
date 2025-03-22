@@ -23,7 +23,7 @@ const Deals = () => {
   };
   return (
     <div>
-      <div className="container">
+      <div className="Deal-container">
         <div className="container-header">
           <div>
             <div className="header">
@@ -38,16 +38,14 @@ const Deals = () => {
           </div>
         </div>
 
-        <div className="item">
-          <div className="itemBody">
-            {product
-              .filter((item) => item.deals === "Deal")
-              .map((item) => (
-                <div key={product.id} data-aos="fade-up">
-                  <Item product={item} />
-                </div>
-              ))}
-          </div>
+        <div className="Deal-itemBody">
+          {product
+            .filter((item) => item.deals === "Deal")
+            .map((item) => (
+              <div key={product.id}>
+                <Item product={item} />
+              </div>
+            ))}
         </div>
       </div>
       <div className="banner-container">

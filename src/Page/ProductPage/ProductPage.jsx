@@ -17,11 +17,11 @@ const ProductPage = ({ page }) => {
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [selectedCategories, setSelectedCategories] = useState([]);
-  const [priceRange, setPriceRange] = useState({ min: 0, max: 1000 });
+  const [priceRange, setPriceRange] = useState([0, 1000]);
   const [sortOption, setSortOption] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
 
-  const itemsPerPage = 8;
+  const itemsPerPage = 12;
 
   // Sample product data
   useEffect(() => {

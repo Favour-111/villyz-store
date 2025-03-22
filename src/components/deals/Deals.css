@@ -17,8 +17,9 @@
   font-family: poppinsRegular;
   src: url(../../assets/font/Poppins-Medium.ttf);
 }
-.container {
-  padding: 60px 60px 20px 30px;
+.Deal-container {
+  width: 100%;
+  padding: 60px 60px 20px 60px;
   .container-header {
     display: flex;
     align-items: center;
@@ -53,14 +54,14 @@
   align-items: center;
   justify-content: center;
 }
-.itemBody {
+.Deal-itemBody {
   padding: 50px 10px;
-  margin: 0;
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  width: 100%;
+  gap: 20px;
   justify-content: center;
-  margin: auto;
+  align-items: flex-start;
 }
 
 .banner-container {
@@ -141,7 +142,7 @@
     overflow: scroll;
     scrollbar-width: none;
   }
-  .itemBody {
+  .Deal-itemBody {
     align-items: center;
     justify-content: center;
   }
@@ -155,7 +156,7 @@
     align-items: flex-start !important;
     justify-content: flex-start !important;
   }
-  .itemBody {
+  .Deal-itemBody {
     padding: 50px 0 !important;
     align-items: center;
     justify-content: center;
@@ -165,9 +166,13 @@
   }
 }
 @media screen and (max-width: 530px) {
-  .itemBody {
-    padding: 20px 0 !important;
+  .Deal-container {
+    padding: 20px;
+  }
+  .Deal-itemBody {
+    padding: 10px 0 !important;
     align-items: center;
+    gap: 10px;
     justify-content: center;
   }
   .container-header {
