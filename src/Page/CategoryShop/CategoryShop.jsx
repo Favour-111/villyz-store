@@ -27,7 +27,7 @@ const CategoryShop = ({ page }) => {
     outOfStock: false,
   });
 
-  const itemsPerPage = 8;
+  const itemsPerPage = 12;
 
   // Sample product data
   useEffect(() => {
@@ -304,7 +304,7 @@ const CategoryShop = ({ page }) => {
               </div>
             </div>
 
-            {paginatedProducts.length > 1 ? (
+            {paginatedProducts.length > 0 ? (
               <div className="itemBody1">
                 {paginatedProducts.map((product) => (
                   <div>
@@ -334,14 +334,18 @@ const CategoryShop = ({ page }) => {
                   onClick={() => setCurrentPage(i + 1)}
                   style={{
                     margin: " 5px",
-                    padding: "5px 13px",
+                    padding: "7px 16px",
                     background:
-                      currentPage === i + 1 ? " rgb(83 109 254)" : "#ddd",
-                    color: currentPage === i + 1 ? "#fff" : "#000",
-                    border: "none",
+                      currentPage === i + 1
+                        ? " rgb(83 109 254)"
+                        : "transparent",
+                    color: currentPage === i + 1 ? "#fff" : "#737373",
+                    border:
+                      currentPage === i + 1 ? "#none" : "1px solid #e3e3e3",
                     borderRadius: "5px",
-                    fontFamily: "poppinsSemiBold",
+                    fontFamily: "poppinsRegular",
                     cursor: "pointer",
+                    transition: "250ms",
                   }}
                 >
                   {i + 1}

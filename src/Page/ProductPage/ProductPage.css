@@ -151,6 +151,8 @@ select {
 .filter-container {
   height: 100%;
   width: 100%;
+  overflow: scroll;
+  scrollbar-width: none !important;
   position: fixed;
   left: 0;
   right: 0;

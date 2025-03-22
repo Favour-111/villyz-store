@@ -73,7 +73,7 @@ const BestSellers = () => {
                   {filteredPod.length > 0 ? (
                     <Slider {...settings}>
                       {filteredPod.map((item) => (
-                        <div key={item.id} data-aos="fade-up">
+                        <div key={item.id}>
                           <Item product={item} />
                         </div>
                       ))}
