@@ -23,7 +23,7 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  margin-top: 30px;
+  margin-top: 50px;
 }
 
 .order-header {
@@ -49,9 +49,10 @@
 .View {
   background-color: var(--color);
   border: none;
-  padding: 10px 20px;
+  padding: 7px 15px;
   color: white;
   border-radius: 5px;
+  font-size: 13px !important;
 }
 .order-type {
   font-family: poppinsSemiBold;

@@ -41,6 +41,7 @@
 .sliderProduct {
   width: 100%;
   overflow: hidden;
+  padding: 50px 10px;
 }
 .information-center {
   display: flex;
@@ -93,5 +94,14 @@
         font-size: 20px;
       }
     }
+  }
+  .sliderProduct {
+    padding: 50px 0;
+  }
+}
+
+@media screen and (max-width: 530px) {
+  .sliderProduct {
+    padding: 20px 0;
   }
 }

@@ -69,7 +69,7 @@ const Nav = () => {
               onClick={
                 localStorage.getItem("auth-token")
                   ? () => navigate(`/profile/${id}`)
-                  : null
+                  : () => navigate(`/login`)
               }
             >
               <div className="Name">Account</div>

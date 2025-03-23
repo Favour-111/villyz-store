@@ -8,12 +8,14 @@ const NewArrival = () => {
   return (
     <div>
       <div className="Deal-container">
-        <div className="Header-cont">
-          <div className="Header-head">
-            New <span>Arrival</span>
-          </div>
-          <div className="Header-content">
-            shop on villyz for new arrivals and fast shipping
+        <div className="container-header">
+          <div>
+            <div className="header">
+              New <span>Arrival</span>
+            </div>
+            <div className="content">
+              shop on villyz for new arrivals and fast shipping
+            </div>
           </div>
         </div>
         <div>

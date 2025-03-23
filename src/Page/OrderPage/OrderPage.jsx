@@ -7,7 +7,7 @@ import BreadCrumb from "../../components/BreadCrumbs/BreadCrumb";
 import Footer from "../../footer/Footer";
 import BackToTop from "../../components/BackToTop/BackToTop";
 import product from "../../product";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import AccountSideBar from "../../components/AccountSideBar/AccountSideBar";
 import AccountSideBarSm from "../../components/AccountSideBarSm/AccountSideBarSm";
 const OrderPage = ({ page }) => {
@@ -48,7 +48,7 @@ const OrderPage = ({ page }) => {
         <AccountSideBar />
         <div className=" w-100">
           <AccountSideBarSm />
-          <div className="order-head">
+          <div className="order-head ">
             <div className="order-header">
               product <span> order list</span>
             </div>
@@ -56,38 +56,35 @@ const OrderPage = ({ page }) => {
               your product order is our first priority
             </div>
           </div>
-          <div>
-            <div className="order-container">
-              <div className="cart-cont ">
-                <table className="table2">
-                  <div className="order-type mb-3 ">Pending Order</div>
-                  <tr className="table-header">
-                    <td>Order ID</td>
-                    <td>Shipping</td>
-                    <td>quantity</td>
-                    <td>date</td>
-                    <td>status</td>
-                    <td>Action</td>
+          <div className="p-4">
+            <div class="table-responsive mt-4">
+              <table class="table text-nowrap table-with-checkbox">
+                <thead class="table-light">
+                  <tr>
+                    <th>Order ID</th>
+                    <th>Shipping</th>
+                    <th>quantity</th>
+                    <th>date</th>
+                    <th>status</th>
+                    <th>Action</th>
                   </tr>
-                  {order.map((e) => {
-                    return (
+                </thead>
+                {order.map((item) => {
+                  return (
+                    <tbody>
                       <tr>
-                        <td>
-                          <div className="d-flex gap-2 align-items-center">
-                            <div>#1246</div>
+                        <td class="align-middle">#1212</td>
+                        <td class="align-middle">
+                          <div>
+                            <h5 class="fs-6 mb-0">{item.fee}</h5>
                           </div>
                         </td>
-                        <td>${e.fee}</td>
-                        <td>
-                          <div>{e.quantity}</div>
+                        <td class="align-middle">${item.quantity}</td>
+                        <td class="align-middle">${item.date}</td>
+                        <td class="align-middle">
+                          <span class="badge bg-success">delivered</span>
                         </td>
-                        <td>
-                          <div>{e.date}</div>
-                        </td>
-                        <td>
-                          <div className="success">delivered</div>
-                        </td>
-                        <td>
+                        <td class="align-middle">
                           <button
                             className="View"
                             onClick={() => {
@@ -99,10 +96,10 @@ const OrderPage = ({ page }) => {
                           </button>
                         </td>
                       </tr>
-                    );
-                  })}
-                </table>
-              </div>
+                    </tbody>
+                  );
+                })}
+              </table>
             </div>
           </div>
         </div>

@@ -68,8 +68,8 @@ const BestSellers = () => {
                   Shop on Villyz for Best Selling Products
                 </div>
               </div>
-              <div className="slick-slider">
-                <div className="sliderProduct">
+              <div className="slick-slider ">
+                <div className="sliderProduct ">
                   {filteredPod.length > 0 ? (
                     <Slider {...settings}>
                       {filteredPod.map((item) => (

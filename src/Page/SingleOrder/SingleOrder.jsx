@@ -56,33 +56,41 @@ const SingleOrder = ({ page }) => {
                 <div>Order Details</div>
                 <div></div>
               </div>
-              <div className="Order-details-table">
-                <table className="table2">
-                  <tr className="table-header">
-                    <td>ID</td>
-                    <td>Image</td>
-                    <td>Name</td>
-                    <td>Date</td>
-                    <td>Price</td>
-                  </tr>
-                  {product.slice(0, 3).map((e) => {
-                    return (
+              <div className="p-4">
+                <div class="table-responsive mt-4">
+                  <table class="table text-nowrap table-with-checkbox">
+                    <thead class="table-light">
                       <tr>
-                        <td>1</td>
-                        <td>
-                          <img src={e.image} alt="" width={50} height={50} />
-                        </td>
-                        <td>
-                          <div>{e.name}</div>
-                        </td>
-                        <td>
-                          <div>12-2-2022</div>
-                        </td>
-                        <td>${e.newPrice}</td>
+                        <th>ID</th>
+                        <th>Image</th>
+                        <th>Name</th>
+                        <th>Date</th>
+                        <th>Price</th>
                       </tr>
-                    );
-                  })}
-                </table>
+                    </thead>
+                    {product.slice(0, 3).map((item) => {
+                      return (
+                        <tbody>
+                          <tr>
+                            <td class="align-middle">#1212</td>
+                            <td class="align-middle">
+                              <a href="#">
+                                <img
+                                  src={item.image}
+                                  class="icon-shape icon-xxl"
+                                  alt=""
+                                />
+                              </a>
+                            </td>
+                            <td class="align-middle">{item.name}</td>
+                            <td class="align-middle">2023-2-24</td>
+                            <td class="align-middle">${item.newPrice}</td>
+                          </tr>
+                        </tbody>
+                      );
+                    })}
+                  </table>
+                </div>
               </div>
             </div>
           </div>
