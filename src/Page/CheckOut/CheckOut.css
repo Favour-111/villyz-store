@@ -201,7 +201,21 @@
   color: white;
   font-family: poppinsRegular;
   border: none;
-  margin-top: 40px;
+  font-size: 13px;
+}
+.instruction {
+  font-family: poppinsMedium;
+  font-size: 13px;
+  color: #4b5966;
+  margin-left: 20px;
+}
+.modal-cancel {
+  background-color: #e3e3e3;
+  font-family: poppinsRegular;
+  font-size: 13px;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
 }
 .proceed-cont {
   width: 100%;
