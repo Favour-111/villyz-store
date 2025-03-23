@@ -170,6 +170,11 @@
   color: #4b5966a7;
   text-transform: capitalize;
 }
+.WishList-btn {
+  border: none;
+  color: black;
+  background-color: transparent;
+}
 @media screen and (max-width: 579px) {
   .cart-container {
     padding: 20px;

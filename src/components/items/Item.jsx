@@ -6,6 +6,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/src/sweetalert2.scss";
+import { CiBookmark } from "react-icons/ci";
+import { GoBookmarkFill } from "react-icons/go";
 const Item = ({ product }) => {
   const navigate = useNavigate();
   const { cartItem, addToCart, WishList, RemoveList, addtowishList } =
@@ -141,19 +143,9 @@ const Item = ({ product }) => {
           }} // Pass a function reference
         >
           {WishList[product.id] > 0 ? (
-            <img
-              width="15"
-              height="15"
-              src="https://img.icons8.com/fluency/48/filled-like--v1.png"
-              alt="filled-like--v1"
-            />
+            <GoBookmarkFill className="book-mark" />
           ) : (
-            <img
-              width="15"
-              height="15"
-              src="https://img.icons8.com/ios/50/like--v1.png"
-              alt="like--v1"
-            />
+            <CiBookmark className="text-dark fs-6" />
           )}
         </button>
 

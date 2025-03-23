@@ -17,6 +17,9 @@
   font-family: poppinsRegular;
   src: url(../../assets/font/Poppins-Medium.ttf);
 }
+.book-mark {
+  color: var(--color);
+}
 .product-item {
   position: relative;
   width: 190px;
