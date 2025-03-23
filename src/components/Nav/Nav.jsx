@@ -146,15 +146,18 @@ const Nav = () => {
                       textDecoration: "none",
                     }}
                     key={category}
-                    className={`category-items ${
-                      selectedCategory === category.name ? "active" : ""
-                    }`}
+                    className="category-nav-items"
                     onClick={() => {
                       setSelectedCategory(category.name);
                       navigate(`/${category.name}`);
                     }}
                   >
-                    {category.name}
+                    <div className="nav-category-img-cont">
+                      <div className="Nav-Category-Img">
+                        <img src={category.image} alt="" />
+                      </div>
+                      {category.name}
+                    </div>
                   </div>
                 ))}
             </div>

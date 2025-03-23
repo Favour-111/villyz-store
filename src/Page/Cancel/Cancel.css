@@ -1,0 +1,44 @@
+:root {
+  --color: rgb(83 109 254);
+  --text: #4b5966;
+}
+@font-face {
+  font-family: poppinsBold;
+  src: url(../../assets/font/Poppins-SemiBold.ttf);
+}
+@font-face {
+  font-family: poppinsLight;
+  src: url(../../assets/font/Poppins-Light.ttf);
+}
+@font-face {
+  font-family: poppinsSemiBold;
+  src: url(../../assets/font/Poppins-SemiBold.ttf);
+}
+@font-face {
+  font-family: poppinsRegular;
+  src: url(../../assets/font/Poppins-Medium.ttf);
+}
+.cancel-body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100vh;
+  img {
+    width: 200px;
+  }
+}
+.cancel-head {
+  color: red;
+  font-family: poppinsBold;
+  font-size: 30px;
+  text-transform: capitalize;
+  margin-top: 20px;
+}
+.cancel-content {
+  text-align: center;
+  font-family: poppinsLight;
+  color: #4b5966;
+  font-size: 13px;
+  margin-top: 10px;
+}

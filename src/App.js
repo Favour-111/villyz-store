@@ -32,6 +32,8 @@ import Profile from "./Page/Profile/Profile";
 import Address from "./Page/Address/Address";
 import axios from "axios";
 import NotFound from "./Page/NotFound/NotFound";
+import Success from "./Page/Success/Success";
+import Cancel from "./Page/Cancel/Cancel";
 function App() {
   useEffect(() => {
     AOS.init({
@@ -82,6 +84,8 @@ function App() {
           />
           <Route element={<Reset />} path="/reset-password/:id/:token" />
           <Route element={<Address page="Address" />} path="/addresses" />
+          <Route element={<Success />} path="/success" />
+          <Route element={<Cancel />} path="/cancel" />
           {categoryType.map((item) => {
             return (
               <Route

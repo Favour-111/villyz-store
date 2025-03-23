@@ -675,9 +675,7 @@ const CheckOut = ({ page }) => {
               {AddLoader && <Loading />}
             </div>
             <div className="proceed-cont">
-              <button onClick={handleProceedToPayment}>
-                Proceed to payment
-              </button>
+              <button onClick={handleProceedToPayment}>Pay Now</button>
             </div>
           </div>
         </div>

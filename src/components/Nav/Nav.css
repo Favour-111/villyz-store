@@ -143,6 +143,15 @@ li:hover {
 li .Link:hover {
   color: var(--color) !important;
 }
+.Nav-Category-Img img {
+  width: 30px !important;
+  height: 30px !important;
+}
+.nav-category-img-cont {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+}
 .nav-container {
   padding: 6px 70px;
   border-bottom: 1px solid #78787827;
@@ -186,21 +195,18 @@ li .Link:hover {
   transition: 250ms;
   border-radius: 5px;
 }
-.category-items {
+.category-nav-items {
   background-color: white;
   border-radius: 5px;
   margin-top: 10px;
+  padding: 5px !important;
   color: #4b5966;
   font-family: poppinsSemibold;
   font-size: 13.5px;
   transition: 250ms;
   cursor: pointer;
 }
-.category-items:hover,
-.category-items.active {
-  background-color: var(--color);
-  color: white;
-}
+
 .category-btn {
   display: flex;
   align-items: center;
