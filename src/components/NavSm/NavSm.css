@@ -64,7 +64,7 @@
 }
 
 .nav-sm-cont.open {
-  width: 300px;
+  width: 400px;
   padding: 0 !important;
 }
 
@@ -237,7 +237,7 @@ li .Link {
     align-items: center;
   }
 }
-@media screen and (max-width: 468px) {
+@media screen and (max-width: 568px) {
   .nav-sm-cont.open {
     width: 100%;
   }

@@ -14,6 +14,8 @@ import BackToTop from "../../components/BackToTop/BackToTop";
 import { LuShoppingCart } from "react-icons/lu";
 import { MdAddShoppingCart } from "react-icons/md";
 import { GoHeart, GoHeartFill } from "react-icons/go";
+import { CiBookmark } from "react-icons/ci";
+import { GoBookmarkFill } from "react-icons/go";
 const SingleProduct = ({ page }) => {
   const location = useLocation();
   const products = location.state || {}; // Fallback to an empty object
@@ -185,9 +187,9 @@ const SingleProduct = ({ page }) => {
                 }}
               >
                 {WishList[id] > 0 ? (
-                  <GoHeartFill className="wishlist-open" />
+                  <GoBookmarkFill className="wishlist-open" />
                 ) : (
-                  <GoHeart />
+                  <CiBookmark />
                 )}
               </button>
             </div>
