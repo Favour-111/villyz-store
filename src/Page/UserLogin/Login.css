@@ -83,6 +83,27 @@
     margin-top: 5px;
   }
 }
+.login-form-item1 {
+  width: 100%;
+  label {
+    font-family: poppinsRegular;
+    font-size: 13px;
+    margin-left: 2px;
+    color: var(--text);
+  }
+  .login-form-pass {
+    border: 1px solid #e8e8e8;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 15px;
+    border-radius: 4px;
+    margin-top: 5px;
+  }
+  input {
+  }
+}
 .forgot {
   display: flex;
   align-items: flex-end;

@@ -12,7 +12,8 @@ import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/src/sweetalert2.scss";
 import { useNavigate } from "react-router-dom";
 import Loading from "../../components/Loading/Loading";
-
+import { IoEyeOutline } from "react-icons/io5";
+import { IoEyeOffOutline } from "react-icons/io5";
 const Login = ({ page }) => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -21,7 +22,7 @@ const Login = ({ page }) => {
   });
   const [errors, setErrors] = useState({});
   const [loader, setLoader] = useState(false);
-
+  const [displayPass, setDisplayPass] = useState(false);
   const validateForm = () => {
     let newErrors = {};
 
@@ -125,15 +126,21 @@ const Login = ({ page }) => {
               />
               {errors.email && <span className="error">{errors.email}</span>}
             </div>
-            <div className="login-form-item">
+            <div className="login-form-item1">
               <label>Password*</label>
-              <input
-                type="password"
-                placeholder="Input password"
-                name="password"
-                value={formData.password}
-                onChange={handleChange}
-              />
+              <div className="login-form-pass">
+                <input
+                  type={displayPass ? "text" : "password"}
+                  placeholder="Input password"
+                  name="password"
+                  value={formData.password}
+                  onChange={handleChange}
+                />
+
+                <div onClick={() => setDisplayPass(!displayPass)}>
+                  {displayPass ? <IoEyeOffOutline /> : <IoEyeOutline />}
+                </div>
+              </div>
               {errors.password && (
                 <span className="error">{errors.password}</span>
               )}

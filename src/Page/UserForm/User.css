@@ -67,6 +67,28 @@
       margin-top: 5px;
     }
   }
+  .input-small-container1 {
+    height: 120px;
+    width: 48%;
+    label {
+      font-family: poppinsRegular;
+      font-size: 13px;
+      margin-left: 2px;
+      color: var(--text);
+    }
+    .input-small-pass {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border: 1px solid #e8e8e8 !important;
+      width: 100%;
+      padding: 15px;
+      border-radius: 4px;
+      margin-top: 5px;
+    }
+    input {
+    }
+  }
   .input-lg-container {
     width: 100%;
     label {

@@ -11,6 +11,8 @@ import axios from "axios";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/src/sweetalert2.scss";
 import { useNavigate } from "react-router-dom";
+import { IoEyeOutline } from "react-icons/io5";
+import { IoEyeOffOutline } from "react-icons/io5";
 import Loading from "../../components/Loading/Loading";
 const User = ({ page }) => {
   const navigate = useNavigate();
@@ -26,6 +28,8 @@ const User = ({ page }) => {
   const [errors, setErrors] = useState({});
   const [loader, setLoader] = useState(false);
   const [passwordStrength, setPasswordStrength] = useState("weak");
+  const [displayPass, setDisplayPass] = useState(false);
+  const [displayPass2, setDisplayPass2] = useState(false);
   const checkPasswordStrength = (password) => {
     if (password.length < 6) {
       setPasswordStrength("weak");
@@ -93,7 +97,7 @@ const User = ({ page }) => {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/users",
+        "https://villyzstore.onrender.com/users",
         formData
       );
 
@@ -211,15 +215,20 @@ const User = ({ page }) => {
             </div>
           </div>
           <div className="input-sm">
-            <div className="input-small-container">
+            <div className="input-small-container1">
               <label>Password*</label>
-              <input
-                type="password"
-                placeholder="Enter password"
-                name="password"
-                value={formData.password}
-                onChange={handleChange}
-              />
+              <div className="input-small-pass">
+                <input
+                  type={displayPass ? "text" : "password"}
+                  placeholder="Enter password"
+                  name="password"
+                  value={formData.password}
+                  onChange={handleChange}
+                />
+                <div onClick={() => setDisplayPass(!displayPass)}>
+                  {displayPass ? <IoEyeOffOutline /> : <IoEyeOutline />}
+                </div>
+              </div>
 
               {errors.password && (
                 <span className="error">{errors.password}</span>
@@ -233,16 +242,21 @@ const User = ({ page }) => {
                 </p>
               </div>
             </div>
-            <div className="input-small-container mt-3">
+            <div className="input-small-container1 mt-3">
               <label>Confirm Password*</label>
-              <input
-                className={errors.confirmPassword && "inputError"}
-                type="password"
-                placeholder="Confirm password"
-                name="confirmPassword"
-                value={formData.confirmPassword}
-                onChange={handleChange}
-              />
+              <div className="input-small-pass">
+                <input
+                  className={errors.confirmPassword && "inputError"}
+                  type={displayPass2 ? "text" : "password"}
+                  placeholder="Confirm password"
+                  name="confirmPassword"
+                  value={formData.confirmPassword}
+                  onChange={handleChange}
+                />
+                <div onClick={() => setDisplayPass2(!displayPass2)}>
+                  {displayPass2 ? <IoEyeOffOutline /> : <IoEyeOutline />}
+                </div>
+              </div>
               {errors.confirmPassword && (
                 <span className="error">{errors.confirmPassword}</span>
               )}
