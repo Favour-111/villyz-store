@@ -44,6 +44,12 @@
   padding: 50px 10px;
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 20px;
   justify-content: center;
+}
+@media screen and (max-width: 468px) {
+  .itemBody {
+    padding: 20px 10px;
+    gap: 10px;
+  }
 }

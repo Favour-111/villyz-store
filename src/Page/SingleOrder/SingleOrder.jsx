@@ -56,7 +56,7 @@ const SingleOrder = ({ page }) => {
                 <div>Order Details</div>
                 <div></div>
               </div>
-              <div className="p-4">
+              <div className="t">
                 <div class="table-responsive mt-4">
                   <table class="table text-nowrap table-with-checkbox">
                     <thead class="table-light">

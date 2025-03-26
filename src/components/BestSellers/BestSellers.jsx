@@ -22,9 +22,9 @@ const BestSellers = () => {
           // Slider settings
           const settings = {
             dots: true,
-            infinite: filteredPod.length > 5,
+            infinite: filteredPod.length > 4,
             speed: 500,
-            slidesToShow: filteredPod.length >= 5 ? 5 : filteredPod.length,
+            slidesToShow: filteredPod.length >= 4 ? 4 : filteredPod.length,
             slidesToScroll: 3,
             autoplay: true,
             autoplaySpeed: 3000,
@@ -32,7 +32,7 @@ const BestSellers = () => {
             pauseOnFocus: true,
             responsive: [
               {
-                breakpoint: 1024,
+                breakpoint: 1050,
                 settings: {
                   slidesToShow:
                     filteredPod.length >= 3 ? 3 : filteredPod.length,

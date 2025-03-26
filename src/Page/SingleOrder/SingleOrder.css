@@ -60,8 +60,14 @@
 .Order-details-table {
   padding: 10px;
 }
+.t {
+  padding: 30px;
+}
 @media screen and (max-width: 768px) {
   .SingleOrderPage {
     padding: 20px;
+  }
+  .t {
+    padding: 10px;
   }
 }

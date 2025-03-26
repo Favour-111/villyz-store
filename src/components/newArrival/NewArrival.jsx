@@ -20,7 +20,7 @@ const NewArrival = () => {
         </div>
         <div>
           <div className="Deal-itemBody">
-            {product.slice(0, 10).map((item) => (
+            {product.slice(0, 12).map((item) => (
               <div key={item.id}>
                 <Item product={item} />
               </div>

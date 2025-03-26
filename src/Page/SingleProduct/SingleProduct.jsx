@@ -199,10 +199,10 @@ const SingleProduct = ({ page }) => {
             <span>Related</span> product
           </h4>
           <div className="item">
-            <div className="itemBody">
+            <div className="itemBody2">
               {product
                 .filter((item) => item.categories === category) // Filter first
-                .slice(0, product.length >= 10 ? 10 : product.length) // Slice only if 10 or more exist
+                .slice(0, product.length >= 12 ? 12 : product.length) // Slice only if 10 or more exist
                 .map((item) => (
                   <div data-aos="fade-up" key={item.id}>
                     <Item product={item} />
@@ -218,12 +218,12 @@ const SingleProduct = ({ page }) => {
             <span>4 star</span> above
           </h4>
           <div className="item">
-            <div className="itemBody">
+            <div className="itemBody2">
               {product
                 .filter(
                   (item) => item.categories === category && item.Rating >= 4
                 ) // Ensure category matches & rating is 4+
-                .slice(0, product.length >= 10 ? 10 : product.length) // Slice only if 10 or more exist
+                .slice(0, product.length >= 12 ? 12 : product.length) // Slice only if 10 or more exist
                 .reverse()
                 .map((item) => (
                   <div data-aos="fade-up" key={item.id}>

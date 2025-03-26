@@ -63,75 +63,82 @@
   justify-content: center;
   align-items: flex-start;
 }
-
 .banner-container {
-  padding: 10px 40px;
+  padding: 20px 40px;
   .banner {
-    background: linear-gradient(45deg, #4e4e4e30, #f3f3f3);
-    border-radius: 40px;
-    display: flex;
-    overflow: hidden;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
     position: relative;
-    height: 400px;
-    .blob-container svg {
-      width: 500px;
-      top: -52px;
-      position: absolute;
-      opacity: 0.2;
-    }
+    background: rgb(227, 227, 227);
+    width: 100%;
+    border-radius: 40px;
+    height: 350px;
+    overflow: hidden;
+  }
+  .banner-blob-1 {
+    background-color: var(--color);
+    border-radius: 100px;
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    opacity: 0.2;
+    top: -60px;
+    right: -60px;
+  }
+  .banner-blob-2 {
+    background-color: tomato;
+    border-radius: 100px;
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    opacity: 0.2;
+    bottom: -60px;
+    left: -60px;
+  }
+  .banner-image {
+    width: 50%;
+    display: flex;
 
     img {
-      width: 450px;
-      position: absolute;
-      bottom: -200px;
-      transform: rotate(40deg);
-    }
-    .blob {
-      width: 200px;
-      height: 200px;
-      background-color: var(--color);
-      border-radius: 100px;
-      opacity: 0.2;
-      position: absolute;
-      top: -50px;
-      right: -40px;
-    }
-    .blob2 {
-      width: 200px;
-      height: 200px;
-      background-color: tomato;
-      border-radius: 100px;
-      opacity: 0.2;
-      position: absolute;
-      bottom: -50px;
-      right: -40px;
+      width: 350px;
     }
   }
-  .banner-text-container {
-    padding: 10px 100px;
-    .banner-head {
+  .banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 50px;
+  }
+  .banner-text {
+    width: 400px;
+    .text-1 {
       font-size: 30px;
+      text-align: end;
       font-family: poppinsSemiBold;
-      text-transform: capitalize;
-      color: #4b5966;
     }
-    .sale {
-      font-size: 25px;
-      font-family: poppinsSemiBold;
-      color: var(--color);
-    }
-    .Button {
-      background-color: var(--color);
-      padding: 5px 10px;
-      color: white;
-      text-decoration: none;
-      text-transform: capitalize;
+  }
+  .sales {
+    font-size: 25px;
+    color: var(--color);
+    font-family: poppinsSemiBold;
+    text-align: end;
+    margin-top: 10px;
+    span {
       font-family: poppinsRegular;
-      border-radius: 6px;
+      color: #787878;
     }
+  }
+  button {
+    margin-top: 10px;
+    background-color: var(--color);
+    color: white;
+    font-family: poppinsRegular;
+    border: none;
+    padding: 8px 20px;
+    border: none;
+    border-radius: 5px;
+    display: flex;
+    align-self: flex-end;
+    justify-self: flex-end;
+    font-size: 14px;
   }
 }
 
@@ -187,38 +194,8 @@
     font-size: 20px !important;
   }
 }
-@media screen and (max-width: 871px) {
-  .banner-container {
-    padding: 10px;
-  }
-}
+
 @media screen and (max-width: 772px) {
-  .banner-container {
-    .banner {
-      .blob-container svg {
-        width: 300px !important;
-      }
-    }
-    img {
-      width: 320px !important;
-    }
-  }
-}
-@media screen and (max-width: 772px) {
-  .banner-container {
-    padding: 10px;
-    .banner {
-      .blob-container svg {
-        width: 300px !important;
-      }
-    }
-    img {
-      /* width: 220px !important; */
-    }
-  }
-  .banner-head {
-    font-size: 20px !important;
-  }
   .sale {
     font-size: 20px !important;
   }
@@ -234,14 +211,190 @@
     padding: 10px 0 !important;
   }
 }
-@media screen and (max-width: 505px) {
+@media screen and (max-width: 930px) {
   .banner-container {
-    .banner {
-      .blob-container svg {
+    .banner-blob-1 {
+      width: 150px;
+      height: 150px;
+    }
+    .banner-blob-2 {
+      width: 150px;
+      height: 150px;
+    }
+    .banner-image {
+      img {
+        width: 300px;
       }
     }
-    img {
-      width: 230px !important;
+
+    .banner-text {
+      width: 400px;
+      .text-1 {
+        font-size: 25px;
+      }
+    }
+  }
+}
+@media screen and (max-width: 805px) {
+  .banner-container {
+    .banner-blob-1 {
+      width: 150px;
+      height: 150px;
+    }
+    .banner-blob-2 {
+      width: 150px;
+      height: 150px;
+    }
+    .banner-image {
+      img {
+        width: 250px;
+      }
+    }
+
+    .banner-text {
+      width: 400px;
+      .text-1 {
+        font-size: 23px;
+      }
+    }
+    .sales {
+      font-size: 20px;
+    }
+  }
+}
+@media screen and (max-width: 715px) {
+  .banner-container {
+    .banner-blob-1 {
+      width: 150px;
+      height: 150px;
+    }
+    .banner-blob-2 {
+      width: 150px;
+      height: 150px;
+    }
+    .banner-image {
+      img {
+        width: 220px;
+      }
+    }
+
+    .banner-text {
+      width: 400px;
+      .text-1 {
+        font-size: 20px;
+      }
+    }
+    .sales {
+      font-size: 18px;
+    }
+    button {
+      padding: 5px 16px;
+      font-size: 12px;
+    }
+  }
+}
+@media screen and (max-width: 650px) {
+  .banner-container {
+    .banner {
+      height: 300px;
+    }
+    .banner-blob-1 {
+      width: 150px;
+      height: 150px;
+    }
+    .banner-blob-2 {
+      width: 150px;
+      height: 150px;
+    }
+    .banner-image {
+      img {
+        width: 180px;
+      }
+    }
+
+    .banner-text {
+      width: 400px;
+      .text-1 {
+        font-size: 18px;
+      }
+    }
+    .sales {
+      font-size: 15px;
+    }
+    button {
+      padding: 5px 16px;
+      font-size: 12px;
+    }
+  }
+}
+@media screen and (max-width: 583px) {
+  .banner-container {
+    .banner {
+      height: 270px;
+    }
+    padding: 20px;
+    .banner-blob-1 {
+      width: 150px;
+      height: 150px;
+    }
+    .banner-blob-2 {
+      width: 150px;
+      height: 150px;
+    }
+    .banner-image {
+      img {
+        width: 150px;
+      }
+    }
+
+    .banner-text {
+      width: 400px;
+      .text-1 {
+        font-size: 15px;
+      }
+    }
+    .sales {
+      font-size: 13px;
+    }
+    button {
+      padding: 5px 16px;
+      font-size: 12px;
+    }
+  }
+}
+@media screen and (max-width: 483px) {
+  .banner-container {
+    .banner {
+      height: 250px;
+      padding: 20px !important;
+    }
+    padding: 10px;
+    .banner-blob-1 {
+      width: 120px;
+      height: 120px;
+    }
+    .banner-blob-2 {
+      width: 120px;
+      height: 120px;
+    }
+    .banner-image {
+      img {
+        width: 140px;
+      }
+    }
+
+    .banner-text {
+      width: 400px;
+      .text-1 {
+        font-size: 15px;
+      }
+    }
+    .sales {
+      font-size: 12px;
+    }
+    button {
+      padding: 5px 16px;
+      font-size: 12px;
     }
   }
 }

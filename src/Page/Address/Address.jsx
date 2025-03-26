@@ -9,6 +9,7 @@ import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/src/sweetalert2.scss";
 import AccountSideBarSm from "../../components/AccountSideBarSm/AccountSideBarSm";
 import axios from "axios";
+import Loading from "../../components/Loading/Loading";
 
 const Address = ({ page }) => {
   const [selectedAddress, setSelectedAddress] = useState(null); // Tracks selected address
@@ -17,7 +18,14 @@ const Address = ({ page }) => {
   const [loader, setLoader] = useState(false);
   const [AddLoader, setAddLoader] = useState(false);
   const [AddressLoader, setAddressLoader] = useState(false);
+  const [DefaultLoader, setDefaultLoader] = useState(false);
+  const [totalPrice, setTotalPrice] = useState(0);
+  const [delivery, setFee] = useState(0);
   const [newAddress, setNewAddress] = useState({
+    FirstName: "",
+    LastName: "",
+    PhoneNumber: "",
+    Fee: totalPrice,
     country: "",
     street: "",
     state: "",
@@ -63,7 +71,6 @@ const Address = ({ page }) => {
   // State variables
   const [selectedLocation, setSelectedLocation] = useState("");
   const [selectedState, setSelectedState] = useState("");
-  const [totalPrice, setTotalPrice] = useState(0);
 
   // Handle location change
   const handleAllAddress = async () => {
@@ -81,6 +88,7 @@ const Address = ({ page }) => {
         );
         if (defaultAddress) {
           setSelectedAddress(defaultAddress._id);
+          setFee(defaultAddress.Fee);
         }
       } else {
         Swal.fire({
@@ -134,8 +142,12 @@ const Address = ({ page }) => {
   };
 
   // Add new address to the list
+
   const handleAddAddress = async () => {
     if (
+      !newAddress.FirstName ||
+      !newAddress.LastName ||
+      !newAddress.PhoneNumber ||
       !newAddress.country ||
       !newAddress.street ||
       !newAddress.state ||
@@ -155,6 +167,7 @@ const Address = ({ page }) => {
         "https://villyzstore.onrender.com/addAddress",
         {
           ...newAddress,
+          Fee: totalPrice, // Set Fee to totalPrice
           userId,
         }
       );
@@ -174,11 +187,14 @@ const Address = ({ page }) => {
           street: "",
           state: "",
           postalCode: "",
+          FirstName: "",
+          LastName: "",
+          Fee: 0,
+          PhoneNumber: "",
           city: "",
         });
         handleAllAddress();
-
-        setUseNewAddress(true); // Keep showing the input form
+        setUseNewAddress(true);
       }
     } catch (err) {
       console.error("Error adding address:", err);
@@ -200,9 +216,20 @@ const Address = ({ page }) => {
       );
 
       if (response.status === 200) {
-        Swal.fire({
-          icon: "success",
-          title: "Address deleted successfully",
+        const Toast = Swal.mixin({
+          toast: true,
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.onmouseenter = Swal.stopTimer;
+            toast.onmouseleave = Swal.resumeTimer;
+          },
+        });
+        Toast.fire({
+          icon: "info",
+          title: " address deleted successfully",
         });
 
         // Update the AllAddress state by removing the deleted address
@@ -223,6 +250,7 @@ const Address = ({ page }) => {
   };
   const setDefaultAddress = async (id) => {
     try {
+      setDefaultLoader(true);
       const response = await axios.put(
         `https://villyzstore.onrender.com/addresses/${id}/set-default`
       );
@@ -244,15 +272,22 @@ const Address = ({ page }) => {
           title: "Default address selected",
         });
 
-        // Update state to mark the selected address as default
+        // Find the selected address
+        const selectedAddr = AllAddress.find((address) => address._id === id);
+
+        if (selectedAddr) {
+          console.log("Selected Address Fee:", selectedAddr.Fee); // Debugging
+          setFee(selectedAddr.Fee); // Ensure the fee updates properly
+        }
+
         setAllAddress((prevAddresses) =>
           prevAddresses.map((address) => ({
             ...address,
-            isDefault: address._id === id, // Only the selected address is default
+            isDefault: address._id === id,
           }))
         );
 
-        setSelectedAddress(id); // Update the selected address
+        setSelectedAddress(id);
       }
     } catch (error) {
       console.error("Error updating default address:", error);
@@ -261,10 +296,10 @@ const Address = ({ page }) => {
         title: "Failed to update default address",
         text: error.response ? error.response.data.message : "Server error",
       });
+    } finally {
+      setDefaultLoader(false);
     }
   };
-
-  console.log(totalPrice);
   return (
     <div>
       <Info />
@@ -285,33 +320,15 @@ const Address = ({ page }) => {
                 <div className="checkBox-contain">
                   <div className="checkout-item">
                     <div>
-                      <input
-                        type="checkBox"
-                        name="addressOption"
-                        disabled={AllAddress.length === 0} // Disable if no addresses exist
-                        checked={!useNewAddress}
-                        onChange={() => setUseNewAddress(false)}
-                      />
+                      <input type="checkBox" name="addressOption" checked />
                     </div>
 
                     <label>View Existing Addresses</label>
                   </div>
-                  <div className="checkout-item">
-                    <div>
-                      <input
-                        type="checkBox"
-                        name="addressOption"
-                        checked={useNewAddress}
-                        onChange={() => setUseNewAddress(true)}
-                      />
-                    </div>
-                    <label>Add New Address</label>
-                  </div>
                 </div>
               </div>
 
-              {/* Existing Addresses */}
-              {!useNewAddress && AllAddress.length > 0 && (
+              {AllAddress.length > 0 ? (
                 <div style={{ marginBottom: "20px" }}>
                   <div className="billing-head">Address</div>
                   <ul style={{ listStyleType: "none", padding: 0 }}>
@@ -327,15 +344,24 @@ const Address = ({ page }) => {
                           <div className="address-cont">
                             <div className="input-cont">
                               <input
-                                type="radio"
+                                type="checkbox"
                                 name="existingAddress"
                                 className="address-select"
                                 checked={selectedAddress === address._id}
                                 onChange={() => setDefaultAddress(address._id)}
                               />
+                              {DefaultLoader ? <Loading /> : null}
                             </div>
                             <div className="pt-4">
                               <div className="row">
+                                <div className="col-md-5 col-sm-12 address-text">
+                                  <span>Name</span> : {address.FirstName} -{" "}
+                                  {address.LastName}
+                                </div>
+                                <div className="col-md-5 col-sm-12 address-text">
+                                  <span>Phone number</span> :{" "}
+                                  {address.PhoneNumber}
+                                </div>
                                 <div className="col-md-5 col-sm-12 address-text">
                                   <span>Country</span> : {address.country}
                                 </div>
@@ -373,36 +399,72 @@ const Address = ({ page }) => {
                                 alt="multiply"
                               />
                             )}
+                            {AddressLoader && <Loading />}
                           </button>
                         </li>
                       ))
                     )}
                   </ul>
                 </div>
+              ) : (
+                <div className="instruction">
+                  Click the "Add Address" button and enter the required details
+                  to create a new address.
+                </div>
               )}
-
-              {/* New Address Form */}
-              {useNewAddress && (
-                <div>
-                  <div className="billing-head ms-2">Add New Address</div>
-                  <div className="billing">
-                    <div className="row w-100 ">
-                      <div className="col-lg-6 col-md-12">
-                        <select
-                          className="select"
-                          onChange={handleLocationChange}
-                          value={selectedLocation}
-                        >
-                          <option value="">Select Country</option>
-                          {Object.keys(locations).map((country) => (
-                            <option key={country} value={country}>
-                              {country}
-                            </option>
-                          ))}
-                        </select>
-                      </div>
-
-                      <div className="col-lg-6 col-md-12">
+              <button
+                className="Address-btn mt-5"
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModal"
+              >
+                Add New Address
+              </button>
+              <div
+                class="modal fade"
+                id="exampleModal"
+                tabindex="-1"
+                aria-labelledby="exampleModalLabel"
+                aria-hidden="true"
+              >
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="billing-head " id="exampleModalLabel">
+                        Add New Address
+                      </h1>
+                      <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                      ></button>
+                    </div>
+                    <div class="modal-body">
+                      <div className="col-md-12">
+                        <input
+                          type="text"
+                          name="FirstName"
+                          placeholder="First Name"
+                          value={newAddress.FirstName}
+                          onChange={handleInputChange}
+                          className="address-input"
+                        />
+                        <input
+                          type="text"
+                          name="LastName"
+                          placeholder="Last Name"
+                          value={newAddress.LastName}
+                          onChange={handleInputChange}
+                          className="address-input"
+                        />
+                        <input
+                          type="text"
+                          name="PhoneNumber"
+                          placeholder="Phone Number"
+                          value={newAddress.PhoneNumber}
+                          onChange={handleInputChange}
+                          className="address-input"
+                        />
                         <input
                           type="text"
                           name="street"
@@ -412,7 +474,19 @@ const Address = ({ page }) => {
                           className="address-input"
                         />
                       </div>
-                      <div className="col-lg-6 col-md-12">
+                      <select
+                        className="select"
+                        onChange={handleLocationChange}
+                        value={selectedLocation}
+                      >
+                        <option value="">Select Country</option>
+                        {Object.keys(locations).map((country) => (
+                          <option key={country} value={country}>
+                            {country}
+                          </option>
+                        ))}
+                      </select>
+                      <div className="col-md-12">
                         <select
                           className="select"
                           onChange={handleStateChange}
@@ -431,7 +505,7 @@ const Address = ({ page }) => {
                         </select>
                       </div>
 
-                      <div className="col-lg-6 col-md-12">
+                      <div className="col-md-12">
                         <input
                           type="text"
                           name="city"
@@ -442,7 +516,7 @@ const Address = ({ page }) => {
                         />
                       </div>
 
-                      <div className="col-lg-6 col-md-12 w-100">
+                      <div className=" col-md-12 w-100">
                         <input
                           type="text"
                           name="postalCode"
@@ -453,15 +527,28 @@ const Address = ({ page }) => {
                         />
                       </div>
                     </div>
+                    <div class="modal-footer">
+                      <button
+                        type="button"
+                        class="modal-cancel"
+                        data-bs-dismiss="modal"
+                      >
+                        cancel
+                      </button>
+                      <button
+                        onClick={handleAddAddress}
+                        className="Address-btn ms-3"
+                        type="button"
+                        class="Address-btn"
+                      >
+                        {AddLoader ? "hold..." : "Add Address"}
+                      </button>
+                    </div>
                   </div>
-                  <button
-                    onClick={handleAddAddress}
-                    className="Address-btn ms-3"
-                  >
-                    {AddLoader ? "Please wait ..." : "Add address"}
-                  </button>
                 </div>
-              )}
+              </div>
+              {loader && <Loading />}
+              {AddLoader && <Loading />}
             </div>
           </div>
         </div>
