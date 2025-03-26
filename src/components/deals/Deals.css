@@ -135,9 +135,9 @@
     padding: 8px 20px;
     border: none;
     border-radius: 5px;
-    display: flex;
-    align-self: flex-end;
-    justify-self: flex-end;
+    display: flex !important;
+    align-self: flex-end !important;
+    justify-self: flex-end !important;
     font-size: 14px;
   }
 }

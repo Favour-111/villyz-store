@@ -9,10 +9,11 @@ import Category from "../../components/category/Category";
 import BackToTop from "../../components/BackToTop/BackToTop";
 import "./CategoryShop.css";
 import { ShopContext } from "../../components/context/ShopContext";
-import { CiFilter } from "react-icons/ci";
 import { LuFilter } from "react-icons/lu";
 import { RiCloseFill } from "react-icons/ri";
+import { PiSquaresFour } from "react-icons/pi";
 import { IoIosArrowDown } from "react-icons/io";
+import ProdCategory from "../../components/ProdCategpry/ProdCategory";
 const CategoryShop = ({ page }) => {
   const { product } = useContext(ShopContext);
   const [products, setProducts] = useState([]);
@@ -156,9 +157,10 @@ const CategoryShop = ({ page }) => {
       <Nav />
       <NavSm />
       <BreadCrumb page={page} />
+      <ProdCategory />
       <div className={filterContLG ? "overlay-filt" : ""}></div>
 
-      <div className="cont mt-5">
+      <div className="cont mt-2">
         <div className="row cont-cont w-100 mt-4">
           <div className="col-xl-12 col-md-12">
             {/* Product List */}
@@ -166,17 +168,14 @@ const CategoryShop = ({ page }) => {
               <div className="page-head mb-3">{page}</div>
               <div className="sort-by-header">
                 <div className="d-flex align-items-center gap-1">
-                  <div className="app-cot">
-                    <img
-                      src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAAA/UlEQVR4nO2UTW4CMQyFc4eCBJegrAsX4+cslDO0SxZco8MVgDUbv/mQhyyYSIOaLBACLFkaJW/87BfbIdzDgKHEWmLT4WtgUIoPfmDi1PWDXe6+S/HBxNa9q0JL7nPxb4JXkEj/a7tVKd4HZ+B9e2NwVsmgZeGfwMjdLdGAvsFS4tfdYAH0QmrZuyU0wacmjiZqE1V0/z4AkxZBbtvhmV+C/wGjq/PPSHRoVZI9B7A0IQ+YYiNJbTAvJpDrLaob+Eri53EJDBYuQ4dE4yjRrJgA6PlDeqbXJDH4zsQe+AjFuyU0wSaRJG1TD/6VllW0W5pKYO56u7ssrczvYWcABKUjsy5eXQAAAABJRU5ErkJggg=="
-                      alt="external-apps-technology-tanah-basah-basic-outline-tanah-basah"
-                    />
-                  </div>
                   <div
                     className="app-cot"
                     onClick={() => setFilterContLG(true)}
                   >
                     <LuFilter color="white" fontSize={20} />
+                  </div>
+                  <div className="ms-2">
+                    <PiSquaresFour color="#4b5966" fontSize={25} />
                   </div>
                 </div>
 

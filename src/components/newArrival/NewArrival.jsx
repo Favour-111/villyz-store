@@ -21,7 +21,7 @@ const NewArrival = () => {
         <div>
           <div className="Deal-itemBody">
             {product.slice(0, 12).map((item) => (
-              <div key={item.id}>
+              <div key={item.id} data-aos="fade-up">
                 <Item product={item} />
               </div>
             ))}

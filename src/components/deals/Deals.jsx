@@ -42,7 +42,7 @@ const Deals = () => {
           {product
             .filter((item) => item.deals === "Deal")
             .map((item) => (
-              <div key={product.id}>
+              <div key={product.id} data-aos="fade-up">
                 <Item product={item} />
               </div>
             ))}

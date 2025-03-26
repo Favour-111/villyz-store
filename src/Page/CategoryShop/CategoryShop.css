@@ -133,4 +133,7 @@
     flex-direction: column;
     gap: 10px;
   }
+  .filter-container.open {
+    width: 100% !important;
+  }
 }

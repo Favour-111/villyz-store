@@ -32,13 +32,15 @@
   transition: box-shadow 0.3s ease;
   .category {
     font-size: 13px;
-    font-family: poppinsRegular;
+    font-family: poppinsLight;
     color: #787878;
+    text-transform: capitalize;
     margin-top: 10px;
   }
   .name {
     font-family: poppinsRegular;
     margin-top: 10px;
+    color: #4b5966;
     font-size: 14px;
     text-transform: capitalize;
   }
@@ -148,6 +150,29 @@
 @media screen and (max-width: 530px) {
   .product-item {
     width: 200px !important;
+  }
+  .name {
+    font-family: poppinsRegular;
+    margin-top: 5px !important;
+    color: #4b5966;
+    font-size: 13px;
+    text-transform: capitalize;
+  }
+  .category {
+    font-size: 11px;
+    font-family: poppinsLight;
+    color: #787878;
+    text-transform: capitalize;
+    margin-top: 10px;
+  }
+  .old-Price {
+    font-size: 13px;
+  }
+  .new-price {
+    font-size: 13px;
+  }
+  .product-item {
+    height: 310px !important;
   }
 }
 

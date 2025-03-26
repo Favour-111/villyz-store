@@ -113,6 +113,10 @@ select {
   width: 150px;
   border-left: 1px solid #f3f3f3;
   height: 40px;
+  select {
+    background-color: transparent !important;
+    border: none !important;
+  }
 }
 .app-cot {
   background-color: var(--color);
