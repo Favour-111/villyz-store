@@ -376,7 +376,10 @@ const CategoryShop = ({ page }) => {
               <div>
                 {/* Left Icon */}
                 <button
-                  onClick={() => setCurrentPage(Math.max(currentPage - 1, 1))}
+                  onClick={() => {
+                    setCurrentPage(Math.max(currentPage - 1, 1)),
+                      window.scrollTo(0, 0);
+                  }}
                   style={{
                     margin: "5px",
                     padding: "5px 10px",
@@ -397,7 +400,9 @@ const CategoryShop = ({ page }) => {
                 {currentPage > 3 && (
                   <>
                     <button
-                      onClick={() => setCurrentPage(1)}
+                      onClick={() => {
+                        setCurrentPage(1), window.scrollTo(0, 0);
+                      }}
                       style={{
                         margin: "5px",
                         padding: "5px 10px",
@@ -429,7 +434,9 @@ const CategoryShop = ({ page }) => {
                   .map((pageNumber) => (
                     <button
                       key={pageNumber}
-                      onClick={() => setCurrentPage(pageNumber)}
+                      onClick={() => {
+                        setCurrentPage(pageNumber), window.scrollTo(0, 0);
+                      }}
                       style={{
                         margin: "5px",
                         padding: "5px 10px",
@@ -457,7 +464,9 @@ const CategoryShop = ({ page }) => {
                 {currentPage < totalPages - 2 && <span>...</span>}
                 {currentPage < totalPages - 2 && (
                   <button
-                    onClick={() => setCurrentPage(totalPages)}
+                    onClick={() => {
+                      setCurrentPage(totalPages), window.scrollTo(0, 0);
+                    }}
                     style={{
                       margin: "5px",
                       padding: "5px 10px",
@@ -483,9 +492,10 @@ const CategoryShop = ({ page }) => {
 
                 {/* Right Icon */}
                 <button
-                  onClick={() =>
-                    setCurrentPage(Math.min(currentPage + 1, totalPages))
-                  }
+                  onClick={() => {
+                    setCurrentPage(Math.min(currentPage + 1, totalPages)),
+                      window.scrollTo(0, 0);
+                  }}
                   style={{
                     margin: "5px",
                     padding: "4px 10px",
