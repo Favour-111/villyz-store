@@ -377,8 +377,8 @@ const CategoryShop = ({ page }) => {
                 {/* Left Icon */}
                 <button
                   onClick={() => {
-                    setCurrentPage(Math.max(currentPage - 1, 1)),
-                      window.scrollTo(0, 0);
+                    setCurrentPage(Math.max(currentPage - 1, 1));
+                    window.scrollTo(0, 0);
                   }}
                   style={{
                     margin: "5px",
@@ -401,7 +401,8 @@ const CategoryShop = ({ page }) => {
                   <>
                     <button
                       onClick={() => {
-                        setCurrentPage(1), window.scrollTo(0, 0);
+                        setCurrentPage(1);
+                        window.scrollTo(0, 0);
                       }}
                       style={{
                         margin: "5px",
@@ -435,7 +436,8 @@ const CategoryShop = ({ page }) => {
                     <button
                       key={pageNumber}
                       onClick={() => {
-                        setCurrentPage(pageNumber), window.scrollTo(0, 0);
+                        setCurrentPage(pageNumber);
+                        window.scrollTo(0, 0);
                       }}
                       style={{
                         margin: "5px",
@@ -465,7 +467,8 @@ const CategoryShop = ({ page }) => {
                 {currentPage < totalPages - 2 && (
                   <button
                     onClick={() => {
-                      setCurrentPage(totalPages), window.scrollTo(0, 0);
+                      setCurrentPage(totalPages);
+                      window.scrollTo(0, 0);
                     }}
                     style={{
                       margin: "5px",
@@ -493,8 +496,8 @@ const CategoryShop = ({ page }) => {
                 {/* Right Icon */}
                 <button
                   onClick={() => {
-                    setCurrentPage(Math.min(currentPage + 1, totalPages)),
-                      window.scrollTo(0, 0);
+                    setCurrentPage(Math.min(currentPage + 1, totalPages));
+                    window.scrollTo(0, 0);
                   }}
                   style={{
                     margin: "5px",
