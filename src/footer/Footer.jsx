@@ -22,13 +22,13 @@ const Footer = () => {
             </div>
           </div>
           <div className="col-md-2 col-sm-12">
-            <div className="footer-header">Category</div>
+            <div className="footer-header">Categories</div>
             <ul>
               {categoryType.slice(0, 6).map((item) => {
                 return (
                   <li>
                     <Link
-                      className="category"
+                      className="foot-itm"
                       to={`/${item.name}`}
                       onClick={() => window.scrollTo(0, 0)}
                     >
@@ -44,7 +44,7 @@ const Footer = () => {
             <ul>
               <li>
                 <Link
-                  className="category"
+                  className="foot-itm"
                   onClick={() => window.scrollTo(0, 0)}
                 >
                   Terms & condition
@@ -53,7 +53,7 @@ const Footer = () => {
 
               <li>
                 <Link
-                  className="category"
+                  className="foot-itm"
                   onClick={() => window.scrollTo(0, 0)}
                 >
                   checkout
@@ -61,7 +61,7 @@ const Footer = () => {
               </li>
               <li>
                 <Link
-                  className="category"
+                  className="foot-itm"
                   to="/contact"
                   onClick={() => window.scrollTo(0, 0)}
                 >
@@ -75,7 +75,7 @@ const Footer = () => {
             <ul>
               <li>
                 <Link
-                  className="category"
+                  className="foot-itm"
                   to="/login"
                   onClick={() => window.scrollTo(0, 0)}
                 >
@@ -84,7 +84,7 @@ const Footer = () => {
               </li>
               <li>
                 <Link
-                  className="category"
+                  className="foot-itm"
                   to="/SignUp"
                   onClick={() => window.scrollTo(0, 0)}
                 >
@@ -93,7 +93,7 @@ const Footer = () => {
               </li>
               <li>
                 <Link
-                  className="category"
+                  className="foot-itm"
                   to="/cart"
                   onClick={() => window.scrollTo(0, 0)}
                 >
@@ -101,7 +101,7 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/orderpg" className="category">
+                <Link to="/orderpg" className="foot-itm">
                   orders
                 </Link>
               </li>
