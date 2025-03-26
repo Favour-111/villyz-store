@@ -108,6 +108,10 @@
     padding: 10px 50px;
   }
   .banner-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-end;
     width: 400px;
     .text-1 {
       font-size: 30px;
@@ -119,8 +123,8 @@
     font-size: 25px;
     color: var(--color);
     font-family: poppinsSemiBold;
-    text-align: end;
     margin-top: 10px;
+    text-align: end;
     span {
       font-family: poppinsRegular;
       color: #787878;
@@ -135,9 +139,7 @@
     padding: 8px 20px;
     border: none;
     border-radius: 5px;
-    display: flex !important;
-    align-self: flex-end !important;
-    justify-self: flex-end !important;
+
     font-size: 14px;
   }
 }

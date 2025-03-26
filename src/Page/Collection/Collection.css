@@ -1,3 +1,7 @@
+:root {
+  --color: rgb(83 109 254);
+  --text: #4b5966;
+}
 .collection-cont {
   border: 1px solid #f3f3f3;
   width: 100%;
@@ -17,6 +21,7 @@
 .category-items {
   background: #f4f4f4;
   padding: 20px;
+  border-radius: 10px;
   text-align: center;
   transition: all 0.3s ease;
   text-decoration: none;
@@ -24,10 +29,21 @@
   align-items: center;
   flex-direction: column;
   justify-content: space-between;
+  color: var(--color) !important;
+  font-size: 13px;
+  text-decoration: none;
+}
+.category-items:hover {
+  background-color: var(--color);
+}
+.category-items:hover .category-im,
+.category-items:hover .category-total {
+  color: white !important;
 }
 .category-total {
   font-family: poppinsLight;
   font-size: 12x;
+  color: #4b5966;
   text-transform: capitalize;
 }
 /* Ensures images scale down properly */
@@ -37,6 +53,11 @@
   height: auto;
   display: block;
   margin: 0 auto;
+}
+.category-im {
+  color: #4b5966 !important;
+  font-family: poppinsRegular;
+  text-transform: capitalize;
 }
 
 /* On 768px screens, switch to 3 columns */
@@ -72,5 +93,8 @@
   }
   .category-items img {
     width: 70px; /* Further reduce image size */
+  }
+  .category-im {
+    font-size: 11px !important;
   }
 }
