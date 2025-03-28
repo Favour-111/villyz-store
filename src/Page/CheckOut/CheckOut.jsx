@@ -12,28 +12,20 @@ import "sweetalert2/src/sweetalert2.scss";
 import BackToTop from "../../components/BackToTop/BackToTop";
 import axios from "axios";
 import Loading from "../../components/Loading/Loading";
-
+import { useNavigate } from "react-router-dom";
+import { loadStripe } from "@stripe/stripe-js";
 const CheckOut = ({ page }) => {
-  const {
-    cartItem,
-    addToCart,
-    Remove,
-    deleteCart,
-    product,
-    getTotalValue,
-    totalCartItems,
-  } = useContext(ShopContext);
-  const name =
-    "  Lorem ipsum dolor sit amet consectetur adipisicing elit.Nam, magni";
+  const navigate = useNavigate();
+  const { cartItem, product, getTotalValue } = useContext(ShopContext);
+
+  const cartProducts = product.filter(
+    (itm) => cartItem && cartItem[itm.id] && cartItem[itm.id] > 0
+  );
+
+  console.log(cartProducts);
+
   const totalStars = 5;
 
-  // State for selected payment method
-  const [paymentMethod, setPaymentMethod] = useState("");
-
-  // Handle the radio button change
-  const handlePaymentMethodChange = (event) => {
-    setPaymentMethod(event.target.value);
-  };
   const [AllAddress, setAllAddress] = useState([]);
   const [selectedAddress, setSelectedAddress] = useState(null); // Tracks selected address
   const [useNewAddress, setUseNewAddress] = useState(true); // Tracks which radio is selected
@@ -264,7 +256,7 @@ const CheckOut = ({ page }) => {
       setAddressLoader(false);
     }
   };
-
+  let selectedAddr;
   const setDefaultAddress = async (id) => {
     try {
       setDefaultLoader(true);
@@ -290,7 +282,7 @@ const CheckOut = ({ page }) => {
         });
 
         // Find the selected address
-        const selectedAddr = AllAddress.find((address) => address._id === id);
+        selectedAddr = AllAddress.find((address) => address._id === id);
 
         if (selectedAddr) {
           console.log("Selected Address Fee:", selectedAddr.Fee); // Debugging
@@ -317,8 +309,14 @@ const CheckOut = ({ page }) => {
       setDefaultLoader(false);
     }
   };
+  const cartItems = cartProducts.map((item) => ({
+    name: item.productName,
+    image: item.image,
+    price: item.newPrice,
+    quantity: cartItem[item.id] || 1, // Use shopContext to get the quantity
+  }));
 
-  const handleProceedToPayment = () => {
+  const handleProceedToPayment = async () => {
     if (!selectedAddress) {
       Swal.fire({
         icon: "error",
@@ -326,10 +324,34 @@ const CheckOut = ({ page }) => {
         text: "Please select an address before proceeding.",
       });
       return;
-    } else {
+    }
+
+    const stripe = await loadStripe(
+      "pk_test_51R1l1DRjQM7yvxj09e4OhH8yIE4axDzo0atPKLd2kAdhQa8Z3OevHa5o765Udok6KwcxcLpJgv82UYCE3ec5UMEt00RaohkNdW"
+    );
+
+    const body = {
+      products: cartItems,
+      shippingFee: delivery, // Example shipping fee (change as needed)
+    };
+
+    const headers = {
+      "Content-Type": "application/json",
+    };
+
+    const response = await fetch("https://villyzstore.onrender.com/checkout", {
+      method: "POST",
+      headers: headers,
+      body: JSON.stringify(body),
+    });
+
+    const session = await response.json();
+    const result = stripe.redirectToCheckout({ sessionId: session.id });
+
+    if (result.error) {
+      console.log(result.error);
     }
   };
-  console.log(delivery);
 
   return (
     <div>
@@ -411,12 +433,7 @@ const CheckOut = ({ page }) => {
                 {/* Online Payment Radio Button */}
                 <div className="d-flex align-items-center mt-2 gap-2">
                   <div>
-                    <input
-                      type="checkBox"
-                      value="onlinePayment"
-                      checked
-                      onChange={handlePaymentMethodChange}
-                    />
+                    <input type="checkBox" value="onlinePayment" checked />
                   </div>
                   <div>Online Payment</div>
                 </div>

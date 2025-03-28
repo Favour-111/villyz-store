@@ -171,7 +171,7 @@ const Cart = ({ page }) => {
                                   href="#"
                                   class="text-muted"
                                   onClick={() => {
-                                    Remove(item.id);
+                                    deleteCart(item.id);
                                     Swal.fire({
                                       icon: "info",
                                       title: "Removed from Wishlist",
@@ -370,12 +370,10 @@ const Cart = ({ page }) => {
           browse the collection of new product
         </div>
 
-        <div className="item">
-          <div className="itemBody">
-            {product.slice(0, 6).map((item) => {
-              return <Item product={item} />;
-            })}
-          </div>
+        <div className="cart-itemBody">
+          {product.slice(0, 12).map((item) => {
+            return <Item product={item} />;
+          })}
         </div>
       </div>
       <Footer />

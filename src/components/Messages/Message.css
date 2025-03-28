@@ -1,0 +1,52 @@
+.message-container {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  width: 290px;
+  background-color: white;
+  height: 70px;
+  border-radius: 10px;
+  z-index: 100000000000000000 !important;
+  .message-content {
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+  .success-color {
+    background-color: #5edc77;
+    height: 100%;
+    width: 10px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    border-radius: 10px 0 0 10px;
+  }
+  .message {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    gap: 10px;
+    margin-left: 20px;
+    .checked-icn {
+      border-radius: 100%;
+      background-color: #5edc77;
+      height: 30px;
+      width: 30px;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+  .msg {
+    font-family: poppinsBold;
+    color: #4b5966;
+  }
+  .msg-cont {
+    font-family: poppinsLight;
+    color: #4b5966;
+    font-size: 13px;
+  }
+}

@@ -175,6 +175,15 @@
   color: black;
   background-color: transparent;
 }
+.cart-itemBody {
+  padding: 50px 30px;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: 20px;
+  justify-content: center;
+  align-items: flex-start;
+}
 @media screen and (max-width: 579px) {
   .cart-container {
     padding: 20px;
@@ -187,6 +196,11 @@
   }
 }
 @media screen and (max-width: 768px) {
+  .cart-itemBody {
+    padding: 50px 0 !important;
+    align-items: center;
+    justify-content: center;
+  }
   .cart-container {
     .table {
       display: none;
@@ -234,6 +248,11 @@
   color: #4b5966;
 }
 @media screen and (max-width: 530px) {
+  .cart-itemBody {
+    padding: 30px 0 !important;
+    align-items: center;
+    justify-content: center;
+  }
   .cart-cont {
     overflow: scroll;
     scrollbar-width: none;

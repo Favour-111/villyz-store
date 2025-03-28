@@ -23,7 +23,7 @@ const Category = () => {
         breakpoint: 1280,
         settings: {
           slidesToShow: 5,
-          slidesToScroll: 2,
+          slidesToScroll: 3,
           infinite: true,
         },
       },
@@ -31,7 +31,7 @@ const Category = () => {
         breakpoint: 770,
         settings: {
           slidesToShow: 4,
-          slidesToScroll: 2,
+          slidesToScroll: 3,
           infinite: true,
         },
       },
@@ -39,15 +39,15 @@ const Category = () => {
         breakpoint: 640,
         settings: {
           slidesToShow: 3,
-          slidesToScroll: 1,
-          initialSlide: 2,
+          slidesToScroll: 3,
+          initialSlide: 3,
         },
       },
       {
         breakpoint: 480,
         settings: {
           slidesToShow: 3,
-          slidesToScroll: 1,
+          slidesToScroll: 3,
         },
       },
     ],

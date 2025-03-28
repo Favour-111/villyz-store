@@ -3,6 +3,7 @@ import "./Deals.css";
 import Item from "../items/Item";
 import axios from "axios";
 import { ShopContext } from "../context/ShopContext";
+import Success from "../Messages/Success";
 const Deals = () => {
   const [currentTime, setCurrentTime] = useState(new Date());
   const { product } = useContext(ShopContext);

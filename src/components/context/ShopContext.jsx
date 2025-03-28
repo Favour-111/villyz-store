@@ -209,7 +209,7 @@ const ShopContextProvider = (props) => {
     if (localStorage.getItem("auth-token")) {
       try {
         setLoader(true);
-        fetch("https://villyzstore.onrender.com/removeFromCart", {
+        fetch("https://villyzstore.onrender.com/deleteFromCart", {
           method: "POST",
           headers: {
             Accept: "application/json", // Fix incorrect content-type
