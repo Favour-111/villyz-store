@@ -87,6 +87,29 @@ const ShopContextProvider = (props) => {
   useEffect(() => {
     fetchCartData();
   }, []);
+  // Function to fetch the latest wishlist data
+  const fetchWishlistData = async () => {
+    try {
+      const token = localStorage.getItem("auth-token");
+      if (!token) return;
+
+      const response = await fetch("https://villyzstore.onrender.com/getList", {
+        method: "POST",
+        headers: {
+          "auth-token": token,
+          "Content-Type": "application/json",
+        },
+      });
+
+      const wishlistData = await response.json();
+      setWishList(wishlistData); // Update state with new wishlist data
+    } catch (error) {
+      console.error("Error fetching wishlist:", error);
+    }
+  };
+  useEffect(() => {
+    fetchWishlistData();
+  }, []);
   const UserId = localStorage.getItem("userId");
   const getSingleUser = async () => {
     setLoader(true);
@@ -254,27 +277,6 @@ const ShopContextProvider = (props) => {
       } finally {
         setLoader(false);
       }
-    }
-  };
-
-  // Function to fetch the latest wishlist data
-  const fetchWishlistData = async () => {
-    try {
-      const token = localStorage.getItem("auth-token");
-      if (!token) return;
-
-      const response = await fetch("https://villyzstore.onrender.com/getList", {
-        method: "POST",
-        headers: {
-          "auth-token": token,
-          "Content-Type": "application/json",
-        },
-      });
-
-      const wishlistData = await response.json();
-      setWishList(wishlistData); // Update state with new wishlist data
-    } catch (error) {
-      console.error("Error fetching wishlist:", error);
     }
   };
 

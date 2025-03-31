@@ -365,19 +365,11 @@ const CheckOut = ({ page }) => {
       console.log("Sending order:", JSON.stringify(orderData, null, 2));
 
       const response = await axios.post(
-        "http://localhost:5000/addOrder",
+        "https://villyzstore.onrender.com/addOrder",
         orderData
       );
 
-      if (response.status === 201 || response.status === 200) {
-        Swal.fire({
-          icon: "success",
-          title: "Order placed successfully!",
-          text: "Your order is now being processed.",
-        });
-
-        navigate("/order-confirmation"); // Redirect user to confirmation page
-      } else {
+      if (!response) {
         throw new Error("Failed to place order");
       }
     } catch (error) {
@@ -430,7 +422,6 @@ const CheckOut = ({ page }) => {
       if (!response.ok) {
         throw new Error("Failed to initiate payment");
       }
-      handleCheck();
 
       const session = await response.json();
 

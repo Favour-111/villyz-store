@@ -65,7 +65,6 @@
     display: flex;
     border-radius: 3px;
     gap: 10px;
-    padding: 5px;
     margin-top: 10px;
     .img {
       background-color: white;

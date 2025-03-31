@@ -151,7 +151,7 @@ const WishList = ({ page }) => {
               alt="nothing-found"
             />
           </div>
-          <div className="mt-3">Add Items to cart...</div>
+          <div className="mt-3">Add Items to WishList...</div>
         </div>
       )}
 
