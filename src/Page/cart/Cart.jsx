@@ -343,7 +343,7 @@ const Cart = ({ page }) => {
                   }
                 }}
               >
-                CheckOut
+                CheckOut ${getTotalValue()}
               </button>
             </div>
           </div>

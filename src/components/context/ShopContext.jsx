@@ -28,42 +28,6 @@ const ShopContextProvider = (props) => {
   const [user, setUser] = useState(null);
   const [blog, setBlog] = useState([]);
 
-  useEffect(() => {
-    const token = localStorage.getItem("auth-token");
-    if (!token) return;
-
-    const fetchData = async () => {
-      setLoader(true);
-      try {
-        const [cartRes, wishlistRes] = await Promise.all([
-          fetch("https://villyzstore.onrender.com/getCart", {
-            method: "POST",
-            headers: {
-              "auth-token": token,
-              "Content-Type": "application/json",
-            },
-          }),
-          fetch("https://villyzstore.onrender.com/getList", {
-            method: "POST",
-            headers: {
-              "auth-token": token,
-              "Content-Type": "application/json",
-            },
-          }),
-        ]);
-        const cartData = await cartRes.json();
-        const wishlistData = await wishlistRes.json();
-        setCartItem(cartData);
-        setWishList(wishlistData);
-      } catch (error) {
-        console.error("Error fetching cart or wishlist:", error);
-      } finally {
-        setLoader(false);
-      }
-    };
-
-    fetchData();
-  }, []);
   const getallProduct = async () => {
     try {
       setLoader(true);
@@ -101,7 +65,28 @@ const ShopContextProvider = (props) => {
   useEffect(() => {
     getallCategory();
   }, []);
+  const fetchCartData = async () => {
+    try {
+      const token = localStorage.getItem("auth-token");
+      if (!token) return;
 
+      const response = await fetch("https://villyzstore.onrender.com/getCart", {
+        method: "POST",
+        headers: {
+          "auth-token": token,
+          "Content-Type": "application/json",
+        },
+      });
+
+      const cartData = await response.json();
+      setCartItem(cartData);
+    } catch (error) {
+      console.error("Error fetching updated cart:", error);
+    }
+  };
+  useEffect(() => {
+    fetchCartData();
+  }, []);
   const UserId = localStorage.getItem("userId");
   const getSingleUser = async () => {
     setLoader(true);
@@ -140,23 +125,25 @@ const ShopContextProvider = (props) => {
   useEffect(() => {
     gettallBlog();
   }, []);
-  const addToCart = (itemId) => {
+
+  const addToCart = async (itemId) => {
     setCartItem((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
 
     if (localStorage.getItem("auth-token")) {
       try {
         setLoader(true);
-        fetch("https://villyzstore.onrender.com/addtocart", {
+        await fetch("https://villyzstore.onrender.com/addtocart", {
           method: "POST",
           headers: {
-            Accept: "application/form-data",
+            Accept: "application/json",
             "auth-token": `${localStorage.getItem("auth-token")}`,
-            "content-type": "application/json",
+            "Content-Type": "application/json",
           },
-          body: JSON.stringify({ itemId: itemId }),
-        })
-          .then((response) => response.json())
-          .then((data) => console.log(data));
+          body: JSON.stringify({ itemId }),
+        });
+
+        // ✅ Fetch updated cart after adding item
+        fetchCartData();
       } catch (error) {
         console.log(error.message);
       } finally {
@@ -165,7 +152,7 @@ const ShopContextProvider = (props) => {
     }
   };
 
-  const Remove = (itemId) => {
+  const Remove = async (itemId) => {
     setCartItem((prev) => ({
       ...prev,
       [itemId]: Math.max(0, prev[itemId] - 1), // Prevent negative values
@@ -174,19 +161,18 @@ const ShopContextProvider = (props) => {
     if (localStorage.getItem("auth-token")) {
       try {
         setLoader(true);
-
-        fetch("https://villyzstore.onrender.com/removeFromCart", {
+        await fetch("https://villyzstore.onrender.com/removeFromCart", {
           method: "POST",
           headers: {
-            Accept: "application/json", // Fix incorrect content-type
+            Accept: "application/json",
             "auth-token": localStorage.getItem("auth-token"),
             "Content-Type": "application/json",
           },
           body: JSON.stringify({ itemId }),
-        })
-          .then((response) => response.json())
-          .then((data) => console.log(data))
-          .catch((error) => console.error("Error:", error));
+        });
+
+        // ✅ Fetch updated cart after removing item
+        fetchCartData();
       } catch (error) {
         console.log(error.message);
       } finally {
@@ -239,61 +225,91 @@ const ShopContextProvider = (props) => {
     return totalAmount;
   };
 
-  const addtowishList = (itemId) => {
+  const addtowishList = async (itemId) => {
     setWishList((prev) => ({ ...prev, [itemId]: (prev[itemId] || 0) + 1 }));
 
     if (localStorage.getItem("auth-token")) {
       try {
         setLoader(true);
+        const response = await fetch(
+          "https://villyzstore.onrender.com/addtowishlist",
+          {
+            method: "POST",
+            headers: {
+              Accept: "application/json",
+              "auth-token": `${localStorage.getItem("auth-token")}`,
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ itemId }),
+          }
+        );
 
-        fetch("https://villyzstore.onrender.com/addtowishlist", {
-          method: "POST",
-          headers: {
-            Accept: "application/json", // ✅ Fix incorrect header
-            "auth-token": `${localStorage.getItem("auth-token")}`,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ itemId }),
-        })
-          .then((response) => response.json())
-          .then((data) => console.log("Wishlist updated:", data))
-          .catch((error) => console.error("Error adding to wishlist:", error));
+        const data = await response.json();
+        console.log("Wishlist Updated:", data);
+
+        // Re-fetch wishlist to update UI
+        await fetchWishlistData();
       } catch (error) {
-        console.log(error.message);
+        console.error("Error adding to wishlist:", error);
       } finally {
         setLoader(false);
       }
     }
   };
 
-  const RemoveList = (itemId) => {
-    setWishList((prev) => ({
-      ...prev,
-      [itemId]: 0,
-    }));
+  // Function to fetch the latest wishlist data
+  const fetchWishlistData = async () => {
+    try {
+      const token = localStorage.getItem("auth-token");
+      if (!token) return;
+
+      const response = await fetch("https://villyzstore.onrender.com/getList", {
+        method: "POST",
+        headers: {
+          "auth-token": token,
+          "Content-Type": "application/json",
+        },
+      });
+
+      const wishlistData = await response.json();
+      setWishList(wishlistData); // Update state with new wishlist data
+    } catch (error) {
+      console.error("Error fetching wishlist:", error);
+    }
+  };
+
+  const RemoveList = async (itemId) => {
+    setWishList((prev) => ({ ...prev, [itemId]: 0 }));
+
     if (localStorage.getItem("auth-token")) {
       try {
         setLoader(true);
+        const response = await fetch(
+          "https://villyzstore.onrender.com/removeFromList",
+          {
+            method: "POST",
+            headers: {
+              Accept: "application/json",
+              "auth-token": localStorage.getItem("auth-token"),
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ itemId }),
+          }
+        );
 
-        fetch("https://villyzstore.onrender.com/removeFromList", {
-          method: "POST",
-          headers: {
-            Accept: "application/json", // Fix incorrect content-type
-            "auth-token": localStorage.getItem("auth-token"),
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ itemId }),
-        })
-          .then((response) => response.json())
-          .then((data) => console.log(data))
-          .catch((error) => console.error("Error:", error));
+        const data = await response.json();
+        console.log("Item removed from wishlist:", data);
+
+        // Re-fetch wishlist data
+        await fetchWishlistData();
       } catch (error) {
-        console.log(error.message);
+        console.error("Error removing from wishlist:", error);
       } finally {
         setLoader(false);
       }
     }
   };
+
   const totalWishList = () => {
     let total = 0;
     for (const itm in WishList) {

@@ -28,6 +28,9 @@
   padding: 20px;
   border-radius: 5px;
 }
+.Order-det {
+  font-family: poppinsSemiBold;
+}
 .single-order-address-item {
   margin-top: 20px;
   font-family: poppinsMedium;
@@ -54,8 +57,12 @@
 }
 .arrow-back {
   background-color: var(--color);
-  padding: 5px;
+  height: 30px;
+  width: 30px;
   border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .Order-details-table {
   padding: 10px;
@@ -63,11 +70,23 @@
 .t {
   padding: 30px;
 }
+.view-mre {
+  color: blue;
+  border: none;
+  background-color: transparent;
+  font-family: poppinsRegular;
+  font-size: 13px;
+  padding: 20px;
+  text-decoration: underline;
+}
 @media screen and (max-width: 768px) {
   .SingleOrderPage {
     padding: 20px;
   }
   .t {
     padding: 10px;
+  }
+  .Order-det {
+    font-size: 15px;
   }
 }

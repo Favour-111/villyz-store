@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./SingleOrder.css";
 import Info from "../../components/info/Info";
 import Nav from "../../components/Nav/Nav";
@@ -7,10 +7,30 @@ import BreadCrumb from "../../components/BreadCrumbs/BreadCrumb";
 import Footer from "../../footer/Footer";
 import BackToTop from "../../components/BackToTop/BackToTop";
 import { IoIosArrowRoundBack } from "react-icons/io";
-import product from "../../product";
 import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import { MdOutlineArrowBack } from "react-icons/md";
+
 const SingleOrder = ({ page }) => {
+  const location = useLocation();
   const navigate = useNavigate();
+
+  // Extract order details
+  const {
+    name,
+    city,
+    state,
+    street,
+    country,
+    postalCode,
+    DeliveryFee,
+    OrderPrice,
+    product = [],
+  } = location.state || {};
+
+  // State to track whether to show all products
+  const [showAllProducts, setShowAllProducts] = useState(false);
+
   return (
     <div>
       <Info />
@@ -22,75 +42,92 @@ const SingleOrder = ({ page }) => {
           <div className="col-md-3 col-sm-12">
             <div className="single-order-address">
               <div className="single-order-address-item">
-                <span>Name</span> : Omojola Obaloluwa{" "}
+                <span>Name</span>: {name}
               </div>
               <div className="single-order-address-item">
-                <span>Address</span> : Lagos{" "}
+                <span>Address</span>: {street}
               </div>
               <div className="single-order-address-item">
-                <span>Postal code</span> : 23434{" "}
+                <span>Postal code</span>: {postalCode}
               </div>
               <div className="single-order-address-item">
-                <span>Country</span> : Nigeria{" "}
+                <span>Country</span>: {country}
               </div>
               <div className="single-order-address-item">
-                <span>State</span> : Lagos{" "}
+                <span>State</span>: {state}
               </div>
               <div className="single-order-address-item">
-                <span>Delivery Fee</span> : $20{" "}
+                <span>City</span>: {city}
+              </div>
+              <div className="single-order-address-item">
+                <span>Delivery Fee</span>: ${DeliveryFee}
+              </div>
+              <div className="single-order-address-item">
+                <span>Order Price</span>: ${OrderPrice}
               </div>
             </div>
           </div>
+
           <div className="col-md-9 col-sm-12">
             <div className="single-order-details">
               <div className="single-order-head">
                 <div
                   className="arrow-back"
                   onClick={() => navigate("/orderpg")}
-                  style={{
-                    cursor: "pointer",
-                  }}
+                  style={{ cursor: "pointer" }}
                 >
-                  <IoIosArrowRoundBack size={30} color="white" />
+                  <MdOutlineArrowBack size={17} color="white" />
                 </div>
-                <div>Order Details</div>
-                <div></div>
+                <div className="Order-det">Order Details</div>
               </div>
-              <div className="t">
-                <div class="table-responsive mt-4">
-                  <table class="table text-nowrap table-with-checkbox">
-                    <thead class="table-light">
+
+              <div className="orderpg">
+                <div className="table-responsive mt-4">
+                  <table className="table text-nowrap table-with-checkbox">
+                    <thead className="table-light">
                       <tr>
-                        <th>ID</th>
-                        <th>Image</th>
-                        <th>Name</th>
-                        <th>Date</th>
+                        <th></th>
+                        <th>Product</th>
+                        <th>Quantity</th>
                         <th>Price</th>
                       </tr>
                     </thead>
-                    {product.slice(0, 3).map((item) => {
-                      return (
-                        <tbody>
-                          <tr>
-                            <td class="align-middle">#1212</td>
-                            <td class="align-middle">
+                    <tbody>
+                      {(showAllProducts ? product : product.slice(0, 3)).map(
+                        (item, index) => (
+                          <tr key={index}>
+                            <td className="align-middle">
                               <a href="#">
                                 <img
                                   src={item.image}
-                                  class="icon-shape icon-xxl"
+                                  className="icon-shape icon-xxl"
                                   alt=""
                                 />
                               </a>
                             </td>
-                            <td class="align-middle">{item.name}</td>
-                            <td class="align-middle">2023-2-24</td>
-                            <td class="align-middle">${item.newPrice}</td>
+                            <td className="align-middle">
+                              {item.name.slice(0, 30)}...
+                            </td>
+                            <td className="align-middle">{item.quantity}</td>
+                            <td className="align-middle">${item.price}</td>
                           </tr>
-                        </tbody>
-                      );
-                    })}
+                        )
+                      )}
+                    </tbody>
                   </table>
                 </div>
+
+                {/* View More Button */}
+                {product.length > 3 && (
+                  <div className="text-end mt-3">
+                    <button
+                      className="view-mre"
+                      onClick={() => setShowAllProducts(!showAllProducts)}
+                    >
+                      {showAllProducts ? "View Less" : "View More"}
+                    </button>
+                  </div>
+                )}
               </div>
             </div>
           </div>

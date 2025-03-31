@@ -45,7 +45,6 @@ const WishList = ({ page }) => {
                       <thead class="table-light">
                         <tr>
                           <th></th>
-                          <th></th>
                           <th>Product</th>
                           <th>Amount</th>
                           <th>Status</th>
@@ -57,9 +56,6 @@ const WishList = ({ page }) => {
                         return (
                           <tbody>
                             <tr>
-                              <td class="align-middle">
-                                <div class="form-check"></div>
-                              </td>
                               <td class="align-middle">
                                 <a href="#">
                                   <img

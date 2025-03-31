@@ -22,8 +22,6 @@ const CheckOut = ({ page }) => {
     (itm) => cartItem && cartItem[itm.id] && cartItem[itm.id] > 0
   );
 
-  console.log(cartProducts);
-
   const totalStars = 5;
 
   const [AllAddress, setAllAddress] = useState([]);
@@ -35,6 +33,7 @@ const CheckOut = ({ page }) => {
   const [delivery, setFee] = useState(0);
   const [AddressLoader, setAddressLoader] = useState(false);
   const [DefaultLoader, setDefaultLoader] = useState(false);
+  const [orderLoader, setOrderLoader] = useState(false);
   const [newAddress, setNewAddress] = useState({
     FirstName: "",
     LastName: "",
@@ -46,6 +45,8 @@ const CheckOut = ({ page }) => {
     postalCode: "",
     city: "",
   });
+  const recentAdd = AllAddress.find((item) => item._id === selectedAddress);
+
   // Handle input changes in the form
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -312,9 +313,84 @@ const CheckOut = ({ page }) => {
   const cartItems = cartProducts.map((item) => ({
     name: item.productName,
     image: item.image,
-    price: item.newPrice,
+    price: Number(item.newPrice),
     quantity: cartItem[item.id] || 1, // Use shopContext to get the quantity
   }));
+
+  console.log(cartItems);
+
+  const handleCheck = async () => {
+    try {
+      if (!cartProducts || cartProducts.length === 0) {
+        Swal.fire({ icon: "error", title: "Your cart is empty" });
+        return;
+      }
+
+      if (!selectedAddress) {
+        Swal.fire({
+          icon: "error",
+          title: "No address selected",
+          text: "Please select an address before proceeding.",
+        });
+        return;
+      }
+
+      setOrderLoader(true); // Show loading indicator while processing
+
+      // Construct the order object
+      const orderData = {
+        UserID: localStorage.getItem("userId"), // Ensure userId is included
+        name: `${recentAdd.FirstName} ${recentAdd.LastName}`,
+        email: recentAdd.email,
+        OrderPrice: getTotalValue(), // Use camelCase to match backend
+        paymentStatus: "Pending",
+        paymentReference: `ORDER_${Date.now()}`, // Unique reference ID
+        orderStatus: "Processing",
+        DeliveryFee: recentAdd.Fee,
+        PhoneNumber: recentAdd.PhoneNumber,
+        cartItems: cartProducts.map((item) => ({
+          _id: item.id || item._id, // Ensure correct product ID
+          productName: item.productName || "Unknown",
+          image: item.image || "",
+          price: Number(item.newPrice) || 0,
+          quantity: cartItem[item.id] || 1,
+        })),
+        street: recentAdd?.street || "",
+        state: recentAdd?.state || "",
+        city: recentAdd?.city || "",
+        postalCode: recentAdd?.postalCode || "",
+        country: recentAdd?.country || "",
+      };
+
+      console.log("Sending order:", JSON.stringify(orderData, null, 2));
+
+      const response = await axios.post(
+        "http://localhost:5000/addOrder",
+        orderData
+      );
+
+      if (response.status === 201 || response.status === 200) {
+        Swal.fire({
+          icon: "success",
+          title: "Order placed successfully!",
+          text: "Your order is now being processed.",
+        });
+
+        navigate("/order-confirmation"); // Redirect user to confirmation page
+      } else {
+        throw new Error("Failed to place order");
+      }
+    } catch (error) {
+      console.error("Error placing order:", error.response?.data || error);
+      Swal.fire({
+        icon: "error",
+        title: "Order submission failed",
+        text: error.response?.data?.error || "Server error",
+      });
+    } finally {
+      setOrderLoader(false); // Hide loading indicator
+    }
+  };
 
   const handleProceedToPayment = async () => {
     if (!selectedAddress) {
@@ -326,30 +402,59 @@ const CheckOut = ({ page }) => {
       return;
     }
 
-    const stripe = await loadStripe(
-      "pk_test_51R1l1DRjQM7yvxj09e4OhH8yIE4axDzo0atPKLd2kAdhQa8Z3OevHa5o765Udok6KwcxcLpJgv82UYCE3ec5UMEt00RaohkNdW"
-    );
+    try {
+      setOrderLoader(true);
 
-    const body = {
-      products: cartItems,
-      shippingFee: delivery, // Example shipping fee (change as needed)
-    };
+      const stripe = await loadStripe(
+        "pk_test_51R1l1DRjQM7yvxj09e4OhH8yIE4axDzo0atPKLd2kAdhQa8Z3OevHa5o765Udok6KwcxcLpJgv82UYCE3ec5UMEt00RaohkNdW"
+      );
 
-    const headers = {
-      "Content-Type": "application/json",
-    };
+      const body = {
+        products: cartItems,
+        shippingFee: delivery,
+      };
 
-    const response = await fetch("https://villyzstore.onrender.com/checkout", {
-      method: "POST",
-      headers: headers,
-      body: JSON.stringify(body),
-    });
+      const headers = {
+        "Content-Type": "application/json",
+      };
 
-    const session = await response.json();
-    const result = stripe.redirectToCheckout({ sessionId: session.id });
+      const response = await fetch(
+        "https://villyzstore.onrender.com/checkout",
+        {
+          method: "POST",
+          headers: headers,
+          body: JSON.stringify(body),
+        }
+      );
 
-    if (result.error) {
-      console.log(result.error);
+      if (!response.ok) {
+        throw new Error("Failed to initiate payment");
+      }
+      handleCheck();
+
+      const session = await response.json();
+
+      // Redirect to Stripe checkout
+      const result = await stripe.redirectToCheckout({
+        sessionId: session.id,
+      });
+
+      if (result.error) {
+        Swal.fire({
+          icon: "error",
+          title: "Payment Failed",
+          text: result.error.message,
+        });
+        setOrderLoader(false);
+      }
+    } catch (error) {
+      console.error("Payment error:", error);
+      Swal.fire({
+        icon: "error",
+        title: "Payment failed",
+        text: error.message || "Something went wrong with payment",
+      });
+      setOrderLoader(false);
     }
   };
 
@@ -692,7 +797,13 @@ const CheckOut = ({ page }) => {
               {AddLoader && <Loading />}
             </div>
             <div className="proceed-cont">
-              <button onClick={handleProceedToPayment}>Pay Now</button>
+              {orderLoader ? (
+                <button onClick={handleProceedToPayment}>Loading...</button>
+              ) : (
+                <button onClick={handleProceedToPayment}>
+                  Pay Now ${getTotalValue() + delivery}
+                </button>
+              )}
             </div>
           </div>
         </div>

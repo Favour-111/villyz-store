@@ -23,6 +23,7 @@
   align-items: center;
   justify-content: center;
   gap: 20px;
+  padding: 20px !important;
   .login-form {
     border: 1px solid #e3e3e3;
     width: 500px;

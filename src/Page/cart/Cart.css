@@ -128,7 +128,8 @@
       color: white;
       font-family: poppinsSemiBold;
       border: none;
-      padding: 10px 15px;
+      font-size: 13px;
+      padding: 8px 15px;
       border-radius: 4px;
     }
   }
