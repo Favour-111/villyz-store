@@ -406,15 +406,11 @@ const CheckOut = ({ page }) => {
         shippingFee: delivery,
       };
 
-      const headers = {
-        "Content-Type": "application/json",
-      };
-
       const response = await fetch(
         "https://villyzstore.onrender.com/checkout",
         {
           method: "POST",
-          headers: headers,
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify(body),
         }
       );
@@ -426,9 +422,7 @@ const CheckOut = ({ page }) => {
       const session = await response.json();
 
       // Redirect to Stripe checkout
-      const result = await stripe.redirectToCheckout({
-        sessionId: session.id,
-      });
+      const result = await stripe.redirectToCheckout({ sessionId: session.id });
 
       if (result.error) {
         Swal.fire({
@@ -437,7 +431,9 @@ const CheckOut = ({ page }) => {
           text: result.error.message,
         });
         setOrderLoader(false);
+        return;
       }
+      handleCheck();
     } catch (error) {
       console.error("Payment error:", error);
       Swal.fire({
@@ -445,6 +441,7 @@ const CheckOut = ({ page }) => {
         title: "Payment failed",
         text: error.message || "Something went wrong with payment",
       });
+    } finally {
       setOrderLoader(false);
     }
   };

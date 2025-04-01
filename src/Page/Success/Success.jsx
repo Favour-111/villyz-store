@@ -5,7 +5,7 @@ import success from "./65087a639b4c2d762f923d6e_Green Tick.svg";
 const Success = () => {
   useEffect(() => {
     const timeout = setTimeout(() => {
-      window.location.replace("/orderPg");
+      window.location.replace("/");
     }, 5000);
 
     // Cleanup function to prevent memory leaks
@@ -18,7 +18,7 @@ const Success = () => {
       <div className="success-text">Thank You!</div>
       <div className="success-text2">Payment done successfully</div>
       <div className="success-content">
-        You will be redirected to the Order Page shortly.
+        You will be redirected to the homepage shortly.
         <br />
         Or click below to return immediately.
       </div>
@@ -26,7 +26,7 @@ const Success = () => {
         onClick={() => window.location.replace("/")}
         className="success-home"
       >
-        View Order
+        Home
       </button>
     </div>
   );
