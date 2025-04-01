@@ -308,7 +308,7 @@ const Address = ({ page }) => {
       <BreadCrumb page={page} />
       <div className="account-pg">
         <AccountSideBar />
-        <div className="w-100">
+        <div className="w-100 p-3">
           <AccountSideBarSm />
           <div className="w-100">
             <div className="billing-container">

@@ -74,7 +74,7 @@ const AccountSideBarSm = () => {
                   localStorage.removeItem("userId");
                   window.location.replace("/login");
                 }}
-                className="side-list"
+                className="log-out mt-3"
               >
                 <FiLogOut size={18} />
                 <span>Log Out</span>

@@ -260,7 +260,7 @@ const CategoryShop = ({ page }) => {
                         <IoIosArrowDown size={16} />
                       </div>
                     </div>
-                    <div className="">
+                    <div className="sort">
                       <div className="pt-2  px-3">
                         <select onChange={(e) => handleSort(e.target.value)}>
                           <option value="">--Select--</option>

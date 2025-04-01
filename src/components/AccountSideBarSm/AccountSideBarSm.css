@@ -26,7 +26,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px;
+  padding: 20px 10px 10px 20px;
   div {
     font-family: poppinsSemiBold;
     color: #4b5966;
@@ -34,13 +34,13 @@
   button {
     padding: 3px 10px;
     background-color: transparent;
-    border: 1px solid #e3e3e3;
+    border: none;
     border-radius: 5px;
   }
 }
 .account-sm {
   width: 100%;
-  padding: 30px 20px;
+  padding: 10px 20px;
   ul {
     li {
       .side-list {
@@ -48,7 +48,9 @@
         align-items: center;
         font-family: poppinsRegular;
         gap: 10px;
-        color: #4b5966b5;
+        font-size: 14px;
+        margin-top: 5px;
+        color: #4b5966;
         text-decoration: none;
         cursor: pointer;
       }
@@ -61,7 +63,16 @@
   color: #fff !important;
   border-radius: 5px;
 }
-
+.log-out {
+  display: flex;
+  align-items: center;
+  font-family: poppinsRegular;
+  gap: 10px;
+  font-size: 14px;
+  color: red;
+  text-decoration: none;
+  cursor: pointer;
+}
 @media screen and (max-width: 940px) {
   .side-account-cont-sm {
     position: fixed;
