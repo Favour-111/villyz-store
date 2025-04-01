@@ -26,6 +26,8 @@ const SingleOrder = ({ page }) => {
     DeliveryFee,
     OrderPrice,
     product = [],
+    paymentReference,
+    orderStatus,
   } = location.state || {};
 
   // State to track whether to show all products
@@ -41,6 +43,12 @@ const SingleOrder = ({ page }) => {
         <div className="row">
           <div className="col-md-3 col-sm-12">
             <div className="single-order-address">
+              <div className="single-order-address-item">
+                <span>Order Id</span>: {paymentReference}
+              </div>
+              <div className="single-order-address-item">
+                <span>Order Status</span>: {orderStatus}
+              </div>
               <div className="single-order-address-item">
                 <span>Name</span>: {name}
               </div>

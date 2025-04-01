@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./Nav.css";
 import { LuUserRound } from "react-icons/lu";
-import { CiHeart, CiLocationOn, CiLogout } from "react-icons/ci";
-import { IoBagHandleOutline } from "react-icons/io5";
+import { CiHeart, CiLocationOn, CiLogout, CiSettings } from "react-icons/ci";
+import { IoBagHandleOutline, IoLocationOutline } from "react-icons/io5";
 import { GrAppsRounded } from "react-icons/gr";
 import { RiArrowDropDownLine } from "react-icons/ri";
 import { Link, useParams } from "react-router-dom";
@@ -12,6 +12,7 @@ import product from "../../product";
 import axios from "axios";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/src/sweetalert2.scss";
+import { FiShoppingBag } from "react-icons/fi";
 const Nav = () => {
   const navigate = useNavigate();
 
@@ -245,26 +246,23 @@ const Nav = () => {
                 {localStorage.getItem("auth-token") ? (
                   <ul className="dropdown-content-pages">
                     <li>
-                      {" "}
                       <Link
                         className="Link"
                         to={`/profile/${localStorage.getItem("userId")}`}
                       >
-                        {" "}
+                        <CiSettings size={18} />
                         Settings
                       </Link>
                     </li>
                     <li>
-                      {" "}
                       <Link className="Link" to="/addresses">
-                        {" "}
+                        <IoLocationOutline size={18} />
                         Address
                       </Link>
                     </li>
                     <li>
-                      {" "}
                       <Link className="Link" to="/orderpg">
-                        {" "}
+                        <FiShoppingBag />
                         Orders
                       </Link>
                     </li>

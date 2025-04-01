@@ -93,7 +93,84 @@
     font-size: 13px;
   }
 }
+.order-type {
+  width: 100%;
+  border-bottom: 1px solid #e3e3e3;
+  border-top: 1px solid #e3e3e3;
+  margin-top: 20px;
+  display: flex;
+  padding: 10px 10px 0 10px;
+  align-items: center;
+  gap: 15px;
+  button {
+    color: #4b5966;
+    font-family: poppinsRegular;
+    font-size: 14px;
+    border: none;
+    text-transform: capitalize;
+    padding: 0 0 10px 0;
+    background-color: transparent;
+  }
+}
+.order-type button.active {
+  color: var(--color);
+  border-bottom: 1px solid var(--color);
+}
+.Orders {
+  margin-top: 20px;
+}
+.order-item {
+  position: relative;
+  border: 1px solid #e3e3e3 !important;
+  display: flex;
+  border-radius: 4px;
+  gap: 10px;
+  padding: 0 0 20px 0;
+  img {
+    width: 80px;
+  }
+  .Details {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: var(--color);
+    font-size: 12px;
+    cursor: pointer;
+    font-family: poppinsRegular;
+  }
+  .Order_Id {
+    color: #4b5966;
+    font-family: poppinsRegular;
+    font-size: 15px;
+  }
+  .Order_date {
+    font-family: poppinsLight;
+    margin-top: 10px;
+    font-size: 13px;
+  }
+  .Order_Status {
+    background-color: green;
+    color: #ffffff;
+    font-family: poppinsRegular;
+    font-size: 11px;
+    width: 70px !important;
+    text-align: center;
+    margin-top: 10px;
+    border-radius: 10px;
+  }
+}
+.view-more-btn {
+  color: blue;
+  border: none;
+  background-color: transparent;
+  font-family: poppinsRegular;
+  font-size: 13px;
+  text-decoration: underline;
+}
 @media screen and (max-width: 768px) {
+  .order-header {
+    font-size: 22px;
+  }
   .order-container {
     padding: 20px;
     width: 100% !important;
@@ -103,7 +180,10 @@
     padding: 0 !important;
   }
   .order-type {
-    margin: 0;
+    margin-top: 10px;
+  }
+  .img {
+    font-size: 70px;
   }
 }
 @media screen and (max-width: 940px) {

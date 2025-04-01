@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import "./NavSm.css";
 import { Link, useNavigate } from "react-router-dom";
 import { ShopContext } from "../context/ShopContext";
-import { CiLogout } from "react-icons/ci";
+import { CiLogout, CiSettings } from "react-icons/ci";
 import { IoIosArrowDown, IoMdHeartEmpty } from "react-icons/io";
 import { RiArrowDropDownLine, RiCloseLargeFill } from "react-icons/ri";
 import { GrAppsRounded } from "react-icons/gr";
@@ -12,6 +12,7 @@ import axios from "axios";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/src/sweetalert2.scss";
 import InfoSm from "../InfoSm/InfoSm";
+import { IoLocationOutline } from "react-icons/io5";
 const NavSm = () => {
   const navigate = useNavigate();
   const { totalCartItems, totalWishList, categoryType } =
@@ -184,6 +185,13 @@ const NavSm = () => {
           <Link className="li" to="/home">
             Home <div></div>
           </Link>
+          <Link
+            className="li"
+            to={localStorage.getItem("auth-token") ? "/orderpg" : "/login"}
+          >
+            Orders <div></div>
+          </Link>
+
           <Link className="li" onClick={toggleSubCategory1}>
             Categories{" "}
             <div>
@@ -255,21 +263,20 @@ const NavSm = () => {
           {localStorage.getItem("auth-token") ? (
             <ul className={`nav-sm-subCategory ${subCategory3 ? "open" : ""}`}>
               <li>
-                {" "}
                 <Link to="/orderpg" className="Link">
-                  {" "}
+                  <FiShoppingBag />
                   Orders
-                </Link>
+                </Link>{" "}
               </li>
               <li>
                 <Link to="/profile/:id" className="Link">
-                  {" "}
+                  <CiSettings size={18} />
                   Settings
                 </Link>{" "}
               </li>
               <li>
                 <Link className="Link" to="/addresses">
-                  {" "}
+                  <IoLocationOutline size={18} />
                   Address
                 </Link>
               </li>
