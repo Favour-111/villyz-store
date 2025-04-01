@@ -19,7 +19,9 @@ const OrderPage = ({ page }) => {
   const fetchOrders = async () => {
     try {
       setLoader(true);
-      const response = await axios.get("http://localhost:5000/allOrders");
+      const response = await axios.get(
+        "https://villyzstore.onrender.com/allOrders"
+      );
       if (response) {
         setOrders(response.data);
         console.log(response);
