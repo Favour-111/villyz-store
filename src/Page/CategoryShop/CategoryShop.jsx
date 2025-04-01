@@ -185,7 +185,7 @@ const CategoryShop = ({ page }) => {
                   <div className="filter-head">
                     <div>Filter</div>
                     <div onClick={() => setFilterContLG(false)}>
-                      <RiCloseFill size={18} />
+                      <RiCloseFill size={22} color="orangered" />
                     </div>
                   </div>
                   <div className="filter-availability">

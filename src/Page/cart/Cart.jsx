@@ -239,6 +239,12 @@ const Cart = ({ page }) => {
                           </div>
                         </div>
                         <div className="table-cont-item">
+                          <div>Name</div>
+                          <div>
+                            <div>{e.productName.slice(0, 20)}....</div>
+                          </div>
+                        </div>
+                        <div className="table-cont-item">
                           <div>Price</div>
                           <div>
                             <div>${e.newPrice}</div>
