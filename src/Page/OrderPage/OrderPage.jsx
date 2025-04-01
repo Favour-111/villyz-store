@@ -45,9 +45,23 @@ const OrderPage = ({ page }) => {
   const navigate = useNavigate();
 
   // Filter orders based on userId
+
   const userOrders = order.filter(
     (item) => item.UserID === localStorage.getItem("userId")
   );
+  const filteredOrders = userOrders.filter((item) => {
+    if (activeStatus === "ongoing") {
+      return (
+        item.orderStatus === "Processing" ||
+        item.orderStatus === "Shipping" ||
+        item.orderStatus === "Shipped" ||
+        item.orderStatus === "Delivered"
+      );
+    } else if (activeStatus === "cancelled") {
+      return item.orderStatus === "Cancelled";
+    }
+    return true; // Default case (if any)
+  });
 
   return (
     <div>
@@ -77,8 +91,8 @@ const OrderPage = ({ page }) => {
             </button>
           </div>
           <div className="Orders">
-            {userOrders
-              .slice(0, showAll ? userOrders.length : 3) // Show 3 orders initially, show all if `showAll` is true
+            {filteredOrders
+              .slice(0, showAll ? filteredOrders.length : 3) // Show first 3 orders, show all if `showAll` is true
               .map((item) => (
                 <div className="order-item mt-3" key={item.paymentReference}>
                   <div>
@@ -86,7 +100,26 @@ const OrderPage = ({ page }) => {
                   </div>
                   <div className="mt-3">
                     <div className="Order_Id">{item.paymentReference}</div>
-                    <div className="Order_Status">{item.orderStatus}</div>
+                    <div
+                      className="Order_Status"
+                      style={{
+                        backgroundColor:
+                          item.orderStatus === "Cancelled"
+                            ? "red"
+                            : item.orderStatus === "Delivered"
+                            ? "green"
+                            : item.orderStatus === "Processing"
+                            ? "orange"
+                            : item.orderStatus === "Shipping"
+                            ? "purple"
+                            : item.orderStatus === "Shipped"
+                            ? "teal"
+                            : "gray", // Default color for unknown statuses
+                      }}
+                    >
+                      {item.orderStatus}
+                    </div>
+
                     <div className="Order_date">
                       On {item.date.slice(0, 10)}
                     </div>
