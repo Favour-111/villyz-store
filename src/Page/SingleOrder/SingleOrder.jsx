@@ -73,6 +73,9 @@ const SingleOrder = ({ page }) => {
               <div className="single-order-address-item">
                 <span>Order Price</span>: ${OrderPrice}
               </div>
+              <div className="single-order-address-item">
+                <span>Total</span>: ${OrderPrice + DeliveryFee}
+              </div>
             </div>
           </div>
 

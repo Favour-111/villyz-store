@@ -152,10 +152,11 @@
     background-color: green;
     color: #ffffff;
     font-family: poppinsRegular;
-    font-size: 11px;
+    font-size: 10px;
     width: 70px !important;
     text-align: center;
     margin-top: 10px;
+    padding: 2px 2px;
     border-radius: 10px;
   }
 }
@@ -169,7 +170,7 @@
 }
 @media screen and (max-width: 768px) {
   .order-header {
-    font-size: 22px;
+    font-size: 18px;
   }
   .order-container {
     padding: 20px;
