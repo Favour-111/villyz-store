@@ -142,16 +142,16 @@ const WishList = ({ page }) => {
           </div>
         </section>
       ) : (
-        <div className="empty-cart">
+        <div className="empty-cart mt-5">
           <div>
             <img
-              width="74"
-              height="74"
-              src="https://img.icons8.com/cute-clipart/64/nothing-found.png"
+              width="304"
+              height="304"
+              src="https://cdni.iconscout.com/illustration/premium/thumb/empty-wishlist-illustration-download-in-svg-png-gif-file-formats--is-no-items-with-products-favorites-list-ecommerce-states-pack-e-commerce-shopping-illustrations-9741055.png"
               alt="nothing-found"
             />
           </div>
-          <div className="mt-3">Add Items to WishList...</div>
+          <div className="mt-3">Add Items to WishList</div>
         </div>
       )}
 

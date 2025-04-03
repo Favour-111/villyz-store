@@ -358,13 +358,13 @@ const Cart = ({ page }) => {
         <div className="empty-cart">
           <div>
             <img
-              width="74"
-              height="74"
-              src="https://img.icons8.com/cute-clipart/64/nothing-found.png"
+              width="480"
+              className="img-fluid"
+              height="400"
+              src="https://cdn.dribbble.com/userupload/21335951/file/original-972b5b1135cb9f0fb18054403315f169.png"
               alt="nothing-found"
             />
           </div>
-          <div className="mt-3">Add Items to cart...</div>
         </div>
       )}
 

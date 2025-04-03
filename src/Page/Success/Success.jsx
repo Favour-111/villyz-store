@@ -3,14 +3,15 @@ import "./Success.css";
 import success from "./65087a639b4c2d762f923d6e_Green Tick.svg";
 
 const Success = () => {
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      window.location.replace("/");
-    }, 5000);
+  // useEffect(() => {
+  //   const timeout = setTimeout(() => {
+  //     window.location.replace("/");
+  //   }, 5000);
 
-    // Cleanup function to prevent memory leaks
-    return () => clearTimeout(timeout);
-  }, []); // Run only once when the component mounts
+  //   // Cleanup function to prevent memory leaks
+  //   return () => clearTimeout(timeout);
+  // }, []); // Run only once when the component mounts
+  console.log(122);
 
   return (
     <div className="Success-body">
