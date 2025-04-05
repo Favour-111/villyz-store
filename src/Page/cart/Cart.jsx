@@ -103,7 +103,7 @@ const Cart = ({ page }) => {
 
                   <div className="total">
                     <div>total amount</div>
-                    <div>${getTotalValue() + 40}</div>
+                    <div>${getTotalValue()}</div>
                   </div>
                 </div>
               </div>
