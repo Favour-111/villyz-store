@@ -433,11 +433,14 @@ const CheckOut = ({ page }) => {
         shippingFee: delivery,
       };
 
-      const response = await fetch("http://localhost:5000/checkout", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body),
-      });
+      const response = await fetch(
+        "https://villyzstore.onrender.com/checkout",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(body),
+        }
+      );
 
       if (!response.ok) {
         throw new Error("Failed to initiate payment");
