@@ -401,6 +401,33 @@ const CheckOut = ({ page }) => {
         "pk_test_51R1l1DRjQM7yvxj09e4OhH8yIE4axDzo0atPKLd2kAdhQa8Z3OevHa5o765Udok6KwcxcLpJgv82UYCE3ec5UMEt00RaohkNdW"
       );
 
+      const orderData = {
+        UserID: localStorage.getItem("userId"),
+        name: `${recentAdd.FirstName} ${recentAdd.LastName}`,
+        email: recentAdd.email,
+        OrderPrice: getTotalValue(),
+        paymentStatus: "Pending",
+        paymentReference: `ORDER_${Date.now()}`,
+        orderStatus: "Processing",
+        DeliveryFee: recentAdd.Fee,
+        PhoneNumber: recentAdd.PhoneNumber,
+        cartItems: cartProducts.map((item) => ({
+          _id: item.id || item._id,
+          productName: item.productName || "Unknown",
+          image: item.image || "",
+          price: Number(item.newPrice) || 0,
+          quantity: cartItem[item.id] || 1,
+        })),
+        street: recentAdd?.street || "",
+        state: recentAdd?.state || "",
+        city: recentAdd?.city || "",
+        postalCode: recentAdd?.postalCode || "",
+        country: recentAdd?.country || "",
+      };
+
+      // Save order to sessionStorage so we can access it after payment success
+      sessionStorage.setItem("orderData", JSON.stringify(orderData));
+
       const body = {
         products: cartItems,
         shippingFee: delivery,
@@ -421,7 +448,6 @@ const CheckOut = ({ page }) => {
 
       const session = await response.json();
 
-      // Redirect to Stripe checkout
       const result = await stripe.redirectToCheckout({ sessionId: session.id });
 
       if (result.error) {
@@ -430,10 +456,7 @@ const CheckOut = ({ page }) => {
           title: "Payment Failed",
           text: result.error.message,
         });
-        setOrderLoader(false);
-        return;
       }
-      handleCheck();
     } catch (error) {
       console.error("Payment error:", error);
       Swal.fire({
