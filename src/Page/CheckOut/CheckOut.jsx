@@ -426,7 +426,7 @@ const CheckOut = ({ page }) => {
       };
 
       // Save order to sessionStorage so we can access it after payment success
-      sessionStorage.setItem("orderData", JSON.stringify(orderData));
+      localStorage.setItem("orderData", JSON.stringify(orderData));
 
       const body = {
         products: cartItems,

@@ -6,7 +6,7 @@ import axios from "axios";
 
 const Success = () => {
   useEffect(() => {
-    const storedOrder = sessionStorage.getItem("orderData");
+    const storedOrder = localStorage.getItem("orderData");
 
     if (storedOrder) {
       const orderData = JSON.parse(storedOrder);
