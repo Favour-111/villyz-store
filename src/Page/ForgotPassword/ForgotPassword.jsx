@@ -55,7 +55,7 @@ const ForgotPassword = () => {
       } else {
         Swal.fire({
           title: "Error",
-          text: response.data.msg,
+          text: "User does not exist",
           icon: "error",
           confirmButtonText: "OK",
         });

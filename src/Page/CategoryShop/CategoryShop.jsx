@@ -26,6 +26,18 @@ const CategoryShop = ({ page }) => {
   const [sortOption, setSortOption] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedRatings, setSelectedRatings] = useState([]);
+  const [openSections, setOpenSections] = useState({
+    availability: true,
+    price: true,
+    sort: true,
+    rating: true,
+  });
+  const toggleSection = (section) => {
+    setOpenSections((prev) => ({
+      ...prev,
+      [section]: !prev[section],
+    }));
+  };
 
   const [stockFilter, setStockFilter] = useState({
     inStock: false,
@@ -189,145 +201,197 @@ const CategoryShop = ({ page }) => {
                     </div>
                   </div>
                   <div className="filter-availability">
-                    <div className="filter-subhead">
+                    <div
+                      className="filter-subhead"
+                      onClick={() => toggleSection("availability")}
+                      style={{ cursor: "pointer" }}
+                    >
                       <div>Availability</div>
-                      <div>
+                      <div
+                        style={{
+                          transform: openSections.availability
+                            ? "rotate(180deg)"
+                            : "rotate(0deg)",
+                          transition: "transform 0.3s ease",
+                        }}
+                      >
                         <IoIosArrowDown size={16} />
                       </div>
                     </div>
-                    <div className="p-2">
-                      <div className="input-category">
-                        <input
-                          type="checkbox"
-                          name="inStock"
-                          checked={stockFilter.inStock}
-                          onChange={handleStockChange}
-                        />
-                        <div className="checkbox-label">In Stock</div>
+                    {openSections.availability && (
+                      <div className="p-2">
+                        <div className="input-category">
+                          <input
+                            type="checkbox"
+                            name="inStock"
+                            checked={stockFilter.inStock}
+                            onChange={handleStockChange}
+                          />
+                          <div className="checkbox-label">In Stock</div>
+                        </div>
+                        <div className="input-category">
+                          <input
+                            type="checkbox"
+                            name="outOfStock"
+                            checked={stockFilter.outOfStock}
+                            onChange={handleStockChange}
+                          />
+                          <div className="checkbox-label">Out of Stock</div>
+                        </div>
                       </div>
-                      <div className="input-category">
-                        <input
-                          type="checkbox"
-                          name="outOfStock"
-                          checked={stockFilter.outOfStock}
-                          onChange={handleStockChange}
-                        />
-                        <div className="checkbox-label">Out of Stock</div>
-                      </div>
-                    </div>
+                    )}
                   </div>
                   <div className="filter-availability">
-                    <div className="filter-subhead">
+                    <div
+                      className="filter-subhead"
+                      onClick={() => toggleSection("price")}
+                      style={{ cursor: "pointer" }}
+                    >
                       <div>Price Range</div>
-                      <div>
+                      <div
+                        style={{
+                          transform: openSections.price
+                            ? "rotate(180deg)"
+                            : "rotate(0deg)",
+                          transition: "transform 0.3s ease",
+                        }}
+                      >
                         <IoIosArrowDown size={16} />
                       </div>
                     </div>
-                    <div className="p-2">
-                      <div className="range-slider pt-1 px-3">
-                        {/* Min Range Slider */}
-                        <input
-                          type="range"
-                          name="min"
-                          min="0"
-                          max="1000"
-                          value={priceRange.min}
-                          onChange={handleRangeChange}
-                        />
+                    {openSections.price && (
+                      <div className="p-2">
+                        <div className="range-slider pt-1 px-3">
+                          {/* Min Range Slider */}
+                          <input
+                            type="range"
+                            name="min"
+                            min="0"
+                            max="1000"
+                            value={priceRange.min}
+                            onChange={handleRangeChange}
+                          />
 
-                        {/* Max Range Slider */}
-                        <input
-                          type="range"
-                          name="max"
-                          min="0"
-                          max="1000"
-                          value={priceRange.max}
-                          onChange={handleRangeChange}
-                        />
-                      </div>
+                          {/* Max Range Slider */}
+                          <input
+                            type="range"
+                            name="max"
+                            min="0"
+                            max="1000"
+                            value={priceRange.max}
+                            onChange={handleRangeChange}
+                          />
+                        </div>
 
-                      {/* Display Values */}
-                      <div className="d-flex justify-content-between mt-2 px-3">
-                        <span className="range">Min: {priceRange.min}</span>
-                        <span className="range">Max: {priceRange.max}</span>
+                        {/* Display Values */}
+                        <div className="d-flex justify-content-between mt-2 px-3">
+                          <span className="range">Min: {priceRange.min}</span>
+                          <span className="range">Max: {priceRange.max}</span>
+                        </div>
                       </div>
-                    </div>
+                    )}
                   </div>
                   <div className="filter-availability">
-                    <div className="filter-subhead">
+                    <div
+                      className="filter-subhead"
+                      onClick={() => toggleSection("sort")}
+                      style={{ cursor: "pointer" }}
+                    >
                       <div>Sort </div>
-                      <div>
+                      <div
+                        style={{
+                          transform: openSections.sort
+                            ? "rotate(180deg)"
+                            : "rotate(0deg)",
+                          transition: "transform 0.3s ease",
+                        }}
+                      >
                         <IoIosArrowDown size={16} />
                       </div>
                     </div>
                     <div className="sort">
-                      <div className="pt-2  px-3">
-                        <select onChange={(e) => handleSort(e.target.value)}>
-                          <option value="">--Select--</option>
-                          <option value="name-asc">Name (A-Z)</option>
-                          <option value="name-desc">Name (Z-A)</option>
-                          <option value="price-asc">
-                            Price (Lowest to Highest)
-                          </option>
-                          <option value="price-desc">
-                            Price (Highest to Lowest)
-                          </option>
-                        </select>
-                      </div>
+                      {openSections.sort && (
+                        <div className="pt-2  px-3">
+                          <select onChange={(e) => handleSort(e.target.value)}>
+                            <option value="">--Select--</option>
+                            <option value="name-asc">Name (A-Z)</option>
+                            <option value="name-desc">Name (Z-A)</option>
+                            <option value="price-asc">
+                              Price (Lowest to Highest)
+                            </option>
+                            <option value="price-desc">
+                              Price (Highest to Lowest)
+                            </option>
+                          </select>
+                        </div>
+                      )}
                     </div>
                   </div>
                   <div className="filter-availability">
-                    <div className="filter-subhead">
+                    <div
+                      className="filter-subhead"
+                      onClick={() => toggleSection("rating")}
+                      style={{ cursor: "pointer" }}
+                    >
                       <div>Rating </div>
-                      <div>
+                      <div
+                        style={{
+                          transform: openSections.rating
+                            ? "rotate(180deg)"
+                            : "rotate(0deg)",
+                          transition: "transform 0.3s ease",
+                        }}
+                      >
                         <IoIosArrowDown size={16} />
                       </div>
                     </div>
-                    <div className="p-3">
-                      {/* Rating options */}
-                      <label className="d-flex align-items-center gap-2 mt-3">
-                        <input
-                          type="checkbox"
-                          checked={isRatingActive}
-                          onChange={() => setIsRatingActive(!isRatingActive)}
-                        />
-                        <div className="enable"> Enable Rating Filter</div>
-                      </label>
-
-                      {[1, 2, 3, 4, 5].map((rating) => (
-                        <label
-                          key={rating}
-                          style={{
-                            display: "flex",
-                            alignItems: "center",
-                            cursor: "pointer",
-                          }}
-                        >
+                    {openSections.rating && (
+                      <div className="p-2">
+                        {/* Rating options */}
+                        <label className="d-flex align-items-center gap-2 mt-3">
                           <input
                             type="checkbox"
-                            value={rating}
-                            disabled={!isRatingActive}
-                            checked={selectedRatings.includes(rating)}
-                            onChange={() => handleRatingSelect(rating)}
+                            checked={isRatingActive}
+                            onChange={() => setIsRatingActive(!isRatingActive)}
                           />
-                          <div style={{ display: "flex", marginTop: 10 }}>
-                            {Array.from({ length: rating }, (_, index) => (
-                              <svg
-                                key={index}
-                                xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 24 24"
-                                fill={index < rating ? "orange" : "gray"} // Conditionally set color
-                                width="14px"
-                                height="14px"
-                                style={{ margin: "0 2px" }}
-                              >
-                                <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
-                              </svg>
-                            ))}
-                          </div>
+                          <div className="enable"> Enable Rating Filter</div>
                         </label>
-                      ))}
-                    </div>
+
+                        {[1, 2, 3, 4, 5].map((rating) => (
+                          <label
+                            key={rating}
+                            style={{
+                              display: "flex",
+                              alignItems: "center",
+                              cursor: "pointer",
+                            }}
+                          >
+                            <input
+                              type="checkbox"
+                              value={rating}
+                              disabled={!isRatingActive}
+                              checked={selectedRatings.includes(rating)}
+                              onChange={() => handleRatingSelect(rating)}
+                            />
+                            <div style={{ display: "flex", marginTop: 10 }}>
+                              {Array.from({ length: rating }, (_, index) => (
+                                <svg
+                                  key={index}
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  viewBox="0 0 24 24"
+                                  fill={index < rating ? "orange" : "gray"} // Conditionally set color
+                                  width="14px"
+                                  height="14px"
+                                  style={{ margin: "0 2px" }}
+                                >
+                                  <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                                </svg>
+                              ))}
+                            </div>
+                          </label>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 </div>
 

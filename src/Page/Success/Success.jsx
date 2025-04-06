@@ -43,7 +43,7 @@ const Success = () => {
     }
 
     const timeout = setTimeout(() => {
-      window.location.replace("/");
+      window.location.replace("/orderPg");
     }, 5000);
 
     return () => clearTimeout(timeout);
