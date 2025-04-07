@@ -255,6 +255,10 @@
         margin-top: 5px;
       }
     }
+    .input-small-container1 {
+      width: 100%;
+      height: auto;
+    }
   }
   .input-sm {
     display: block;

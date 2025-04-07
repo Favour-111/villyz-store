@@ -1,6 +1,7 @@
 :root {
   --color: rgb(83 109 254);
 }
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Lobster&family=Playwrite+MX+Guides&display=swap");
 @font-face {
   font-family: poppinsBold;
   src: url(../../assets/font/Poppins-SemiBold.ttf);
@@ -30,20 +31,28 @@
   z-index: 99999999999;
 }
 .loading {
-  font-size: 3rem;
-  font-weight: bold;
+  font-size: 2.5rem;
+  font-weight: normal;
   color: white;
-  font-family: poppinsExtraBold;
+  font-family: "Lobster", sans-serif;
+  font-style: normal;
   background-color: var(--color); /* Background for 'V' */
   border-radius: 100%;
-  height: 80px;
+  height: 70px;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 80px;
+  width: 70px;
   animation: pulseBlink 1.5s infinite ease-in-out;
 }
-
+.loadingtext {
+  text-align: center;
+  color: black;
+  text-transform: capitalize;
+  font-size: 14px;
+  margin-top: 10px;
+  font-family: poppinsLight;
+}
 @keyframes pulseBlink {
   0% {
     transform: scale(1);

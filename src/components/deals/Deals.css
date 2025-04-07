@@ -19,7 +19,7 @@
 }
 .Deal-container {
   width: 100%;
-  padding: 60px 60px 20px 60px;
+  padding: 60px 40px 20px 40px;
   .container-header {
     display: flex;
     align-items: center;
@@ -144,6 +144,11 @@
   }
 }
 
+@media screen and (max-width: 830px) {
+  .Deal-container {
+    padding: 40px;
+  }
+}
 @media screen and (max-width: 768px) {
   .category-container {
     padding: 40px;

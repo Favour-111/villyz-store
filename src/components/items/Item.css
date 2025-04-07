@@ -142,6 +142,11 @@
 .hover-buttons button:hover img {
   transform: scale(0.9);
 }
+@media screen and (max-width: 830px) {
+  .product-item {
+    width: 200px !important;
+  }
+}
 @media screen and (max-width: 768px) {
   .hover-buttons {
     opacity: 1;
