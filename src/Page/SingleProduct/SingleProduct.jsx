@@ -199,7 +199,7 @@ const SingleProduct = ({ page }) => {
             <span>Related</span> product
           </h4>
           <div className="item">
-            <div className="itemBody2">
+            <div className="itemBody">
               {product
                 .filter((item) => item.categories === category) // Filter first
                 .slice(0, product.length >= 12 ? 12 : product.length) // Slice only if 10 or more exist
@@ -218,7 +218,7 @@ const SingleProduct = ({ page }) => {
             <span>4 star</span> above
           </h4>
           <div className="item">
-            <div className="itemBody2">
+            <div className="itemBody">
               {product
                 .filter(
                   (item) => item.categories === category && item.Rating >= 4

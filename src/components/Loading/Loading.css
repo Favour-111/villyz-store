@@ -43,10 +43,10 @@
   align-items: center;
   justify-content: center;
   width: 70px;
+  margin-left: 10px;
   animation: pulseBlink 1.5s infinite ease-in-out;
 }
 .loadingtext {
-  text-align: center;
   color: black;
   text-transform: capitalize;
   font-size: 14px;

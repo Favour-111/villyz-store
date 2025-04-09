@@ -143,9 +143,14 @@
   overflow: scroll;
   scrollbar-width: none !important;
 }
+@media screen and (max-width: 930px) {
+  .single-product-cont {
+    padding: 70px 30px 30px 30px;
+  }
+}
 @media screen and (max-width: 768px) {
   .single-product-cont {
-    padding: 10px;
+    padding: 0 !important;
     display: flex;
     align-items: center;
     justify-content: center;
