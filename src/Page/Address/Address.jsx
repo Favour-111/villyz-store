@@ -41,32 +41,28 @@ const Address = ({ page }) => {
 
   console.log(newAddress);
 
-  const locations = {
-    USA: {
-      price: 100,
-      states: {
-        California: 50,
-        Texas: 40,
-        Florida: 30,
-      },
-    },
-    Canada: {
-      price: 80,
-      states: {
-        Ontario: 60,
-        Quebec: 50,
-        Alberta: 40,
-      },
-    },
-    Nigeria: {
-      price: 70,
-      states: {
-        Lagos: 35,
-        Abuja: 25,
-        Kano: 20,
-      },
-    },
-  };
+  const [locations, setLocation] = useState({});
+  useEffect(() => {
+    const fetchLocations = async () => {
+      try {
+        const response = await axios.get(
+          `https://villyzstore.onrender.com/countries`
+        );
+        const locationsData = response.data.reduce((acc, location) => {
+          acc[location.country] = {
+            price: location.price,
+            states: location.states,
+          };
+          return acc;
+        }, {});
+        setLocation(locationsData);
+      } catch (error) {
+        console.error("Error fetching locations:", error);
+      }
+    };
+
+    fetchLocations();
+  }, []);
 
   // State variables
   const [selectedLocation, setSelectedLocation] = useState("");

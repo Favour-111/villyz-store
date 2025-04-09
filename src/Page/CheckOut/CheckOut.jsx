@@ -56,7 +56,9 @@ const CheckOut = ({ page }) => {
   useEffect(() => {
     const fetchLocations = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/countries`);
+        const response = await axios.get(
+          `https://villyzstore.onrender.com/countries`
+        );
         const locationsData = response.data.reduce((acc, location) => {
           acc[location.country] = {
             price: location.price,
@@ -480,7 +482,7 @@ const CheckOut = ({ page }) => {
               </div>
               <div className="price-list">
                 <div>Delivery charge</div>
-                <div>{delivery}</div>
+                <div>${delivery}</div>
               </div>
               <div className="price-list-total">
                 <div>total</div>
