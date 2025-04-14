@@ -42,6 +42,7 @@ const Deals = () => {
         <div className="Deal-itemBody">
           {product
             .filter((item) => item.deals === "Deal")
+            .reverse()
             .map((item) => (
               <div key={product.id} data-aos="fade-up">
                 <Item product={item} />
