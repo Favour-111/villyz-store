@@ -20,11 +20,14 @@ const NewArrival = () => {
         </div>
         <div>
           <div className="Deal-itemBody">
-            {product.slice(0, 12).map((item) => (
-              <div key={item.id} data-aos="fade-up">
-                <Item product={item} />
-              </div>
-            ))}
+            {product
+              .slice(0, 12)
+              .toReversed()
+              .map((item) => (
+                <div key={item.id} data-aos="fade-up">
+                  <Item product={item} />
+                </div>
+              ))}
           </div>
         </div>
       </div>
