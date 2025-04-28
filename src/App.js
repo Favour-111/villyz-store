@@ -36,6 +36,7 @@ import Success from "./Page/Success/Success";
 import Cancel from "./Page/Cancel/Cancel";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
+import toast, { Toaster } from "react-hot-toast";
 function App() {
   useEffect(() => {
     AOS.init({
@@ -128,6 +129,7 @@ function App() {
           </Routes>
         </Elements>
       </ShopContext>
+      <Toaster />
     </div>
   );
 }

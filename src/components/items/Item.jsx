@@ -2,9 +2,7 @@ import React, { useContext } from "react";
 import "./Item.css";
 import { useNavigate } from "react-router-dom";
 import { ShopContext } from "../context/ShopContext";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import Swal from "sweetalert2/dist/sweetalert2.js";
+import toast, { Toaster } from "react-hot-toast";
 import "sweetalert2/src/sweetalert2.scss";
 import { CiBookmark } from "react-icons/ci";
 import { GoBookmarkFill } from "react-icons/go";
@@ -88,21 +86,7 @@ const Item = ({ product }) => {
           className="buy-btn shadow-sm"
           onClick={() => {
             addToCart(product.id);
-            const Toast = Swal.mixin({
-              toast: true,
-              position: "top-end",
-              showConfirmButton: false,
-              timer: 3000,
-              timerProgressBar: true,
-              didOpen: (toast) => {
-                toast.onmouseenter = Swal.stopTimer;
-                toast.onmouseleave = Swal.resumeTimer;
-              },
-            });
-            Toast.fire({
-              icon: "success",
-              title: "product added successfully",
-            });
+            toast.success("item added to Cart!");
           }}
         >
           {cartItem[product.id] > 0 ? (
@@ -125,21 +109,7 @@ const Item = ({ product }) => {
           className="cart-btn shadow-sm"
           onClick={() => {
             toggleWhishList(product.id);
-            const Toast = Swal.mixin({
-              toast: true,
-              position: "top-end",
-              showConfirmButton: false,
-              timer: 3000,
-              timerProgressBar: true,
-              didOpen: (toast) => {
-                toast.onmouseenter = Swal.stopTimer;
-                toast.onmouseleave = Swal.resumeTimer;
-              },
-            });
-            Toast.fire({
-              icon: "success",
-              title: "product added wishList",
-            });
+            toast.success("item added to wishlist!");
           }} // Pass a function reference
         >
           {WishList[product.id] > 0 ? (

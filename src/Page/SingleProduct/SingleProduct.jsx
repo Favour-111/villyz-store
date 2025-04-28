@@ -8,8 +8,7 @@ import Footer from "../../footer/Footer";
 import Item from "../../components/items/Item";
 import { Link, useLocation } from "react-router-dom";
 import { ShopContext } from "../../components/context/ShopContext";
-import Swal from "sweetalert2/dist/sweetalert2.js";
-import "sweetalert2/src/sweetalert2.scss";
+import toast, { Toaster } from "react-hot-toast";
 import BackToTop from "../../components/BackToTop/BackToTop";
 import { LuShoppingCart } from "react-icons/lu";
 import { MdAddShoppingCart } from "react-icons/md";
@@ -36,38 +35,10 @@ const SingleProduct = ({ page }) => {
   const toggleWhishList = (id) => {
     if (WishList[id] > 0) {
       RemoveList(id);
-      const Toast = Swal.mixin({
-        toast: true,
-        position: "top-end",
-        showConfirmButton: false,
-        timer: 3000,
-        timerProgressBar: true,
-        didOpen: (toast) => {
-          toast.onmouseenter = Swal.stopTimer;
-          toast.onmouseleave = Swal.resumeTimer;
-        },
-      });
-      Toast.fire({
-        icon: "success",
-        title: "product Removed from wishList",
-      });
+      toast.success("item removed from wishlist!");
     } else {
       addtowishList(id);
-      const Toast = Swal.mixin({
-        toast: true,
-        position: "top-end",
-        showConfirmButton: false,
-        timer: 3000,
-        timerProgressBar: true,
-        didOpen: (toast) => {
-          toast.onmouseenter = Swal.stopTimer;
-          toast.onmouseleave = Swal.resumeTimer;
-        },
-      });
-      Toast.fire({
-        icon: "success",
-        title: "product added wishList",
-      });
+      toast.success("item added to cart!");
     }
   };
   return (
@@ -135,21 +106,7 @@ const SingleProduct = ({ page }) => {
                   className="prod-btn"
                   onClick={() => {
                     addToCart(id);
-                    const Toast = Swal.mixin({
-                      toast: true,
-                      position: "top-end",
-                      showConfirmButton: false,
-                      timer: 3000,
-                      timerProgressBar: true,
-                      didOpen: (toast) => {
-                        toast.onmouseenter = Swal.stopTimer;
-                        toast.onmouseleave = Swal.resumeTimer;
-                      },
-                    });
-                    Toast.fire({
-                      icon: "success",
-                      title: "product added carts",
-                    });
+                    toast.success("item added to cart!");
                   }}
                 >
                   <MdAddShoppingCart className="mb-1" /> Item in Cart
@@ -159,21 +116,7 @@ const SingleProduct = ({ page }) => {
                   className="prod-btn"
                   onClick={() => {
                     addToCart(id);
-                    const Toast = Swal.mixin({
-                      toast: true,
-                      position: "top-end",
-                      showConfirmButton: false,
-                      timer: 3000,
-                      timerProgressBar: true,
-                      didOpen: (toast) => {
-                        toast.onmouseenter = Swal.stopTimer;
-                        toast.onmouseleave = Swal.resumeTimer;
-                      },
-                    });
-                    Toast.fire({
-                      icon: "success",
-                      title: "product added carts",
-                    });
+                    toast.success("item added to cart!");
                   }}
                 >
                   <LuShoppingCart className="mb-1" /> Add to Cart

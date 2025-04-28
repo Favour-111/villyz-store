@@ -11,6 +11,7 @@ import NavSm from "./NavSm/NavSm";
 import BackToTop from "./BackToTop/BackToTop";
 import BestSellers from "./BestSellers/BestSellers";
 import Information from "./Information/Information";
+import NewsletterPopup from "./NewsletterPopup/NewsletterPopup";
 
 const Page = () => {
   return (
@@ -20,6 +21,7 @@ const Page = () => {
       <NavSm />
       <Carousel />
       <Category />
+      <NewsletterPopup />
       <Deals />
       <NewArrival />
       <BestSellers />

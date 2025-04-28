@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 import { ShopContext } from "../../components/context/ShopContext";
 import Item from "../../components/items/Item";
 import { useNavigate } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/src/sweetalert2.scss";
 import BackToTop from "../../components/BackToTop/BackToTop";
@@ -172,14 +173,9 @@ const Cart = ({ page }) => {
                                   class="text-muted"
                                   onClick={() => {
                                     deleteCart(item.id);
-                                    Swal.fire({
-                                      icon: "info",
-                                      title: "Removed from Wishlist",
-                                      toast: true,
-                                      position: "top-end",
-                                      showConfirmButton: false,
-                                      timer: 2000,
-                                    });
+                                    toast.success(
+                                      "Successfully removed from cart!"
+                                    );
                                   }}
                                   data-bs-toggle="tooltip"
                                   data-bs-placement="top"
@@ -194,21 +190,7 @@ const Cart = ({ page }) => {
                                   className="WishList-btn"
                                   onClick={() => {
                                     toggleWhishList(item.id);
-                                    const Toast = Swal.mixin({
-                                      toast: true,
-                                      position: "top-end",
-                                      showConfirmButton: false,
-                                      timer: 3000,
-                                      timerProgressBar: true,
-                                      didOpen: (toast) => {
-                                        toast.onmouseenter = Swal.stopTimer;
-                                        toast.onmouseleave = Swal.resumeTimer;
-                                      },
-                                    });
-                                    Toast.fire({
-                                      icon: "success",
-                                      title: "product added wishList",
-                                    });
+                                    toast.success("item added to wishlist!");
                                   }} // Pass a function reference
                                 >
                                   {WishList[item.id] > 0 ? (
@@ -295,21 +277,7 @@ const Cart = ({ page }) => {
                                 className="WishList-btn"
                                 onClick={() => {
                                   toggleWhishList(e.id);
-                                  const Toast = Swal.mixin({
-                                    toast: true,
-                                    position: "top-end",
-                                    showConfirmButton: false,
-                                    timer: 3000,
-                                    timerProgressBar: true,
-                                    didOpen: (toast) => {
-                                      toast.onmouseenter = Swal.stopTimer;
-                                      toast.onmouseleave = Swal.resumeTimer;
-                                    },
-                                  });
-                                  Toast.fire({
-                                    icon: "success",
-                                    title: "product added wishList",
-                                  });
+                                  toast.success("item added to cart!");
                                 }} // Pass a function reference
                               >
                                 {WishList[e.id] > 0 ? (
@@ -384,6 +352,7 @@ const Cart = ({ page }) => {
       </div>
       <Footer />
       <BackToTop />
+      <Toaster />
     </div>
   );
 };

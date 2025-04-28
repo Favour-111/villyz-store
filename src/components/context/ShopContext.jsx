@@ -1,22 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { createContext } from "react";
-import product from "../../product";
 import axios from "axios";
 import Loading from "../Loading/Loading";
 export const ShopContext = createContext(null);
-const getDefaultCart = () => {
+const getDefaultCart = (products) => {
   let cart = {};
-  for (let index = 0; index < product.length; index++) {
-    cart[index] = 0;
+  for (let i = 0; i < products?.length; i++) {
+    cart[products[i].id] = 0;
   }
   return cart;
 };
-const getWishList = () => {
-  let List = {};
-  for (let index = 0; index < product.length; index++) {
-    List[product[index].id] = 0; // Use product.id instead of index
+
+const getWishList = (products) => {
+  let list = {};
+  for (let i = 0; i < products?.length; i++) {
+    list[products[i].id] = 0;
   }
-  return List;
+  return list;
 };
 
 const ShopContextProvider = (props) => {
@@ -36,7 +36,10 @@ const ShopContextProvider = (props) => {
       );
 
       if (response) {
-        setProduct(response.data.response);
+        const fetchedProducts = response.data.response;
+        setProduct(fetchedProducts);
+        setCartItem(getDefaultCart(fetchedProducts)); // Initialize correctly
+        setWishList(getWishList(fetchedProducts)); // Initialize correctly
       }
     } catch (error) {
       console.log(error.message);
@@ -44,6 +47,7 @@ const ShopContextProvider = (props) => {
       setLoader(false);
     }
   };
+
   useEffect(() => {
     getallProduct();
   }, []);

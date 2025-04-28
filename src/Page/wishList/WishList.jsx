@@ -6,8 +6,7 @@ import NavSm from "../../components/NavSm/NavSm";
 import BreadCrumb from "../../components/BreadCrumbs/BreadCrumb";
 import Footer from "../../footer/Footer";
 import { ShopContext } from "../../components/context/ShopContext";
-import Swal from "sweetalert2/dist/sweetalert2.js";
-import "sweetalert2/src/sweetalert2.scss";
+import toast, { Toaster } from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import BackToTop from "../../components/BackToTop/BackToTop";
 import { IoTrashOutline } from "react-icons/io5";
@@ -92,14 +91,7 @@ const WishList = ({ page }) => {
                                   class="btn btn-primary btn-sm"
                                   onClick={() => {
                                     addToCart(item.id);
-                                    Swal.fire({
-                                      icon: "success",
-                                      title: "Item added to cart",
-                                      toast: true,
-                                      position: "top-end",
-                                      showConfirmButton: false,
-                                      timer: 2000,
-                                    });
+                                    toast.success("item added to cart!");
                                   }}
                                 >
                                   {cartItem[item.id] > 0
@@ -113,14 +105,9 @@ const WishList = ({ page }) => {
                                   class="text-muted"
                                   onClick={() => {
                                     RemoveList(item.id);
-                                    Swal.fire({
-                                      icon: "info",
-                                      title: "Removed from Wishlist",
-                                      toast: true,
-                                      position: "top-end",
-                                      showConfirmButton: false,
-                                      timer: 2000,
-                                    });
+                                    toast.success(
+                                      "item removed from wishlist!"
+                                    );
                                   }}
                                   data-bs-toggle="tooltip"
                                   data-bs-placement="top"
@@ -157,6 +144,7 @@ const WishList = ({ page }) => {
 
       <BackToTop />
       <Footer />
+      <Toaster />
     </div>
   );
 };
